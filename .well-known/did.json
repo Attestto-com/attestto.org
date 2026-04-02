@@ -1,0 +1,60 @@
+{
+  "@context": [
+    "https://www.w3.org/ns/did/v1",
+    "https://w3id.org/security/suites/ed25519-2020/v1",
+    "https://w3id.org/security/suites/jws-2020/v1"
+  ],
+  "id": "did:web:attestto.org",
+  "controller": "did:web:attestto.org",
+  "verificationMethod": [
+    {
+      "id": "did:web:attestto.org#dao-key-1",
+      "type": "Ed25519VerificationKey2020",
+      "controller": "did:web:attestto.org",
+      "publicKeyMultibase": "z6Mkrd4CtVrbSEqZzeHnktGr3LbeSgG2hYUyU44M9M4wTey6"
+    }
+  ],
+  "authentication": [
+    "did:web:attestto.org#dao-key-1"
+  ],
+  "assertionMethod": [
+    "did:web:attestto.org#dao-key-1"
+  ],
+  "capabilityDelegation": [
+    "did:web:attestto.org#dao-key-1"
+  ],
+  "capabilityInvocation": [
+    "did:web:attestto.org#dao-key-1"
+  ],
+  "service": [
+    {
+      "id": "did:web:attestto.org#linked-domain",
+      "type": "LinkedDomains",
+      "serviceEndpoint": "https://attestto.org"
+    },
+    {
+      "id": "did:web:attestto.org#multisig-vault",
+      "type": "SolanaMultisig",
+      "serviceEndpoint": "solana:mainnet-beta",
+      "multisigPda": "4Uq3CB7e4wvE4Y3hPcuTnQBefYHn6CBoVAya3WSHWW5T",
+      "vaultPda": "DjDwXJHv7rKk8quj8o8tGTu5JfUnfVqq5wk8TZC6XiAp",
+      "threshold": "2-of-3",
+      "protocol": "squads-v4"
+    },
+    {
+      "id": "did:web:attestto.org#governance",
+      "type": "DAOGovernance",
+      "serviceEndpoint": "https://attestto.org/.well-known/governance.json"
+    },
+    {
+      "id": "did:web:attestto.org#schemas",
+      "type": "CredentialSchemaRegistry",
+      "serviceEndpoint": "https://github.com/Attestto-com/cr-vc-schemas"
+    },
+    {
+      "id": "did:web:attestto.org#sdk",
+      "type": "VerifiableCredentialService",
+      "serviceEndpoint": "https://github.com/Attestto-com/vc-sdk"
+    }
+  ]
+}

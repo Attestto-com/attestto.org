@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Attestto Open — Digital Public Infrastructure</title>
+  <meta name="description" content="Open digital public infrastructure for verifiable data. Sovereign, interoperable, privacy-preserving. No vendor lock-in.">
+  <meta name="theme-color" content="#0f172a">
+  <meta property="og:title" content="Attestto Open — Digital Public Infrastructure">
+  <meta property="og:description" content="Open digital public infrastructure for verifiable data. Sovereign, interoperable, privacy-preserving.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://attestto.org">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>◈</text></svg>">
+  <style>
+    /* ── Reset ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    /* ── Tokens ── */
+    :root {
+      --color-ink: #0f172a;
+      --color-ink-muted: #475569;
+      --color-ink-subtle: #94a3b8;
+      --color-surface: #ffffff;
+      --color-surface-alt: #f8fafc;
+      --color-border: #e2e8f0;
+      --color-accent: #1e40af;
+      --color-accent-light: #dbeafe;
+      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+      --max-width: 72rem;
+      --space-xs: 0.5rem;
+      --space-sm: 1rem;
+      --space-md: 2rem;
+      --space-lg: 4rem;
+      --space-xl: 6rem;
+    }
+
+    /* ── Base ── */
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-sans);
+      color: var(--color-ink);
+      background: var(--color-surface);
+      line-height: 1.7;
+      font-size: 1.0625rem;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: var(--color-accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* ── Layout ── */
+    .container {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 var(--space-md);
+    }
+
+    section {
+      padding: var(--space-xl) 0;
+    }
+
+    section + section {
+      border-top: 1px solid var(--color-border);
+    }
+
+    /* ── Nav ── */
+    nav {
+      position: sticky;
+      top: 0;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--color-border);
+      z-index: 100;
+      padding: var(--space-sm) 0;
+    }
+
+    nav .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-brand {
+      font-weight: 700;
+      font-size: 1.125rem;
+      color: var(--color-ink);
+      letter-spacing: -0.02em;
+    }
+
+    .nav-brand span {
+      font-weight: 400;
+      color: var(--color-ink-muted);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: var(--space-md);
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--color-ink-muted);
+      font-size: 0.9375rem;
+      font-weight: 500;
+      transition: color 0.15s;
+    }
+
+    .nav-links a:hover {
+      color: var(--color-ink);
+      text-decoration: none;
+    }
+
+    /* ── Hero ── */
+    .hero {
+      padding: var(--space-xl) 0 var(--space-lg);
+      border-top: none;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.25rem, 5vw, 3.5rem);
+      font-weight: 800;
+      line-height: 1.15;
+      letter-spacing: -0.03em;
+      color: var(--color-ink);
+      max-width: 48rem;
+    }
+
+    .hero .lead {
+      font-size: 1.25rem;
+      color: var(--color-ink-muted);
+      max-width: 40rem;
+      margin-top: var(--space-md);
+      line-height: 1.6;
+    }
+
+    .hero-actions {
+      margin-top: var(--space-md);
+      display: flex;
+      gap: var(--space-sm);
+      flex-wrap: wrap;
+    }
+
+    /* ── Buttons ── */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.5rem;
+      border-radius: 0.5rem;
+      font-weight: 600;
+      font-size: 0.9375rem;
+      transition: all 0.15s;
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: var(--color-ink);
+      color: var(--color-surface);
+    }
+
+    .btn-primary:hover {
+      background: #1e293b;
+      text-decoration: none;
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--color-ink);
+      border: 1px solid var(--color-border);
+    }
+
+    .btn-secondary:hover {
+      background: var(--color-surface-alt);
+      text-decoration: none;
+    }
+
+    /* ── Section headings ── */
+    .section-label {
+      font-size: 0.8125rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--color-accent);
+      margin-bottom: var(--space-xs);
+    }
+
+    .section-title {
+      font-size: 1.75rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: var(--space-sm);
+    }
+
+    .section-desc {
+      color: var(--color-ink-muted);
+      max-width: 40rem;
+      margin-bottom: var(--space-lg);
+    }
+
+    /* ── Grid ── */
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
+      gap: var(--space-md);
+    }
+
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+      gap: var(--space-md);
+    }
+
+    /* ── Cards ── */
+    .card {
+      padding: var(--space-md);
+      border: 1px solid var(--color-border);
+      border-radius: 0.75rem;
+      background: var(--color-surface);
+      transition: border-color 0.15s;
+    }
+
+    .card:hover {
+      border-color: var(--color-ink-subtle);
+    }
+
+    .card-icon {
+      width: 2.5rem;
+      height: 2.5rem;
+      border-radius: 0.5rem;
+      background: var(--color-accent-light);
+      color: var(--color-accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+      margin-bottom: var(--space-sm);
+    }
+
+    .card h3 {
+      font-size: 1.0625rem;
+      font-weight: 600;
+      margin-bottom: var(--space-xs);
+    }
+
+    .card p {
+      color: var(--color-ink-muted);
+      font-size: 0.9375rem;
+      line-height: 1.6;
+    }
+
+    /* ── Repo list ── */
+    .repo-list {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+    }
+
+    .repo {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--space-md);
+      padding: var(--space-md);
+      border: 1px solid var(--color-border);
+      border-radius: 0.75rem;
+      transition: border-color 0.15s;
+    }
+
+    .repo:hover {
+      border-color: var(--color-ink-subtle);
+    }
+
+    .repo-name {
+      font-family: var(--font-mono);
+      font-size: 0.9375rem;
+      font-weight: 600;
+      color: var(--color-ink);
+    }
+
+    .repo-desc {
+      color: var(--color-ink-muted);
+      font-size: 0.9375rem;
+      margin-top: 0.25rem;
+    }
+
+    .repo-tag {
+      display: inline-block;
+      padding: 0.125rem 0.5rem;
+      border-radius: 1rem;
+      font-size: 0.75rem;
+      font-weight: 600;
+      background: var(--color-accent-light);
+      color: var(--color-accent);
+      margin-top: 0.5rem;
+    }
+
+    /* ── Architecture diagram ── */
+    .arch-layers {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      max-width: 40rem;
+    }
+
+    .arch-layer {
+      display: flex;
+      align-items: center;
+      gap: var(--space-md);
+      padding: var(--space-sm) var(--space-md);
+      border-radius: 0.5rem;
+      font-size: 0.9375rem;
+    }
+
+    .arch-layer-num {
+      font-family: var(--font-mono);
+      font-weight: 700;
+      font-size: 0.8125rem;
+      color: var(--color-accent);
+      min-width: 1.5rem;
+    }
+
+    .arch-layer-name {
+      font-weight: 600;
+      min-width: 8rem;
+    }
+
+    .arch-layer-desc {
+      color: var(--color-ink-muted);
+    }
+
+    .arch-layer:nth-child(1) { background: #eff6ff; }
+    .arch-layer:nth-child(2) { background: #f0fdf4; }
+    .arch-layer:nth-child(3) { background: #fefce8; }
+
+    .arch-note {
+      margin-top: var(--space-sm);
+      font-size: 0.875rem;
+      color: var(--color-ink-subtle);
+      font-style: italic;
+    }
+
+    /* ── Adopt grid ── */
+    .adopt-path h3 {
+      font-size: 1.125rem;
+    }
+
+    .adopt-path ul {
+      margin-top: var(--space-xs);
+      padding-left: 1.25rem;
+      color: var(--color-ink-muted);
+      font-size: 0.9375rem;
+    }
+
+    .adopt-path li + li {
+      margin-top: 0.25rem;
+    }
+
+    /* ── Footer ── */
+    footer {
+      border-top: 1px solid var(--color-border);
+      padding: var(--space-lg) 0;
+      color: var(--color-ink-muted);
+      font-size: 0.875rem;
+    }
+
+    footer .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+    }
+
+    footer a {
+      color: var(--color-ink-muted);
+    }
+
+    footer a:hover {
+      color: var(--color-ink);
+    }
+
+    .footer-links {
+      display: flex;
+      gap: var(--space-md);
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+
+      section { padding: var(--space-lg) 0; }
+
+      .hero { padding: var(--space-lg) 0 var(--space-md); }
+
+      .repo {
+        flex-direction: column;
+        gap: var(--space-xs);
+      }
+
+      footer .container {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+  </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Nav -->
+  <nav>
+    <div class="container">
+      <a href="/" class="nav-brand">Attestto <span>Open</span></a>
+      <ul class="nav-links">
+        <li><a href="#what">What</a></li>
+        <li><a href="#principles">Principles</a></li>
+        <li><a href="#architecture">Architecture</a></li>
+        <li><a href="#source">Source</a></li>
+        <li><a href="#adopt">Adopt</a></li>
+        <li><a href="#governance">Governance</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container">
+      <h1>Open digital public infrastructure</h1>
+      <p class="lead">
+        Verifiable data primitives anyone can build on.
+        Sovereign, interoperable, privacy-preserving.
+        No vendor lock-in. No single point of failure.
+      </p>
+      <div class="hero-actions">
+        <a href="https://github.com/Attestto-com" class="btn btn-primary">View on GitHub</a>
+        <a href="#what" class="btn btn-secondary">Learn more</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- What -->
+  <section id="what">
+    <div class="container">
+      <div class="section-label">What</div>
+      <h2 class="section-title">Infrastructure, not a product</h2>
+      <p class="section-desc">
+        Attestto Open builds the foundational layers for verifiable digital systems.
+        Open schemas, decentralized identifiers, and cryptographic verification
+        that any government, institution, or developer can deploy and extend
+        without depending on a single vendor.
+      </p>
+      <div class="grid-3">
+        <div class="card">
+          <div class="card-icon">◇</div>
+          <h3>Open schemas</h3>
+          <p>Machine-readable data models that define how verifiable information is structured. Domain-agnostic, extensible by design.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">⟁</div>
+          <h3>Decentralized trust</h3>
+          <p>No central authority controls the system. Trust is cryptographic, distributed across institutions, and verifiable by anyone.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">⊘</div>
+          <h3>Privacy by construction</h3>
+          <p>Selective disclosure, zero-knowledge proofs, and minimal data exposure are built into the protocol, not bolted on.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Principles -->
+  <section id="principles">
+    <div class="container">
+      <div class="section-label">Principles</div>
+      <h2 class="section-title">What we stand for</h2>
+      <p class="section-desc">
+        These principles are non-negotiable. Every component we build,
+        every standard we propose, and every governance decision we make
+        is measured against them.
+      </p>
+      <div class="grid-4">
+        <div class="card">
+          <h3>Sovereignty</h3>
+          <p>Institutions and individuals control their own data and infrastructure. No external dependency required to operate.</p>
+        </div>
+        <div class="card">
+          <h3>Interoperability</h3>
+          <p>Built on W3C, IETF, and ISO standards. Systems built on Attestto Open interoperate with any compliant implementation.</p>
+        </div>
+        <div class="card">
+          <h3>Privacy by design</h3>
+          <p>Data minimization at every layer. Verifiers learn only what they need, nothing more. Consent is cryptographically enforced.</p>
+        </div>
+        <div class="card">
+          <h3>No vendor lock-in</h3>
+          <p>Every component is open source, every format is open standard. You can fork it, replace it, or run it yourself. Forever.</p>
+        </div>
+        <div class="card">
+          <h3>Reversibility</h3>
+          <p>Any deployment can export its data in open formats and migrate to another implementation. No trapped data, ever.</p>
+        </div>
+        <div class="card">
+          <h3>Transparency</h3>
+          <p>Governance decisions, technical choices, and roadmap priorities are public. Stewardship, not control.</p>
+        </div>
+        <div class="card">
+          <h3>Technological neutrality</h3>
+          <p>The infrastructure does not prescribe specific technologies. Blockchain, PKI, cloud, on-premise — the architecture supports all.</p>
+        </div>
+        <div class="card">
+          <h3>Public good</h3>
+          <p>This is infrastructure for society, not a product for sale. Built to be adopted, not purchased.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Architecture -->
+  <section id="architecture">
+    <div class="container">
+      <div class="section-label">Architecture</div>
+      <h2 class="section-title">Three-layer verification</h2>
+      <p class="section-desc">
+        Every piece of verifiable data can be checked at three independent layers.
+        Any two of three is sufficient. No single point of failure.
+      </p>
+      <div class="arch-layers">
+        <div class="arch-layer">
+          <span class="arch-layer-num">01</span>
+          <span class="arch-layer-name">Institutional</span>
+          <span class="arch-layer-desc">Issuer resolves via DID document hosted at their domain</span>
+        </div>
+        <div class="arch-layer">
+          <span class="arch-layer-num">02</span>
+          <span class="arch-layer-name">Registry</span>
+          <span class="arch-layer-desc">Schema and status hosted on a neutral registry (CDN, IPFS)</span>
+        </div>
+        <div class="arch-layer">
+          <span class="arch-layer-num">03</span>
+          <span class="arch-layer-name">Ledger</span>
+          <span class="arch-layer-desc">Cryptographic proof anchored on a public, immutable ledger</span>
+        </div>
+      </div>
+      <p class="arch-note">Any two of three layers is sufficient to verify. The system degrades gracefully, never catastrophically.</p>
+    </div>
+  </section>
+
+  <!-- Open Source -->
+  <section id="source">
+    <div class="container">
+      <div class="section-label">Open Source</div>
+      <h2 class="section-title">Ship code, not slides</h2>
+      <p class="section-desc">
+        Reference implementations, schemas, and SDKs.
+        Everything is on GitHub. Fork it, audit it, extend it.
+      </p>
+      <div class="repo-list">
+        <a href="https://github.com/Attestto-com/vc-sdk" class="repo">
+          <div>
+            <div class="repo-name">vc-sdk</div>
+            <div class="repo-desc">Universal verifiable credentials SDK. Any schema, any DID method. Ed25519 and P-256. Schema plugin system.</div>
+            <span class="repo-tag">Core</span>
+          </div>
+        </a>
+        <a href="https://github.com/Attestto-com/cr-vc-schemas" class="repo">
+          <div>
+            <div class="repo-name">cr-vc-schemas</div>
+            <div class="repo-desc">JSON-LD schemas for verifiable credentials. W3C VDL and ISO 18013-5 interop. 12 reference examples.</div>
+            <span class="repo-tag">Schemas</span>
+          </div>
+        </a>
+        <a href="https://github.com/Attestto-com/cr-vc-sdk" class="repo">
+          <div>
+            <div class="repo-name">cr-vc-sdk</div>
+            <div class="repo-desc">Typed SDK for jurisdiction-specific credentials. Consumes vc-sdk and cr-vc-schemas.</div>
+            <span class="repo-tag">Implementation</span>
+          </div>
+        </a>
+        <a href="https://github.com/Attestto-com/did-sns-spec" class="repo">
+          <div>
+            <div class="repo-name">did-sns-spec</div>
+            <div class="repo-desc">DID method specification for Solana Name Service domains. Decentralized identifiers on Solana.</div>
+            <span class="repo-tag">Spec</span>
+          </div>
+        </a>
+        <a href="https://github.com/Attestto-com/did-method-checklist" class="repo">
+          <div>
+            <div class="repo-name">did-method-checklist</div>
+            <div class="repo-desc">Evaluation framework for DID methods. Structured criteria for comparing decentralized identifier implementations.</div>
+            <span class="repo-tag">Reference</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Adopt -->
+  <section id="adopt">
+    <div class="container">
+      <div class="section-label">Adopt</div>
+      <h2 class="section-title">Built to be deployed</h2>
+      <p class="section-desc">
+        Whether you're a government digitizing public services,
+        an institution issuing verifiable documents,
+        or a developer building on verifiable data.
+      </p>
+      <div class="grid-3">
+        <div class="card adopt-path">
+          <h3>Governments</h3>
+          <ul>
+            <li>Deploy sovereign identity infrastructure</li>
+            <li>Issue verifiable public documents</li>
+            <li>Interoperate across jurisdictions</li>
+            <li>No vendor dependency</li>
+          </ul>
+        </div>
+        <div class="card adopt-path">
+          <h3>Institutions</h3>
+          <ul>
+            <li>Issue verifiable credentials</li>
+            <li>Verify third-party documents</li>
+            <li>Plug into existing systems via SDK</li>
+            <li>Define domain-specific schemas</li>
+          </ul>
+        </div>
+        <div class="card adopt-path">
+          <h3>Developers</h3>
+          <ul>
+            <li>Fork and extend the SDKs</li>
+            <li>Build schema plugins for new domains</li>
+            <li>Implement new DID methods</li>
+            <li>Contribute to the standard</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Governance -->
+  <section id="governance">
+    <div class="container">
+      <div class="section-label">Governance</div>
+      <h2 class="section-title">Stewardship, not control</h2>
+      <p class="section-desc">
+        Attestto Open is stewarded, not owned. The governance model ensures
+        that no single entity — including Attestto — can unilaterally control
+        the infrastructure, the standards, or the roadmap.
+      </p>
+      <div class="grid-3">
+        <div class="card">
+          <h3>Open governance</h3>
+          <p>Technical decisions are made transparently. Proposals, discussions, and votes are public. Anyone can participate.</p>
+        </div>
+        <div class="card">
+          <h3>Contributor model</h3>
+          <p>Institutions, governments, and developers can propose schemas, DID methods, and protocol extensions through a structured contribution process.</p>
+        </div>
+        <div class="card">
+          <h3>No single owner</h3>
+          <p>The infrastructure is designed to outlive any single organization. Forkable, portable, and governed by its community.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <span>Attestto Open</span>
+      <div class="footer-links">
+        <a href="https://github.com/Attestto-com">GitHub</a>
+        <a href="mailto:open@attestto.com">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

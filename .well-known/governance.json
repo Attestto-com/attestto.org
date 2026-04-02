@@ -1,0 +1,37 @@
+{
+  "@context": "https://attestto.org/governance/v1",
+  "id": "did:web:attestto.org",
+  "type": "DAOGovernance",
+  "name": "Attestto Open",
+  "description": "Open digital public infrastructure — governed collectively, owned by no one.",
+  "governanceModel": {
+    "type": "DAO",
+    "keyManagement": "multisig",
+    "threshold": "2-of-3",
+    "rotationPolicy": "Requires DAO vote. No single party can rotate keys unilaterally.",
+    "onChain": {
+      "network": "solana:mainnet-beta",
+      "protocol": "squads-v4",
+      "multisigPda": "4Uq3CB7e4wvE4Y3hPcuTnQBefYHn6CBoVAya3WSHWW5T",
+      "vaultPda": "DjDwXJHv7rKk8quj8o8tGTu5JfUnfVqq5wk8TZC6XiAp"
+    }
+  },
+  "principles": [
+    "Sovereignty — adopters control their own infrastructure",
+    "Interoperability — W3C, IETF, ISO standards only",
+    "Privacy by design — minimal disclosure, consent-enforced",
+    "No vendor lock-in — fork, replace, or self-host at any time",
+    "Reversibility — open format export, no trapped data",
+    "Technological neutrality — no prescribed stack"
+  ],
+  "contribution": {
+    "schemas": "https://github.com/Attestto-com/cr-vc-schemas/blob/main/CONTRIBUTING.md",
+    "sdk": "https://github.com/Attestto-com/vc-sdk/blob/main/CONTRIBUTING.md",
+    "governance": "https://github.com/Attestto-com/attestto.org/issues"
+  },
+  "steward": {
+    "name": "Attestto Open",
+    "role": "Steward, not owner. Infrastructure governance, not control.",
+    "website": "https://attestto.org"
+  }
+}
