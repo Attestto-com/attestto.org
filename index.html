@@ -527,6 +527,33 @@
           <p>Selective disclosure, zero-knowledge proofs, and minimal data exposure are built into the protocol, not bolted on.</p>
         </div>
       </div>
+
+      <!-- Architecture sub-section -->
+      <div class="arch-subsection" id="architecture">
+        <h3 class="arch-subsection-title">Three-layer verification</h3>
+        <p class="arch-subsection-desc">
+          Every piece of verifiable data can be checked at three independent layers.
+          Any two of three is sufficient. No single point of failure.
+        </p>
+        <div class="arch-layers">
+          <div class="arch-layer">
+            <span class="arch-layer-num">01</span>
+            <span class="arch-layer-name">Institutional</span>
+            <span class="arch-layer-desc">Issuer resolves via DID document hosted at their domain</span>
+          </div>
+          <div class="arch-layer">
+            <span class="arch-layer-num">02</span>
+            <span class="arch-layer-name">Registry</span>
+            <span class="arch-layer-desc">Schema and status hosted on a neutral registry (CDN, IPFS)</span>
+          </div>
+          <div class="arch-layer">
+            <span class="arch-layer-num">03</span>
+            <span class="arch-layer-name">Ledger</span>
+            <span class="arch-layer-desc">Cryptographic proof anchored on a public, immutable ledger</span>
+          </div>
+        </div>
+        <p class="arch-note">Any two of three layers is sufficient to verify. The system degrades gracefully, never catastrophically.</p>
+      </div>
     </div>
   </section>
 
@@ -573,33 +600,6 @@
           <h3>Public good</h3>
           <p>This is infrastructure for society, not a product for sale. Built to be adopted, not purchased.</p>
         </div>
-      </div>
-
-      <!-- Architecture sub-section -->
-      <div class="arch-subsection" id="architecture">
-        <h3 class="arch-subsection-title">Three-layer verification</h3>
-        <p class="arch-subsection-desc">
-          Every piece of verifiable data can be checked at three independent layers.
-          Any two of three is sufficient. No single point of failure.
-        </p>
-        <div class="arch-layers">
-          <div class="arch-layer">
-            <span class="arch-layer-num">01</span>
-            <span class="arch-layer-name">Institutional</span>
-            <span class="arch-layer-desc">Issuer resolves via DID document hosted at their domain</span>
-          </div>
-          <div class="arch-layer">
-            <span class="arch-layer-num">02</span>
-            <span class="arch-layer-name">Registry</span>
-            <span class="arch-layer-desc">Schema and status hosted on a neutral registry (CDN, IPFS)</span>
-          </div>
-          <div class="arch-layer">
-            <span class="arch-layer-num">03</span>
-            <span class="arch-layer-name">Ledger</span>
-            <span class="arch-layer-desc">Cryptographic proof anchored on a public, immutable ledger</span>
-          </div>
-        </div>
-        <p class="arch-note">Any two of three layers is sufficient to verify. The system degrades gracefully, never catastrophically.</p>
       </div>
     </div>
   </section>
