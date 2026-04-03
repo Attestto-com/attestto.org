@@ -392,6 +392,14 @@
       margin-top: var(--space-xl);
       padding-top: var(--space-lg);
       border-top: 1px solid var(--color-border);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-lg);
+      align-items: start;
+    }
+
+    @media (max-width: 768px) {
+      .arch-subsection { grid-template-columns: 1fr; }
     }
 
     .arch-subsection-title {
@@ -403,7 +411,6 @@
 
     .arch-subsection-desc {
       color: var(--color-ink-muted);
-      max-width: 40rem;
       margin-bottom: var(--space-md);
     }
 
@@ -530,11 +537,14 @@
 
       <!-- Architecture sub-section -->
       <div class="arch-subsection" id="architecture">
-        <h3 class="arch-subsection-title">Three-layer verification</h3>
-        <p class="arch-subsection-desc">
-          Every piece of verifiable data can be checked at three independent layers.
-          Any two of three is sufficient. No single point of failure.
-        </p>
+        <div>
+          <h3 class="arch-subsection-title">Three-layer verification</h3>
+          <p class="arch-subsection-desc">
+            Every piece of verifiable data can be checked at three independent layers.
+            Any two of three is sufficient. No single point of failure.
+          </p>
+          <p class="arch-note">The system degrades gracefully, never catastrophically.</p>
+        </div>
         <div class="arch-layers">
           <div class="arch-layer">
             <span class="arch-layer-num">01</span>
@@ -552,7 +562,6 @@
             <span class="arch-layer-desc">Cryptographic proof anchored on a public, immutable ledger</span>
           </div>
         </div>
-        <p class="arch-note">Any two of three layers is sufficient to verify. The system degrades gracefully, never catastrophically.</p>
       </div>
     </div>
   </section>
