@@ -553,14 +553,51 @@
           </div>
           <div class="arch-layer">
             <span class="arch-layer-num">02</span>
-            <span class="arch-layer-name">Registry</span>
-            <span class="arch-layer-desc">Schema and status hosted on a neutral registry (CDN, IPFS)</span>
+            <span class="arch-layer-name">Mesh</span>
+            <span class="arch-layer-desc">State synced across a P2P mesh — no central server required</span>
           </div>
           <div class="arch-layer">
             <span class="arch-layer-num">03</span>
             <span class="arch-layer-name">Ledger</span>
             <span class="arch-layer-desc">Cryptographic proof anchored on a public, immutable ledger</span>
           </div>
+        </div>
+      </div>
+
+      <!-- Network sub-section -->
+      <div class="arch-subsection">
+        <div>
+          <h3 class="arch-subsection-title">Distributed mesh network</h3>
+          <p class="arch-subsection-desc">
+            Every installation is a node. Citizens, lawyers, and institutions contribute
+            storage to a peer-to-peer mesh that replicates encrypted identity state
+            across the network. No central server. No cloud dependency.
+          </p>
+          <p class="arch-note">Privacy is not a policy — it is a mathematical guarantee.</p>
+        </div>
+        <div>
+          <div class="arch-layers">
+            <div class="arch-layer">
+              <span class="arch-layer-num">L1</span>
+              <span class="arch-layer-name">Local cache</span>
+              <span class="arch-layer-desc">0ms — data on your device</span>
+            </div>
+            <div class="arch-layer">
+              <span class="arch-layer-num">L2</span>
+              <span class="arch-layer-name">Mesh peers</span>
+              <span class="arch-layer-desc">&lt;100ms — encrypted blobs from nearby nodes</span>
+            </div>
+            <div class="arch-layer">
+              <span class="arch-layer-num">L3</span>
+              <span class="arch-layer-name">Solana anchor</span>
+              <span class="arch-layer-desc">200-500ms — cryptographic proof on public ledger</span>
+            </div>
+          </div>
+          <p style="margin-top: var(--space-sm); font-size: 0.875rem; color: var(--color-ink-muted);">
+            ~120 KB per citizen. A national mesh for 5 million people fits in 600 GB
+            distributed across thousands of nodes. Each node stores encrypted data
+            it cannot read — the <strong>Blind Courier</strong> principle.
+          </p>
         </div>
       </div>
     </div>
@@ -645,6 +682,37 @@
             <div class="repo-name">vLEI-Solana-Bridge</div>
             <div class="repo-desc">On-chain vLEI attestation with Groth16 zero-knowledge proofs.</div>
             <span class="repo-tag">GLEIF vLEI</span>
+          </div>
+        </a>
+      </div>
+
+      <h3 style="font-size: 1.125rem; font-weight: 600; margin-top: var(--space-lg); margin-bottom: var(--space-sm);">Infrastructure</h3>
+      <p style="color: var(--color-ink-muted); font-size: 0.9375rem; margin-bottom: var(--space-md); max-width: 40rem;">
+        The distributed mesh network and desktop application that turn open standards into running infrastructure.
+      </p>
+      <div class="repo-grid">
+        <a href="https://github.com/Attestto-com/attestto-mesh" class="repo">
+          <img src="/github.svg" class="repo-icon" alt="GitHub">
+          <div>
+            <div class="repo-name">attestto-mesh</div>
+            <div class="repo-desc">P2P data mesh over libp2p — encrypted state-sync for sovereign identity.</div>
+            <span class="repo-tag">Network</span>
+          </div>
+        </a>
+        <a href="https://github.com/Attestto-com/attestto-desktop" class="repo">
+          <img src="/github.svg" class="repo-icon" alt="GitHub">
+          <div>
+            <div class="repo-name">attestto-desktop</div>
+            <div class="repo-desc">Electron app — every installation is a mesh node with offline verification.</div>
+            <span class="repo-tag">Desktop</span>
+          </div>
+        </a>
+        <a href="https://github.com/Attestto-com/verify" class="repo">
+          <img src="/github.svg" class="repo-icon" alt="GitHub">
+          <div>
+            <div class="repo-name">attestto-verify</div>
+            <div class="repo-desc">Document verification web components — drop a PDF, verify the math.</div>
+            <span class="repo-tag">Web</span>
           </div>
         </a>
       </div>
