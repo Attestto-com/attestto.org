@@ -8,9 +8,6 @@
   <meta name="theme-color" content="#0a1628">
   <meta name="keywords" content="public digital infrastructure, sovereign identity, decentralized identity, DID, verifiable credentials, P2P mesh, libp2p, Solana, blind courier, open source, Web5">
   <link rel="canonical" href="https://attestto.org">
-  <link rel="alternate" hreflang="en" href="https://attestto.org?lang=en">
-  <link rel="alternate" hreflang="es" href="https://attestto.org?lang=es">
-  <link rel="alternate" hreflang="x-default" href="https://attestto.org">
 
   <!-- Open Graph -->
   <meta property="og:title" content="Attestto Open — Public Digital Infrastructure for Sovereign Identity">
@@ -57,560 +54,20 @@
 
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <link rel="icon" type="image/jpeg" href="/favicon.jpg">
+  <link rel="stylesheet" href="/assets/css/main.css">
   <style>
-    /* ── Reset ── */
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    /* ── Tokens ── */
-    :root {
-      --color-ink: #0f172a;
-      --color-ink-muted: #475569;
-      --color-ink-subtle: #94a3b8;
-      --color-surface: #ffffff;
-      --color-surface-alt: #f0fdf4;
-      --color-border: #e2e8f0;
-      --color-accent: #16a34a;
-      --color-accent-light: #dcfce7;
-      --color-dark: #0a1628;
-      --color-dark-border: rgba(255, 255, 255, 0.08);
-      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
-      --max-width: 72rem;
-      --space-xs: 0.5rem;
-      --space-sm: 1rem;
-      --space-md: 2rem;
-      --space-lg: 4rem;
-      --space-xl: 6rem;
-    }
-
-    /* ── Base ── */
-    html { scroll-behavior: smooth; }
-    body {
-      font-family: var(--font-sans);
-      color: var(--color-ink);
-      background: var(--color-surface);
-      line-height: 1.7;
-      font-size: 1.0625rem;
-      -webkit-font-smoothing: antialiased;
-    }
-
-    a { color: var(--color-accent); text-decoration: none; }
-    a:hover { text-decoration: underline; }
-
-    /* ── Layout ── */
-    .container {
-      max-width: var(--max-width);
-      margin: 0 auto;
-      padding: 0 var(--space-md);
-    }
-
-    section { padding: var(--space-xl) 0; }
-
-    /* ── Section themes ── */
-    .section-light {
-      background: var(--color-surface-alt);
-      color: var(--color-ink);
-    }
-
-    .section-dark {
-      background: var(--color-dark);
-      color: #ffffff;
-    }
-
-    .section-dark .section-label { color: #4ade80; }
-    .section-dark .section-title { color: #ffffff; }
-    .section-dark .section-desc { color: rgba(255, 255, 255, 0.6); }
-
-    .section-dark .card {
-      background: rgba(255, 255, 255, 0.05);
-      border-color: var(--color-dark-border);
-    }
-
-    .section-dark .card h3 { color: #ffffff; }
-    .section-dark .card p,
-    .section-dark .card li { color: rgba(255, 255, 255, 0.6); }
-
-    .section-dark .card-icon {
-      background: rgba(74, 222, 128, 0.12);
-      color: #4ade80;
-    }
-
-    .section-dark .repo {
-      border-color: var(--color-dark-border);
-    }
-
-    .section-dark .repo:hover { border-color: rgba(255, 255, 255, 0.2); }
-
-    .section-dark .repo-name { color: #ffffff; }
-    .section-dark .repo-desc { color: rgba(255, 255, 255, 0.6); }
-    .section-dark .repo-tag {
-      background: rgba(74, 222, 128, 0.12);
-      color: #4ade80;
-    }
-
-    /* ── Nav ── */
-    nav {
-      position: sticky;
-      top: 0;
-      background: rgba(10, 22, 40, 0.97);
-      backdrop-filter: blur(8px);
-      border-bottom: 1px solid var(--color-dark-border);
-      z-index: 100;
-      padding: var(--space-sm) 0;
-    }
-
-    nav .container {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .nav-brand {
-      font-weight: 700;
-      font-size: 1.125rem;
-      color: #ffffff;
-      letter-spacing: -0.02em;
-    }
-
-    .nav-brand span {
-      font-weight: 400;
-      color: rgba(255, 255, 255, 0.6);
-    }
-
-    .nav-links {
-      display: flex;
-      gap: var(--space-md);
-      list-style: none;
-      align-items: center;
-    }
-
-    .nav-links a {
-      color: rgba(255, 255, 255, 0.7);
-      font-size: 0.9375rem;
-      font-weight: 500;
-      transition: color 0.15s;
-    }
-
-    .nav-links a:hover { color: #ffffff; text-decoration: none; }
-
-    /* ── Language switcher ── */
-    .lang-switcher {
-      display: flex;
-      gap: 2px;
-      background: rgba(255, 255, 255, 0.06);
-      border-radius: 6px;
-      padding: 2px;
-      margin-left: var(--space-sm);
-    }
-
-    .lang-switcher button {
-      all: unset;
-      padding: 4px 10px;
-      font-size: 0.8125rem;
-      font-weight: 600;
-      font-family: var(--font-sans);
-      color: rgba(255, 255, 255, 0.45);
-      border-radius: 4px;
-      cursor: pointer;
-      transition: all 0.15s;
-      line-height: 1;
-    }
-
-    .lang-switcher button:hover {
-      color: rgba(255, 255, 255, 0.8);
-    }
-
-    .lang-switcher button.active {
-      background: rgba(255, 255, 255, 0.12);
-      color: #ffffff;
-    }
-
-    /* ── Hero ── */
-    .hero {
-      padding: var(--space-xl) 0 var(--space-lg);
-      background: var(--color-dark);
-    }
-
-    .hero .container {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: var(--space-lg);
-      align-items: center;
-    }
-
-    .hero h1 {
-      font-size: clamp(2.25rem, 5vw, 3.5rem);
-      font-weight: 800;
-      line-height: 1.15;
-      letter-spacing: -0.03em;
-      color: #ffffff;
-    }
-
-    .hero .lead {
-      font-size: 1.25rem;
-      color: rgba(255, 255, 255, 0.85);
-      margin-top: var(--space-md);
-      line-height: 1.6;
-    }
-
-    .hero-actions {
-      margin-top: var(--space-md);
-      display: flex;
-      gap: var(--space-sm);
-      flex-wrap: wrap;
-    }
-
-    .hero-layers {
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-    }
-
-    .hero-layer {
-      padding: 1.25rem 1.5rem;
-      border-radius: 0.75rem;
-      display: grid;
-      grid-template-columns: 2.5rem 1fr;
-      grid-template-rows: auto auto;
-      column-gap: 1rem;
-      row-gap: 0.125rem;
-    }
-
-    .hero-layer:nth-child(1) { background: rgba(74, 222, 128, 0.15); }
-    .hero-layer:nth-child(2) { background: rgba(74, 222, 128, 0.10); }
-    .hero-layer:nth-child(3) { background: rgba(74, 222, 128, 0.06); }
-
-    .hero-layer-num {
-      font-family: var(--font-mono);
-      font-weight: 700;
-      font-size: 0.875rem;
-      color: #4ade80;
-      grid-row: 1 / 3;
-      align-self: center;
-    }
-
-    .hero-layer-label {
-      font-weight: 600;
-      font-size: 1rem;
-      color: #ffffff;
-    }
-
-    .hero-layer-desc {
-      font-size: 0.8125rem;
-      color: rgba(255, 255, 255, 0.7);
-    }
-
-    @media (max-width: 768px) {
-      .hero .container {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    /* ── Buttons ── */
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 0.75rem 1.5rem;
-      border-radius: 0.5rem;
-      font-weight: 600;
-      font-size: 0.9375rem;
-      transition: all 0.15s;
-      border: none;
-      cursor: pointer;
-    }
-
-    .btn-primary {
-      background: var(--color-ink);
-      color: var(--color-surface);
-    }
-
-    .btn-primary:hover { background: #1e293b; text-decoration: none; }
-
-    .btn-secondary {
-      background: transparent;
-      color: var(--color-ink);
-      border: 1px solid var(--color-border);
-    }
-
-    .btn-secondary:hover { background: var(--color-surface-alt); text-decoration: none; }
-
-    /* Button overrides for dark backgrounds */
-    .hero .btn-primary,
-    .section-dark .btn-primary {
-      background: #ffffff;
-      color: #0a1628;
-    }
-
-    .hero .btn-primary:hover,
-    .section-dark .btn-primary:hover { background: #e2e8f0; }
-
-    .hero .btn-secondary,
-    .section-dark .btn-secondary {
-      color: rgba(255, 255, 255, 0.8);
-      border-color: rgba(255, 255, 255, 0.2);
-    }
-
-    .hero .btn-secondary:hover,
-    .section-dark .btn-secondary:hover {
-      background: rgba(255, 255, 255, 0.08);
-      color: #ffffff;
-    }
-
-    /* ── Section headings ── */
-    .section-label {
-      font-size: 0.8125rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: var(--color-accent);
-      margin-bottom: var(--space-xs);
-    }
-
-    .section-title {
-      font-size: 1.75rem;
-      font-weight: 700;
-      letter-spacing: -0.02em;
-      margin-bottom: var(--space-sm);
-    }
-
-    .section-desc {
-      color: var(--color-ink-muted);
-      max-width: 40rem;
-      margin-bottom: var(--space-lg);
-    }
-
-    /* ── Grid ── */
-    .grid-3 {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
-      gap: var(--space-md);
-    }
-
-    .grid-4 {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
-      gap: var(--space-md);
-    }
-
-    /* ── Cards ── */
-    .card {
-      padding: var(--space-md);
-      border: 1px solid var(--color-border);
-      border-radius: 0.75rem;
-      background: var(--color-surface);
-    }
-
-    .card-icon {
-      width: 2.5rem;
-      height: 2.5rem;
-      border-radius: 0.5rem;
-      background: var(--color-accent-light);
-      color: var(--color-accent);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: var(--space-sm);
-    }
-
-    .card-icon .material-symbols-outlined {
-      font-size: 1.375rem;
-    }
-
-    .card h3 {
-      font-size: 1.0625rem;
-      font-weight: 600;
-      margin-bottom: var(--space-xs);
-    }
-
-    .card p {
-      color: var(--color-ink-muted);
-      font-size: 0.9375rem;
-      line-height: 1.6;
-    }
-
-    /* ── Repo grid ── */
-    .repo-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
-      gap: var(--space-sm);
-    }
-
-    .repo {
-      display: flex;
-      align-items: flex-start;
-      gap: var(--space-sm);
-      padding: var(--space-sm) var(--space-md);
-      border: 1px solid var(--color-border);
-      border-radius: 0.75rem;
-      transition: border-color 0.15s;
-    }
-
-    .repo:hover { border-color: var(--color-ink-subtle); text-decoration: none; }
-
-    .repo-icon {
-      flex-shrink: 0;
-      width: 1.25rem;
-      height: 1.25rem;
-      margin-top: 0.125rem;
-      color: var(--color-ink-muted);
-    }
-
-    .repo-name {
-      font-family: var(--font-mono);
-      font-size: 0.875rem;
-      font-weight: 600;
-      color: var(--color-ink);
-    }
-
-    .repo-desc {
-      color: var(--color-ink-muted);
-      font-size: 0.8125rem;
-      margin-top: 0.125rem;
-      line-height: 1.5;
-    }
-
-    .repo-tag {
-      display: inline-block;
-      padding: 0.0625rem 0.375rem;
-      border-radius: 1rem;
-      font-size: 0.6875rem;
-      font-weight: 600;
-      background: var(--color-accent-light);
-      color: var(--color-accent);
-      margin-top: 0.375rem;
-    }
-
-    /* ── Architecture diagram ── */
-    .arch-layers {
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-      max-width: 40rem;
-    }
-
-    .arch-layer {
-      display: flex;
-      align-items: center;
-      gap: var(--space-md);
-      padding: var(--space-sm) var(--space-md);
-      border-radius: 0.5rem;
-      font-size: 0.9375rem;
-    }
-
-    .arch-layer-num {
-      font-family: var(--font-mono);
-      font-weight: 700;
-      font-size: 0.8125rem;
-      color: var(--color-accent);
-      min-width: 1.5rem;
-    }
-
-    .arch-layer-name {
-      font-weight: 600;
-      min-width: 8rem;
-      color: var(--color-ink);
-    }
-
-    .arch-layer-desc {
-      color: var(--color-ink-muted);
-    }
-
-    .arch-layer:nth-child(1) { background: #bbf7d0; }
-    .arch-layer:nth-child(2) { background: #d1fae5; }
-    .arch-layer:nth-child(3) { background: #dcfce7; }
-
-    .arch-subsection {
-      margin-top: var(--space-xl);
-      padding-top: var(--space-lg);
-      border-top: 1px solid var(--color-border);
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: var(--space-lg);
-      align-items: start;
-    }
-
-    @media (max-width: 768px) {
-      .arch-subsection { grid-template-columns: 1fr; }
-    }
-
-    .arch-subsection-title {
-      font-size: 1.25rem;
-      font-weight: 700;
-      letter-spacing: -0.02em;
-      margin-bottom: var(--space-xs);
-    }
-
-    .arch-subsection-desc {
-      color: var(--color-ink-muted);
-      margin-bottom: var(--space-md);
-    }
-
-    .arch-note {
-      margin-top: var(--space-sm);
-      font-size: 0.875rem;
-      color: var(--color-ink-subtle);
-      font-style: italic;
-    }
-
-    /* ── Adopt grid ── */
-    .adopt-path h3 {
-      font-size: 1.125rem;
-    }
-
-    .adopt-path ul {
-      margin-top: var(--space-xs);
-      padding-left: 1.25rem;
-      color: var(--color-ink-muted);
-      font-size: 0.9375rem;
-    }
-
-    .adopt-path li + li {
-      margin-top: 0.25rem;
-    }
-
-    /* ── Footer ── */
-    footer {
-      background: var(--color-dark);
-      border-top: 1px solid var(--color-dark-border);
-      padding: var(--space-lg) 0;
-      color: rgba(255, 255, 255, 0.5);
-      font-size: 0.875rem;
-    }
-
-    footer .container {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: var(--space-sm);
-    }
-
-    footer a { color: rgba(255, 255, 255, 0.5); }
-    footer a:hover { color: #ffffff; }
-
-    .footer-links { display: flex; gap: var(--space-md); }
-
-    /* ── Responsive ── */
-    @media (max-width: 768px) {
-      .nav-links { display: none; }
-      section { padding: var(--space-lg) 0; }
-      .hero { padding: var(--space-lg) 0 var(--space-md); }
-      .repo { flex-direction: column; gap: var(--space-xs); }
-      footer .container { flex-direction: column; text-align: center; }
-    }
+    /* Page-specific overrides (none needed — all styles in shared CSS) */
   </style>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
 </head>
 <body>
 
   <!-- Nav -->
   <nav>
     <div class="container">
-      <a href="/" class="nav-brand"><img src="/logo-full-white.svg" alt="Attestto Open" style="height: 2rem; vertical-align: middle; margin-right: 0.5rem;"><span>Open</span></a>
+      <a href="/" class="nav-brand"><img src="/logo-full-white.svg" alt="Attestto Open" style="height: 2rem; vertical-align: middle; margin-right: 0.5rem;"><span data-i18n="nav.open">Open</span></a>
       <ul class="nav-links">
         <li><a href="#what" data-i18n="nav.what">What</a></li>
         <li><a href="#principles" data-i18n="nav.principles">Principles</a></li>
@@ -619,12 +76,6 @@
         <li><a href="#adopt" data-i18n="nav.adopt">Adopt</a></li>
         <li><a href="#governance" data-i18n="nav.governance">Governance</a></li>
         <li><a href="https://attestto.com">attestto.com</a></li>
-        <li>
-          <div class="lang-switcher">
-            <button data-lang-switch="en" class="active">EN</button>
-            <button data-lang-switch="es">ES</button>
-          </div>
-        </li>
       </ul>
     </div>
   </nav>
@@ -633,32 +84,32 @@
   <section class="hero">
     <div class="container">
       <div class="hero-text">
-        <h1 data-i18n="hero.title">Open digital public infrastructure</h1>
-        <p class="lead" data-i18n="hero.lead">
+        <h1 data-i18n="index.title">Open digital public infrastructure</h1>
+        <p class="lead">
           Verifiable data primitives anyone can build on.
           Sovereign, interoperable, privacy-preserving.
           Deploy it yourself, fork it, or extend it.
         </p>
         <div class="hero-actions">
-          <a href="https://github.com/Attestto-com" class="btn btn-primary" data-i18n="hero.cta.primary">View on GitHub</a>
-          <a href="#what" class="btn btn-secondary" data-i18n="hero.cta.secondary">Learn more</a>
+          <a href="https://github.com/Attestto-com" class="btn btn-primary" data-i18n="index.btn_github">View on GitHub</a>
+          <a href="#what" class="btn btn-secondary" data-i18n="index.btn_learn">Learn more</a>
         </div>
       </div>
       <div class="hero-layers">
         <div class="hero-layer">
           <span class="hero-layer-num">01</span>
-          <span class="hero-layer-label" data-i18n="hero.layer1.label">Institutional</span>
-          <span class="hero-layer-desc" data-i18n="hero.layer1.desc">DID-based issuer verification</span>
+          <span class="hero-layer-label">Institutional</span>
+          <span class="hero-layer-desc">DID-based issuer verification</span>
         </div>
         <div class="hero-layer">
           <span class="hero-layer-num">02</span>
-          <span class="hero-layer-label" data-i18n="hero.layer2.label">Mesh</span>
-          <span class="hero-layer-desc" data-i18n="hero.layer2.desc">P2P encrypted state-sync</span>
+          <span class="hero-layer-label">Mesh</span>
+          <span class="hero-layer-desc">P2P encrypted state-sync</span>
         </div>
         <div class="hero-layer">
           <span class="hero-layer-num">03</span>
-          <span class="hero-layer-label" data-i18n="hero.layer3.label">Ledger</span>
-          <span class="hero-layer-desc" data-i18n="hero.layer3.desc">Solana proof-of-existence</span>
+          <span class="hero-layer-label">Ledger</span>
+          <span class="hero-layer-desc">Solana proof-of-existence</span>
         </div>
       </div>
     </div>
@@ -667,9 +118,9 @@
   <!-- What (light) -->
   <section id="what" class="section-light">
     <div class="container">
-      <div class="section-label" data-i18n="what.label">What</div>
-      <h2 class="section-title" data-i18n="what.title">Infrastructure, not a product</h2>
-      <p class="section-desc" data-i18n="what.desc">
+      <div class="section-label">What</div>
+      <h2 class="section-title">Infrastructure, not a product</h2>
+      <p class="section-desc">
         Attestto Open assembles open standards into deployable infrastructure for verifiable digital systems.
         Open schemas, decentralized identifiers, and cryptographic verification
         that any government, institution, or developer can adopt and extend —
@@ -677,47 +128,47 @@
       </p>
       <div class="grid-3">
         <div class="card">
-          <div class="card-icon"><span class="material-symbols-outlined">schema</span></div>
-          <h3 data-i18n="what.card1.title">Open schemas</h3>
-          <p data-i18n="what.card1.desc">Machine-readable data models that define how verifiable information is structured. Domain-agnostic, extensible by design.</p>
+          <div class="card-icon">◇</div>
+          <h3>Open schemas</h3>
+          <p>Machine-readable data models that define how verifiable information is structured. Domain-agnostic, extensible by design.</p>
         </div>
         <div class="card">
-          <div class="card-icon"><span class="material-symbols-outlined">hub</span></div>
-          <h3 data-i18n="what.card2.title">Decentralized trust</h3>
-          <p data-i18n="what.card2.desc">Trust comes from transparency and accountability — open code, public proofs, blockchain anchoring — not from taking anyone's word for it. Institutions and private companies alike can serve as trust anchors.</p>
+          <div class="card-icon">⟁</div>
+          <h3>Decentralized trust</h3>
+          <p>Trust comes from transparency and accountability — open code, public proofs, blockchain anchoring — not from taking anyone's word for it. Institutions and private companies alike can serve as trust anchors.</p>
         </div>
         <div class="card">
-          <div class="card-icon"><span class="material-symbols-outlined">shield_lock</span></div>
-          <h3 data-i18n="what.card3.title">Privacy at every layer</h3>
-          <p data-i18n="what.card3.desc">Selective disclosure, zero-knowledge proofs, and minimal data exposure — integrated at the architectural level, not just the protocol layer, so the privacy guarantees hold end-to-end.</p>
+          <div class="card-icon">⊘</div>
+          <h3>Privacy at every layer</h3>
+          <p>Selective disclosure, zero-knowledge proofs, and minimal data exposure — integrated at the architectural level, not just the protocol layer, so the privacy guarantees hold end-to-end.</p>
         </div>
       </div>
 
       <!-- Architecture sub-section -->
       <div class="arch-subsection" id="architecture">
         <div>
-          <h3 class="arch-subsection-title" data-i18n="arch.title">Three-layer verification</h3>
-          <p class="arch-subsection-desc" data-i18n="arch.desc">
+          <h3 class="arch-subsection-title">Three-layer verification</h3>
+          <p class="arch-subsection-desc">
             Every piece of verifiable data can be checked at three independent layers.
             Any two of three is sufficient for full verification.
           </p>
-          <p class="arch-note" data-i18n="arch.note">The system degrades gracefully, never catastrophically.</p>
+          <p class="arch-note">The system degrades gracefully, never catastrophically.</p>
         </div>
         <div class="arch-layers">
           <div class="arch-layer">
             <span class="arch-layer-num">01</span>
-            <span class="arch-layer-name" data-i18n="arch.layer1.name">Institutional</span>
-            <span class="arch-layer-desc" data-i18n="arch.layer1.desc">Issuer resolves via DID document hosted at their domain</span>
+            <span class="arch-layer-name">Institutional</span>
+            <span class="arch-layer-desc">Issuer resolves via DID document hosted at their domain</span>
           </div>
           <div class="arch-layer">
             <span class="arch-layer-num">02</span>
-            <span class="arch-layer-name" data-i18n="arch.layer2.name">Mesh</span>
-            <span class="arch-layer-desc" data-i18n="arch.layer2.desc">State synced across a P2P mesh — no central server required</span>
+            <span class="arch-layer-name">Mesh</span>
+            <span class="arch-layer-desc">State synced across a P2P mesh — no central server required</span>
           </div>
           <div class="arch-layer">
             <span class="arch-layer-num">03</span>
-            <span class="arch-layer-name" data-i18n="arch.layer3.name">Ledger</span>
-            <span class="arch-layer-desc" data-i18n="arch.layer3.desc">Cryptographic proof anchored on a public, immutable ledger</span>
+            <span class="arch-layer-name">Ledger</span>
+            <span class="arch-layer-desc">Cryptographic proof anchored on a public, immutable ledger</span>
           </div>
         </div>
       </div>
@@ -725,33 +176,33 @@
       <!-- Network sub-section -->
       <div class="arch-subsection">
         <div>
-          <h3 class="arch-subsection-title" data-i18n="mesh.title">Distributed mesh network</h3>
-          <p class="arch-subsection-desc" data-i18n="mesh.desc">
+          <h3 class="arch-subsection-title">Distributed mesh network</h3>
+          <p class="arch-subsection-desc">
             Every installation is a node. Citizens, lawyers, and institutions contribute
             storage to a peer-to-peer mesh that replicates encrypted identity state
             across the network. No central server. No cloud dependency.
           </p>
-          <p class="arch-note" data-i18n="mesh.note">Privacy is not a policy — it is a mathematical guarantee.</p>
+          <p class="arch-note">Privacy is not a policy — it is a mathematical guarantee.</p>
         </div>
         <div>
           <div class="arch-layers">
             <div class="arch-layer">
               <span class="arch-layer-num">L1</span>
-              <span class="arch-layer-name" data-i18n="mesh.l1.name">Local cache</span>
-              <span class="arch-layer-desc" data-i18n="mesh.l1.desc">0ms — data on your device</span>
+              <span class="arch-layer-name">Local cache</span>
+              <span class="arch-layer-desc">0ms — data on your device</span>
             </div>
             <div class="arch-layer">
               <span class="arch-layer-num">L2</span>
-              <span class="arch-layer-name" data-i18n="mesh.l2.name">Mesh peers</span>
-              <span class="arch-layer-desc" data-i18n="mesh.l2.desc">&lt;100ms — encrypted blobs from nearby nodes</span>
+              <span class="arch-layer-name">Mesh peers</span>
+              <span class="arch-layer-desc">&lt;100ms — encrypted blobs from nearby nodes</span>
             </div>
             <div class="arch-layer">
               <span class="arch-layer-num">L3</span>
-              <span class="arch-layer-name" data-i18n="mesh.l3.name">Solana anchor</span>
-              <span class="arch-layer-desc" data-i18n="mesh.l3.desc">200-500ms — cryptographic proof on public ledger</span>
+              <span class="arch-layer-name">Solana anchor</span>
+              <span class="arch-layer-desc">200-500ms — cryptographic proof on public ledger</span>
             </div>
           </div>
-          <p data-i18n-html="mesh.footprint" style="margin-top: var(--space-sm); font-size: 0.875rem; color: var(--color-ink-muted);">
+          <p style="margin-top: var(--space-sm); font-size: 0.875rem; color: var(--color-ink-muted);">
             ~120 KB per citizen. A national mesh for 5 million people fits in 600 GB
             distributed across thousands of nodes. Each node stores encrypted data
             it cannot read — the <strong>Blind Courier</strong> principle.
@@ -764,53 +215,45 @@
   <!-- Principles (dark) -->
   <section id="principles" class="section-dark">
     <div class="container">
-      <div class="section-label" data-i18n="principles.label">Principles</div>
-      <h2 class="section-title" data-i18n="principles.title">What we stand for</h2>
-      <p class="section-desc" data-i18n="principles.desc">
+      <div class="section-label">Principles</div>
+      <h2 class="section-title">What we stand for</h2>
+      <p class="section-desc">
         These principles are non-negotiable. Every component we build,
         every standard we propose, and every governance decision we make
         is measured against them.
       </p>
       <div class="grid-4">
         <div class="card">
-          <div class="card-icon"><span class="material-symbols-outlined">flag</span></div>
-          <h3 data-i18n="principles.sovereignty.title">Sovereignty</h3>
-          <p data-i18n="principles.sovereignty.desc">You control your own data and infrastructure. No external dependency required to operate.</p>
+          <h3>Sovereignty</h3>
+          <p>You control your own data and infrastructure. No external dependency required to operate.</p>
         </div>
         <div class="card">
-          <div class="card-icon"><span class="material-symbols-outlined">sync_alt</span></div>
-          <h3 data-i18n="principles.interop.title">Interoperability</h3>
-          <p data-i18n="principles.interop.desc">Built on W3C, IETF, and ISO standards. If your system is compliant, it works with ours — and vice versa.</p>
+          <h3>Interoperability</h3>
+          <p>Built on W3C, IETF, and ISO standards. If your system is compliant, it works with ours — and vice versa.</p>
         </div>
         <div class="card">
-          <div class="card-icon"><span class="material-symbols-outlined">visibility_off</span></div>
-          <h3 data-i18n="principles.privacy.title">Privacy by design</h3>
-          <p data-i18n="principles.privacy.desc">Data minimization at every layer. Verifiers learn only what they need. Consent is cryptographically enforced, not policy-based.</p>
+          <h3>Privacy by design</h3>
+          <p>Data minimization at every layer. Verifiers learn only what they need. Consent is cryptographically enforced, not policy-based.</p>
         </div>
         <div class="card">
-          <div class="card-icon"><span class="material-symbols-outlined">lock_open</span></div>
-          <h3 data-i18n="principles.vendor.title">No vendor lock-in</h3>
-          <p data-i18n="principles.vendor.desc">Every component is open source, every format is open standard. You can fork it, replace it, or run it yourself. Forever.</p>
+          <h3>No vendor lock-in</h3>
+          <p>Every component is open source, every format is open standard. You can fork it, replace it, or run it yourself. Forever.</p>
         </div>
         <div class="card">
-          <div class="card-icon"><span class="material-symbols-outlined">undo</span></div>
-          <h3 data-i18n="principles.reversibility.title">Reversibility</h3>
-          <p data-i18n="principles.reversibility.desc">Any deployment can export its data in open formats and migrate to another implementation. No trapped data, ever.</p>
+          <h3>Reversibility</h3>
+          <p>Any deployment can export its data in open formats and migrate to another implementation. No trapped data, ever.</p>
         </div>
         <div class="card">
-          <div class="card-icon"><span class="material-symbols-outlined">policy</span></div>
-          <h3 data-i18n="principles.transparency.title">Transparency</h3>
-          <p data-i18n="principles.transparency.desc">Governance decisions, technical choices, and roadmap priorities are public. You can see exactly how and why things change.</p>
+          <h3>Transparency</h3>
+          <p>Governance decisions, technical choices, and roadmap priorities are public. You can see exactly how and why things change.</p>
         </div>
         <div class="card">
-          <div class="card-icon"><span class="material-symbols-outlined">balance</span></div>
-          <h3 data-i18n="principles.neutrality.title">Technological neutrality</h3>
-          <p data-i18n="principles.neutrality.desc">Blockchain, PKI, cloud, on-premise — the architecture supports all. You pick the stack, not us.</p>
+          <h3>Technological neutrality</h3>
+          <p>Blockchain, PKI, cloud, on-premise — the architecture supports all. You pick the stack, not us.</p>
         </div>
         <div class="card">
-          <div class="card-icon"><span class="material-symbols-outlined">public</span></div>
-          <h3 data-i18n="principles.public.title">Public infrastructure</h3>
-          <p data-i18n="principles.public.desc">The open layer is infrastructure for everyone. Attestto builds products on top — but the foundation is free to use and extend.</p>
+          <h3>Public infrastructure</h3>
+          <p>The open layer is infrastructure for everyone. Attestto builds products on top — but the foundation is free to use and extend.</p>
         </div>
       </div>
     </div>
@@ -819,9 +262,9 @@
   <!-- Source (light) -->
   <section id="source" class="section-light">
     <div class="container">
-      <div class="section-label" data-i18n="source.label">Open Source</div>
-      <h2 class="section-title" data-i18n="source.title">Open source, open standards</h2>
-      <p class="section-desc" data-i18n="source.desc">
+      <div class="section-label">Open Source</div>
+      <h2 class="section-title">Open source, open standards</h2>
+      <p class="section-desc">
         Reference implementations, schemas, and SDKs.
         Everything is on GitHub. Fork it, audit it, extend it.
       </p>
@@ -830,7 +273,7 @@
           <img src="/github.svg" class="repo-icon" alt="GitHub">
           <div>
             <div class="repo-name">did-sns-spec</div>
-            <div class="repo-desc" data-i18n="source.did-sns.desc">DID method specification for Solana Name Service domains.</div>
+            <div class="repo-desc">DID method specification for Solana Name Service domains.</div>
             <span class="repo-tag">Spec</span>
           </div>
         </a>
@@ -838,14 +281,14 @@
           <img src="/github.svg" class="repo-icon" alt="GitHub">
           <div>
             <div class="repo-name">vLEI-Solana-Bridge</div>
-            <div class="repo-desc" data-i18n="source.vlei.desc">On-chain vLEI attestation with Groth16 zero-knowledge proofs.</div>
+            <div class="repo-desc">On-chain vLEI attestation with Groth16 zero-knowledge proofs.</div>
             <span class="repo-tag">GLEIF vLEI</span>
           </div>
         </a>
       </div>
 
-      <h3 data-i18n="source.infra.title" style="font-size: 1.125rem; font-weight: 600; margin-top: var(--space-lg); margin-bottom: var(--space-sm);">Infrastructure</h3>
-      <p data-i18n="source.infra.desc" style="color: var(--color-ink-muted); font-size: 0.9375rem; margin-bottom: var(--space-md); max-width: 40rem;">
+      <h3 style="font-size: 1.125rem; font-weight: 600; margin-top: var(--space-lg); margin-bottom: var(--space-sm);">Infrastructure</h3>
+      <p style="color: var(--color-ink-muted); font-size: 0.9375rem; margin-bottom: var(--space-md); max-width: 40rem;">
         The distributed mesh network and desktop application that turn open standards into running infrastructure.
       </p>
       <div class="repo-grid">
@@ -853,7 +296,7 @@
           <img src="/github.svg" class="repo-icon" alt="GitHub">
           <div>
             <div class="repo-name">attestto-mesh</div>
-            <div class="repo-desc" data-i18n="source.mesh.desc">P2P data mesh over libp2p — encrypted state-sync for sovereign identity.</div>
+            <div class="repo-desc">P2P data mesh over libp2p — encrypted state-sync for sovereign identity.</div>
             <span class="repo-tag">Network</span>
           </div>
         </a>
@@ -861,7 +304,7 @@
           <img src="/github.svg" class="repo-icon" alt="GitHub">
           <div>
             <div class="repo-name">attestto-desktop</div>
-            <div class="repo-desc" data-i18n="source.desktop.desc">Electron app — every installation is a mesh node with offline verification.</div>
+            <div class="repo-desc">Electron app — every installation is a mesh node with offline verification.</div>
             <span class="repo-tag">Desktop</span>
           </div>
         </a>
@@ -869,14 +312,14 @@
           <img src="/github.svg" class="repo-icon" alt="GitHub">
           <div>
             <div class="repo-name">attestto-verify</div>
-            <div class="repo-desc" data-i18n="source.verify.desc">Document verification web components — drop a PDF, verify the math.</div>
+            <div class="repo-desc">Document verification web components — drop a PDF, verify the math.</div>
             <span class="repo-tag">Web</span>
           </div>
         </a>
       </div>
 
-      <h3 data-i18n="source.cr.title" style="font-size: 1.125rem; font-weight: 600; margin-top: var(--space-lg); margin-bottom: var(--space-sm);">Costa Rica SSI Ecosystem</h3>
-      <p data-i18n="source.cr.desc" style="color: var(--color-ink-muted); font-size: 0.9375rem; margin-bottom: var(--space-md); max-width: 40rem;">
+      <h3 style="font-size: 1.125rem; font-weight: 600; margin-top: var(--space-lg); margin-bottom: var(--space-sm);">Costa Rica SSI Ecosystem</h3>
+      <p style="color: var(--color-ink-muted); font-size: 0.9375rem; margin-bottom: var(--space-md); max-width: 40rem;">
         Open schemas and SDKs for Costa Rica's verifiable credential ecosystem — driving licenses, medical certificates, vehicle registrations, and more. Aligned with W3C VDL and ISO 18013-5.
       </p>
       <div class="repo-grid">
@@ -884,7 +327,7 @@
           <img src="/github.svg" class="repo-icon" alt="GitHub">
           <div>
             <div class="repo-name">cr-vc-schemas</div>
-            <div class="repo-desc" data-i18n="source.cr-schemas.desc">JSON-LD schemas for 11 Costa Rica credential types. W3C VDL + ISO 18013-5.</div>
+            <div class="repo-desc">JSON-LD schemas for 11 Costa Rica credential types. W3C VDL + ISO 18013-5.</div>
             <span class="repo-tag">Costa Rica</span>
           </div>
         </a>
@@ -892,7 +335,7 @@
           <img src="/github.svg" class="repo-icon" alt="GitHub">
           <div>
             <div class="repo-name">cr-vc-sdk</div>
-            <div class="repo-desc" data-i18n="source.cr-sdk.desc">Typed SDK for issuing and verifying Costa Rica credentials.</div>
+            <div class="repo-desc">Typed SDK for issuing and verifying Costa Rica credentials.</div>
             <span class="repo-tag">Costa Rica</span>
           </div>
         </a>
@@ -903,42 +346,39 @@
   <!-- Adopt (dark) -->
   <section id="adopt" class="section-dark">
     <div class="container">
-      <div class="section-label" data-i18n="adopt.label">Adopt</div>
-      <h2 class="section-title" data-i18n="adopt.title">Built to be deployed</h2>
-      <p class="section-desc" data-i18n="adopt.desc">
+      <div class="section-label">Adopt</div>
+      <h2 class="section-title">Built to be deployed</h2>
+      <p class="section-desc">
         Whether you're a government digitizing public services,
         an institution issuing verifiable documents,
         or a developer building on verifiable data — you can start here.
       </p>
       <div class="grid-3">
         <div class="card adopt-path">
-          <div class="card-icon"><span class="material-symbols-outlined">account_balance</span></div>
-          <h3 data-i18n="adopt.gov.title">Governments</h3>
+          <h3>Governments</h3>
           <ul>
-            <li data-i18n="adopt.gov.item1">Deploy sovereign identity infrastructure</li>
-            <li data-i18n="adopt.gov.item2">Issue verifiable public documents</li>
-            <li data-i18n="adopt.gov.item3">Interoperate across jurisdictions</li>
-            <li data-i18n="adopt.gov.item4">No vendor dependency</li>
+            <li>Deploy sovereign identity infrastructure</li>
+            <li>Issue verifiable public documents</li>
+            <li>Interoperate across jurisdictions</li>
+            <li>No vendor dependency</li>
           </ul>
         </div>
         <div class="card adopt-path">
-          <div class="card-icon"><span class="material-symbols-outlined">apartment</span></div>
-          <h3 data-i18n="adopt.inst.title">Institutions</h3>
+          <h3>Institutions</h3>
           <ul>
-            <li data-i18n="adopt.inst.item1">Issue verifiable credentials</li>
-            <li data-i18n="adopt.inst.item2">Verify third-party documents</li>
-            <li data-i18n="adopt.inst.item3">Plug into existing systems via SDK</li>
-            <li data-i18n="adopt.inst.item4">Define domain-specific schemas</li>
+            <li>Issue verifiable credentials</li>
+            <li>Verify third-party documents</li>
+            <li>Plug into existing systems via SDK</li>
+            <li>Define domain-specific schemas</li>
           </ul>
         </div>
         <div class="card adopt-path">
-          <div class="card-icon"><span class="material-symbols-outlined">code</span></div>
-          <h3 data-i18n="adopt.dev.title">Developers</h3>
+          <h3>Developers</h3>
           <ul>
-            <li data-i18n="adopt.dev.item1">Fork and extend the SDKs</li>
-            <li data-i18n="adopt.dev.item2">Build schema plugins for new domains</li>
-            <li data-i18n="adopt.dev.item3">Implement new DID methods</li>
-            <li data-i18n="adopt.dev.item4">Contribute to the standard</li>
+            <li>Fork and extend the SDKs</li>
+            <li>Build schema plugins for new domains</li>
+            <li>Implement new DID methods</li>
+            <li>Contribute to the standard</li>
           </ul>
         </div>
       </div>
@@ -948,28 +388,25 @@
   <!-- Governance (light) -->
   <section id="governance" class="section-light">
     <div class="container">
-      <div class="section-label" data-i18n="governance.label">Governance</div>
-      <h2 class="section-title" data-i18n="governance.title">Stewardship, not control</h2>
-      <p class="section-desc" data-i18n="governance.desc">
+      <div class="section-label">Governance</div>
+      <h2 class="section-title">Stewardship, not control</h2>
+      <p class="section-desc">
         Attestto Open is stewarded, not owned. The governance model is designed so
         that no single entity — including Attestto — can unilaterally control
         the infrastructure, the standards, or the roadmap.
       </p>
       <div class="grid-3">
         <div class="card">
-          <div class="card-icon"><span class="material-symbols-outlined">how_to_vote</span></div>
-          <h3 data-i18n="governance.open.title">Open governance</h3>
-          <p data-i18n="governance.open.desc">Technical decisions are made transparently. Proposals and discussions are public. As the community grows, so does shared decision-making.</p>
+          <h3>Open governance</h3>
+          <p>Technical decisions are made transparently. Proposals and discussions are public. As the community grows, so does shared decision-making.</p>
         </div>
         <div class="card">
-          <div class="card-icon"><span class="material-symbols-outlined">group_add</span></div>
-          <h3 data-i18n="governance.contributor.title">Contributor model</h3>
-          <p data-i18n="governance.contributor.desc">Institutions, governments, and developers can propose schemas, DID methods, and protocol extensions through a structured contribution process.</p>
+          <h3>Contributor model</h3>
+          <p>Institutions, governments, and developers can propose schemas, DID methods, and protocol extensions through a structured contribution process.</p>
         </div>
         <div class="card">
-          <div class="card-icon"><span class="material-symbols-outlined">diversity_3</span></div>
-          <h3 data-i18n="governance.owner.title">No single owner</h3>
-          <p data-i18n="governance.owner.desc">The infrastructure is designed to outlive any single organization. Forkable, portable, and built for community governance from day one.</p>
+          <h3>No single owner</h3>
+          <p>The infrastructure is designed to outlive any single organization. Forkable, portable, and built for community governance from day one.</p>
         </div>
       </div>
     </div>
@@ -980,13 +417,15 @@
     <div class="container">
       <span>Attestto Open</span>
       <div class="footer-links">
+        <a href="/ark" data-i18n="footer.ark">Ark</a>
+        <a href="/downloads" data-i18n="footer.downloads">Downloads</a>
         <a href="https://attestto.com">attestto.com</a>
-        <a href="https://github.com/Attestto-com">GitHub</a>
+        <a href="https://github.com/Attestto-com" data-i18n="footer.github">GitHub</a>
         <a href="mailto:open@attestto.com" data-i18n="footer.contact">Contact</a>
       </div>
     </div>
   </footer>
 
-  <script src="/i18n/i18n.js"></script>
+  <script src="/assets/js/i18n.js"></script>
 </body>
 </html>
