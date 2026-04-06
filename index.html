@@ -8,6 +8,9 @@
   <meta name="theme-color" content="#0a1628">
   <meta name="keywords" content="public digital infrastructure, sovereign identity, decentralized identity, DID, verifiable credentials, P2P mesh, libp2p, Solana, blind courier, open source, Web5">
   <link rel="canonical" href="https://attestto.org">
+  <link rel="alternate" hreflang="en" href="https://attestto.org?lang=en">
+  <link rel="alternate" hreflang="es" href="https://attestto.org?lang=es">
+  <link rel="alternate" hreflang="x-default" href="https://attestto.org">
 
   <!-- Open Graph -->
   <meta property="og:title" content="Attestto Open — Public Digital Infrastructure for Sovereign Identity">
@@ -178,6 +181,7 @@
       display: flex;
       gap: var(--space-md);
       list-style: none;
+      align-items: center;
     }
 
     .nav-links a {
@@ -188,6 +192,38 @@
     }
 
     .nav-links a:hover { color: #ffffff; text-decoration: none; }
+
+    /* ── Language switcher ── */
+    .lang-switcher {
+      display: flex;
+      gap: 2px;
+      background: rgba(255, 255, 255, 0.06);
+      border-radius: 6px;
+      padding: 2px;
+      margin-left: var(--space-sm);
+    }
+
+    .lang-switcher button {
+      all: unset;
+      padding: 4px 10px;
+      font-size: 0.8125rem;
+      font-weight: 600;
+      font-family: var(--font-sans);
+      color: rgba(255, 255, 255, 0.45);
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all 0.15s;
+      line-height: 1;
+    }
+
+    .lang-switcher button:hover {
+      color: rgba(255, 255, 255, 0.8);
+    }
+
+    .lang-switcher button.active {
+      background: rgba(255, 255, 255, 0.12);
+      color: #ffffff;
+    }
 
     /* ── Hero ── */
     .hero {
@@ -374,8 +410,11 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.25rem;
       margin-bottom: var(--space-sm);
+    }
+
+    .card-icon .material-symbols-outlined {
+      font-size: 1.375rem;
     }
 
     .card h3 {
@@ -564,6 +603,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
 </head>
 <body>
 
@@ -572,13 +612,19 @@
     <div class="container">
       <a href="/" class="nav-brand"><img src="/logo-full-white.svg" alt="Attestto Open" style="height: 2rem; vertical-align: middle; margin-right: 0.5rem;"><span>Open</span></a>
       <ul class="nav-links">
-        <li><a href="#what">What</a></li>
-        <li><a href="#principles">Principles</a></li>
-        <li><a href="#architecture">Architecture</a></li>
-        <li><a href="#source">Source</a></li>
-        <li><a href="#adopt">Adopt</a></li>
-        <li><a href="#governance">Governance</a></li>
+        <li><a href="#what" data-i18n="nav.what">What</a></li>
+        <li><a href="#principles" data-i18n="nav.principles">Principles</a></li>
+        <li><a href="#architecture" data-i18n="nav.architecture">Architecture</a></li>
+        <li><a href="#source" data-i18n="nav.source">Source</a></li>
+        <li><a href="#adopt" data-i18n="nav.adopt">Adopt</a></li>
+        <li><a href="#governance" data-i18n="nav.governance">Governance</a></li>
         <li><a href="https://attestto.com">attestto.com</a></li>
+        <li>
+          <div class="lang-switcher">
+            <button data-lang-switch="en" class="active">EN</button>
+            <button data-lang-switch="es">ES</button>
+          </div>
+        </li>
       </ul>
     </div>
   </nav>
@@ -587,32 +633,32 @@
   <section class="hero">
     <div class="container">
       <div class="hero-text">
-        <h1>Open digital public infrastructure</h1>
-        <p class="lead">
+        <h1 data-i18n="hero.title">Open digital public infrastructure</h1>
+        <p class="lead" data-i18n="hero.lead">
           Verifiable data primitives anyone can build on.
           Sovereign, interoperable, privacy-preserving.
           Deploy it yourself, fork it, or extend it.
         </p>
         <div class="hero-actions">
-          <a href="https://github.com/Attestto-com" class="btn btn-primary">View on GitHub</a>
-          <a href="#what" class="btn btn-secondary">Learn more</a>
+          <a href="https://github.com/Attestto-com" class="btn btn-primary" data-i18n="hero.cta.primary">View on GitHub</a>
+          <a href="#what" class="btn btn-secondary" data-i18n="hero.cta.secondary">Learn more</a>
         </div>
       </div>
       <div class="hero-layers">
         <div class="hero-layer">
           <span class="hero-layer-num">01</span>
-          <span class="hero-layer-label">Institutional</span>
-          <span class="hero-layer-desc">DID-based issuer verification</span>
+          <span class="hero-layer-label" data-i18n="hero.layer1.label">Institutional</span>
+          <span class="hero-layer-desc" data-i18n="hero.layer1.desc">DID-based issuer verification</span>
         </div>
         <div class="hero-layer">
           <span class="hero-layer-num">02</span>
-          <span class="hero-layer-label">Mesh</span>
-          <span class="hero-layer-desc">P2P encrypted state-sync</span>
+          <span class="hero-layer-label" data-i18n="hero.layer2.label">Mesh</span>
+          <span class="hero-layer-desc" data-i18n="hero.layer2.desc">P2P encrypted state-sync</span>
         </div>
         <div class="hero-layer">
           <span class="hero-layer-num">03</span>
-          <span class="hero-layer-label">Ledger</span>
-          <span class="hero-layer-desc">Solana proof-of-existence</span>
+          <span class="hero-layer-label" data-i18n="hero.layer3.label">Ledger</span>
+          <span class="hero-layer-desc" data-i18n="hero.layer3.desc">Solana proof-of-existence</span>
         </div>
       </div>
     </div>
@@ -621,9 +667,9 @@
   <!-- What (light) -->
   <section id="what" class="section-light">
     <div class="container">
-      <div class="section-label">What</div>
-      <h2 class="section-title">Infrastructure, not a product</h2>
-      <p class="section-desc">
+      <div class="section-label" data-i18n="what.label">What</div>
+      <h2 class="section-title" data-i18n="what.title">Infrastructure, not a product</h2>
+      <p class="section-desc" data-i18n="what.desc">
         Attestto Open assembles open standards into deployable infrastructure for verifiable digital systems.
         Open schemas, decentralized identifiers, and cryptographic verification
         that any government, institution, or developer can adopt and extend —
@@ -631,47 +677,47 @@
       </p>
       <div class="grid-3">
         <div class="card">
-          <div class="card-icon">◇</div>
-          <h3>Open schemas</h3>
-          <p>Machine-readable data models that define how verifiable information is structured. Domain-agnostic, extensible by design.</p>
+          <div class="card-icon"><span class="material-symbols-outlined">schema</span></div>
+          <h3 data-i18n="what.card1.title">Open schemas</h3>
+          <p data-i18n="what.card1.desc">Machine-readable data models that define how verifiable information is structured. Domain-agnostic, extensible by design.</p>
         </div>
         <div class="card">
-          <div class="card-icon">⟁</div>
-          <h3>Decentralized trust</h3>
-          <p>Trust comes from transparency and accountability — open code, public proofs, blockchain anchoring — not from taking anyone's word for it. Institutions and private companies alike can serve as trust anchors.</p>
+          <div class="card-icon"><span class="material-symbols-outlined">hub</span></div>
+          <h3 data-i18n="what.card2.title">Decentralized trust</h3>
+          <p data-i18n="what.card2.desc">Trust comes from transparency and accountability — open code, public proofs, blockchain anchoring — not from taking anyone's word for it. Institutions and private companies alike can serve as trust anchors.</p>
         </div>
         <div class="card">
-          <div class="card-icon">⊘</div>
-          <h3>Privacy at every layer</h3>
-          <p>Selective disclosure, zero-knowledge proofs, and minimal data exposure — integrated at the architectural level, not just the protocol layer, so the privacy guarantees hold end-to-end.</p>
+          <div class="card-icon"><span class="material-symbols-outlined">shield_lock</span></div>
+          <h3 data-i18n="what.card3.title">Privacy at every layer</h3>
+          <p data-i18n="what.card3.desc">Selective disclosure, zero-knowledge proofs, and minimal data exposure — integrated at the architectural level, not just the protocol layer, so the privacy guarantees hold end-to-end.</p>
         </div>
       </div>
 
       <!-- Architecture sub-section -->
       <div class="arch-subsection" id="architecture">
         <div>
-          <h3 class="arch-subsection-title">Three-layer verification</h3>
-          <p class="arch-subsection-desc">
+          <h3 class="arch-subsection-title" data-i18n="arch.title">Three-layer verification</h3>
+          <p class="arch-subsection-desc" data-i18n="arch.desc">
             Every piece of verifiable data can be checked at three independent layers.
             Any two of three is sufficient for full verification.
           </p>
-          <p class="arch-note">The system degrades gracefully, never catastrophically.</p>
+          <p class="arch-note" data-i18n="arch.note">The system degrades gracefully, never catastrophically.</p>
         </div>
         <div class="arch-layers">
           <div class="arch-layer">
             <span class="arch-layer-num">01</span>
-            <span class="arch-layer-name">Institutional</span>
-            <span class="arch-layer-desc">Issuer resolves via DID document hosted at their domain</span>
+            <span class="arch-layer-name" data-i18n="arch.layer1.name">Institutional</span>
+            <span class="arch-layer-desc" data-i18n="arch.layer1.desc">Issuer resolves via DID document hosted at their domain</span>
           </div>
           <div class="arch-layer">
             <span class="arch-layer-num">02</span>
-            <span class="arch-layer-name">Mesh</span>
-            <span class="arch-layer-desc">State synced across a P2P mesh — no central server required</span>
+            <span class="arch-layer-name" data-i18n="arch.layer2.name">Mesh</span>
+            <span class="arch-layer-desc" data-i18n="arch.layer2.desc">State synced across a P2P mesh — no central server required</span>
           </div>
           <div class="arch-layer">
             <span class="arch-layer-num">03</span>
-            <span class="arch-layer-name">Ledger</span>
-            <span class="arch-layer-desc">Cryptographic proof anchored on a public, immutable ledger</span>
+            <span class="arch-layer-name" data-i18n="arch.layer3.name">Ledger</span>
+            <span class="arch-layer-desc" data-i18n="arch.layer3.desc">Cryptographic proof anchored on a public, immutable ledger</span>
           </div>
         </div>
       </div>
@@ -679,33 +725,33 @@
       <!-- Network sub-section -->
       <div class="arch-subsection">
         <div>
-          <h3 class="arch-subsection-title">Distributed mesh network</h3>
-          <p class="arch-subsection-desc">
+          <h3 class="arch-subsection-title" data-i18n="mesh.title">Distributed mesh network</h3>
+          <p class="arch-subsection-desc" data-i18n="mesh.desc">
             Every installation is a node. Citizens, lawyers, and institutions contribute
             storage to a peer-to-peer mesh that replicates encrypted identity state
             across the network. No central server. No cloud dependency.
           </p>
-          <p class="arch-note">Privacy is not a policy — it is a mathematical guarantee.</p>
+          <p class="arch-note" data-i18n="mesh.note">Privacy is not a policy — it is a mathematical guarantee.</p>
         </div>
         <div>
           <div class="arch-layers">
             <div class="arch-layer">
               <span class="arch-layer-num">L1</span>
-              <span class="arch-layer-name">Local cache</span>
-              <span class="arch-layer-desc">0ms — data on your device</span>
+              <span class="arch-layer-name" data-i18n="mesh.l1.name">Local cache</span>
+              <span class="arch-layer-desc" data-i18n="mesh.l1.desc">0ms — data on your device</span>
             </div>
             <div class="arch-layer">
               <span class="arch-layer-num">L2</span>
-              <span class="arch-layer-name">Mesh peers</span>
-              <span class="arch-layer-desc">&lt;100ms — encrypted blobs from nearby nodes</span>
+              <span class="arch-layer-name" data-i18n="mesh.l2.name">Mesh peers</span>
+              <span class="arch-layer-desc" data-i18n="mesh.l2.desc">&lt;100ms — encrypted blobs from nearby nodes</span>
             </div>
             <div class="arch-layer">
               <span class="arch-layer-num">L3</span>
-              <span class="arch-layer-name">Solana anchor</span>
-              <span class="arch-layer-desc">200-500ms — cryptographic proof on public ledger</span>
+              <span class="arch-layer-name" data-i18n="mesh.l3.name">Solana anchor</span>
+              <span class="arch-layer-desc" data-i18n="mesh.l3.desc">200-500ms — cryptographic proof on public ledger</span>
             </div>
           </div>
-          <p style="margin-top: var(--space-sm); font-size: 0.875rem; color: var(--color-ink-muted);">
+          <p data-i18n-html="mesh.footprint" style="margin-top: var(--space-sm); font-size: 0.875rem; color: var(--color-ink-muted);">
             ~120 KB per citizen. A national mesh for 5 million people fits in 600 GB
             distributed across thousands of nodes. Each node stores encrypted data
             it cannot read — the <strong>Blind Courier</strong> principle.
@@ -718,45 +764,53 @@
   <!-- Principles (dark) -->
   <section id="principles" class="section-dark">
     <div class="container">
-      <div class="section-label">Principles</div>
-      <h2 class="section-title">What we stand for</h2>
-      <p class="section-desc">
+      <div class="section-label" data-i18n="principles.label">Principles</div>
+      <h2 class="section-title" data-i18n="principles.title">What we stand for</h2>
+      <p class="section-desc" data-i18n="principles.desc">
         These principles are non-negotiable. Every component we build,
         every standard we propose, and every governance decision we make
         is measured against them.
       </p>
       <div class="grid-4">
         <div class="card">
-          <h3>Sovereignty</h3>
-          <p>You control your own data and infrastructure. No external dependency required to operate.</p>
+          <div class="card-icon"><span class="material-symbols-outlined">flag</span></div>
+          <h3 data-i18n="principles.sovereignty.title">Sovereignty</h3>
+          <p data-i18n="principles.sovereignty.desc">You control your own data and infrastructure. No external dependency required to operate.</p>
         </div>
         <div class="card">
-          <h3>Interoperability</h3>
-          <p>Built on W3C, IETF, and ISO standards. If your system is compliant, it works with ours — and vice versa.</p>
+          <div class="card-icon"><span class="material-symbols-outlined">sync_alt</span></div>
+          <h3 data-i18n="principles.interop.title">Interoperability</h3>
+          <p data-i18n="principles.interop.desc">Built on W3C, IETF, and ISO standards. If your system is compliant, it works with ours — and vice versa.</p>
         </div>
         <div class="card">
-          <h3>Privacy by design</h3>
-          <p>Data minimization at every layer. Verifiers learn only what they need. Consent is cryptographically enforced, not policy-based.</p>
+          <div class="card-icon"><span class="material-symbols-outlined">visibility_off</span></div>
+          <h3 data-i18n="principles.privacy.title">Privacy by design</h3>
+          <p data-i18n="principles.privacy.desc">Data minimization at every layer. Verifiers learn only what they need. Consent is cryptographically enforced, not policy-based.</p>
         </div>
         <div class="card">
-          <h3>No vendor lock-in</h3>
-          <p>Every component is open source, every format is open standard. You can fork it, replace it, or run it yourself. Forever.</p>
+          <div class="card-icon"><span class="material-symbols-outlined">lock_open</span></div>
+          <h3 data-i18n="principles.vendor.title">No vendor lock-in</h3>
+          <p data-i18n="principles.vendor.desc">Every component is open source, every format is open standard. You can fork it, replace it, or run it yourself. Forever.</p>
         </div>
         <div class="card">
-          <h3>Reversibility</h3>
-          <p>Any deployment can export its data in open formats and migrate to another implementation. No trapped data, ever.</p>
+          <div class="card-icon"><span class="material-symbols-outlined">undo</span></div>
+          <h3 data-i18n="principles.reversibility.title">Reversibility</h3>
+          <p data-i18n="principles.reversibility.desc">Any deployment can export its data in open formats and migrate to another implementation. No trapped data, ever.</p>
         </div>
         <div class="card">
-          <h3>Transparency</h3>
-          <p>Governance decisions, technical choices, and roadmap priorities are public. You can see exactly how and why things change.</p>
+          <div class="card-icon"><span class="material-symbols-outlined">policy</span></div>
+          <h3 data-i18n="principles.transparency.title">Transparency</h3>
+          <p data-i18n="principles.transparency.desc">Governance decisions, technical choices, and roadmap priorities are public. You can see exactly how and why things change.</p>
         </div>
         <div class="card">
-          <h3>Technological neutrality</h3>
-          <p>Blockchain, PKI, cloud, on-premise — the architecture supports all. You pick the stack, not us.</p>
+          <div class="card-icon"><span class="material-symbols-outlined">balance</span></div>
+          <h3 data-i18n="principles.neutrality.title">Technological neutrality</h3>
+          <p data-i18n="principles.neutrality.desc">Blockchain, PKI, cloud, on-premise — the architecture supports all. You pick the stack, not us.</p>
         </div>
         <div class="card">
-          <h3>Public infrastructure</h3>
-          <p>The open layer is infrastructure for everyone. Attestto builds products on top — but the foundation is free to use and extend.</p>
+          <div class="card-icon"><span class="material-symbols-outlined">public</span></div>
+          <h3 data-i18n="principles.public.title">Public infrastructure</h3>
+          <p data-i18n="principles.public.desc">The open layer is infrastructure for everyone. Attestto builds products on top — but the foundation is free to use and extend.</p>
         </div>
       </div>
     </div>
@@ -765,9 +819,9 @@
   <!-- Source (light) -->
   <section id="source" class="section-light">
     <div class="container">
-      <div class="section-label">Open Source</div>
-      <h2 class="section-title">Open source, open standards</h2>
-      <p class="section-desc">
+      <div class="section-label" data-i18n="source.label">Open Source</div>
+      <h2 class="section-title" data-i18n="source.title">Open source, open standards</h2>
+      <p class="section-desc" data-i18n="source.desc">
         Reference implementations, schemas, and SDKs.
         Everything is on GitHub. Fork it, audit it, extend it.
       </p>
@@ -776,7 +830,7 @@
           <img src="/github.svg" class="repo-icon" alt="GitHub">
           <div>
             <div class="repo-name">did-sns-spec</div>
-            <div class="repo-desc">DID method specification for Solana Name Service domains.</div>
+            <div class="repo-desc" data-i18n="source.did-sns.desc">DID method specification for Solana Name Service domains.</div>
             <span class="repo-tag">Spec</span>
           </div>
         </a>
@@ -784,14 +838,14 @@
           <img src="/github.svg" class="repo-icon" alt="GitHub">
           <div>
             <div class="repo-name">vLEI-Solana-Bridge</div>
-            <div class="repo-desc">On-chain vLEI attestation with Groth16 zero-knowledge proofs.</div>
+            <div class="repo-desc" data-i18n="source.vlei.desc">On-chain vLEI attestation with Groth16 zero-knowledge proofs.</div>
             <span class="repo-tag">GLEIF vLEI</span>
           </div>
         </a>
       </div>
 
-      <h3 style="font-size: 1.125rem; font-weight: 600; margin-top: var(--space-lg); margin-bottom: var(--space-sm);">Infrastructure</h3>
-      <p style="color: var(--color-ink-muted); font-size: 0.9375rem; margin-bottom: var(--space-md); max-width: 40rem;">
+      <h3 data-i18n="source.infra.title" style="font-size: 1.125rem; font-weight: 600; margin-top: var(--space-lg); margin-bottom: var(--space-sm);">Infrastructure</h3>
+      <p data-i18n="source.infra.desc" style="color: var(--color-ink-muted); font-size: 0.9375rem; margin-bottom: var(--space-md); max-width: 40rem;">
         The distributed mesh network and desktop application that turn open standards into running infrastructure.
       </p>
       <div class="repo-grid">
@@ -799,7 +853,7 @@
           <img src="/github.svg" class="repo-icon" alt="GitHub">
           <div>
             <div class="repo-name">attestto-mesh</div>
-            <div class="repo-desc">P2P data mesh over libp2p — encrypted state-sync for sovereign identity.</div>
+            <div class="repo-desc" data-i18n="source.mesh.desc">P2P data mesh over libp2p — encrypted state-sync for sovereign identity.</div>
             <span class="repo-tag">Network</span>
           </div>
         </a>
@@ -807,7 +861,7 @@
           <img src="/github.svg" class="repo-icon" alt="GitHub">
           <div>
             <div class="repo-name">attestto-desktop</div>
-            <div class="repo-desc">Electron app — every installation is a mesh node with offline verification.</div>
+            <div class="repo-desc" data-i18n="source.desktop.desc">Electron app — every installation is a mesh node with offline verification.</div>
             <span class="repo-tag">Desktop</span>
           </div>
         </a>
@@ -815,14 +869,14 @@
           <img src="/github.svg" class="repo-icon" alt="GitHub">
           <div>
             <div class="repo-name">attestto-verify</div>
-            <div class="repo-desc">Document verification web components — drop a PDF, verify the math.</div>
+            <div class="repo-desc" data-i18n="source.verify.desc">Document verification web components — drop a PDF, verify the math.</div>
             <span class="repo-tag">Web</span>
           </div>
         </a>
       </div>
 
-      <h3 style="font-size: 1.125rem; font-weight: 600; margin-top: var(--space-lg); margin-bottom: var(--space-sm);">Costa Rica SSI Ecosystem</h3>
-      <p style="color: var(--color-ink-muted); font-size: 0.9375rem; margin-bottom: var(--space-md); max-width: 40rem;">
+      <h3 data-i18n="source.cr.title" style="font-size: 1.125rem; font-weight: 600; margin-top: var(--space-lg); margin-bottom: var(--space-sm);">Costa Rica SSI Ecosystem</h3>
+      <p data-i18n="source.cr.desc" style="color: var(--color-ink-muted); font-size: 0.9375rem; margin-bottom: var(--space-md); max-width: 40rem;">
         Open schemas and SDKs for Costa Rica's verifiable credential ecosystem — driving licenses, medical certificates, vehicle registrations, and more. Aligned with W3C VDL and ISO 18013-5.
       </p>
       <div class="repo-grid">
@@ -830,7 +884,7 @@
           <img src="/github.svg" class="repo-icon" alt="GitHub">
           <div>
             <div class="repo-name">cr-vc-schemas</div>
-            <div class="repo-desc">JSON-LD schemas for 11 Costa Rica credential types. W3C VDL + ISO 18013-5.</div>
+            <div class="repo-desc" data-i18n="source.cr-schemas.desc">JSON-LD schemas for 11 Costa Rica credential types. W3C VDL + ISO 18013-5.</div>
             <span class="repo-tag">Costa Rica</span>
           </div>
         </a>
@@ -838,7 +892,7 @@
           <img src="/github.svg" class="repo-icon" alt="GitHub">
           <div>
             <div class="repo-name">cr-vc-sdk</div>
-            <div class="repo-desc">Typed SDK for issuing and verifying Costa Rica credentials.</div>
+            <div class="repo-desc" data-i18n="source.cr-sdk.desc">Typed SDK for issuing and verifying Costa Rica credentials.</div>
             <span class="repo-tag">Costa Rica</span>
           </div>
         </a>
@@ -849,39 +903,42 @@
   <!-- Adopt (dark) -->
   <section id="adopt" class="section-dark">
     <div class="container">
-      <div class="section-label">Adopt</div>
-      <h2 class="section-title">Built to be deployed</h2>
-      <p class="section-desc">
+      <div class="section-label" data-i18n="adopt.label">Adopt</div>
+      <h2 class="section-title" data-i18n="adopt.title">Built to be deployed</h2>
+      <p class="section-desc" data-i18n="adopt.desc">
         Whether you're a government digitizing public services,
         an institution issuing verifiable documents,
         or a developer building on verifiable data — you can start here.
       </p>
       <div class="grid-3">
         <div class="card adopt-path">
-          <h3>Governments</h3>
+          <div class="card-icon"><span class="material-symbols-outlined">account_balance</span></div>
+          <h3 data-i18n="adopt.gov.title">Governments</h3>
           <ul>
-            <li>Deploy sovereign identity infrastructure</li>
-            <li>Issue verifiable public documents</li>
-            <li>Interoperate across jurisdictions</li>
-            <li>No vendor dependency</li>
+            <li data-i18n="adopt.gov.item1">Deploy sovereign identity infrastructure</li>
+            <li data-i18n="adopt.gov.item2">Issue verifiable public documents</li>
+            <li data-i18n="adopt.gov.item3">Interoperate across jurisdictions</li>
+            <li data-i18n="adopt.gov.item4">No vendor dependency</li>
           </ul>
         </div>
         <div class="card adopt-path">
-          <h3>Institutions</h3>
+          <div class="card-icon"><span class="material-symbols-outlined">apartment</span></div>
+          <h3 data-i18n="adopt.inst.title">Institutions</h3>
           <ul>
-            <li>Issue verifiable credentials</li>
-            <li>Verify third-party documents</li>
-            <li>Plug into existing systems via SDK</li>
-            <li>Define domain-specific schemas</li>
+            <li data-i18n="adopt.inst.item1">Issue verifiable credentials</li>
+            <li data-i18n="adopt.inst.item2">Verify third-party documents</li>
+            <li data-i18n="adopt.inst.item3">Plug into existing systems via SDK</li>
+            <li data-i18n="adopt.inst.item4">Define domain-specific schemas</li>
           </ul>
         </div>
         <div class="card adopt-path">
-          <h3>Developers</h3>
+          <div class="card-icon"><span class="material-symbols-outlined">code</span></div>
+          <h3 data-i18n="adopt.dev.title">Developers</h3>
           <ul>
-            <li>Fork and extend the SDKs</li>
-            <li>Build schema plugins for new domains</li>
-            <li>Implement new DID methods</li>
-            <li>Contribute to the standard</li>
+            <li data-i18n="adopt.dev.item1">Fork and extend the SDKs</li>
+            <li data-i18n="adopt.dev.item2">Build schema plugins for new domains</li>
+            <li data-i18n="adopt.dev.item3">Implement new DID methods</li>
+            <li data-i18n="adopt.dev.item4">Contribute to the standard</li>
           </ul>
         </div>
       </div>
@@ -891,25 +948,28 @@
   <!-- Governance (light) -->
   <section id="governance" class="section-light">
     <div class="container">
-      <div class="section-label">Governance</div>
-      <h2 class="section-title">Stewardship, not control</h2>
-      <p class="section-desc">
+      <div class="section-label" data-i18n="governance.label">Governance</div>
+      <h2 class="section-title" data-i18n="governance.title">Stewardship, not control</h2>
+      <p class="section-desc" data-i18n="governance.desc">
         Attestto Open is stewarded, not owned. The governance model is designed so
         that no single entity — including Attestto — can unilaterally control
         the infrastructure, the standards, or the roadmap.
       </p>
       <div class="grid-3">
         <div class="card">
-          <h3>Open governance</h3>
-          <p>Technical decisions are made transparently. Proposals and discussions are public. As the community grows, so does shared decision-making.</p>
+          <div class="card-icon"><span class="material-symbols-outlined">how_to_vote</span></div>
+          <h3 data-i18n="governance.open.title">Open governance</h3>
+          <p data-i18n="governance.open.desc">Technical decisions are made transparently. Proposals and discussions are public. As the community grows, so does shared decision-making.</p>
         </div>
         <div class="card">
-          <h3>Contributor model</h3>
-          <p>Institutions, governments, and developers can propose schemas, DID methods, and protocol extensions through a structured contribution process.</p>
+          <div class="card-icon"><span class="material-symbols-outlined">group_add</span></div>
+          <h3 data-i18n="governance.contributor.title">Contributor model</h3>
+          <p data-i18n="governance.contributor.desc">Institutions, governments, and developers can propose schemas, DID methods, and protocol extensions through a structured contribution process.</p>
         </div>
         <div class="card">
-          <h3>No single owner</h3>
-          <p>The infrastructure is designed to outlive any single organization. Forkable, portable, and built for community governance from day one.</p>
+          <div class="card-icon"><span class="material-symbols-outlined">diversity_3</span></div>
+          <h3 data-i18n="governance.owner.title">No single owner</h3>
+          <p data-i18n="governance.owner.desc">The infrastructure is designed to outlive any single organization. Forkable, portable, and built for community governance from day one.</p>
         </div>
       </div>
     </div>
@@ -922,10 +982,11 @@
       <div class="footer-links">
         <a href="https://attestto.com">attestto.com</a>
         <a href="https://github.com/Attestto-com">GitHub</a>
-        <a href="mailto:open@attestto.com">Contact</a>
+        <a href="mailto:open@attestto.com" data-i18n="footer.contact">Contact</a>
       </div>
     </div>
   </footer>
 
+  <script src="/i18n/i18n.js"></script>
 </body>
 </html>
