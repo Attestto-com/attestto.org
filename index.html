@@ -219,6 +219,48 @@
       flex-wrap: wrap;
     }
 
+    .hero-layers {
+      display: flex;
+      gap: 3px;
+      margin-top: var(--space-lg);
+      max-width: 42rem;
+    }
+
+    .hero-layer {
+      flex: 1;
+      padding: 0.75rem 1rem;
+      border-radius: 0.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.125rem;
+    }
+
+    .hero-layer:nth-child(1) { background: rgba(74, 222, 128, 0.15); }
+    .hero-layer:nth-child(2) { background: rgba(74, 222, 128, 0.10); }
+    .hero-layer:nth-child(3) { background: rgba(74, 222, 128, 0.06); }
+
+    .hero-layer-num {
+      font-family: var(--font-mono);
+      font-weight: 700;
+      font-size: 0.75rem;
+      color: #4ade80;
+    }
+
+    .hero-layer-label {
+      font-weight: 600;
+      font-size: 0.9375rem;
+      color: #ffffff;
+    }
+
+    .hero-layer-desc {
+      font-size: 0.8125rem;
+      color: rgba(255, 255, 255, 0.5);
+    }
+
+    @media (max-width: 768px) {
+      .hero-layers { flex-direction: column; }
+    }
+
     /* ── Buttons ── */
     .btn {
       display: inline-flex;
@@ -544,6 +586,23 @@
       <div class="hero-actions">
         <a href="https://github.com/Attestto-com" class="btn btn-primary">View on GitHub</a>
         <a href="#what" class="btn btn-secondary">Learn more</a>
+      </div>
+      <div class="hero-layers">
+        <div class="hero-layer">
+          <span class="hero-layer-num">01</span>
+          <span class="hero-layer-label">Institutional</span>
+          <span class="hero-layer-desc">DID-based issuer verification</span>
+        </div>
+        <div class="hero-layer">
+          <span class="hero-layer-num">02</span>
+          <span class="hero-layer-label">Mesh</span>
+          <span class="hero-layer-desc">P2P encrypted state-sync</span>
+        </div>
+        <div class="hero-layer">
+          <span class="hero-layer-num">03</span>
+          <span class="hero-layer-label">Ledger</span>
+          <span class="hero-layer-desc">Solana proof-of-existence</span>
+        </div>
       </div>
     </div>
   </section>
