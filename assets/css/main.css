@@ -120,6 +120,15 @@ section { padding: var(--space-xl) 0; }
 .section-dark .card.country-card {
   display: flex;
   flex-direction: column;
+  position: relative;
+}
+.country-card .country-status {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  font-size: 0.6875rem;
+  padding: 0.2rem 0.5rem;
+  border-radius: 999px;
 }
 
 .section-dark .card-icon {
