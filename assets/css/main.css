@@ -43,9 +43,19 @@ a:hover { text-decoration: underline; }
 
 /* ── Layout ── */
 .container {
-  max-width: var(--max-width);
   margin: 0 auto;
-  padding: 0 var(--space-md);
+  padding: 0 clamp(1rem, 5vw, 4rem);
+}
+
+.hero p.lead,
+section > .container > p,
+section > .container > .section-intro {
+  max-width: 65ch;
+}
+
+.hero .container,
+section .container { /* keep section content from sprawling edge-to-edge on ultrawide */
+  max-width: 110rem;
 }
 
 section { padding: var(--space-xl) 0; }
