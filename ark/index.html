@@ -8,7 +8,7 @@
   <meta name="theme-color" content="#0a1628">
   <link rel="canonical" href="https://attestto.org/ark">
   <meta property="og:title" content="Attestto Ark — Sovereign Digital Identity Architecture">
-  <meta property="og:description" content="The vessel for sovereign digital identity. Desktop verification, mobile credentials, P2P mesh, CA key ceremonies, and trust governance.">
+  <meta property="og:description" content="The complete architecture for sovereign digital identity. Desktop verification, mobile credentials, P2P mesh, CA key ceremonies, and trust governance.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://attestto.org/ark">
   <meta property="og:site_name" content="Attestto">
@@ -33,6 +33,7 @@
     <div class="container">
       <a href="/" class="nav-brand"><img src="/logo-full-white.svg" alt="Attestto" style="height: 2rem; vertical-align: middle; margin-right: 0.5rem;"><span data-i18n="nav.ark">Ark</span></a>
       <ul class="nav-links">
+        <li><a href="#who" data-i18n="nav.who">Who it's for</a></li>
         <li><a href="#components" data-i18n="nav.components">Components</a></li>
         <li><a href="#how" data-i18n="nav.how">How it works</a></li>
         <li><a href="#governance" data-i18n="nav.governance">Governance</a></li>
@@ -48,10 +49,11 @@
   <section class="hero">
     <div class="container">
       <div class="hero-text">
-        <h1><span data-i18n="ark.hero_title_1">The ark of</span> <span data-i18n="ark.hero_title_3">digital identity</span> <em data-i18n="ark.hero_title_2">sovereign</em></h1>
-        <p class="lead" data-i18n="ark.lead">The complete architecture for issuing, verifying, and governing verifiable credentials. Every institution gets a seat. Everything is preserved. No single point of failure.</p>
+        <h1><span data-i18n="ark.hero_title_1">Sovereign</span> <span data-i18n="ark.hero_title_3">digital identity</span> <em data-i18n="ark.hero_title_2">architecture</em></h1>
+        <p class="lead" data-i18n="ark.lead">A proposed architecture for issuing, verifying, and governing verifiable credentials — open source, sovereign by design, and built so any institution can participate in the trust root. No single point of failure, no single point of control.</p>
+        <div class="disclaimer-strip" data-i18n="ark.hero_disclaimer">Ark is a working proposal. Components marked <em>(planned)</em> are part of the architecture but not yet shipped. Phase 1A is founder-only — institutional shareholder positions are reserved, not filled.</div>
         <div class="hero-actions">
-          <a href="#contact" class="btn btn-primary" data-i18n="ark.btn_board">Board the Ark</a>
+          <a href="#contact" class="btn btn-primary" data-i18n="ark.btn_board">Get in touch</a>
           <a href="#components" class="btn btn-secondary" data-i18n="ark.btn_explore">Explore the architecture</a>
         </div>
       </div>
@@ -85,12 +87,53 @@
     </div>
   </section>
 
+  <!-- Personas (dark) -->
+  <section id="who" class="section-dark">
+    <div class="container">
+      <div class="section-label" data-i18n="ark.who_label">Who is this for</div>
+      <h2 class="section-title" data-i18n="ark.who_title">Who this is for</h2>
+      <p class="section-desc" data-i18n="ark.who_desc">Ark is a proposal — an architecture and a set of working components offered to the institutions, professionals, and developers who have to make sovereign digital identity real. Find the role that fits you.</p>
+      <div class="persona-grid">
+        <div class="persona-card">
+          <span class="persona-tag" data-i18n="ark.persona1_tag">Government</span>
+          <h3 data-i18n="ark.persona1_title">Regulator or public institution</h3>
+          <p data-i18n="ark.persona1_desc">MICITT, BCCR, SINPE, MOPT, RN and peer agencies. Evaluate the architecture, request a briefing, reserve a Phase 1B shareholder position.</p>
+          <a class="persona-cta" href="mailto:open@attestto.com?subject=Ark%20%E2%80%94%20Institutional%20briefing" data-i18n="ark.persona1_cta">Request institutional briefing &rarr;</a>
+        </div>
+        <div class="persona-card">
+          <span class="persona-tag" data-i18n="ark.persona2_tag">Notary &middot; Lawyer &middot; Accountant</span>
+          <h3 data-i18n="ark.persona2_title">Daily Firma Digital user</h3>
+          <p data-i18n="ark.persona2_desc">If you live with the "signature validity unknown" red banner every day, Station is built for you. Verify CR-signed PDFs natively.</p>
+          <a class="persona-cta" href="mailto:open@attestto.com?subject=Ark%20%E2%80%94%20Station%20for%20professionals" data-i18n="ark.persona2_cta">Get early access to Station &rarr;</a>
+        </div>
+        <div class="persona-card">
+          <span class="persona-tag" data-i18n="ark.persona3_tag">Institution</span>
+          <h3 data-i18n="ark.persona3_title">Bank, insurer, university, KYC operator</h3>
+          <p data-i18n="ark.persona3_desc">Run a pilot on a real onboarding or signing flow. Issue verifiable credentials your counterparties can verify offline.</p>
+          <a class="persona-cta" href="mailto:open@attestto.com?subject=Ark%20%E2%80%94%20Institutional%20pilot" data-i18n="ark.persona3_cta">Propose a pilot &rarr;</a>
+        </div>
+        <div class="persona-card">
+          <span class="persona-tag" data-i18n="ark.persona4_tag">Developer</span>
+          <h3 data-i18n="ark.persona4_title">Open source contributor</h3>
+          <p data-i18n="ark.persona4_desc">Every component is open source. Read the code, file issues, ship a module, fork a country deployment.</p>
+          <a class="persona-cta" href="https://github.com/Attestto-com" data-i18n="ark.persona4_cta">Browse the repos on GitHub &rarr;</a>
+        </div>
+        <div class="persona-card">
+          <span class="persona-tag" data-i18n="ark.persona5_tag">LATAM partner</span>
+          <h3 data-i18n="ark.persona5_title">Operator outside Costa Rica</h3>
+          <p data-i18n="ark.persona5_desc">Stand up a sovereign CA in your jurisdiction with your own shareholders and your own ceremony. The architecture is one-per-country by design.</p>
+          <a class="persona-cta" href="mailto:open@attestto.com?subject=Ark%20%E2%80%94%20Country%20deployment" data-i18n="ark.persona5_cta">Deploy in your country &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Components (light) -->
   <section id="components" class="section-light">
     <div class="container">
       <div class="section-label" data-i18n="ark.comp_label">Components</div>
       <h2 class="section-title" data-i18n="ark.comp_title">Five pillars, one architecture</h2>
-      <p class="section-desc" data-i18n="ark.comp_desc">Start with one component and grow into the full architecture. Onboard progressively — deploy Station today, add Wallet tomorrow, join the Mesh when ready. Every step adds value, and the full Ark is greater than the sum of its parts.</p>
+      <p class="section-desc" data-i18n="ark.comp_desc">Start with one component and grow into the full architecture. Onboard progressively — deploy Station today, add Wallet tomorrow, join the Mesh when ready. Every step adds value, and the full architecture is greater than the sum of its parts.</p>
       <div class="grid-3">
         <div class="card">
           <div class="card-icon">&#9633;</div>
@@ -98,9 +141,9 @@
           <p data-i18n="ark.station_desc">Electron desktop application. Your verification station, credential vault, and mesh network node.</p>
           <ul>
             <li data-i18n="ark.station_l1">Document verification with OCR and census</li>
-            <li data-i18n="ark.station_l2">Encrypted local vault with AES-256-GCM</li>
-            <li data-i18n="ark.station_l3">Digital Signature (PKCS#11) and electronic signature</li>
-            <li data-i18n="ark.station_l4">Every installation is a network node</li>
+            <li data-i18n="ark.station_l2">Encrypted local vault with xsalsa20-poly1305 + scrypt</li>
+            <li data-i18n="ark.station_l3">Electronic signature today; smartcard Digital Signature (PKCS#11) planned</li>
+            <li data-i18n="ark.station_l4">Every installation can join the mesh as a node</li>
           </ul>
         </div>
         <div class="card">
@@ -120,7 +163,7 @@
           <p data-i18n="ark.mesh_desc">Encrypted P2P network over libp2p. State synchronization between local devices and national nodes without a central server.</p>
           <ul>
             <li data-i18n="ark.mesh_l1">Blind Courier principle — nodes can't read the data they carry</li>
-            <li data-i18n="ark.mesh_l2">~120 KB per citizen</li>
+            <li data-i18n="ark.mesh_l2">Compact per-citizen footprint</li>
             <li data-i18n="ark.mesh_l3">Works offline, syncs when connected</li>
             <li data-i18n="ark.mesh_l4">Cryptographic anchoring on Solana</li>
           </ul>
@@ -132,8 +175,8 @@
           <ul>
             <li data-i18n="ark.ceremony_l1">Clean Linux laptop (live USB)</li>
             <li data-i18n="ark.ceremony_l2">Key is split, original is destroyed</li>
-            <li data-i18n="ark.ceremony_l3">vLEI verification of shareholders</li>
-            <li data-i18n="ark.ceremony_l4">PKCS#11 support per jurisdiction</li>
+            <li data-i18n="ark.ceremony_l3">vLEI verification of shareholders (planned)</li>
+            <li data-i18n="ark.ceremony_l4">PKCS#11 support per jurisdiction (planned)</li>
           </ul>
         </div>
         <div class="card">
@@ -141,8 +184,8 @@
           <h3 data-i18n="ark.trust_title">Trust</h3>
           <p data-i18n="ark.trust_desc">CA trust framework with Shamir shareholders, on-chain transparency on Solana, and governance distributed across institutions.</p>
           <ul>
-            <li data-i18n="ark.trust_l1">CA key split: 2-of-3 today, 3-of-5 with MICITT/BCCR</li>
-            <li data-i18n="ark.trust_l2">Trust root at ca.attestto.sol</li>
+            <li data-i18n="ark.trust_l1">CA key split: 2-of-3 today, extensible to 3-of-5 with institutional partners</li>
+            <li data-i18n="ark.trust_l2">Trust root at vault.attestto</li>
             <li data-i18n="ark.trust_l3">Auditable blockchain transparency</li>
             <li data-i18n="ark.trust_l4">No actor has unilateral control</li>
           </ul>
@@ -224,28 +267,28 @@
           <h3 data-i18n="ark.sss_title">Shamir's Secret Sharing</h3>
           <p data-i18n="ark.sss_desc">The CA Ed25519 key is generated in an air-gapped ceremony and split into N shares. A threshold K is required to reconstruct it. The original key is destroyed.</p>
           <div class="detail-box">
-            <div><span class="hl">Phase 1 (current):</span> 2-of-3 internal</div>
-            <div><span class="hl">Phase 2:</span> 3-of-5 with institutional partners</div>
-            <div><span class="hl">Phase 3:</span> 5-of-9 multi-institutional</div>
+            <div><span class="hl">Phase 1A (current):</span> 2-of-3 founder-only</div>
+            <div><span class="hl">Phase 1B:</span> reshare to 3-of-5 as institutional partners join</div>
+            <div><span class="hl">Phase 2+:</span> threshold grows with the shareholder set</div>
           </div>
         </div>
         <div class="card">
           <div class="card-icon">&#9878;</div>
           <h3 data-i18n="ark.shareholders_title">Institutional shareholders</h3>
-          <p data-i18n="ark.shareholders_desc">Shareholders are verified representatives of institutions. Each holds a share that, alone, is useless. Only when the threshold gathers can the key be temporarily reconstructed.</p>
+          <p data-i18n="ark.shareholders_desc">Phase 1A is founder-only with all shares held by Attestto. Institutional shareholder positions are reserved for Phase 1B once formal partners join. Each share alone is useless — only when the threshold gathers can the key be temporarily reconstructed.</p>
           <div class="detail-box">
-            <div><span class="hl">Attestto</span> — Technical operator (current)</div>
-            <div><span class="hl">Government</span> — Regulatory body (proposed)</div>
-            <div><span class="hl">Central Bank</span> — Financial authority (proposed)</div>
+            <div><span class="hl">Attestto</span> — Technical operator (Phase 1A — current)</div>
+            <div><span class="hl">Reserved</span> — Institutional partner positions (Phase 1B)</div>
+            <div><span class="hl">Reserved</span> — Independent auditor position (Phase 1B)</div>
           </div>
         </div>
         <div class="card">
           <div class="card-icon">&#9830;</div>
           <h3 data-i18n="ark.onchain_title">On-chain transparency</h3>
-          <p data-i18n="ark.onchain_desc">The CA public key is anchored at ca.attestto.sol on Solana. Every certificate issuance is recorded on the blockchain — auditable by anyone, at any time.</p>
+          <p data-i18n="ark.onchain_desc">The CA public key is anchored at vault.attestto on Solana. The architecture anchors every certificate event on-chain (planned via the on-chain attestation pipeline) — auditable by anyone, at any time.</p>
           <div class="detail-box">
-            <div><span class="hl">Root:</span> ca.attestto.sol</div>
-            <div><span class="hl">Record:</span> Each CA signature → Solana txn</div>
+            <div><span class="hl">Root:</span> vault.attestto</div>
+            <div><span class="hl">Record:</span> Each CA event → Solana attestation (planned)</div>
             <div><span class="hl">Verification:</span> Public and open</div>
           </div>
         </div>
@@ -254,12 +297,12 @@
       <div class="arch-subsection">
         <div>
           <h3 class="arch-subsection-title" data-i18n="ark.vlei_title">vLEI Verification</h3>
-          <p class="arch-subsection-desc" data-i18n="ark.vlei_desc">Before participating in a ceremony, each shareholder must have a verified LEI (Legal Entity Identifier) and a vLEI issued by GLEIF. This ensures they legitimately represent their institution.</p>
+          <p class="arch-subsection-desc" data-i18n="ark.vlei_desc">The framework requires each shareholder to hold a verified LEI (Legal Entity Identifier) and a vLEI issued by GLEIF before joining a ceremony, so they legitimately represent their institution. On-chain verification path is planned.</p>
         </div>
         <div>
           <div class="detail-box">
             <div><span class="hl">Pre-requisite:</span> Active LEI + issued vLEI</div>
-            <div><span class="hl">Verification:</span> On-chain via vLEI-Solana-Bridge</div>
+            <div><span class="hl">Verification:</span> On-chain attestation (planned)</div>
             <div><span class="hl">Standard:</span> GLEIF + ISO 17442</div>
           </div>
         </div>
@@ -303,9 +346,9 @@
           <h3 data-i18n="ark.multi_title">Multi-jurisdiction</h3>
           <p data-i18n="ark.multi_desc">Each country has its own electronic signature scheme. The appliance supports PKCS#11 to integrate with local signing hardware.</p>
           <div class="detail-box">
-            <div><span class="hl">Costa Rica:</span> Firma Digital (SINPE/BCCR)</div>
-            <div><span class="hl">Brazil:</span> ICP-Brasil (ITI)</div>
-            <div><span class="hl">Mexico:</span> e.firma (SAT)</div>
+            <div><span class="hl">Costa Rica:</span> Firma Digital — SINPE/BCCR (planned)</div>
+            <div><span class="hl">Brazil:</span> ICP-Brasil — ITI (planned)</div>
+            <div><span class="hl">Mexico:</span> e.firma — SAT (planned)</div>
           </div>
         </div>
       </div>
@@ -322,7 +365,7 @@
         <div class="timeline-when" data-i18n="ark.tls1_when">Now</div>
         <div class="timeline-content">
           <h3 data-i18n="ark.tls1_title">Browser extension</h3>
-          <p data-i18n="ark.tls1_desc">The Attestto ID extension intercepts TLS connections and validates certificates against ca.attestto.sol. Works today, no DNS infrastructure changes.</p>
+          <p data-i18n="ark.tls1_desc">The Attestto ID extension validates certificates client-side against vault.attestto and surfaces a sovereignty trust score in the browser. Day-1 deployment, no DNS infrastructure changes.</p>
         </div>
       </div>
       <div class="timeline-item">
@@ -336,7 +379,7 @@
         <div class="timeline-when" data-i18n="ark.tls3_when">12 months</div>
         <div class="timeline-content">
           <h3 data-i18n="ark.tls3_title">Verification proxy</h3>
-          <p data-i18n="ark.tls3_desc">A transparent proxy that presents a Let's Encrypt certificate to the browser and an Attestto CA certificate to the destination server. Bridge between traditional and decentralized CA worlds.</p>
+          <p data-i18n="ark.tls3_desc">A bridging service that lets sites cross-publish their Attestto-issued certificate alongside a globally-trusted certificate, so browsers without DANE or the extension still see a valid chain while the sovereign certificate is recognized by participating clients.</p>
         </div>
       </div>
       <div class="timeline-item">
@@ -354,35 +397,38 @@
     <div class="container">
       <div class="section-label" data-i18n="ark.countries_label">Per country</div>
       <h2 class="section-title" data-i18n="ark.countries_title">One CA per jurisdiction</h2>
-      <p class="section-desc" data-i18n="ark.countries_desc">Each country gets its own Certificate Authority, its own key ceremony, and its own governance. All anchored under attestto.sol on Solana.</p>
+      <p class="section-desc" data-i18n="ark.countries_desc">Each country gets its own Certificate Authority, its own key ceremony, and its own governance. Each runs as an independent SNS root anchored on Solana.</p>
       <div class="grid-4">
         <div class="card">
           <p style="font-size: 1.5rem; margin-bottom: 0.5rem;">&#x1F1E8;&#x1F1F7;</p>
           <h3 data-i18n="ark.cr_name">Costa Rica</h3>
-          <p style="font-family: var(--font-mono); font-size: 0.8125rem; color: #4ade80; margin-bottom: 0.5rem;">ca-cr.attestto.sol</p>
+          <p style="font-family: var(--font-mono); font-size: 0.8125rem; color: #4ade80; margin-bottom: 0.5rem;">fi-cr</p>
           <p data-i18n="ark.cr_desc">Identity card, driver's license, ROS. Integration with TSE Census and SINPE Digital Signature.</p>
-          <span class="tag" style="background: rgba(74, 222, 128, 0.12); color: #4ade80; margin-top: 0.5rem;" data-i18n="ark.cr_status">Active</span>
+          <span class="tag" style="background: rgba(74, 222, 128, 0.12); color: #4ade80; margin-top: 0.5rem;" data-i18n="ark.cr_status">Launching on devnet</span>
+          <a class="persona-cta" style="margin-top: 0.75rem;" href="mailto:open@attestto.com?subject=Ark%20%E2%80%94%20Costa%20Rica" data-i18n="ark.cr_cta">Talk to the CR team &rarr;</a>
         </div>
         <div class="card">
           <p style="font-size: 1.5rem; margin-bottom: 0.5rem;">&#x1F1E7;&#x1F1F7;</p>
           <h3 data-i18n="ark.br_name">Brazil</h3>
-          <p style="font-family: var(--font-mono); font-size: 0.8125rem; color: #4ade80; margin-bottom: 0.5rem;">ca-br.attestto.sol</p>
+          <p style="font-family: var(--font-mono); font-size: 0.8125rem; color: #4ade80; margin-bottom: 0.5rem;">fi-br</p>
           <p data-i18n="ark.br_desc">CPF, CNH, digital RG. Integration with ICP-Brasil and gov.br.</p>
-          <span class="tag" style="background: rgba(255, 255, 255, 0.05); color: rgba(255,255,255,0.4); margin-top: 0.5rem;" data-i18n="ark.br_status">Planned</span>
+          <span class="tag" style="background: rgba(255, 255, 255, 0.05); color: rgba(255,255,255,0.4); margin-top: 0.5rem;" data-i18n="ark.br_status">Proposed</span>
+          <a class="persona-cta" style="margin-top: 0.75rem;" href="mailto:open@attestto.com?subject=Ark%20%E2%80%94%20Brazil" data-i18n="ark.br_cta">Lead the BR deployment &rarr;</a>
         </div>
         <div class="card">
           <p style="font-size: 1.5rem; margin-bottom: 0.5rem;">&#x1F1F2;&#x1F1FD;</p>
           <h3 data-i18n="ark.mx_name">Mexico</h3>
-          <p style="font-family: var(--font-mono); font-size: 0.8125rem; color: #4ade80; margin-bottom: 0.5rem;">ca-mx.attestto.sol</p>
+          <p style="font-family: var(--font-mono); font-size: 0.8125rem; color: #4ade80; margin-bottom: 0.5rem;">fi-mx</p>
           <p data-i18n="ark.mx_desc">INE, CURP, federal license. Integration with e.firma SAT.</p>
-          <span class="tag" style="background: rgba(255, 255, 255, 0.05); color: rgba(255,255,255,0.4); margin-top: 0.5rem;" data-i18n="ark.mx_status">Planned</span>
+          <span class="tag" style="background: rgba(255, 255, 255, 0.05); color: rgba(255,255,255,0.4); margin-top: 0.5rem;" data-i18n="ark.mx_status">Proposed</span>
+          <a class="persona-cta" style="margin-top: 0.75rem;" href="mailto:open@attestto.com?subject=Ark%20%E2%80%94%20Mexico" data-i18n="ark.mx_cta">Lead the MX deployment &rarr;</a>
         </div>
         <div class="card" style="border-style: dashed;">
           <p style="font-size: 1.5rem; margin-bottom: 0.5rem; opacity: 0.4;">&#x1F30E;</p>
           <h3 style="color: rgba(255,255,255,0.5);" data-i18n="ark.xx_name">Your country</h3>
-          <p style="font-family: var(--font-mono); font-size: 0.8125rem; color: rgba(255,255,255,0.3); margin-bottom: 0.5rem;">ca-xx.attestto.sol</p>
+          <p style="font-family: var(--font-mono); font-size: 0.8125rem; color: rgba(255,255,255,0.3); margin-bottom: 0.5rem;">fi-xx</p>
           <p data-i18n="ark.xx_desc">Each jurisdiction can deploy its own sovereign CA with its own governance scheme and institutional shareholders.</p>
-          <a href="#contact" class="tag" style="background: rgba(255, 255, 255, 0.05); color: rgba(255,255,255,0.4); margin-top: 0.5rem; text-decoration: none;" data-i18n="ark.xx_status">Contact</a>
+          <a class="persona-cta" style="margin-top: 0.75rem;" href="mailto:open@attestto.com?subject=Ark%20%E2%80%94%20Country%20deployment" data-i18n="ark.xx_cta">Start a country deployment &rarr;</a>
         </div>
       </div>
     </div>
@@ -392,11 +438,11 @@
   <section id="contact" class="section-light cta-center">
     <div class="container">
       <div class="section-label" data-i18n="ark.cta_label">Participate</div>
-      <h2 class="section-title" data-i18n="ark.cta_title">Board the Ark</h2>
-      <p class="section-desc" data-i18n="ark.cta_desc">Every institution gets a seat. Every country gets its sovereign CA. The Ark is built before the storm — not during.</p>
-      <a href="mailto:ark@attestto.com" class="btn btn-primary" data-i18n="ark.cta_btn">Contact the team</a>
+      <h2 class="section-title" data-i18n="ark.cta_title">Get involved</h2>
+      <p class="section-desc" data-i18n="ark.cta_desc">If any of the roles above fits you, write to us. We are looking for the institutions, professionals, and developers who want to help build sovereign digital identity in the open.</p>
+      <a href="mailto:open@attestto.com" class="btn btn-primary" data-i18n="ark.cta_btn">Contact the team</a>
       <div class="cta-links">
-        <a href="mailto:ark@attestto.com">ark@attestto.com</a>
+        <a href="mailto:open@attestto.com">open@attestto.com</a>
         <a href="https://attestto.com">attestto.com</a>
         <a href="https://github.com/Attestto-com">GitHub</a>
       </div>
@@ -414,6 +460,7 @@
         <a href="https://mobile.attestto.com">mobile.attestto.com</a>
         <a href="https://github.com/Attestto-com" data-i18n="footer.github">GitHub</a>
       </div>
+      <p class="footer-note" style="margin-top: 1rem; font-size: 0.75rem; opacity: 0.5;" data-i18n="footer.sns_note">All identifiers shown (fi-cr, vault.attestto, etc.) resolve via the Solana Name Service. The full on-chain form ends in <code>.sol</code> — omitted in the page for clarity.</p>
     </div>
   </footer>
 
