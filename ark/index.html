@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Attestto Ark — Sovereign Digital Identity Architecture</title>
-  <meta name="description" content="The complete architecture for sovereign digital identity. Station, Wallet, Mesh, Ceremony, Trust — everything an institution needs to issue, verify, and govern verifiable credentials.">
+  <meta name="description" content="The complete architecture for sovereign digital identity. Station, Web Extension, Mesh, Ceremony, Trust — everything an institution needs to issue, verify, and govern verifiable credentials.">
   <meta name="theme-color" content="#0a1628">
   <link rel="canonical" href="https://attestto.org/ark">
   <meta property="og:title" content="Attestto Ark — Sovereign Digital Identity Architecture">
@@ -50,7 +50,6 @@
       <div class="hero-text">
         <h1><span data-i18n="ark.hero_title_1">Sovereign</span> <span data-i18n="ark.hero_title_3">digital identity</span> <em data-i18n="ark.hero_title_2">architecture</em></h1>
         <p class="lead" data-i18n="ark.lead">A proposed architecture for issuing, verifying, and governing verifiable credentials — open source, sovereign by design, and built so any institution can participate in the trust root. No single point of failure, no single point of control.</p>
-        <div class="disclaimer-strip" data-i18n="ark.hero_disclaimer">Ark is a working proposal. Components marked <em>(planned)</em> are part of the architecture but not yet shipped. Phase 1A is founder-only — institutional shareholder positions are reserved, not filled.</div>
         <div class="hero-actions">
           <a href="#contact" class="btn btn-primary" data-i18n="ark.btn_board">Get in touch</a>
           <a href="#components" class="btn btn-secondary" data-i18n="ark.btn_explore">Explore the architecture</a>
@@ -64,8 +63,8 @@
         </div>
         <div class="hero-layer">
           <span class="hero-layer-num">02</span>
-          <span class="hero-layer-label" data-i18n="ark.wallet_title">Wallet</span>
-          <span class="hero-layer-desc">Mobile capture + credentials</span>
+          <span class="hero-layer-label" data-i18n="ark.ext_title">Web Extension</span>
+          <span class="hero-layer-desc">In-browser trust + signing</span>
         </div>
         <div class="hero-layer">
           <span class="hero-layer-num">03</span>
@@ -132,7 +131,7 @@
     <div class="container">
       <div class="section-label" data-i18n="ark.comp_label">Components</div>
       <h2 class="section-title" data-i18n="ark.comp_title">Five pillars, one architecture</h2>
-      <p class="section-desc" data-i18n="ark.comp_desc">Start with one component and grow into the full architecture. Onboard progressively — deploy Station today, add Wallet tomorrow, join the Mesh when ready. Every step adds value, and the full architecture is greater than the sum of its parts.</p>
+      <p class="section-desc" data-i18n="ark.comp_desc">Start with one component and grow into the full architecture. Onboard progressively — deploy Station today, add the Web Extension tomorrow, join the Mesh when ready. Every step adds value, and the full architecture is greater than the sum of its parts.</p>
       <div class="grid-3">
         <div class="card">
           <div class="card-icon">&#9633;</div>
@@ -147,13 +146,13 @@
         </div>
         <div class="card">
           <div class="card-icon">&#9671;</div>
-          <h3 data-i18n="ark.wallet_title">Wallet</h3>
-          <p data-i18n="ark.wallet_desc">Mobile PWA at mobile.attestto.com. Capture documents, biometric liveness proof, and verifiable credentials wallet.</p>
+          <h3 data-i18n="ark.ext_title">Web Extension</h3>
+          <p data-i18n="ark.ext_desc">Browser extension that validates document signatures and CA trust in the page, surfaces a trust score, and connects to the Station for verification flows.</p>
           <ul>
-            <li data-i18n="ark.wallet_l1">Document capture with phone camera</li>
-            <li data-i18n="ark.wallet_l2">Selfie with blink detection (liveness proof)</li>
-            <li data-i18n="ark.wallet_l3">Verifiable credentials in your pocket</li>
-            <li data-i18n="ark.wallet_l4">Direct connection to desktop via local WiFi</li>
+            <li data-i18n="ark.ext_l1">Client-side certificate validation</li>
+            <li data-i18n="ark.ext_l2">Trust score surfaced in the browser</li>
+            <li data-i18n="ark.ext_l3">Wallet adapter discovery for signing</li>
+            <li data-i18n="ark.ext_l4">Bridges browser pages to the Station</li>
           </ul>
         </div>
         <div class="card">
@@ -164,7 +163,7 @@
             <li data-i18n="ark.mesh_l1">Blind Courier principle — nodes can't read the data they carry</li>
             <li data-i18n="ark.mesh_l2">Compact per-citizen footprint</li>
             <li data-i18n="ark.mesh_l3">Works offline, syncs when connected</li>
-            <li data-i18n="ark.mesh_l4">Cryptographic anchoring on Solana</li>
+            <li data-i18n="ark.mesh_l4">Cryptographic anchoring on a public blockchain</li>
           </ul>
         </div>
         <div class="card">
@@ -181,7 +180,7 @@
         <div class="card">
           <div class="card-icon">&#9741;</div>
           <h3 data-i18n="ark.trust_title">Trust</h3>
-          <p data-i18n="ark.trust_desc">CA trust framework with Shamir shareholders, on-chain transparency on Solana, and governance distributed across institutions.</p>
+          <p data-i18n="ark.trust_desc">CA trust framework with Shamir shareholders, public on-chain transparency, and governance distributed across institutions.</p>
           <ul>
             <li data-i18n="ark.trust_l1">CA key split: 2-of-3 today, extensible to 3-of-5 with institutional partners</li>
             <li data-i18n="ark.trust_l2">Trust root at vault.attestto</li>
@@ -223,7 +222,7 @@
         <div class="card">
           <div class="card-icon">5</div>
           <h3 data-i18n="ark.step5_title">Credential in your vault</h3>
-          <p data-i18n="ark.step5_desc">The credential is stored encrypted in the local vault. Sign it with Digital Signature, anchor it on Solana, or share it via verifiable presentation.</p>
+          <p data-i18n="ark.step5_desc">The credential is stored encrypted in the local vault. Sign it with Digital Signature, anchor it on a public blockchain, or share it via verifiable presentation.</p>
         </div>
       </div>
 
@@ -246,7 +245,7 @@
           </div>
           <div class="arch-layer">
             <span class="arch-layer-num">&#9671;</span>
-            <span class="arch-layer-name">Wallet</span>
+            <span class="arch-layer-name">Web Extension</span>
             <span class="arch-layer-desc">Camera + Liveness + VCs</span>
           </div>
         </div>
@@ -283,11 +282,11 @@
         </div>
         <div class="card">
           <div class="card-icon">&#9830;</div>
-          <h3 data-i18n="ark.onchain_title">On-chain transparency</h3>
-          <p data-i18n="ark.onchain_desc">The CA public key is anchored at vault.attestto on Solana. The architecture anchors every certificate event on-chain (planned via the on-chain attestation pipeline) — auditable by anyone, at any time.</p>
+          <h3 data-i18n="ark.onchain_title">Public attestation log</h3>
+          <p data-i18n="ark.onchain_desc">Ark is chain-agnostic by design. The W3C VC, W3C DID, GLEIF vLEI, and eIDAS standards do not depend on any single ledger. CA events are recorded as public on-chain attestations — providing sovereign naming, sub-second public commitment, and a per-event cost compatible with institutional rollout. Each jurisdiction can choose its anchoring layer as institutional partners require; credentials issued under one anchor remain verifiable under another.</p>
           <div class="detail-box">
             <div><span class="hl">Root:</span> vault.attestto</div>
-            <div><span class="hl">Record:</span> Each CA event → Solana attestation (planned)</div>
+            <div><span class="hl">Record:</span> Each CA event → on-chain attestation (planned)</div>
             <div><span class="hl">Verification:</span> Public and open</div>
           </div>
         </div>
@@ -385,7 +384,7 @@
         <div class="timeline-when" data-i18n="ark.tls4_when">2-5 years</div>
         <div class="timeline-content">
           <h3 data-i18n="ark.tls4_title">W3C / IETF Standards</h3>
-          <p data-i18n="ark.tls4_desc">Participate in standards working groups so browsers natively recognize CA roots anchored in decentralized registries (blockchain, IPNS, SNS).</p>
+          <p data-i18n="ark.tls4_desc">Participate in standards working groups so browsers natively recognize CA roots anchored in decentralized registries (blockchain, IPNS, decentralized naming).</p>
         </div>
       </div>
     </div>
@@ -396,12 +395,12 @@
     <div class="container">
       <div class="section-label" data-i18n="ark.countries_label">Per country</div>
       <h2 class="section-title" data-i18n="ark.countries_title">One CA per jurisdiction</h2>
-      <p class="section-desc" data-i18n="ark.countries_desc">Each country gets its own Certificate Authority, its own key ceremony, and its own governance. Each runs as an independent SNS root anchored on Solana.</p>
+      <p class="section-desc" data-i18n="ark.countries_desc">Each jurisdiction operates an independent Certificate Authority, key ceremony, and governance scheme. Each is anchored as a sovereign root on a public blockchain.</p>
       <div class="grid-4">
         <div class="card">
           <p style="font-size: 1.5rem; margin-bottom: 0.5rem;">&#x1F1E8;&#x1F1F7;</p>
           <h3 data-i18n="ark.cr_name">Costa Rica</h3>
-          <p style="font-family: var(--font-mono); font-size: 0.8125rem; color: #4ade80; margin-bottom: 0.5rem;">fi-cr</p>
+          <p class="sns-tld">fi-cr<span class="tld">.sol</span></p>
           <p data-i18n="ark.cr_desc">Identity card, driver's license, ROS. Integration with TSE Census and SINPE Digital Signature.</p>
           <span class="tag" style="background: rgba(74, 222, 128, 0.12); color: #4ade80; margin-top: 0.5rem;" data-i18n="ark.cr_status">Launching on devnet</span>
           <a class="persona-cta" style="margin-top: 0.75rem;" href="mailto:open@attestto.com?subject=Ark%20%E2%80%94%20Costa%20Rica" data-i18n="ark.cr_cta">Talk to the CR team &rarr;</a>
@@ -409,7 +408,7 @@
         <div class="card">
           <p style="font-size: 1.5rem; margin-bottom: 0.5rem;">&#x1F1E7;&#x1F1F7;</p>
           <h3 data-i18n="ark.br_name">Brazil</h3>
-          <p style="font-family: var(--font-mono); font-size: 0.8125rem; color: #4ade80; margin-bottom: 0.5rem;">fi-br</p>
+          <p class="sns-tld">fi-br<span class="tld">.sol</span></p>
           <p data-i18n="ark.br_desc">CPF, CNH, digital RG. Integration with ICP-Brasil and gov.br.</p>
           <span class="tag" style="background: rgba(255, 255, 255, 0.05); color: rgba(255,255,255,0.4); margin-top: 0.5rem;" data-i18n="ark.br_status">Proposed</span>
           <a class="persona-cta" style="margin-top: 0.75rem;" href="mailto:open@attestto.com?subject=Ark%20%E2%80%94%20Brazil" data-i18n="ark.br_cta">Lead the BR deployment &rarr;</a>
@@ -417,7 +416,7 @@
         <div class="card">
           <p style="font-size: 1.5rem; margin-bottom: 0.5rem;">&#x1F1F2;&#x1F1FD;</p>
           <h3 data-i18n="ark.mx_name">Mexico</h3>
-          <p style="font-family: var(--font-mono); font-size: 0.8125rem; color: #4ade80; margin-bottom: 0.5rem;">fi-mx</p>
+          <p class="sns-tld">fi-mx<span class="tld">.sol</span></p>
           <p data-i18n="ark.mx_desc">INE, CURP, federal license. Integration with e.firma SAT.</p>
           <span class="tag" style="background: rgba(255, 255, 255, 0.05); color: rgba(255,255,255,0.4); margin-top: 0.5rem;" data-i18n="ark.mx_status">Proposed</span>
           <a class="persona-cta" style="margin-top: 0.75rem;" href="mailto:open@attestto.com?subject=Ark%20%E2%80%94%20Mexico" data-i18n="ark.mx_cta">Lead the MX deployment &rarr;</a>
@@ -425,7 +424,7 @@
         <div class="card" style="border-style: dashed;">
           <p style="font-size: 1.5rem; margin-bottom: 0.5rem; opacity: 0.4;">&#x1F30E;</p>
           <h3 style="color: rgba(255,255,255,0.5);" data-i18n="ark.xx_name">Your country</h3>
-          <p style="font-family: var(--font-mono); font-size: 0.8125rem; color: rgba(255,255,255,0.3); margin-bottom: 0.5rem;">fi-xx</p>
+          <p class="sns-tld">fi-xx<span class="tld">.sol</span></p>
           <p data-i18n="ark.xx_desc">Each jurisdiction can deploy its own sovereign CA with its own governance scheme and institutional shareholders.</p>
           <a class="persona-cta" style="margin-top: 0.75rem;" href="mailto:open@attestto.com?subject=Ark%20%E2%80%94%20Country%20deployment" data-i18n="ark.xx_cta">Start a country deployment &rarr;</a>
         </div>
@@ -459,7 +458,8 @@
         <a href="https://mobile.attestto.com">mobile.attestto.com</a>
         <a href="https://github.com/Attestto-com" data-i18n="footer.github">GitHub</a>
       </div>
-      <p class="footer-note" style="margin-top: 1rem; font-size: 0.75rem; opacity: 0.5;" data-i18n="footer.sns_note">All identifiers shown (fi-cr, vault.attestto, etc.) resolve via the Solana Name Service. The full on-chain form ends in <code>.sol</code> — omitted in the page for clarity.</p>
+      <p class="footer-note" style="margin-top: 1rem; font-size: 0.75rem; opacity: 0.5;" data-i18n="footer.disclaimer">Ark is a working proposal. Components marked <em>(planned)</em> are part of the architecture but not yet shipped. Phase 1A is founder-custodied; institutional shareholder positions are reserved for Phase 1B.</p>
+      <p class="footer-note" style="margin-top: 0.5rem; font-size: 0.75rem; opacity: 0.4;" data-i18n="footer.sns_note">All identifiers shown (fi-cr, vault.attestto, etc.) resolve via a decentralized naming layer. The full on-chain form is omitted in the page for clarity.</p>
     </div>
   </footer>
 

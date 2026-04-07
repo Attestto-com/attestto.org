@@ -82,7 +82,17 @@ section { padding: var(--space-xl) 0; }
 
 .section-dark .card h3 { color: #ffffff; }
 .section-dark .card p,
-.section-dark .card li { color: rgba(255, 255, 255, 0.6); }
+.section-dark .card li { color: rgba(255, 255, 255, 0.82); }
+
+.section-dark .card .sns-tld {
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  color: #ffffff;
+  margin-bottom: 0.5rem;
+}
+.section-dark .card .sns-tld .tld {
+  color: rgba(255, 255, 255, 0.4);
+}
 
 .section-dark .card-icon {
   background: rgba(74, 222, 128, 0.12);
