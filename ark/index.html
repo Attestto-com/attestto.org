@@ -397,36 +397,52 @@
       <h2 class="section-title" data-i18n="ark.countries_title">One CA per jurisdiction</h2>
       <p class="section-desc" data-i18n="ark.countries_desc">Each jurisdiction operates an independent Certificate Authority, key ceremony, and governance scheme. Each is anchored as a sovereign root on a public blockchain.</p>
       <div class="grid-4">
-        <div class="card">
-          <p style="font-size: 1.5rem; margin-bottom: 0.5rem;">&#x1F1E8;&#x1F1F7;</p>
-          <h3 data-i18n="ark.cr_name">Costa Rica</h3>
+        <div class="card country-card">
+          <div class="country-head">
+            <span class="country-flag">&#x1F1E8;&#x1F1F7;</span>
+            <h3 data-i18n="ark.cr_name">Costa Rica</h3>
+          </div>
           <p class="sns-tld">fi-cr<span class="tld">.sol</span></p>
-          <p data-i18n="ark.cr_desc">Identity card, driver's license, ROS. Integration with TSE Census and SINPE Digital Signature.</p>
-          <span class="tag" style="background: rgba(74, 222, 128, 0.12); color: #4ade80; margin-top: 0.5rem;" data-i18n="ark.cr_status">Launching on devnet</span>
-          <a class="persona-cta" style="margin-top: 0.75rem;" href="mailto:open@attestto.com?subject=Ark%20%E2%80%94%20Costa%20Rica" data-i18n="ark.cr_cta">Talk to the CR team &rarr;</a>
+          <p class="country-desc" data-i18n="ark.cr_desc">Identity card, driver's license, ROS. Integration with TSE Census and SINPE Digital Signature.</p>
+          <div class="country-meta">
+            <span class="tag" style="background: rgba(74, 222, 128, 0.12); color: #4ade80; align-self: flex-start;" data-i18n="ark.cr_status">Launching on devnet</span>
+            <a class="persona-cta" href="mailto:open@attestto.com?subject=Ark%20%E2%80%94%20Costa%20Rica" data-i18n="ark.cr_cta">Talk to the CR team &rarr;</a>
+          </div>
         </div>
-        <div class="card">
-          <p style="font-size: 1.5rem; margin-bottom: 0.5rem;">&#x1F1E7;&#x1F1F7;</p>
-          <h3 data-i18n="ark.br_name">Brazil</h3>
+        <div class="card country-card">
+          <div class="country-head">
+            <span class="country-flag">&#x1F1E7;&#x1F1F7;</span>
+            <h3 data-i18n="ark.br_name">Brazil</h3>
+          </div>
           <p class="sns-tld">fi-br<span class="tld">.sol</span></p>
-          <p data-i18n="ark.br_desc">CPF, CNH, digital RG. Integration with ICP-Brasil and gov.br.</p>
-          <span class="tag" style="background: rgba(255, 255, 255, 0.05); color: rgba(255,255,255,0.4); margin-top: 0.5rem;" data-i18n="ark.br_status">Proposed</span>
-          <a class="persona-cta" style="margin-top: 0.75rem;" href="mailto:open@attestto.com?subject=Ark%20%E2%80%94%20Brazil" data-i18n="ark.br_cta">Lead the BR deployment &rarr;</a>
+          <p class="country-desc" data-i18n="ark.br_desc">CPF, CNH, digital RG. Integration with ICP-Brasil and gov.br.</p>
+          <div class="country-meta">
+            <span class="tag" style="background: rgba(255, 255, 255, 0.05); color: rgba(255,255,255,0.4); align-self: flex-start;" data-i18n="ark.br_status">Proposed</span>
+            <a class="persona-cta" href="mailto:open@attestto.com?subject=Ark%20%E2%80%94%20Brazil" data-i18n="ark.br_cta">Lead the BR deployment &rarr;</a>
+          </div>
         </div>
-        <div class="card">
-          <p style="font-size: 1.5rem; margin-bottom: 0.5rem;">&#x1F1F2;&#x1F1FD;</p>
-          <h3 data-i18n="ark.mx_name">Mexico</h3>
+        <div class="card country-card">
+          <div class="country-head">
+            <span class="country-flag">&#x1F1F2;&#x1F1FD;</span>
+            <h3 data-i18n="ark.mx_name">Mexico</h3>
+          </div>
           <p class="sns-tld">fi-mx<span class="tld">.sol</span></p>
-          <p data-i18n="ark.mx_desc">INE, CURP, federal license. Integration with e.firma SAT.</p>
-          <span class="tag" style="background: rgba(255, 255, 255, 0.05); color: rgba(255,255,255,0.4); margin-top: 0.5rem;" data-i18n="ark.mx_status">Proposed</span>
-          <a class="persona-cta" style="margin-top: 0.75rem;" href="mailto:open@attestto.com?subject=Ark%20%E2%80%94%20Mexico" data-i18n="ark.mx_cta">Lead the MX deployment &rarr;</a>
+          <p class="country-desc" data-i18n="ark.mx_desc">INE, CURP, federal license. Integration with e.firma SAT.</p>
+          <div class="country-meta">
+            <span class="tag" style="background: rgba(255, 255, 255, 0.05); color: rgba(255,255,255,0.4); align-self: flex-start;" data-i18n="ark.mx_status">Proposed</span>
+            <a class="persona-cta" href="mailto:open@attestto.com?subject=Ark%20%E2%80%94%20Mexico" data-i18n="ark.mx_cta">Lead the MX deployment &rarr;</a>
+          </div>
         </div>
-        <div class="card" style="border-style: dashed;">
-          <p style="font-size: 1.5rem; margin-bottom: 0.5rem; opacity: 0.4;">&#x1F30E;</p>
-          <h3 style="color: rgba(255,255,255,0.5);" data-i18n="ark.xx_name">Your country</h3>
+        <div class="card country-card" style="border-style: dashed;">
+          <div class="country-head">
+            <span class="country-flag" style="opacity: 0.4;">&#x1F30E;</span>
+            <h3 style="color: rgba(255,255,255,0.5);" data-i18n="ark.xx_name">Your country</h3>
+          </div>
           <p class="sns-tld">fi-xx<span class="tld">.sol</span></p>
-          <p data-i18n="ark.xx_desc">Each jurisdiction can deploy its own sovereign CA with its own governance scheme and institutional shareholders.</p>
-          <a class="persona-cta" style="margin-top: 0.75rem;" href="mailto:open@attestto.com?subject=Ark%20%E2%80%94%20Country%20deployment" data-i18n="ark.xx_cta">Start a country deployment &rarr;</a>
+          <p class="country-desc" data-i18n="ark.xx_desc">Each jurisdiction can deploy its own sovereign CA with its own governance scheme and institutional shareholders.</p>
+          <div class="country-meta">
+            <a class="persona-cta" href="mailto:open@attestto.com?subject=Ark%20%E2%80%94%20Country%20deployment" data-i18n="ark.xx_cta">Start a country deployment &rarr;</a>
+          </div>
         </div>
       </div>
     </div>
