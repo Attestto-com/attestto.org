@@ -130,7 +130,7 @@
         <div class="card">
           <div class="card-icon">&#127760;</div>
           <h3 data-i18n="desktop.bridge_title">Bridge to Browser</h3>
-          <p>
+          <p data-i18n="desktop.bridge_desc">
             The Station pairs with the Attestto ID extension via the open <code>@attestto/id-wallet-adapter</code>
             protocol. Web pages discover the wallet, request signatures, and receive credentials — without the
             Station ever exposing your private key to the page.
@@ -152,7 +152,7 @@
     <div class="container">
       <div class="section-label" data-i18n="desktop.electron_label">Why Electron</div>
       <h2 class="section-title" data-i18n="desktop.electron_title">A browser engine with hardware access</h2>
-      <p class="section-desc">
+      <p class="section-desc" data-i18n="desktop.electron_desc">
         Sovereign identity needs deep access to the device — camera, screen, processes, file system, smart cards —
         which a sandboxed web page cannot provide. Electron gives the Station the Chromium rendering engine for a
         modern UI <em>and</em> Node.js for direct hardware access. The result is a modular desktop that ships as a
@@ -162,15 +162,15 @@
       <div class="grid-3">
         <div class="card">
           <h3 data-i18n="desktop.electron_card1_title">Chromium engine</h3>
-          <p>The same rendering pipeline that powers verify.attestto.com runs the Station's UI. PDF preview, OCR, biometric overlays, signature stamps — all rendered with web technology you can inspect.</p>
+          <p data-i18n="desktop.electron_card1_desc">The same rendering pipeline that powers verify.attestto.com runs the Station's UI. PDF preview, OCR, biometric overlays, signature stamps — all rendered with web technology you can inspect.</p>
         </div>
         <div class="card">
           <h3 data-i18n="desktop.electron_card2_title">Node.js system access</h3>
-          <p>Direct file system, process inspection, smart card interfaces, mesh networking, and OS-level keychain integration — capabilities a normal browser refuses to grant.</p>
+          <p data-i18n="desktop.electron_card2_desc">Direct file system, process inspection, smart card interfaces, mesh networking, and OS-level keychain integration — capabilities a normal browser refuses to grant.</p>
         </div>
         <div class="card">
           <h3 data-i18n="desktop.electron_card3_title">Auditable distribution</h3>
-          <p>The Station ships as a notarized DMG, MSI, and AppImage. Source code is open. Reproducible builds are on the roadmap so anyone can verify the binary matches the published commit.</p>
+          <p data-i18n="desktop.electron_card3_desc">The Station ships as a notarized DMG, MSI, and AppImage. Source code is open. Reproducible builds are on the roadmap so anyone can verify the binary matches the published commit.</p>
         </div>
       </div>
     </div>
@@ -181,7 +181,7 @@
     <div class="container">
       <div class="section-label" data-i18n="desktop.trust_label">Trust ladder</div>
       <h2 class="section-title" data-i18n="desktop.trust_title">Five honest tiers</h2>
-      <p class="section-desc">
+      <p class="section-desc" data-i18n="desktop.trust_desc">
         A signature is only as trustworthy as the identity verification behind it. The Station surfaces an explicit
         trust tier on every credential it issues, so verifiers and counterparties know exactly what evidence the
         signer presented.
@@ -190,23 +190,23 @@
       <div class="grid-3">
         <div class="card">
           <h3>A+ &nbsp;<small style="color: #16a34a;">Smart card</small></h3>
-          <p>Costa Rica Firma Digital smart card (PKCS#11). Qualified electronic signature recognized under Ley 8454.</p>
+          <p data-i18n="desktop.trust_aplus_desc">Costa Rica Firma Digital smart card (PKCS#11). Qualified electronic signature recognized under Ley 8454.</p>
         </div>
         <div class="card">
           <h3>A &nbsp;<small style="color: #16a34a;">Full KYC</small></h3>
-          <p>Cédula scan + Padrón Electoral + facial recognition + liveness proof + Firma Digital seal.</p>
+          <p data-i18n="desktop.trust_a_desc">Cédula scan + Padrón Electoral + facial recognition + liveness proof + Firma Digital seal.</p>
         </div>
         <div class="card">
           <h3>B &nbsp;<small style="color: #2563eb;">Padrón verified</small></h3>
-          <p>Cédula scan + Padrón Electoral cross-check + facial recognition + liveness proof. The default for citizen-issued credentials.</p>
+          <p data-i18n="desktop.trust_b_desc">Cédula scan + Padrón Electoral cross-check + facial recognition + liveness proof. The default for citizen-issued credentials.</p>
         </div>
         <div class="card">
           <h3>C &nbsp;<small style="color: #d97706;">Document only</small></h3>
-          <p>Cédula scanned and OCR'd, no Padrón cross-check, no biometrics. Useful for non-binding workflows.</p>
+          <p data-i18n="desktop.trust_c_desc">Cédula scanned and OCR'd, no Padrón cross-check, no biometrics. Useful for non-binding workflows.</p>
         </div>
         <div class="card">
           <h3>D &nbsp;<small style="color: #94a3b8;">Self-declared</small></h3>
-          <p>Holder-asserted data with no external verification. Always labeled, never silently upgraded.</p>
+          <p data-i18n="desktop.trust_d_desc">Holder-asserted data with no external verification. Always labeled, never silently upgraded.</p>
         </div>
       </div>
     </div>
@@ -217,7 +217,7 @@
     <div class="container">
       <div class="section-label" data-i18n="desktop.auditors_label">For auditors</div>
       <h2 class="section-title" data-i18n="desktop.auditors_title">Read the code. Run the binary. File issues.</h2>
-      <p class="section-desc">
+      <p class="section-desc" data-i18n="desktop.auditors_desc">
         Every claim on this page is backed by a public repository. If anything looks wrong, the right move is to
         open the source — not to take our word for it.
       </p>
@@ -262,7 +262,7 @@
     <div class="container">
       <div class="section-label" data-i18n="desktop.cta_label">Get the Station</div>
       <h2 class="section-title" data-i18n="desktop.cta_title">Run sovereign identity on your own desktop</h2>
-      <p class="section-desc">
+      <p class="section-desc" data-i18n="desktop.cta_desc">
         The Station is in early access for professionals, institutions, and auditors. Tell us who you are and what
         you would use it for, and we will get you a build that fits your jurisdiction.
       </p>
