@@ -41,6 +41,7 @@
   "index": {
     "title": "Infraestructura digital publica abierta",
     "lead": "Primitivos de datos verificables sobre los que cualquiera puede construir. Soberanos, interoperables, que preservan la privacidad. Desplegalo tu mismo, bifurcalo o extendelo.",
+    "btn_ark": "Explorar el Ark",
     "btn_github": "Ver en GitHub",
     "btn_learn": "Conocer mas",
     "layer1_label": "Institucional",

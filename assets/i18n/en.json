@@ -42,6 +42,7 @@
   "index": {
     "title": "Open digital public infrastructure",
     "lead": "Verifiable data primitives anyone can build on. Sovereign, interoperable, privacy-preserving. Deploy it yourself, fork it, or extend it.",
+    "btn_ark": "Explore the Ark",
     "btn_github": "View on GitHub",
     "btn_learn": "Learn more",
     "layer1_label": "Institutional",
