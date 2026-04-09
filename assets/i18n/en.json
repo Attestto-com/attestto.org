@@ -2,6 +2,7 @@
   "nav": {
     "open": "Open",
     "ark": "Ark",
+    "open_ark": "Open · Ark",
     "downloads": "Downloads",
     "what": "What",
     "principles": "Principles",
@@ -121,11 +122,16 @@
   },
 
   "ark": {
-    "hero_title_1": "Sovereign",
-    "hero_title_2": "architecture",
-    "hero_title_3": "digital identity",
-    "lead": "A proposed architecture for issuing, verifying, and governing verifiable credentials — open source, sovereign by design, and built so any institution can participate in the trust root. No single point of failure, no single point of control.",
-    "hero_disclaimer": "Ark is a working proposal. Components marked (planned) are part of the architecture but not yet shipped. Phase 1A is founder-only — institutional shareholder positions are reserved, not filled.",
+    "hero_title_1": "Sovereign digital identity",
+    "hero_title_2": "infrastructure",
+    "hero_title_3": "",
+    "lead": "The infrastructure for issuing, verifying, and governing verifiable credentials — open source, sovereign by design, and built so any institution can participate in the trust root. No single point of failure, no single point of control.",
+    "hero_disclaimer": "Ark is live. Components marked (planned) are part of the architecture but not yet shipped. Phase 1A is founder-only — institutional shareholder positions are reserved, not filled.",
+    "hero_station_desc": "Verify, sign, and safeguard your documents — all on your own computer. Nothing leaves your device unless you decide.",
+    "hero_ext_desc": "Log in to any website with no username and no password, and sign documents with one click — your data stays private, your accounts stay yours.",
+    "hero_mesh_desc": "Every Station, extension, and mobile app becomes a node in a shared, encrypted network — your data lives across the community, not on someone else's server.",
+    "hero_ceremony_desc": "The secure ritual that protects the master keys behind the trust network.",
+    "hero_trust_desc": "Open governance shared by institutions and citizens. No single owner can change the rules.",
     "btn_board": "Get in touch",
     "btn_explore": "Explore the architecture",
 
@@ -199,7 +205,7 @@
     "onchain_desc": "The CA public key is anchored at vault.attestto on Solana. The architecture anchors every certificate event on-chain (planned via the on-chain attestation pipeline) — auditable by anyone, at any time.",
 
     "vlei_title": "vLEI Verification",
-    "vlei_desc": "The framework requires each shareholder to hold a verified LEI (Legal Entity Identifier) and a vLEI issued by GLEIF before joining a ceremony, so they legitimately represent their institution. On-chain verification path is planned.",
+    "vlei_desc": "The framework requires each shareholder to hold a verified LEI (Legal Entity Identifier) and a vLEI issued by <a href=\"https://www.gleif.org/en/vlei/introducing-the-vlei\" target=\"_blank\" rel=\"noopener\">GLEIF</a> before joining a ceremony, so they legitimately represent their institution. On-chain verification path is planned.",
 
     "cer_label": "Key Ceremony",
     "cer_title": "Sovereign, air-gapped, verifiable",
