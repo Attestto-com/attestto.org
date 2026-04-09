@@ -22,20 +22,40 @@
 
   // ── Detect language ──
   function detectLang() {
-    // 1. URL param
+    // 1. URL pathname prefix (per-locale subdirectories: /es/...)
+    //    This wins over everything else because crawler-friendly per-locale
+    //    files are the canonical signal — if a user lands on /es/ark/, they
+    //    expect Spanish regardless of their browser or stored preference.
+    const path = window.location.pathname || '';
+    const pathLangMatch = path.match(/^\/(en|es)(\/|$)/);
+    if (pathLangMatch && SUPPORTED.includes(pathLangMatch[1])) return pathLangMatch[1];
+
+    // 2. URL param ?lang=
     const params = new URLSearchParams(window.location.search);
     const urlLang = params.get('lang');
     if (urlLang && SUPPORTED.includes(urlLang)) return urlLang;
 
-    // 2. localStorage
+    // 3. localStorage
     const stored = localStorage.getItem(STORAGE_KEY);
     if (stored && SUPPORTED.includes(stored)) return stored;
 
-    // 3. Browser language
+    // 4. Browser language
     const nav = (navigator.language || '').slice(0, 2).toLowerCase();
     if (SUPPORTED.includes(nav)) return nav;
 
     return DEFAULT;
+  }
+
+  // ── Map current pathname to its counterpart in another language ──
+  // E.g. /ark/desktop ↔ /es/ark/desktop
+  function pathnameForLang(targetLang) {
+    const path = window.location.pathname || '/';
+    // Strip leading /en/ or /es/
+    const stripped = path.replace(/^\/(en|es)(\/|$)/, '/');
+    if (targetLang === DEFAULT) return stripped;
+    // Insert /<lang>/ prefix (handle root case)
+    if (stripped === '/') return '/' + targetLang + '/';
+    return '/' + targetLang + stripped;
   }
 
   // ── Resolve nested key: "hero.title" → translations.hero.title ──
@@ -109,21 +129,21 @@
   // ── Switch language ──
   function switchLang(lang) {
     if (!SUPPORTED.includes(lang) || lang === currentLang) return;
-    currentLang = lang;
     localStorage.setItem(STORAGE_KEY, lang);
 
-    // Update the URL so that "copy link" carries the language and
-    // recipients land in the same language as the sharer. Uses
-    // history.replaceState so the back button isn't polluted.
+    // Per-locale subdirectories: navigate to the counterpart URL so
+    // crawlers and shared links see the right meta tags. This is a full
+    // navigation (not just a JS swap) because the meta tags differ per
+    // locale and only the server-rendered HTML carries them.
     try {
-      var url = new URL(window.location.href);
-      url.searchParams.set('lang', lang);
-      window.history.replaceState({}, '', url.toString());
+      var targetPath = pathnameForLang(lang);
+      var targetUrl = window.location.origin + targetPath + window.location.search + window.location.hash;
+      window.location.assign(targetUrl);
     } catch (e) {
-      // Older browsers without URL constructor — non-fatal
+      // Fallback: in-place swap (no meta-tag fix, but at least body content updates)
+      currentLang = lang;
+      loadTranslations(lang, applyTranslations);
     }
-
-    loadTranslations(lang, applyTranslations);
   }
 
   // ── Build switcher UI ──
@@ -170,15 +190,10 @@
   function init() {
     currentLang = detectLang();
     localStorage.setItem(STORAGE_KEY, currentLang);
-    // Stamp current lang into URL so shared links carry it even without
-    // the user clicking the switcher.
-    try {
-      var initUrl = new URL(window.location.href);
-      if (initUrl.searchParams.get('lang') !== currentLang) {
-        initUrl.searchParams.set('lang', currentLang);
-        window.history.replaceState({}, '', initUrl.toString());
-      }
-    } catch (e) { /* non-fatal */ }
+    // Note: we no longer stamp ?lang= into the URL on init. Per-locale
+    // paths (/es/...) are the canonical signal. The ?lang= param is still
+    // honored as a legacy fallback in detectLang() but it's not promoted
+    // into URLs anymore.
     injectSwitcher();
     loadTranslations(currentLang, applyTranslations);
   }
