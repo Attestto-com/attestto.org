@@ -41,19 +41,15 @@
   </nav>
 
   <!-- Hero (dark) -->
-  <section class="hero">
+  <section class="hero hero-single">
     <div class="container">
       <div class="hero-text">
-        <p class="eyebrow">Ark · Station</p>
-        <h1>One desktop. Five modules. Zero strangers.</h1>
-        <p class="lead">
-          The Station is an Electron desktop application that bundles your identity vault, document signer, verifier,
-          mesh node, and proctoring engine into a single auditable shell. Every sensitive operation — from biometric
-          liveness to PDF signing — runs on your own hardware, on code anyone can read.
-        </p>
-        <div class="hero-cta">
-          <a href="#modules" class="btn btn-primary">Explore the modules</a>
-          <a href="/ark/proctoring" class="btn btn-secondary">Proctoring deep-dive →</a>
+        <p class="eyebrow" data-i18n="desktop.eyebrow">Ark · Station</p>
+        <h1 data-i18n="desktop.hero_title">One desktop. Five modules. Zero strangers.</h1>
+        <p class="lead" data-i18n="desktop.hero_lead">The Station is an Electron desktop application that bundles your identity vault, document signer, verifier, mesh node, and proctoring engine into a single auditable shell. Every sensitive operation — from biometric liveness to PDF signing — runs on your own hardware, on code anyone can read.</p>
+        <div class="hero-actions">
+          <a href="#modules" class="btn btn-primary" data-i18n="desktop.hero_cta_primary">Explore the modules</a>
+          <a href="/ark/proctoring" class="btn btn-secondary" data-i18n="desktop.hero_cta_secondary">Proctoring deep-dive →</a>
         </div>
       </div>
     </div>
@@ -62,104 +58,85 @@
   <!-- What runs where -->
   <section id="modules" class="section-light">
     <div class="container">
-      <div class="section-label">Modules</div>
-      <h2 class="section-title">Five capabilities, one shell</h2>
-      <p class="section-desc">
-        The Station is a composition of independent modules that share a single encrypted vault. Each module is
-        opt-in. You can run the Station purely as a vault, purely as a verifier, or activate every module for a
-        full sovereign-identity workstation.
-      </p>
+      <div class="section-label" data-i18n="desktop.modules_label">Modules</div>
+      <h2 class="section-title" data-i18n="desktop.modules_title">Five capabilities, one shell</h2>
+      <p class="section-desc" data-i18n="desktop.modules_desc">The Station is a composition of independent modules that share a single encrypted vault. Each module is opt-in. You can run the Station purely as a vault, purely as a verifier, or activate every module for a full sovereign-identity workstation.</p>
       <div class="grid-3">
 
         <div class="card">
           <div class="card-icon">&#128274;</div>
-          <h3>Vault</h3>
-          <p>
-            Encrypted local key store. Ed25519 signing key + xsalsa20-poly1305 + scrypt key derivation. The
-            private key never leaves the device — not even to the Attestto company.
-          </p>
+          <h3 data-i18n="desktop.vault_title">Vault</h3>
+          <p data-i18n="desktop.vault_desc">Encrypted local key store. Ed25519 signing key + xsalsa20-poly1305 + scrypt key derivation. The private key never leaves the device — not even to the Attestto company.</p>
           <ul>
-            <li>xsalsa20-poly1305 + scrypt</li>
-            <li>Shamir 2-of-3 backup (planned)</li>
-            <li>Zero-knowledge to Attestto</li>
-            <li>Open source — auditable</li>
+            <li data-i18n="desktop.vault_l1">xsalsa20-poly1305 + scrypt</li>
+            <li data-i18n="desktop.vault_l2">Shamir 2-of-3 backup (planned)</li>
+            <li data-i18n="desktop.vault_l3">Zero-knowledge to Attestto</li>
+            <li data-i18n="desktop.vault_l4">Open source — auditable</li>
           </ul>
         </div>
 
         <div class="card">
           <div class="card-icon">&#9999;</div>
-          <h3>Signer</h3>
-          <p>
-            Sign PDFs with your vault key. Produces W3C Verifiable Credentials embedded directly into the document
-            metadata. Recognized natively by verify.attestto.com — no plugin, no Adobe, no cloud.
-          </p>
+          <h3 data-i18n="desktop.signer_title">Signer</h3>
+          <p data-i18n="desktop.signer_desc">Sign PDFs with your vault key. Produces W3C Verifiable Credentials embedded directly into the document metadata. Recognized natively by verify.attestto.com — no plugin, no Adobe, no cloud.</p>
           <ul>
-            <li>Attestto self-attested signatures (Ed25519)</li>
-            <li>Counter-signs Firma Digital PAdES files</li>
-            <li>Smart-card PKCS#11 (planned)</li>
-            <li>Byte-frozen output for forensic integrity</li>
+            <li data-i18n="desktop.signer_l1">Attestto self-attested signatures (Ed25519)</li>
+            <li data-i18n="desktop.signer_l2">Counter-signs Firma Digital PAdES files</li>
+            <li data-i18n="desktop.signer_l3">Smart-card PKCS#11 (planned)</li>
+            <li data-i18n="desktop.signer_l4">Byte-frozen output for forensic integrity</li>
           </ul>
         </div>
 
         <div class="card">
           <div class="card-icon">&#10003;</div>
-          <h3>Verifier</h3>
-          <p>
-            Drop a PDF onto the Station, get a forensic report: signature integrity, certificate chain, document hash,
-            tamper detection. Same engine that runs at verify.attestto.com — but offline.
-          </p>
+          <h3 data-i18n="desktop.verifier_title">Verifier</h3>
+          <p data-i18n="desktop.verifier_desc">Drop a PDF onto the Station, get a forensic report: signature integrity, certificate chain, document hash, tamper detection. Same engine that runs at verify.attestto.com — but offline.</p>
           <ul>
-            <li>PAdES + Attestto self-attested</li>
-            <li>National PKI roots (CR PJ, PF, MICITT)</li>
-            <li>Tamper-evident byte-range checks</li>
-            <li>Works without internet</li>
+            <li data-i18n="desktop.verifier_l1">PAdES + Attestto self-attested</li>
+            <li data-i18n="desktop.verifier_l2">National PKI roots (CR PJ, PF, MICITT)</li>
+            <li data-i18n="desktop.verifier_l3">Tamper-evident byte-range checks</li>
+            <li data-i18n="desktop.verifier_l4">Works without internet</li>
           </ul>
         </div>
 
         <div class="card">
           <div class="card-icon">&#9881;</div>
-          <h3>Mesh Node</h3>
-          <p>
-            Every Station can become a peer in the Attestto Mesh — an encrypted libp2p network for credential
-            anchoring, trust mirroring, and redundant verification. Blind-courier: nodes can't read what they carry.
-          </p>
+          <h3 data-i18n="desktop.mesh_title">Mesh Node</h3>
+          <p data-i18n="desktop.mesh_desc">Every Station can become a peer in the Attestto Mesh — an encrypted libp2p network for credential anchoring, trust mirroring, and redundant verification. Blind-courier: nodes can't read what they carry.</p>
           <ul>
-            <li>libp2p over Bluetooth, WiFi, internet</li>
-            <li>Blind courier — encrypted payloads</li>
-            <li>Solana anchoring (deployment-time)</li>
-            <li>Opt-in, never required</li>
+            <li data-i18n="desktop.mesh_l1">libp2p over Bluetooth, WiFi, internet</li>
+            <li data-i18n="desktop.mesh_l2">Blind courier — encrypted payloads</li>
+            <li data-i18n="desktop.mesh_l3">Solana anchoring (deployment-time)</li>
+            <li data-i18n="desktop.mesh_l4">Opt-in, never required</li>
           </ul>
         </div>
 
         <div class="card">
           <div class="card-icon">&#128065;</div>
-          <h3>Proctor</h3>
-          <p>
-            White-box exam proctoring that runs entirely on the candidate's machine. Camera, screen, and process
-            monitoring with zero cloud video upload. The "proctor" is auditable code, not a stranger watching a feed.
-          </p>
+          <h3 data-i18n="desktop.proctor_title">Proctor</h3>
+          <p data-i18n="desktop.proctor_desc">White-box exam proctoring that runs entirely on the candidate's machine. Camera, screen, and process monitoring with zero cloud video upload. The "proctor" is auditable code, not a stranger watching a feed.</p>
           <ul>
-            <li>Local face + liveness detection</li>
-            <li>desktopCapturer screen monitoring</li>
-            <li>Process-level lockdown via Node</li>
-            <li>SHA-256 session hash + Ed25519 signing</li>
+            <li data-i18n="desktop.proctor_l1">Local face + liveness detection</li>
+            <li data-i18n="desktop.proctor_l2">desktopCapturer screen monitoring</li>
+            <li data-i18n="desktop.proctor_l3">Process-level lockdown via Node</li>
+            <li data-i18n="desktop.proctor_l4">SHA-256 session hash + Ed25519 signing</li>
           </ul>
-          <p style="margin-top: 0.75rem;"><a href="/ark/proctoring" style="color: var(--color-accent, #22d3a8); font-weight: 600;">Read the proctoring deep-dive →</a></p>
+          <p style="margin-top: 0.75rem;"><a href="/ark/proctoring" style="color: var(--color-accent, #22d3a8); font-weight: 600;"><span data-i18n="desktop.proctor_link">Read the proctoring deep-dive →</span></a></p>
         </div>
 
         <div class="card">
           <div class="card-icon">&#127760;</div>
-          <h3>Bridge to Browser</h3>
+          <h3 data-i18n="desktop.bridge_title">Bridge to Browser</h3>
           <p>
             The Station pairs with the Attestto ID extension via the open <code>@attestto/id-wallet-adapter</code>
             protocol. Web pages discover the wallet, request signatures, and receive credentials — without the
             Station ever exposing your private key to the page.
           </p>
           <ul>
-            <li>postMessage protocol, no servers</li>
-            <li>DID login, document signing, credential push</li>
-            <li>Works with any compliant wallet</li>
-            <li>Cross-platform (desktop, browser, mobile PWA)</li>
+            <li data-i18n="desktop.bridge_l1">postMessage protocol, no servers</li>
+            <li data-i18n="desktop.bridge_l2">DID login, document signing, credential push</li>
+            <li data-i18n="desktop.bridge_l3">Works with any compliant wallet</li>
+            <li data-i18n="desktop.bridge_l4">Cross-platform (desktop, browser, mobile PWA)</li>
           </ul>
         </div>
 
@@ -170,8 +147,8 @@
   <!-- Why Electron -->
   <section class="section-dark">
     <div class="container">
-      <div class="section-label">Why Electron</div>
-      <h2 class="section-title">A browser engine with hardware access</h2>
+      <div class="section-label" data-i18n="desktop.electron_label">Why Electron</div>
+      <h2 class="section-title" data-i18n="desktop.electron_title">A browser engine with hardware access</h2>
       <p class="section-desc">
         Sovereign identity needs deep access to the device — camera, screen, processes, file system, smart cards —
         which a sandboxed web page cannot provide. Electron gives the Station the Chromium rendering engine for a
@@ -181,15 +158,15 @@
 
       <div class="grid-3">
         <div class="card">
-          <h3>Chromium engine</h3>
+          <h3 data-i18n="desktop.electron_card1_title">Chromium engine</h3>
           <p>The same rendering pipeline that powers verify.attestto.com runs the Station's UI. PDF preview, OCR, biometric overlays, signature stamps — all rendered with web technology you can inspect.</p>
         </div>
         <div class="card">
-          <h3>Node.js system access</h3>
+          <h3 data-i18n="desktop.electron_card2_title">Node.js system access</h3>
           <p>Direct file system, process inspection, smart card interfaces, mesh networking, and OS-level keychain integration — capabilities a normal browser refuses to grant.</p>
         </div>
         <div class="card">
-          <h3>Auditable distribution</h3>
+          <h3 data-i18n="desktop.electron_card3_title">Auditable distribution</h3>
           <p>The Station ships as a notarized DMG, MSI, and AppImage. Source code is open. Reproducible builds are on the roadmap so anyone can verify the binary matches the published commit.</p>
         </div>
       </div>
@@ -199,8 +176,8 @@
   <!-- Trust ladder -->
   <section class="section-light">
     <div class="container">
-      <div class="section-label">Trust ladder</div>
-      <h2 class="section-title">Five honest tiers</h2>
+      <div class="section-label" data-i18n="desktop.trust_label">Trust ladder</div>
+      <h2 class="section-title" data-i18n="desktop.trust_title">Five honest tiers</h2>
       <p class="section-desc">
         A signature is only as trustworthy as the identity verification behind it. The Station surfaces an explicit
         trust tier on every credential it issues, so verifiers and counterparties know exactly what evidence the
@@ -235,8 +212,8 @@
   <!-- For auditors -->
   <section id="auditors" class="section-dark">
     <div class="container">
-      <div class="section-label">For auditors</div>
-      <h2 class="section-title">Read the code. Run the binary. File issues.</h2>
+      <div class="section-label" data-i18n="desktop.auditors_label">For auditors</div>
+      <h2 class="section-title" data-i18n="desktop.auditors_title">Read the code. Run the binary. File issues.</h2>
       <p class="section-desc">
         Every claim on this page is backed by a public repository. If anything looks wrong, the right move is to
         open the source — not to take our word for it.
@@ -280,13 +257,13 @@
   <!-- CTA -->
   <section id="contact" class="section-light cta-center">
     <div class="container">
-      <div class="section-label">Get the Station</div>
-      <h2 class="section-title">Run sovereign identity on your own desktop</h2>
+      <div class="section-label" data-i18n="desktop.cta_label">Get the Station</div>
+      <h2 class="section-title" data-i18n="desktop.cta_title">Run sovereign identity on your own desktop</h2>
       <p class="section-desc">
         The Station is in early access for professionals, institutions, and auditors. Tell us who you are and what
         you would use it for, and we will get you a build that fits your jurisdiction.
       </p>
-      <a href="mailto:open@attestto.com?subject=Ark%20Station%20%E2%80%94%20early%20access" class="btn btn-primary">Request early access</a>
+      <a href="mailto:open@attestto.com?subject=Ark%20Station%20%E2%80%94%20early%20access" class="btn btn-primary" data-i18n="desktop.cta_btn">Request early access</a>
       <div class="cta-links">
         <a href="/ark">Back to Ark overview</a>
         <a href="/ark/proctoring">Proctoring deep-dive</a>
