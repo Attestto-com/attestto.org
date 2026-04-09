@@ -6,6 +6,8 @@
   ],
   "id": "did:web:attestto.org:eduardo",
   "alsoKnownAs": [
+    "did:sns:chongkan.attestto.sol",
+    "did:sns:eduardo.attestto.sol",
     "https://eduardo.attestto.id",
     "https://attestto.org/eduardo"
   ],
@@ -14,7 +16,7 @@
       "id": "did:web:attestto.org:eduardo#key-1",
       "type": "Ed25519VerificationKey2020",
       "controller": "did:web:attestto.org:eduardo",
-      "publicKeyMultibase": "z7QE9ZEiF5hrTgAf9oac0SFJpzixvC880_c69AKD4xEqd0w"
+      "publicKeyMultibase": "z6Mkiauc7AD5ejBVTVqxQnNugvpti2gAA3qXiJ1FHBcJ1tvv"
     }
   ],
   "authentication": [
