@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+
+  <url>
+    <loc>https://attestto.org/</loc>
+    <lastmod>2026-04-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://attestto.org/?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://attestto.org/?lang=es"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://attestto.org/"/>
+  </url>
+
+  <url>
+    <loc>https://attestto.org/ark</loc>
+    <lastmod>2026-04-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://attestto.org/ark?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://attestto.org/ark?lang=es"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://attestto.org/ark"/>
+  </url>
+
+  <url>
+    <loc>https://attestto.org/ark/desktop</loc>
+    <lastmod>2026-04-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://attestto.org/ark/desktop?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://attestto.org/ark/desktop?lang=es"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://attestto.org/ark/desktop"/>
+  </url>
+
+  <url>
+    <loc>https://attestto.org/ark/proctoring</loc>
+    <lastmod>2026-04-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://attestto.org/ark/proctoring?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://attestto.org/ark/proctoring?lang=es"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://attestto.org/ark/proctoring"/>
+  </url>
+
+  <url>
+    <loc>https://attestto.org/ark/patrons</loc>
+    <lastmod>2026-04-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://attestto.org/ark/patrons?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://attestto.org/ark/patrons?lang=es"/>
+  </url>
+
+  <url>
+    <loc>https://attestto.org/downloads</loc>
+    <lastmod>2026-04-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://attestto.org/downloads?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://attestto.org/downloads?lang=es"/>
+  </url>
+
+</urlset>
