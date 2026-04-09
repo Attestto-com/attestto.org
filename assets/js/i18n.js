@@ -170,6 +170,15 @@
   function init() {
     currentLang = detectLang();
     localStorage.setItem(STORAGE_KEY, currentLang);
+    // Stamp current lang into URL so shared links carry it even without
+    // the user clicking the switcher.
+    try {
+      var initUrl = new URL(window.location.href);
+      if (initUrl.searchParams.get('lang') !== currentLang) {
+        initUrl.searchParams.set('lang', currentLang);
+        window.history.replaceState({}, '', initUrl.toString());
+      }
+    } catch (e) { /* non-fatal */ }
     injectSwitcher();
     loadTranslations(currentLang, applyTranslations);
   }
