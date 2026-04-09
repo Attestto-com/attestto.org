@@ -111,6 +111,18 @@
     if (!SUPPORTED.includes(lang) || lang === currentLang) return;
     currentLang = lang;
     localStorage.setItem(STORAGE_KEY, lang);
+
+    // Update the URL so that "copy link" carries the language and
+    // recipients land in the same language as the sharer. Uses
+    // history.replaceState so the back button isn't polluted.
+    try {
+      var url = new URL(window.location.href);
+      url.searchParams.set('lang', lang);
+      window.history.replaceState({}, '', url.toString());
+    } catch (e) {
+      // Older browsers without URL constructor — non-fatal
+    }
+
     loadTranslations(lang, applyTranslations);
   }
 
