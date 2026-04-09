@@ -36,7 +36,7 @@
     "resolver": "Resolutor DID",
     "disclaimer": "Ark esta en vivo. Los componentes marcados <em>(planeado)</em> son parte de la arquitectura pero aun no se han desplegado. La Fase 1A esta bajo custodia del fundador; los puestos institucionales de accionistas estan reservados para la Fase 1B.",
     "not_a_ca": "No somos una Autoridad Certificadora para las raices de confianza de terceros que reflejamos. La fuente legal de verdad de cada PKI nacional sigue siendo la autoridad emisora (BCCR/MICITT en Costa Rica).",
-    "sns_note": "Los identificadores mostrados (fi-cr, vault.attestto, etc.) resuelven hoy via Solana Name Service — el primer anclaje desplegado. La capa de nombres es modular; cada jurisdiccion puede operar la suya."
+    "sns_note": "Los identificadores mostrados (fi-cr, ca.attestto.sol, etc.) resuelven hoy via Solana Name Service — el primer anclaje desplegado. La capa de nombres es modular; cada jurisdiccion puede operar la suya."
   },
   "index": {
     "title": "Infraestructura digital publica abierta",

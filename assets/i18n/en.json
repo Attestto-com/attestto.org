@@ -37,7 +37,7 @@
     "resolver": "DID Resolver",
     "disclaimer": "Ark is live. Components marked <em>(planned)</em> are part of the architecture but not yet shipped. Phase 1A is founder-custodied; institutional shareholder positions are reserved for Phase 1B.",
     "not_a_ca": "We are not a Certificate Authority for the third-party trust roots we mirror. The legal source of truth for each national PKI remains the issuing authority (BCCR/MICITT in Costa Rica).",
-    "sns_note": "Identifiers shown (fi-cr, vault.attestto, etc.) resolve today via the Solana Name Service — the first anchor we shipped. The naming layer is pluggable; jurisdictions can run their own."
+    "sns_note": "Identifiers shown (fi-cr, ca.attestto.sol, etc.) resolve today via the Solana Name Service — the first anchor we shipped. The naming layer is pluggable; jurisdictions can run their own."
   },
   "index": {
     "title": "Open digital public infrastructure",
@@ -166,7 +166,7 @@
     "trust_title": "Trust",
     "trust_desc": "CA trust framework with Shamir shareholders, on-chain transparency, and governance distributed across institutions.",
     "trust_l1": "CA key split: 2-of-3 today, extensible to 3-of-5 with institutional partners",
-    "trust_l2": "Trust root at vault.attestto",
+    "trust_l2": "Trust root at ca.attestto.sol",
     "trust_l3": "Auditable blockchain transparency",
     "trust_l4": "No actor has unilateral control",
     "how_label": "How it works",
@@ -210,7 +210,7 @@
     "tls_desc": "The ultimate goal: TLS certificates issued by Attestto CA recognized natively by browsers. Four parallel paths, each with a different time horizon.",
     "tls1_when": "Now",
     "tls1_title": "Browser extension",
-    "tls1_desc": "The Attestto ID extension validates certificates client-side against vault.attestto and surfaces a sovereignty trust score in the browser. Day-1 deployment, no DNS infrastructure changes.",
+    "tls1_desc": "The Attestto ID extension validates certificates client-side against ca.attestto.sol and surfaces a sovereignty trust score in the browser. Day-1 deployment, no DNS infrastructure changes.",
     "tls2_when": "6 months",
     "tls2_title": "DANE / TLSA",
     "tls2_desc": "Publish TLSA records in DNS pointing to Attestto CA certificates. Requires the domain to use DNSSEC. DANE validators already exist in some browsers.",
