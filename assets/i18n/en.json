@@ -29,7 +29,13 @@
     "com": "attestto.com",
     "mobile": "mobile.attestto.com",
     "github": "GitHub",
-    "contact": "Contact"
+    "contact": "Contact",
+    "tagline": "Live infrastructure for sovereign digital identity. Free for citizens, always — commerce funds the network.",
+    "trust_mirror": "Trust mirror",
+    "resolver": "DID Resolver",
+    "disclaimer": "Ark is live. Components marked <em>(planned)</em> are part of the architecture but not yet shipped. Phase 1A is founder-custodied; institutional shareholder positions are reserved for Phase 1B.",
+    "not_a_ca": "We are not a Certificate Authority for the third-party trust roots we mirror. The legal source of truth for each national PKI remains the issuing authority (BCCR/MICITT in Costa Rica).",
+    "sns_note": "Identifiers shown (fi-cr, vault.attestto, etc.) resolve today via the Solana Name Service — the first anchor we shipped. The naming layer is pluggable; jurisdictions can run their own."
   },
 
   "index": {
@@ -42,7 +48,7 @@
     "layer2_label": "Mesh",
     "layer2_desc": "P2P encrypted state-sync",
     "layer3_label": "Ledger",
-    "layer3_desc": "Solana proof-of-existence",
+    "layer3_desc": "Public-ledger proof of existence",
 
     "what_label": "What",
     "what_title": "Infrastructure, not a product",
@@ -71,7 +77,7 @@
     "mesh_l1_desc": "0ms — data on your device",
     "mesh_l2_name": "Mesh peers",
     "mesh_l2_desc": "<100ms — encrypted blobs from nearby nodes",
-    "mesh_l3_name": "Solana anchor",
+    "mesh_l3_name": "Public-ledger anchor",
     "mesh_l3_desc": "200-500ms — cryptographic proof on public ledger",
     "mesh_size": "~120 KB per citizen. A national mesh for 5 million people fits in 600 GB distributed across thousands of nodes. Each node stores encrypted data it cannot read — the Blind Courier principle.",
 
@@ -132,6 +138,9 @@
     "hero_mesh_desc": "Every Station, extension, and mobile app becomes a node in a shared, encrypted network — your data lives across the community, not on someone else's server.",
     "hero_ceremony_desc": "The secure ritual that protects the master keys behind the trust network.",
     "hero_trust_desc": "Open governance shared by institutions and citizens. No single owner can change the rules.",
+    "rights_label": "A founding principle",
+    "rights_title": "Free for citizens. Always.",
+    "rights_desc": "Identity, signing, anchoring, recovery, and verification are citizen rights — not services. They are free forever for every Costa Rican, and for every human Ark reaches. Commerce pays for the network so citizens never have to. No premium tiers. No paywalls. No exceptions.",
     "btn_board": "Get in touch",
     "btn_explore": "Explore the architecture",
 
@@ -139,7 +148,7 @@
     "comp_title": "Five pillars, one architecture",
     "comp_desc": "Start with one component and grow into the full architecture. Onboard progressively — deploy Station today, add Wallet tomorrow, join the Mesh when ready. Every step adds value, and the full architecture is greater than the sum of its parts.",
 
-    "station_title": "Station",
+    "station_title": "Desktop Station / Node",
     "station_desc": "Electron desktop application. Your verification station, credential vault, and mesh network node.",
     "station_l1": "Document verification with OCR and census",
     "station_l2": "Encrypted local vault with xsalsa20-poly1305 + scrypt",
@@ -158,7 +167,7 @@
     "mesh_l1": "Blind Courier principle — nodes can't read the data they carry",
     "mesh_l2": "Compact per-citizen footprint",
     "mesh_l3": "Works offline, syncs when connected",
-    "mesh_l4": "Cryptographic anchoring on Solana",
+    "mesh_l4": "Cryptographic anchoring on a public ledger",
 
     "ceremony_title": "Ceremony",
     "ceremony_desc": "Sovereign appliance for CA key ceremonies. Air-gapped Linux laptop, Shamir share distribution via local mesh.",
@@ -168,7 +177,7 @@
     "ceremony_l4": "PKCS#11 support per jurisdiction (planned)",
 
     "trust_title": "Trust",
-    "trust_desc": "CA trust framework with Shamir shareholders, on-chain transparency on Solana, and governance distributed across institutions.",
+    "trust_desc": "CA trust framework with Shamir shareholders, on-chain transparency, and governance distributed across institutions.",
     "trust_l1": "CA key split: 2-of-3 today, extensible to 3-of-5 with institutional partners",
     "trust_l2": "Trust root at vault.attestto",
     "trust_l3": "Auditable blockchain transparency",
@@ -187,7 +196,7 @@
     "step4_title": "Automatic processing",
     "step4_desc": "Station runs OCR, extracts MRZ data, queries the TSE Census, validates the name, and generates the verifiable credential.",
     "step5_title": "Credential in your vault",
-    "step5_desc": "The credential is stored encrypted in the local vault. Sign it with Digital Signature, anchor it on Solana, or share it via verifiable presentation.",
+    "step5_desc": "The credential is stored encrypted in the local vault. Sign it with Digital Signature, anchor it on a public ledger, or share it via verifiable presentation.",
 
     "arch_title": "Local network architecture",
     "arch_desc": "The connection between desktop and mobile is direct over local WiFi. No intermediary servers, no cloud, no internet dependency.",
@@ -202,7 +211,7 @@
     "shareholders_title": "Institutional shareholders",
     "shareholders_desc": "Phase 1A is founder-only with all shares held by Attestto. Institutional shareholder positions are reserved for Phase 1B once formal partners join. Each share alone is useless — only when the threshold gathers can the key be temporarily reconstructed.",
     "onchain_title": "On-chain transparency",
-    "onchain_desc": "The CA public key is anchored at vault.attestto on Solana. The architecture anchors every certificate event on-chain (planned via the on-chain attestation pipeline) — auditable by anyone, at any time.",
+    "onchain_desc": "The CA public key is anchored on a public ledger (Solana today, chain-agnostic by design). The architecture anchors every certificate event on-chain (planned via the on-chain attestation pipeline) — auditable by anyone, at any time. Each jurisdiction can choose its anchoring layer.",
 
     "vlei_title": "vLEI Verification",
     "vlei_desc": "The framework requires each shareholder to hold a verified LEI (Legal Entity Identifier) and a vLEI issued by <a href=\"https://www.gleif.org/en/vlei/introducing-the-vlei\" target=\"_blank\" rel=\"noopener\">GLEIF</a> before joining a ceremony, so they legitimately represent their institution. On-chain verification path is planned.",
@@ -239,7 +248,7 @@
 
     "countries_label": "Per country",
     "countries_title": "One CA per jurisdiction",
-    "countries_desc": "Each country gets its own Certificate Authority, its own key ceremony, and its own governance. Each runs as an independent SNS root anchored on Solana.",
+    "countries_desc": "Each country gets its own Certificate Authority, its own key ceremony, and its own governance. Each runs as an independent sovereign root anchored on a public ledger of its choice.",
 
     "cr_name": "Costa Rica",
     "cr_desc": "Identity card, driver's license, ROS. Integration with TSE Census and SINPE Digital Signature.",
@@ -336,6 +345,6 @@
   },
 
   "footer": {
-    "sns_note": "All identifiers shown (fi-cr, vault.attestto, etc.) resolve via the Solana Name Service. The full on-chain form ends in <code>.sol</code> — omitted in the page for clarity."
+    "sns_note": "Identifiers shown (fi-cr, vault.attestto, etc.) resolve today via the Solana Name Service — the first anchor we shipped. The naming layer is pluggable; jurisdictions can run their own."
   }
 }

@@ -28,7 +28,13 @@
     "com": "attestto.com",
     "mobile": "mobile.attestto.com",
     "github": "GitHub",
-    "contact": "Contacto"
+    "contact": "Contacto",
+    "tagline": "Infraestructura viva para una identidad digital soberana. Gratis para los ciudadanos, siempre — el comercio financia la red.",
+    "trust_mirror": "Espejo de confianza",
+    "resolver": "Resolutor DID",
+    "disclaimer": "Ark esta en vivo. Los componentes marcados <em>(planeado)</em> son parte de la arquitectura pero aun no se han desplegado. La Fase 1A esta bajo custodia del fundador; los puestos institucionales de accionistas estan reservados para la Fase 1B.",
+    "not_a_ca": "No somos una Autoridad Certificadora para las raices de confianza de terceros que reflejamos. La fuente legal de verdad de cada PKI nacional sigue siendo la autoridad emisora (BCCR/MICITT en Costa Rica).",
+    "sns_note": "Los identificadores mostrados (fi-cr, vault.attestto, etc.) resuelven hoy via Solana Name Service — el primer anclaje desplegado. La capa de nombres es modular; cada jurisdiccion puede operar la suya."
   },
 
   "index": {
@@ -41,7 +47,7 @@
     "layer2_label": "Mesh",
     "layer2_desc": "Sincronizacion P2P cifrada",
     "layer3_label": "Ledger",
-    "layer3_desc": "Prueba de existencia en Solana",
+    "layer3_desc": "Prueba de existencia en ledger publico",
 
     "what_label": "Que",
     "what_title": "Infraestructura, no un producto",
@@ -70,7 +76,7 @@
     "mesh_l1_desc": "0ms — datos en tu dispositivo",
     "mesh_l2_name": "Pares mesh",
     "mesh_l2_desc": "<100ms — blobs cifrados de nodos cercanos",
-    "mesh_l3_name": "Ancla Solana",
+    "mesh_l3_name": "Ancla en ledger publico",
     "mesh_l3_desc": "200-500ms — prueba criptografica en registro publico",
     "mesh_size": "~120 KB por ciudadano. Una red mesh nacional para 5 millones de personas cabe en 600 GB distribuidos entre miles de nodos. Cada nodo almacena datos cifrados que no puede leer — el principio del Courier Ciego.",
 
@@ -121,24 +127,27 @@
   },
 
   "ark": {
-    "hero_title_1": "Arquitectura",
-    "hero_title_2": "soberana",
-    "hero_title_3": "de identidad digital",
-    "lead": "La arquitectura completa para emitir, verificar y gobernar credenciales verificables. Cada institucion obtiene un asiento. Todo se preserva. Nada depende de un solo punto de falla.",
-    "btn_board": "Abordar el Arca",
+    "hero_title_1": "Infraestructura soberana",
+    "hero_title_2": "de identidad digital",
+    "hero_title_3": "",
+    "lead": "La infraestructura para emitir, verificar y gobernar credenciales verificables — codigo abierto, soberana por diseno, y construida para que cualquier institucion participe en la raiz de confianza. Sin punto unico de falla. Sin punto unico de control.",
+    "btn_board": "Contactanos",
     "btn_explore": "Explorar la arquitectura",
     "hero_station_desc": "Verifica, firma y resguarda tus documentos — todo en tu propia computadora. Nada sale de tu equipo a menos que vos lo decidas.",
     "hero_ext_desc": "Inicia sesion en cualquier sitio web sin usuario ni contrasena y firma documentos con un clic — tus datos privados, tus cuentas tuyas.",
     "hero_mesh_desc": "Cada Station, extension y app movil se convierte en un nodo de una red compartida y cifrada — tus datos viven en la comunidad, no en el servidor de alguien mas.",
     "hero_ceremony_desc": "El ritual seguro que protege las llaves maestras detras de la red de confianza.",
     "hero_trust_desc": "Gobernanza abierta compartida entre instituciones y ciudadanos. Ningun dueno solitario puede cambiar las reglas.",
+    "rights_label": "Un principio fundacional",
+    "rights_title": "Gratis para los ciudadanos. Siempre.",
+    "rights_desc": "Identidad, firma, anclaje, recuperacion y verificacion son derechos ciudadanos — no servicios. Son gratis para siempre, para cada costarricense, y para cada persona a la que Ark llegue. El comercio paga la red para que los ciudadanos no tengan que hacerlo. Sin niveles premium. Sin barreras. Sin excepciones.",
 
     "comp_label": "Componentes",
     "comp_title": "Cinco pilares, una arquitectura",
-    "comp_desc": "Empieza con un componente y crece hacia la arquitectura completa. Incorporacion progresiva — despliega Station hoy, agrega Wallet manana, unete al Mesh cuando estes listo. Cada paso agrega valor, y el Arca completa es mas que la suma de sus partes.",
+    "comp_desc": "Empieza con un componente y crece hacia la infraestructura completa. Incorporacion progresiva — despliega Station hoy, agrega Wallet manana, unete al Mesh cuando estes listo. Cada paso suma, y el todo es mas que la suma de sus partes.",
 
-    "station_title": "Station",
-    "station_desc": "Aplicacion de escritorio Electron. Tu estacion de verificacion, boveda de credenciales y nodo de la red mesh.",
+    "station_title": "Desktop Station / Node",
+    "station_desc": "Aplicacion de escritorio. Tu estacion de verificacion, boveda de credenciales y nodo de la red.",
     "station_l1": "Verificacion de documentos con OCR y padron",
     "station_l2": "Boveda cifrada local con AES-256-GCM",
     "station_l3": "Firma Digital (PKCS#11) y firma electronica",
@@ -156,7 +165,7 @@
     "mesh_l1": "Principio del Courier Ciego — los nodos no pueden leer los datos que transportan",
     "mesh_l2": "~120 KB por ciudadano",
     "mesh_l3": "Funciona offline, sincroniza cuando conecta",
-    "mesh_l4": "Anclaje criptografico en Solana",
+    "mesh_l4": "Anclaje criptografico en ledger publico",
 
     "ceremony_title": "Ceremony",
     "ceremony_desc": "Appliance soberano para ceremonias de llaves CA. Laptop air-gapped con Linux, distribucion de fragmentos Shamir por mesh local.",
@@ -166,7 +175,7 @@
     "ceremony_l4": "Soporte PKCS#11 por jurisdiccion",
 
     "trust_title": "Trust",
-    "trust_desc": "Marco de confianza CA con accionistas Shamir, transparencia on-chain en Solana y gobernanza distribuida entre instituciones.",
+    "trust_desc": "Marco de confianza CA con accionistas Shamir, transparencia on-chain y gobernanza distribuida entre instituciones.",
     "trust_l1": "Llave CA dividida: 2-de-3 hoy, extensible a 3-de-5 con socios institucionales",
     "trust_l2": "Raiz de confianza en ca.attestto.sol",
     "trust_l3": "Transparencia auditable en blockchain",
@@ -185,7 +194,7 @@
     "step4_title": "Procesamiento automatico",
     "step4_desc": "Station ejecuta OCR, extrae datos del MRZ, consulta el Padron TSE, valida el nombre y genera la credencial verificable.",
     "step5_title": "Credencial en tu boveda",
-    "step5_desc": "La credencial se almacena cifrada en la boveda local. Firmala con Firma Digital, anclala en Solana o compartela via presentacion verificable.",
+    "step5_desc": "La credencial se almacena cifrada en la boveda local. Firmala con Firma Digital, anclala en un ledger publico o compartela via presentacion verificable.",
 
     "arch_title": "Arquitectura de red local",
     "arch_desc": "La conexion entre escritorio y movil es directa por WiFi local. No hay servidores intermedios, no hay nube, no hay dependencia de internet.",
@@ -200,7 +209,7 @@
     "shareholders_title": "Accionistas institucionales",
     "shareholders_desc": "El marco esta disenado para accionistas institucionales — representantes verificados que poseen un fragmento de la llave. Solo, cada fragmento es inutil. Solo cuando el umbral se reune, la llave se reconstruye temporalmente.",
     "onchain_title": "Transparencia on-chain",
-    "onchain_desc": "La llave publica CA se ancla en ca.attestto.sol en Solana. Cada emision de certificado se registra en la blockchain — auditable por cualquiera, en cualquier momento.",
+    "onchain_desc": "La llave publica CA se ancla en un ledger publico (Solana hoy, agnostico de cadena por diseno). Cada emision de certificado se registra on-chain — auditable por cualquiera, en cualquier momento. Cada jurisdiccion elige su capa de anclaje.",
 
     "vlei_title": "Verificacion vLEI",
     "vlei_desc": "Antes de participar en una ceremonia, cada accionista debe tener un LEI (Legal Entity Identifier) verificado y un vLEI emitido por <a href=\"https://www.gleif.org/en/vlei/introducing-the-vlei\" target=\"_blank\" rel=\"noopener\">GLEIF</a>. Esto garantiza que representan legitimamente a su institucion.",
@@ -237,7 +246,7 @@
 
     "countries_label": "Por pais",
     "countries_title": "Una CA por jurisdiccion",
-    "countries_desc": "Cada pais obtiene su propia Autoridad Certificadora, su propia ceremonia de llaves y su propia gobernanza. Todas ancladas bajo attestto.sol en Solana.",
+    "countries_desc": "Cada pais obtiene su propia Autoridad Certificadora, su propia ceremonia de llaves y su propia gobernanza. Cada raiz soberana se ancla en el ledger publico de su eleccion.",
 
     "cr_name": "Costa Rica",
     "cr_desc": "Cedula de identidad, licencia de conducir, ROS. Integracion con Padron TSE y SINPE Firma Digital.",
@@ -253,8 +262,8 @@
     "xx_status": "Contactar",
 
     "cta_label": "Participar",
-    "cta_title": "Aborda el Arca",
-    "cta_desc": "Cada institucion obtiene un asiento. Cada pais obtiene su CA soberana. El Arca se construye antes de la tormenta — no durante.",
+    "cta_title": "Construyamos juntos",
+    "cta_desc": "Cada institucion obtiene un asiento. Cada pais obtiene su CA soberana. La infraestructura se construye antes de necesitarla — no durante.",
     "cta_btn": "Contactar al equipo"
   },
 
@@ -301,7 +310,7 @@
     "community_github_title": "GitHub",
     "community_github_desc": "Codigo fuente, issues, pull requests y releases de todos los repositorios.",
     "community_contact_title": "Contacto",
-    "community_contact_desc": "Para instituciones, gobiernos y socios que quieran abordar el Arca.",
+    "community_contact_desc": "Para instituciones, gobiernos y socios que quieran sumarse a la infraestructura.",
     "community_arch_title": "Arquitectura",
     "community_arch_desc": "Conoce la arquitectura completa: Station, Wallet, Mesh, Ceremony y Trust."
   }
