@@ -81,7 +81,9 @@
   function loadTranslations(lang, callback) {
     // Resolve path relative to site root
     var basePath = '/assets/i18n/';
-    var url = basePath + lang + '.json';
+    // Cache-bust on each session so copy edits propagate without users
+    // having to hard-refresh. Tradeoff: re-fetches the JSON per page load.
+    var url = basePath + lang + '.json?v=' + Date.now();
 
     var xhr = new XMLHttpRequest();
     xhr.open('GET', url, true);
