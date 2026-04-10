@@ -143,7 +143,11 @@
     "adopt_dev_b1": "Fork and extend the SDKs",
     "adopt_dev_b2": "Build schema plugins for new domains",
     "adopt_dev_b3": "Implement new DID methods",
-    "adopt_dev_b4": "Contribute to the standard"
+    "adopt_dev_b4": "Contribute to the standard",
+    "repo_trust_desc": "Multi-country trust registry — independent public mirror of national PKI roots.",
+    "repo_wallet_desc": "Universal wallet adapter for DID-based identity and credential storage.",
+    "tag_trust": "Trust",
+    "tag_identity": "Identity"
   },
   "ark": {
     "appliance_desc": "A clean Linux laptop boots from live USB. No hard drive, no history, no external network. The ceremony software creates a private WiFi mesh to distribute Shamir shares to shareholder devices.",
