@@ -52,7 +52,7 @@
     "layer3_label": "Ledger",
     "layer3_desc": "Public-ledger proof of existence",
     "what_label": "What",
-    "what_title": "Infrastructure, not a product",
+    "what_title": "What is Attestto Open Ark?",
     "what_desc": "Attestto Open assembles open standards into deployable infrastructure for verifiable digital systems. Open schemas, decentralized identifiers, and cryptographic verification that any government, institution, or developer can adopt and extend — with no single-vendor lock-in.",
     "what_schemas_title": "Open schemas",
     "what_schemas_desc": "Machine-readable data models that define how verifiable information is structured. Domain-agnostic, extensible by design.",

@@ -51,7 +51,7 @@
     "layer3_label": "Ledger",
     "layer3_desc": "Prueba de existencia en ledger público",
     "what_label": "Qué",
-    "what_title": "Infraestructura, no un producto",
+    "what_title": "¿Qué es Attestto Open Ark?",
     "what_desc": "Attestto Open ensambla estándares abiertos en infraestructura desplegable para sistemas digitales verificables. Esquemas abiertos, identificadores descentralizados y verificación criptográfica que cualquier gobierno, institución o desarrollador puede adoptar y extender — sin dependencia de un solo proveedor.",
     "what_schemas_title": "Esquemas abiertos",
     "what_schemas_desc": "Modelos de datos legibles por máquinas que definen cómo se estructura la información verificable. Agnósticos al dominio, extensibles por diseño.",
