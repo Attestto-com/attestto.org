@@ -22,7 +22,8 @@
     "developers": "Developers",
     "com": "attestto.com",
     "station": "Station",
-    "proctoring": "Proctoring"
+    "proctoring": "Proctoring",
+    "why": "Why"
   },
   "footer": {
     "open": "Attestto Open",
@@ -567,5 +568,33 @@
     "sdk": "Module SDK",
     "bounties": "Build This",
     "economics": "Economics"
+  },
+  "why": {
+    "title": "Your identity. Not theirs.",
+    "lead": "Why we built open infrastructure for sovereign identity — and why it matters that no one owns it.",
+    "s1_label": "The world as it is",
+    "s1_title": "Identity is something someone else confirms",
+    "s1_p1": "In most of the world, proving who you are means carrying a physical card, presenting it to an institution, hoping they believe it, and trusting that whoever holds your data won't misuse it.",
+    "s1_p2": "Your identity exists only when someone else says it does. A government office. A bank. A platform. If they lose your record, revoke your access, or simply close for the day — you stop being provable.",
+    "s1_p3": "This isn't a technology problem. It's a design choice. And it can be redesigned.",
+    "s2_label": "What goes wrong",
+    "s2_title": "When identity depends on someone else",
+    "s2_p1": "The professional whose credentials don't travel across borders. The family whose last name was misspelled at the civil registry and now half of them exist under different identities. The small business that can't prove it's real to a foreign partner without paying a $15,000 compliance intermediary.",
+    "s2_p2": "The vendor who locks five million citizens into a proprietary identity system with no export, no interoperability, and a renewal clause that doubles the price. The government that can revoke your digital identity by decree.",
+    "s2_p3": "These aren't hypothetical. They're happening now, in the countries where we live and build.",
+    "s3_label": "The insight",
+    "s3_title": "Identity doesn't have to be a favor",
+    "s3_p1": "Identity can be a mathematical proof you carry yourself. W3C Decentralized Identifiers and Verifiable Credentials make this technically possible. A cryptographic key pair on your device. A credential signed by an authority you choose to trust. A proof you present without revealing more than you must.",
+    "s3_p2": "The technology exists. What didn't exist — until now — was open infrastructure to make it deployable. Not a product. Not a platform. Public infrastructure, like roads or the postal service. Anyone can use it, anyone can verify it, anyone can fork it.",
+    "s4_label": "What we built",
+    "s4_title": "Three layers, zero central servers",
+    "s4_p1": "Layer 1 — Institutional trust. Existing authorities (governments, professional bodies, universities) issue verifiable credentials signed with their own keys. We don't replace them. We give them a standards-based channel to issue digitally what they already issue on paper.",
+    "s4_p2": "Layer 2 — Mesh verification. A peer-to-peer network where every node can verify credentials independently, offline, without calling a central server. The credential holder controls what they share and with whom.",
+    "s4_p3": "Layer 3 — Ledger anchoring. Cryptographic timestamps on a public ledger prove that a credential existed at a specific time. Not the content — just the proof that it was issued. Immutable, auditable, independent of Attestto.",
+    "s4_p4": "Every component is open source (Apache 2.0). Every standard we use is W3C or IETF. Any government can fork the entire stack, deploy it on their own infrastructure, and never depend on us. That's the point.",
+    "s5_label": "What we ask of ourselves",
+    "s5_title": "Eight commitments, not eight features",
+    "s5_p1": "Infrastructure earns trust by what it refuses to do, not by what it promises. These aren't marketing principles. They're constraints we enforce in code.",
+    "cta_title": "See what we've built"
   }
 }
