@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Build on Attestto — Developer Portal</title>
+  <meta name="description" content="Build sovereign identity modules on Attestto. Module SDK, credential schemas, fee splits, and 12+ unsolved problems waiting for builders.">
+  <meta name="theme-color" content="#0a1628">
+  <link rel="canonical" href="https://attestto.org/for/developers">
+  <link rel="alternate" hreflang="en" href="https://attestto.org/for/developers">
+  <link rel="alternate" hreflang="es" href="https://attestto.org/es/for/developers">
+  <link rel="alternate" hreflang="x-default" href="https://attestto.org/for/developers">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" type="image/jpeg" href="/favicon.jpg">
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    .code-block{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:0.5rem;padding:1.5rem;font-family:var(--font-mono);font-size:0.85rem;line-height:1.6;overflow-x:auto;color:#e2e8f0}
+    .code-block .kw{color:#4ade80}
+    .code-block .ty{color:#93c5fd}
+    .code-block .str{color:#fbbf24}
+    .code-block .cm{color:#64748b}
+    .decision-tree{display:flex;flex-direction:column;gap:0.75rem;margin:2rem 0}
+    .decision-branch{display:grid;grid-template-columns:2rem 1fr;gap:1rem;align-items:start;padding:1rem 1.5rem;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:0.5rem;transition:border-color 0.2s}
+    .decision-branch:hover{border-color:#4ade80}
+    .decision-branch .branch-arrow{color:#4ade80;font-family:var(--font-mono);font-weight:700;font-size:1.1rem;margin-top:0.15rem}
+    .decision-branch h4{color:#fff;margin:0 0 0.25rem;font-size:0.95rem}
+    .decision-branch p{color:rgba(255,255,255,0.65);margin:0;font-size:0.85rem}
+    .decision-branch code{background:rgba(74,222,128,0.15);color:#4ade80;padding:0.1rem 0.4rem;border-radius:0.25rem;font-family:var(--font-mono);font-size:0.8rem}
+    .fee-split{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin:2rem 0}
+    .fee-bar{text-align:center;padding:1.5rem 1rem;border-radius:0.5rem;border:1px solid rgba(255,255,255,0.08)}
+    .fee-bar .pct{font-family:var(--font-mono);font-size:2rem;font-weight:700;color:#4ade80;display:block;margin-bottom:0.5rem}
+    .fee-bar .who{color:#fff;font-weight:600;font-size:0.9rem;display:block;margin-bottom:0.25rem}
+    .fee-bar .what{color:rgba(255,255,255,0.5);font-size:0.8rem}
+    .bounty-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(20rem,1fr));gap:1.5rem;margin:2rem 0}
+    .bounty-card{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:0.75rem;padding:1.5rem;transition:border-color 0.2s,transform 0.2s}
+    .bounty-card:hover{border-color:#4ade80;transform:translateY(-2px)}
+    .bounty-card .bounty-tier{font-family:var(--font-mono);font-size:0.7rem;text-transform:uppercase;letter-spacing:0.1em;padding:0.2rem 0.6rem;border-radius:1rem;display:inline-block;margin-bottom:0.75rem}
+    .bounty-card .tier-easy{background:rgba(74,222,128,0.15);color:#4ade80}
+    .bounty-card .tier-medium{background:rgba(251,191,36,0.15);color:#fbbf24}
+    .bounty-card .tier-hard{background:rgba(248,113,113,0.15);color:#f87171}
+    .bounty-card h4{color:#fff;margin:0 0 0.5rem;font-size:1rem}
+    .bounty-card .bounty-problem{color:rgba(255,255,255,0.7);font-size:0.85rem;margin:0 0 0.75rem;line-height:1.5}
+    .bounty-card .bounty-meta{display:flex;flex-wrap:wrap;gap:0.5rem}
+    .bounty-card .bounty-tag{font-family:var(--font-mono);font-size:0.7rem;padding:0.15rem 0.5rem;border-radius:0.25rem;background:rgba(255,255,255,0.06);color:rgba(255,255,255,0.6)}
+    .bounty-card .bounty-revenue{font-size:0.8rem;color:rgba(255,255,255,0.5);margin-top:0.75rem;border-top:1px solid rgba(255,255,255,0.06);padding-top:0.75rem}
+    .step-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(16rem,1fr));gap:1.5rem;margin:2rem 0}
+    .step-card{padding:1.5rem;border-radius:0.5rem;border:1px solid var(--color-border)}
+    .step-card .step-num{font-family:var(--font-mono);font-size:0.8rem;color:var(--color-accent);font-weight:700;margin-bottom:0.5rem}
+    .step-card h4{margin:0 0 0.5rem;font-size:0.95rem}
+    .step-card p{margin:0;font-size:0.85rem;color:var(--color-ink-muted)}
+    .step-card code{background:var(--color-surface-alt);padding:0.1rem 0.4rem;border-radius:0.25rem;font-family:var(--font-mono);font-size:0.8rem}
+    .arch-diagram{display:grid;grid-template-columns:1fr;gap:0;margin:2rem 0}
+    .arch-row{display:grid;grid-template-columns:8rem 1fr;border:1px solid rgba(255,255,255,0.08);padding:1rem 1.5rem;gap:1rem;align-items:center}
+    .arch-row:first-child{border-radius:0.5rem 0.5rem 0 0}
+    .arch-row:last-child{border-radius:0 0 0.5rem 0.5rem}
+    .arch-row+.arch-row{border-top:none}
+    .arch-row .layer-label{font-family:var(--font-mono);font-size:0.75rem;color:#4ade80;text-transform:uppercase;letter-spacing:0.05em}
+    .arch-row .layer-items{display:flex;flex-wrap:wrap;gap:0.5rem}
+    .arch-row .layer-items span{font-size:0.8rem;padding:0.25rem 0.75rem;border-radius:0.25rem;background:rgba(255,255,255,0.06);color:rgba(255,255,255,0.8)}
+    .arch-row .layer-items span.you{background:rgba(74,222,128,0.15);color:#4ade80;font-weight:600}
+    @media(max-width:768px){.fee-split{grid-template-columns:repeat(2,1fr)}.bounty-grid{grid-template-columns:1fr}.arch-row{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="container">
+      <a href="/" class="nav-brand">
+        <img src="/logo-full-white.svg" alt="Attestto" style="height:2rem;vertical-align:middle;margin-right:0.5rem;">
+        <span data-i18n="nav.developers">Developers</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#start" data-i18n="devnav.start">Start Here</a></li>
+        <li><a href="#architecture" data-i18n="devnav.arch">Architecture</a></li>
+        <li><a href="#sdk" data-i18n="devnav.sdk">Module SDK</a></li>
+        <li><a href="#build-this" data-i18n="devnav.bounties">Build This</a></li>
+        <li><a href="#economics" data-i18n="devnav.economics">Economics</a></li>
+        <li><a href="https://github.com/Attestto-com">GitHub</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero hero-single">
+    <div class="container">
+      <div class="hero-text">
+        <h1 data-i18n="dev.hero_title">The credential infrastructure layer.<br><em>Fork it, extend it, ship it.</em></h1>
+        <p class="lead" data-i18n="dev.hero_lead">Attestto is sovereign identity infrastructure. You build modules on top. Citizens use your module. You earn 60% of every transaction fee. The platform handles identity, verification, and distribution.</p>
+        <div class="hero-actions">
+          <a href="#sdk" class="btn btn-primary" data-i18n="dev.hero_cta1">Read the SDK</a>
+          <a href="#build-this" class="btn btn-secondary" data-i18n="dev.hero_cta2">See what to build</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- START HERE -->
+  <section id="start" class="section-dark">
+    <div class="container">
+      <div class="section-label" data-i18n="dev.start_label">START HERE</div>
+      <h2 class="section-title" data-i18n="dev.start_title">What are you building?</h2>
+      <p class="section-desc" data-i18n="dev.start_desc">Pick your path based on what you need. Each leads to a different part of the stack.</p>
+
+      <div class="decision-tree">
+        <div class="decision-branch">
+          <span class="branch-arrow">&rarr;</span>
+          <div>
+            <h4 data-i18n="dev.path1_title">I want to build a module for the Attestto App</h4>
+            <p data-i18n="dev.path1_desc">Start with <code>@attestto/module-sdk</code>. Your module runs inside the PWA. You get identity, vault, LLM, and distribution for free.</p>
+          </div>
+        </div>
+        <div class="decision-branch">
+          <span class="branch-arrow">&rarr;</span>
+          <div>
+            <h4 data-i18n="dev.path2_title">I need to verify Costa Rica documents</h4>
+            <p data-i18n="dev.path2_desc">Use <code>@attestto/verify</code> web component. Drop it in your page. Drag-and-drop PDF verification against BCCR PKI. Zero config.</p>
+          </div>
+        </div>
+        <div class="decision-branch">
+          <span class="branch-arrow">&rarr;</span>
+          <div>
+            <h4 data-i18n="dev.path3_title">I need to issue verifiable credentials</h4>
+            <p data-i18n="dev.path3_desc">Use <code>cr-vc-sdk</code> + <code>cr-vc-schemas</code>. Define your credential type, sign with your DID, deliver to wallets.</p>
+          </div>
+        </div>
+        <div class="decision-branch">
+          <span class="branch-arrow">&rarr;</span>
+          <div>
+            <h4 data-i18n="dev.path4_title">I'm building on Solana + identity</h4>
+            <p data-i18n="dev.path4_desc">Read the <code>did:sns</code> spec. Resolve decentralized identifiers via Solana Name Service. W3C standards-track.</p>
+          </div>
+        </div>
+        <div class="decision-branch">
+          <span class="branch-arrow">&rarr;</span>
+          <div>
+            <h4 data-i18n="dev.path5_title">I want to run a mesh node</h4>
+            <p data-i18n="dev.path5_desc">Download Station (desktop app) or run <code>attestto-mesh</code> directly. Relay verification proofs for the network and earn micropayments.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ARCHITECTURE -->
+  <section id="architecture" class="section-light">
+    <div class="container">
+      <div class="section-label" data-i18n="dev.arch_label">ARCHITECTURE</div>
+      <h2 class="section-title" data-i18n="dev.arch_title">Three layers. Your module lives in the middle.</h2>
+      <p class="section-desc" data-i18n="dev.arch_desc">The platform handles infrastructure (bottom) and user surfaces (top). You build modules that plug into both.</p>
+
+      <div class="arch-diagram">
+        <div class="arch-row">
+          <span class="layer-label">Surface</span>
+          <div class="layer-items">
+            <span>Attestto App (PWA)</span>
+            <span>Station (Desktop)</span>
+            <span>Extension</span>
+            <span>verify.attestto.com</span>
+          </div>
+        </div>
+        <div class="arch-row">
+          <span class="layer-label">Modules</span>
+          <div class="layer-items">
+            <span class="you">Your Module</span>
+            <span>cr-driving</span>
+            <span>cr-medical</span>
+            <span>cr-vc-sdk</span>
+            <span>cr-vc-schemas</span>
+          </div>
+        </div>
+        <div class="arch-row">
+          <span class="layer-label">Infra</span>
+          <div class="layer-items">
+            <span>DID / VCs</span>
+            <span>Mesh (libp2p)</span>
+            <span>Trust Store</span>
+            <span>Solana Anchoring</span>
+            <span>On-device LLM</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MODULE SDK -->
+  <section id="sdk" class="section-dark">
+    <div class="container">
+      <div class="section-label" data-i18n="dev.sdk_label">MODULE SDK</div>
+      <h2 class="section-title" data-i18n="dev.sdk_title">Ship a module in a week</h2>
+      <p class="section-desc" data-i18n="dev.sdk_desc">The SDK gives you identity, vault access, on-device LLM, credential gating, and distribution. You focus on your domain logic.</p>
+
+      <div class="step-grid">
+        <div class="step-card">
+          <div class="step-num">01</div>
+          <h4 data-i18n="dev.step1_title">Clone the template</h4>
+          <p data-i18n="dev.step1_desc">Start from <code>cr-driving</code> as your reference. It implements every SDK interface with real logic you can study.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">02</div>
+          <h4 data-i18n="dev.step2_title">Define your manifest</h4>
+          <p data-i18n="dev.step2_desc">Set your module ID, required credentials, capabilities, routes, and icon. The manifest tells the shell what your module needs and provides.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">03</div>
+          <h4 data-i18n="dev.step3_title">Implement install()</h4>
+          <p data-i18n="dev.step3_desc">The shell calls <code>install(ctx)</code> with a context object. You get credential access, storage, LLM, biometric auth, navigation, and inbox push.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">04</div>
+          <h4 data-i18n="dev.step4_title">Build your views</h4>
+          <p data-i18n="dev.step4_desc">Vue 3 components, lazy-loaded via your manifest routes. The shell handles auth, navigation chrome, and credential gating.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">05</div>
+          <h4 data-i18n="dev.step5_title">Add onboarding + exams</h4>
+          <p data-i18n="dev.step5_desc">Optional: return an <code>OnboardingFlow</code> with contextual LLM prompts. Add proctored exams with mastery tracking and VC issuance on completion.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">06</div>
+          <h4 data-i18n="dev.step6_title">Submit to the registry</h4>
+          <p data-i18n="dev.step6_desc">Open a PR to the module registry. Community testers validate. Once merged, your module is available to every Attestto user.</p>
+        </div>
+      </div>
+
+      <h3 style="color:#fff;margin:3rem 0 1rem" data-i18n="dev.interface_title">The Module Interface</h3>
+
+      <div class="code-block"><pre><span class="kw">interface</span> <span class="ty">AttesttoModule</span> {
+  manifest: <span class="ty">ModuleManifest</span>
+  install: (ctx: <span class="ty">ModuleContext</span>) =&gt; <span class="ty">Promise</span>&lt;<span class="ty">void</span>&gt; | <span class="ty">void</span>
+  uninstall?: () =&gt; <span class="ty">void</span>
+  getInboxItems?: () =&gt; <span class="ty">Promise</span>&lt;<span class="ty">InboxItem</span>[]&gt;
+  getHomeWidget?: () =&gt; <span class="ty">Component</span> | <span class="ty">null</span>
+  getOnboarding?: () =&gt; <span class="ty">OnboardingFlow</span> | <span class="ty">null</span>
+}
+
+<span class="kw">interface</span> <span class="ty">ModuleManifest</span> {
+  id: <span class="ty">string</span>                      <span class="cm">// unique, e.g. "cr-driving"</span>
+  name: <span class="ty">string</span>                    <span class="cm">// display name</span>
+  country: <span class="ty">string</span>                 <span class="cm">// ISO 3166-1 alpha-2, or "universal"</span>
+  version: <span class="ty">string</span>                 <span class="cm">// semver</span>
+  description: <span class="ty">string</span>             <span class="cm">// short description</span>
+  icon: <span class="ty">string</span>                    <span class="cm">// Material Icons name</span>
+  requiredCredentials: <span class="ty">string</span>[]   <span class="cm">// VCs that must be in vault</span>
+  capabilities: <span class="ty">string</span>[]          <span class="cm">// e.g. ['exam-practice', 'issue:MyVC']</span>
+  routes: <span class="ty">ModuleRoute</span>[]           <span class="cm">// routes this module contributes</span>
+}
+
+<span class="kw">interface</span> <span class="ty">ModuleContext</span> {
+  getCredentials: (types: <span class="ty">string</span>[]) =&gt; <span class="ty">Promise</span>&lt;<span class="ty">VerifiableCredential</span>[]&gt;
+  storeCredential: (vc: <span class="ty">VerifiableCredential</span>) =&gt; <span class="ty">Promise</span>&lt;<span class="ty">void</span>&gt;
+  pushInboxItem: (item: <span class="ty">InboxItem</span>) =&gt; <span class="ty">void</span>
+  requestBiometric: (reason: <span class="ty">string</span>) =&gt; <span class="ty">Promise</span>&lt;<span class="ty">boolean</span>&gt;
+  navigate: (path: <span class="ty">string</span>) =&gt; <span class="ty">void</span>
+  storage: <span class="ty">ModuleStorage</span>          <span class="cm">// key-value, namespaced to module ID</span>
+  llm: <span class="ty">LlmHandle</span>                 <span class="cm">// on-device Gemma 2B via WebGPU</span>
+}</pre></div>
+
+      <h3 style="color:#fff;margin:3rem 0 1rem" data-i18n="dev.context_title">What the Platform Gives You</h3>
+
+      <div class="grid-3">
+        <div class="card">
+          <h3 data-i18n="dev.ctx_identity">Identity</h3>
+          <p data-i18n="dev.ctx_identity_desc">User's DID, credential vault, WebAuthn biometric auth. You never manage keys.</p>
+        </div>
+        <div class="card">
+          <h3 data-i18n="dev.ctx_credentials">Credentials</h3>
+          <p data-i18n="dev.ctx_creds_desc">Read from vault, write to vault, gate access by credential type. W3C Verifiable Credentials.</p>
+        </div>
+        <div class="card">
+          <h3 data-i18n="dev.ctx_llm">On-device LLM</h3>
+          <p data-i18n="dev.ctx_llm_desc">Gemma 2B runs locally via WebGPU. Contextual help, Q&A, document analysis. No data leaves the device.</p>
+        </div>
+        <div class="card">
+          <h3 data-i18n="dev.ctx_storage">Storage</h3>
+          <p data-i18n="dev.ctx_storage_desc">Namespaced key-value store. Your data is isolated from other modules. Persists across sessions.</p>
+        </div>
+        <div class="card">
+          <h3 data-i18n="dev.ctx_inbox">Inbox</h3>
+          <p data-i18n="dev.ctx_inbox_desc">Push notifications, action items, and warnings to the user's home screen. Priority-sorted.</p>
+        </div>
+        <div class="card">
+          <h3 data-i18n="dev.ctx_distribution">Distribution</h3>
+          <p data-i18n="dev.ctx_dist_desc">Your module is available to every Attestto user. PWA on mobile, Station on desktop. No app store needed.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BUILD THIS -->
+  <section id="build-this" class="section-light">
+    <div class="container">
+      <div class="section-label" data-i18n="dev.bounty_label">BUILD THIS</div>
+      <h2 class="section-title" data-i18n="dev.bounty_title">Unsolved problems waiting for builders</h2>
+      <p class="section-desc" data-i18n="dev.bounty_desc">Each card is a real problem affecting real people. Full specs are written. You build the module, you earn 60% of transaction fees. Forever.</p>
+
+      <div class="bounty-grid">
+
+        <div class="bounty-card">
+          <span class="bounty-tier tier-medium">Medium</span>
+          <h4>HealthOS</h4>
+          <p class="bounty-problem">5M Costa Ricans are entitled to universal healthcare but can't navigate CCSS appointments, medication rights, or disability appeals.</p>
+          <div class="bounty-meta">
+            <span class="bounty-tag">VCs</span>
+            <span class="bounty-tag">LLM</span>
+            <span class="bounty-tag">CR</span>
+          </div>
+          <p class="bounty-revenue">8 tools. Health navigation + literacy. No external API required.</p>
+        </div>
+
+        <div class="bounty-card">
+          <span class="bounty-tier tier-medium">Medium</span>
+          <h4>NotarialOS</h4>
+          <p class="bounty-problem">8,000 notaries must file biweekly digital indices by Dec 2026. Currently 300-800 manual field entries per fortnight.</p>
+          <div class="bounty-meta">
+            <span class="bounty-tag">VCs</span>
+            <span class="bounty-tag">Firma Digital</span>
+            <span class="bounty-tag">PKCS#11</span>
+            <span class="bounty-tag">CR</span>
+          </div>
+          <p class="bounty-revenue">Per-submission fee + SaaS per notary. ~8,000 addressable users.</p>
+        </div>
+
+        <div class="bounty-card">
+          <span class="bounty-tier tier-easy">Easy</span>
+          <h4>FinancialInclusion</h4>
+          <p class="bounty-problem">68% of CR adults lack basic financial literacy. Most sign credit contracts without understanding the real cost of debt.</p>
+          <div class="bounty-meta">
+            <span class="bounty-tag">LLM</span>
+            <span class="bounty-tag">Mastery</span>
+            <span class="bounty-tag">VCs</span>
+            <span class="bounty-tag">CR</span>
+          </div>
+          <p class="bounty-revenue">8 learning paths + 7 calculators + contract analyzer. BCCR rate feed (public API).</p>
+        </div>
+
+        <div class="bounty-card">
+          <span class="bounty-tier tier-medium">Medium</span>
+          <h4>MigrationOS</h4>
+          <p class="bounty-problem">45K+ unresolved migration files and 220K+ pending asylum cases in CR. Migrants spend $500-$2,000 on lawyers for deterministic processes.</p>
+          <div class="bounty-meta">
+            <span class="bounty-tag">DIDs</span>
+            <span class="bounty-tag">VCs</span>
+            <span class="bounty-tag">LLM</span>
+            <span class="bounty-tag">CR</span>
+          </div>
+          <p class="bounty-revenue">6 tools: status tracker, rights guide, DIMEX navigator, asylum prep.</p>
+        </div>
+
+        <div class="bounty-card">
+          <span class="bounty-tier tier-medium">Medium</span>
+          <h4>CreditOS</h4>
+          <p class="bounty-problem">~800K CR adults with consistent income are invisible to credit bureaus. Rejected or charged high rates despite being reliable.</p>
+          <div class="bounty-meta">
+            <span class="bounty-tag">VCs</span>
+            <span class="bounty-tag">ZKP</span>
+            <span class="bounty-tag">Mesh</span>
+            <span class="bounty-tag">LATAM</span>
+          </div>
+          <p class="bounty-revenue">Per credit profile query from lending institutions. Compounding value.</p>
+        </div>
+
+        <div class="bounty-card">
+          <span class="bounty-tier tier-medium">Medium</span>
+          <h4>LaborMarketOS</h4>
+          <p class="bounty-problem">CR's labor market is fragmented across WhatsApp groups. INA certifications exist on paper only. 40% informal workforce has no track record.</p>
+          <div class="bounty-meta">
+            <span class="bounty-tag">VCs</span>
+            <span class="bounty-tag">Mesh</span>
+            <span class="bounty-tag">CR</span>
+          </div>
+          <p class="bounty-revenue">Verified job matching + employer background checks + INA credential verification.</p>
+        </div>
+
+        <div class="bounty-card">
+          <span class="bounty-tier tier-hard">Hard</span>
+          <h4>CrossBorderOS</h4>
+          <p class="bounty-problem">CR-Nicaragua remittance corridor: $2B/yr, 3-6% fees. Credentials don't cross borders. Identity isn't portable.</p>
+          <div class="bounty-meta">
+            <span class="bounty-tag">USDC</span>
+            <span class="bounty-tag">Solana</span>
+            <span class="bounty-tag">VCs</span>
+            <span class="bounty-tag">SIPA</span>
+          </div>
+          <p class="bounty-revenue">Sub-1% remittance fee on $2B/yr corridor. Credential verification fees.</p>
+        </div>
+
+        <div class="bounty-card">
+          <span class="bounty-tier tier-hard">Hard</span>
+          <h4>CreatorOS</h4>
+          <p class="bounty-problem">Colombian creator industry: $1B/yr. Models keep 15-30 cents per dollar. No portable identity, no piracy protection, no credit access.</p>
+          <div class="bounty-meta">
+            <span class="bounty-tag">DIDs</span>
+            <span class="bounty-tag">C2PA</span>
+            <span class="bounty-tag">ZKP</span>
+            <span class="bounty-tag">USDC</span>
+          </div>
+          <p class="bounty-revenue">Royalty smart contracts, ZK age verification, content provenance.</p>
+        </div>
+
+        <div class="bounty-card">
+          <span class="bounty-tier tier-hard">Hard</span>
+          <h4>HumanitarianKit</h4>
+          <p class="bounty-problem">Displaced persons arrive with zero documents. No institutional backing. Community and math are all that remain.</p>
+          <div class="bounty-meta">
+            <span class="bounty-tag">DIDs</span>
+            <span class="bounty-tag">Offline</span>
+            <span class="bounty-tag">Mesh</span>
+            <span class="bounty-tag">Global</span>
+          </div>
+          <p class="bounty-revenue">Grant-funded Phase 1. Aid disbursement anchoring at scale.</p>
+        </div>
+
+        <div class="bounty-card">
+          <span class="bounty-tier tier-medium">Medium</span>
+          <h4>RealEstateOS</h4>
+          <p class="bounty-problem">Foreign buyers and first-time CR buyers lose patrimony through ZMT traps, hidden liens, and environmental restrictions.</p>
+          <div class="bounty-meta">
+            <span class="bounty-tag">VCs</span>
+            <span class="bounty-tag">LLM</span>
+            <span class="bounty-tag">CR</span>
+          </div>
+          <p class="bounty-revenue">PropertyDID anchoring + due diligence reports + contract analysis.</p>
+        </div>
+
+        <div class="bounty-card">
+          <span class="bounty-tier tier-hard">Hard</span>
+          <h4>DataEconomyOS</h4>
+          <p class="bounty-problem">Behavioral data from the ecosystem has commercial value but can't be sold without violating privacy. Users earn nothing from their own data.</p>
+          <div class="bounty-meta">
+            <span class="bounty-tag">ZKP</span>
+            <span class="bounty-tag">MPC</span>
+            <span class="bounty-tag">Federated</span>
+            <span class="bounty-tag">Global</span>
+          </div>
+          <p class="bounty-revenue">Per-query fees for privacy-preserving aggregates sold to institutions.</p>
+        </div>
+
+        <div class="bounty-card">
+          <span class="bounty-tier tier-easy">Easy</span>
+          <h4>PartnerConnect</h4>
+          <p class="bounty-problem">Identity-verified users are high-value leads for fintechs (Deel $1,500, Coinbase $200, IBKR 20-40% lifetime). No channel exists.</p>
+          <div class="bounty-meta">
+            <span class="bounty-tag">VCs</span>
+            <span class="bounty-tag">KYC</span>
+            <span class="bounty-tag">Global</span>
+          </div>
+          <p class="bounty-revenue">Direct referral fees $25-$1,500 per conversion + lifetime commission sharing.</p>
+        </div>
+
+      </div>
+
+      <p style="text-align:center;margin-top:2rem;color:var(--color-ink-muted)">
+        <a href="https://github.com/Attestto-com/attestto-app/tree/main/modules" style="color:var(--color-accent);font-weight:600" data-i18n="dev.bounty_cta">Full specs and reference implementation on GitHub &rarr;</a>
+      </p>
+    </div>
+  </section>
+
+  <!-- ECONOMICS -->
+  <section id="economics" class="section-dark">
+    <div class="container">
+      <div class="section-label" data-i18n="dev.econ_label">ECONOMICS</div>
+      <h2 class="section-title" data-i18n="dev.econ_title">You earn 60% of every transaction. Forever.</h2>
+      <p class="section-desc" data-i18n="dev.econ_desc">No upfront cost. No subscription. Build a module, submit it, and earn a majority share of every transaction fee your module generates.</p>
+
+      <div class="fee-split">
+        <div class="fee-bar">
+          <span class="pct">60%</span>
+          <span class="who">You (Builder)</span>
+          <span class="what">Your revenue share</span>
+        </div>
+        <div class="fee-bar">
+          <span class="pct">25%</span>
+          <span class="who">Attestto</span>
+          <span class="what">Platform + infrastructure</span>
+        </div>
+        <div class="fee-bar">
+          <span class="pct">10%</span>
+          <span class="who">Testers</span>
+          <span class="what">Quality assurance</span>
+        </div>
+        <div class="fee-bar">
+          <span class="pct">5%</span>
+          <span class="who">Open</span>
+          <span class="what">Community fund</span>
+        </div>
+      </div>
+
+      <div class="grid-2" style="margin-top:3rem">
+        <div class="card">
+          <h3 data-i18n="dev.econ_example_title">Example: NotarialOS</h3>
+          <p data-i18n="dev.econ_example_desc">8,000 notaries, ~20 filings/month, $2 per filing = $320K/month gross. Your 60% = $192K/month. That's the addressable market for a single Costa Rica module.</p>
+        </div>
+        <div class="card">
+          <h3 data-i18n="dev.econ_sponsor_title">Institutional Sponsors</h3>
+          <p data-i18n="dev.econ_sponsor_desc">When an institution sponsors your module (e.g., a bank sponsors FinancialInclusion), the split adjusts: 50% Attestto / 35% sponsor / 10% testers / 5% open. You negotiate directly with the sponsor.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUICK START -->
+  <section id="quickstart" class="section-light">
+    <div class="container">
+      <div class="section-label" data-i18n="dev.qs_label">QUICK START</div>
+      <h2 class="section-title" data-i18n="dev.qs_title">From zero to module in 5 minutes</h2>
+
+      <div class="step-grid">
+        <div class="step-card">
+          <div class="step-num">$</div>
+          <h4 data-i18n="dev.qs1">Clone the repo</h4>
+          <p><code>git clone https://github.com/Attestto-com/attestto-app</code></p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">$</div>
+          <h4 data-i18n="dev.qs2">Install dependencies</h4>
+          <p><code>pnpm install</code></p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">$</div>
+          <h4 data-i18n="dev.qs3">Copy the reference module</h4>
+          <p><code>cp -r modules/cr-driving modules/my-module</code></p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">$</div>
+          <h4 data-i18n="dev.qs4">Run the dev server</h4>
+          <p><code>pnpm --filter @attestto/app dev</code></p>
+        </div>
+      </div>
+
+      <div class="grid-3" style="margin-top:3rem">
+        <div class="card">
+          <h3>GitHub</h3>
+          <p>Source code, issues, PRs</p>
+          <a href="https://github.com/Attestto-com/attestto-app" class="dl-btn" style="margin-top:0.5rem">attestto-app &rarr;</a>
+        </div>
+        <div class="card">
+          <h3>Module SDK</h3>
+          <p>TypeScript package with all interfaces</p>
+          <a href="https://github.com/Attestto-com/attestto-app/tree/main/modules/sdk" class="dl-btn" style="margin-top:0.5rem">@attestto/module-sdk &rarr;</a>
+        </div>
+        <div class="card">
+          <h3>CR Schemas</h3>
+          <p>JSON-LD credential schemas for Costa Rica</p>
+          <a href="https://github.com/Attestto-com/cr-vc-schemas" class="dl-btn" style="margin-top:0.5rem">cr-vc-schemas &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ALL REPOS -->
+  <section class="section-dark">
+    <div class="container">
+      <div class="section-label" data-i18n="dev.repos_label">BUILDING BLOCKS</div>
+      <h2 class="section-title" data-i18n="dev.repos_title">The full stack</h2>
+
+      <div class="grid-3">
+        <div class="card">
+          <div class="card-icon">&#9670;</div>
+          <h3>attestto-app</h3>
+          <p>Sovereign wallet PWA. Vue 3 + Quasar. Where modules run.</p>
+          <span class="tag tag-mobile">PWA</span>
+        </div>
+        <div class="card">
+          <div class="card-icon">&#9670;</div>
+          <h3>attestto-desktop</h3>
+          <p>Station. Electron desktop app. Vault, signer, verifier, mesh node.</p>
+          <span class="tag tag-desktop">Desktop</span>
+        </div>
+        <div class="card">
+          <div class="card-icon">&#9670;</div>
+          <h3>attestto-verify</h3>
+          <p>Web component. Drop-in PDF/cert verification against BCCR PKI.</p>
+          <span class="tag tag-web">Web</span>
+        </div>
+        <div class="card">
+          <div class="card-icon">&#9670;</div>
+          <h3>attestto-mesh</h3>
+          <p>P2P network. libp2p, DHT, gossip, relay. Decentralized verification.</p>
+          <span class="tag tag-sdk">Infra</span>
+        </div>
+        <div class="card">
+          <div class="card-icon">&#9670;</div>
+          <h3>attestto-trust</h3>
+          <p>Multi-country PKI trust store. Independent public mirror of national CAs.</p>
+          <span class="tag tag-sdk">Infra</span>
+        </div>
+        <div class="card">
+          <div class="card-icon">&#9670;</div>
+          <h3>cr-vc-sdk</h3>
+          <p>Issue and verify Costa Rica credentials. TypeScript.</p>
+          <span class="tag tag-sdk">SDK</span>
+        </div>
+        <div class="card">
+          <div class="card-icon">&#9670;</div>
+          <h3>cr-vc-schemas</h3>
+          <p>JSON-LD schemas for CR credential types. The vocabulary.</p>
+          <span class="tag tag-sdk">SDK</span>
+        </div>
+        <div class="card">
+          <div class="card-icon">&#9670;</div>
+          <h3>id-wallet-adapter</h3>
+          <p>Wallet identity resolution. Connect DIDs to wallets.</p>
+          <span class="tag tag-sdk">SDK</span>
+        </div>
+        <div class="card">
+          <div class="card-icon">&#9670;</div>
+          <h3>did-sns-spec</h3>
+          <p>did:sns DID method. Resolve identifiers via Solana Name Service. W3C track.</p>
+          <span class="tag tag-sdk">Spec</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <span>Attestto</span>
+      <div class="footer-links">
+        <a href="/" data-i18n="footer.open">Attestto Open</a>
+        <a href="/ark" data-i18n="footer.ark">Ark</a>
+        <a href="/downloads" data-i18n="footer.downloads">Downloads</a>
+        <a href="https://attestto.com">attestto.com</a>
+        <a href="https://github.com/Attestto-com" data-i18n="footer.github">GitHub</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/assets/js/i18n.js"></script>
+</body>
+</html>
