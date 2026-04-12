@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Revisor de Pliegos — Attestto Gobierno</title>
+  <meta name="description" content="Herramienta gratuita para funcionarios publicos. Analiza pliegos de licitacion y detecta dependencia de proveedor, brechas de privacidad y barreras a estandares abiertos.">
+  <meta name="theme-color" content="#0a1628">
+  <link rel="canonical" href="https://attestto.org/gobierno">
+
+  <meta property="og:title" content="Revisor de Pliegos — Attestto Gobierno">
+  <meta property="og:description" content="Analiza pliegos de licitacion para detectar vendor lock-in, brechas de privacidad y barreras de acceso. Gratis para funcionarios publicos.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://attestto.org/gobierno">
+  <meta property="og:site_name" content="Attestto Open">
+  <meta property="og:image" content="https://attestto.org/og-image.png">
+
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" type="image/jpeg" href="/favicon.jpg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <style>
+    body { background: var(--color-dark); color: #e2e8f0; }
+    a { color: #4ade80; }
+
+    .gov-hero {
+      padding: var(--space-xl) 0 var(--space-lg);
+      text-align: center;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .gov-hero h1 {
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 800;
+      color: #ffffff;
+      margin-bottom: var(--space-xs);
+    }
+    .gov-hero .lead {
+      font-size: 1.15rem;
+      color: rgba(255,255,255,0.6);
+      max-width: 52ch;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+    .gov-hero .badge {
+      display: inline-block;
+      background: rgba(74, 222, 128, 0.12);
+      color: #4ade80;
+      font-size: 0.8rem;
+      font-weight: 600;
+      padding: 0.35rem 1rem;
+      border-radius: 999px;
+      margin-bottom: var(--space-sm);
+      letter-spacing: 0.04em;
+    }
+
+    /* Analyzer */
+    .analyzer {
+      max-width: 56rem;
+      margin: 0 auto;
+      padding: var(--space-lg) clamp(1rem, 5vw, 4rem);
+    }
+    .analyzer h2 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: var(--space-sm);
+    }
+    .analyzer-intro {
+      color: rgba(255,255,255,0.55);
+      margin-bottom: var(--space-md);
+      line-height: 1.7;
+    }
+
+    .input-group {
+      margin-bottom: var(--space-md);
+    }
+    .input-group label {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: rgba(255,255,255,0.7);
+      margin-bottom: 0.4rem;
+    }
+    .input-group textarea {
+      width: 100%;
+      min-height: 220px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 8px;
+      color: #e2e8f0;
+      font-family: var(--font-mono);
+      font-size: 0.9rem;
+      padding: 1rem;
+      resize: vertical;
+      line-height: 1.6;
+    }
+    .input-group textarea:focus {
+      outline: none;
+      border-color: #4ade80;
+      box-shadow: 0 0 0 2px rgba(74,222,128,0.15);
+    }
+    .input-group textarea::placeholder {
+      color: rgba(255,255,255,0.25);
+    }
+
+    .file-drop {
+      border: 2px dashed rgba(255,255,255,0.12);
+      border-radius: 8px;
+      padding: var(--space-md);
+      text-align: center;
+      color: rgba(255,255,255,0.4);
+      cursor: pointer;
+      transition: border-color 0.2s, background 0.2s;
+      margin-bottom: var(--space-sm);
+    }
+    .file-drop:hover, .file-drop.dragover {
+      border-color: #4ade80;
+      background: rgba(74,222,128,0.04);
+    }
+    .file-drop input[type="file"] { display: none; }
+    .file-drop .icon { font-size: 2rem; margin-bottom: 0.5rem; }
+    .file-drop .file-name {
+      color: #4ade80;
+      font-weight: 600;
+      margin-top: 0.5rem;
+    }
+
+    .api-key-section {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 8px;
+      padding: var(--space-sm);
+      margin-bottom: var(--space-md);
+    }
+    .api-key-section summary {
+      cursor: pointer;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: rgba(255,255,255,0.5);
+    }
+    .api-key-section input[type="password"] {
+      width: 100%;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 6px;
+      color: #e2e8f0;
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      padding: 0.6rem 0.8rem;
+      margin-top: 0.5rem;
+    }
+    .api-key-section input:focus {
+      outline: none;
+      border-color: #4ade80;
+    }
+    .api-key-section .hint {
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.35);
+      margin-top: 0.4rem;
+    }
+
+    .btn-analyze {
+      background: #4ade80;
+      color: #0a1628;
+      font-weight: 700;
+      font-size: 1rem;
+      border: none;
+      border-radius: 8px;
+      padding: 0.85rem 2.5rem;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.1s;
+    }
+    .btn-analyze:hover { background: #22c55e; }
+    .btn-analyze:active { transform: scale(0.98); }
+    .btn-analyze:disabled {
+      background: rgba(255,255,255,0.1);
+      color: rgba(255,255,255,0.3);
+      cursor: not-allowed;
+    }
+
+    .btn-row {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .btn-row .status {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.4);
+    }
+
+    /* Results */
+    .results {
+      margin-top: var(--space-lg);
+      display: none;
+    }
+    .results.visible { display: block; }
+    .results h2 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: var(--space-sm);
+    }
+
+    .risk-card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 10px;
+      padding: var(--space-sm) 1.25rem;
+      margin-bottom: var(--space-sm);
+    }
+    .risk-card h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 0.4rem;
+    }
+    .risk-card p {
+      font-size: 0.92rem;
+      color: rgba(255,255,255,0.6);
+      line-height: 1.7;
+    }
+    .risk-card .severity {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 0.2rem 0.6rem;
+      border-radius: 4px;
+      margin-bottom: 0.4rem;
+    }
+    .severity-alta { background: rgba(239,68,68,0.15); color: #ef4444; }
+    .severity-media { background: rgba(251,191,36,0.15); color: #fbbf24; }
+    .severity-baja { background: rgba(74,222,128,0.15); color: #4ade80; }
+
+    .score-bar {
+      display: flex;
+      gap: var(--space-sm);
+      margin-bottom: var(--space-md);
+      flex-wrap: wrap;
+    }
+    .score-item {
+      flex: 1;
+      min-width: 140px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 10px;
+      padding: var(--space-sm);
+      text-align: center;
+    }
+    .score-item .score-value {
+      font-size: 2rem;
+      font-weight: 800;
+      font-family: var(--font-mono);
+    }
+    .score-item .score-label {
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.45);
+      margin-top: 0.25rem;
+    }
+    .score-good { color: #4ade80; }
+    .score-warn { color: #fbbf24; }
+    .score-bad { color: #ef4444; }
+
+    .raw-output {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 8px;
+      padding: var(--space-sm);
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.7);
+      white-space: pre-wrap;
+      word-break: break-word;
+      line-height: 1.7;
+      max-height: 600px;
+      overflow-y: auto;
+      margin-top: var(--space-sm);
+    }
+
+    /* Checklist */
+    .checklist {
+      padding: var(--space-lg) 0;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+    .checklist h2 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: var(--space-xs);
+    }
+    .checklist-intro {
+      color: rgba(255,255,255,0.5);
+      margin-bottom: var(--space-md);
+      max-width: 55ch;
+    }
+    .checklist-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: var(--space-sm);
+    }
+    .check-item {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 10px;
+      padding: 1rem 1.25rem;
+    }
+    .check-item h3 {
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 0.3rem;
+    }
+    .check-item p {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.5);
+      line-height: 1.6;
+    }
+    .check-item .ref {
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.3);
+      margin-top: 0.4rem;
+      font-family: var(--font-mono);
+    }
+
+    /* Footer */
+    .gov-footer {
+      padding: var(--space-lg) 0 var(--space-md);
+      border-top: 1px solid rgba(255,255,255,0.06);
+      text-align: center;
+      color: rgba(255,255,255,0.3);
+      font-size: 0.85rem;
+    }
+    .gov-footer a { color: #4ade80; }
+
+    /* Responsive */
+    @media (max-width: 640px) {
+      .score-bar { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Nav -->
+  <nav>
+    <div class="container">
+      <a href="/" class="nav-brand"><img src="/logo-full-white.svg" alt="Attestto Open" style="height: 2rem; vertical-align: middle; margin-right: 0.5rem;">Open</a>
+      <ul class="nav-links">
+        <li><a href="/why" style="color: #fbbf24; font-weight: 600;">Why</a></li>
+        <li><a href="/for/developers" style="color: #4ade80; font-weight: 600;">Developers</a></li>
+        <li><a href="/gobierno" style="color: #60a5fa; font-weight: 600;">Gobierno</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="gov-hero">
+    <div class="container">
+      <div class="badge">Herramienta gratuita para funcionarios publicos</div>
+      <h1>Revisor de Pliegos</h1>
+      <p class="lead">Analice pliegos de licitacion publica para detectar dependencia de proveedor, brechas de privacidad y barreras a estandares abiertos — antes de publicar la adjudicacion.</p>
+    </div>
+  </section>
+
+  <!-- Analyzer -->
+  <div class="analyzer">
+    <h2>Analizar un pliego</h2>
+    <p class="analyzer-intro">Pegue el texto del pliego o suba un documento. El analisis se ejecuta localmente con su propia API key de Anthropic — ningun dato sale de su navegador excepto hacia la API de Claude.</p>
+
+    <!-- File upload -->
+    <div class="file-drop" id="fileDrop">
+      <div class="icon">&#128196;</div>
+      <div>Arrastre un archivo aqui o haga clic para seleccionar</div>
+      <div style="font-size: 0.78rem; margin-top: 0.3rem;">PDF, DOCX, o texto plano</div>
+      <div class="file-name" id="fileName"></div>
+      <input type="file" id="fileInput" accept=".pdf,.docx,.doc,.txt,.md">
+    </div>
+
+    <!-- Text input -->
+    <div class="input-group">
+      <label for="plegoText">O pegue el texto del pliego directamente:</label>
+      <textarea id="plegoText" placeholder="Pegue aqui el contenido del pliego de condiciones, cartel de licitacion, o terminos de referencia..."></textarea>
+    </div>
+
+    <!-- API Key -->
+    <details class="api-key-section">
+      <summary>Configurar API key de Anthropic (requerido)</summary>
+      <input type="password" id="apiKey" placeholder="sk-ant-...">
+      <div class="hint">Su API key se usa directamente desde el navegador. No se almacena ni se envia a Attestto. <a href="https://console.anthropic.com/settings/keys" target="_blank" rel="noopener">Obtener API key</a></div>
+    </details>
+
+    <!-- Action -->
+    <div class="btn-row">
+      <button class="btn-analyze" id="analyzeBtn" disabled>Analizar pliego</button>
+      <span class="status" id="statusText"></span>
+    </div>
+
+    <!-- Results -->
+    <div class="results" id="results">
+      <h2>Resultado del analisis</h2>
+
+      <div class="score-bar" id="scoreBar"></div>
+      <div id="riskCards"></div>
+
+      <details style="margin-top: var(--space-md);">
+        <summary style="cursor: pointer; font-size: 0.85rem; color: rgba(255,255,255,0.4);">Ver analisis completo</summary>
+        <div class="raw-output" id="rawOutput"></div>
+      </details>
+    </div>
+  </div>
+
+  <!-- Manual checklist -->
+  <div class="analyzer">
+    <div class="checklist">
+      <h2>Lista de verificacion manual</h2>
+      <p class="checklist-intro">Preguntas que todo funcionario deberia hacer antes de adjudicar una licitacion que involucre datos de ciudadanos.</p>
+
+      <div class="checklist-grid">
+        <div class="check-item">
+          <h3>Portabilidad de datos</h3>
+          <p>Si el contrato termina, los datos del ciudadano se pueden exportar en formato estandar (JSON, CSV)? O quedan atrapados en el sistema del proveedor?</p>
+          <div class="ref">Art. 24 Constitucion Politica / Ley 8968 Art. 7</div>
+        </div>
+        <div class="check-item">
+          <h3>Estandares abiertos</h3>
+          <p>El sistema usa formatos abiertos (W3C, ISO, IETF) o depende de formatos propietarios que solo un proveedor puede leer?</p>
+          <div class="ref">Decreto 40199-MP Art. 3 / INTE/ISO 21188</div>
+        </div>
+        <div class="check-item">
+          <h3>Auditabilidad</h3>
+          <p>Un auditor independiente puede verificar la integridad de los datos sin depender del proveedor? Existe algun mecanismo criptografico?</p>
+          <div class="ref">Ley 8292 Control Interno / CGR</div>
+        </div>
+        <div class="check-item">
+          <h3>Consentimiento informado</h3>
+          <p>El sistema notifica al ciudadano cuando sus datos son accedidos, compartidos o transferidos a terceros?</p>
+          <div class="ref">Ley 8968 Art. 5 / Acuerdo SUGEF 35-21 Art. 10</div>
+        </div>
+        <div class="check-item">
+          <h3>Resiliencia ante ataques</h3>
+          <p>Si el servidor es comprometido (como en el ataque Conti 2022), los documentos y credenciales mantienen su integridad verificable?</p>
+          <div class="ref">Decreto 45061-MICITT / NIST CSF 2.0</div>
+        </div>
+        <div class="check-item">
+          <h3>Concentracion de mercado</h3>
+          <p>Los requisitos tecnicos del pliego solo pueden ser cumplidos por 1-2 proveedores? Existen barreras artificiales de entrada?</p>
+          <div class="ref">Ley 7494 Contratacion Administrativa Art. 5</div>
+        </div>
+        <div class="check-item">
+          <h3>Costo de cambio</h3>
+          <p>Cuanto costaria migrar a otro proveedor al final del contrato? Los datos, integraciones y flujos son reutilizables?</p>
+          <div class="ref">Principio de eficiencia — Ley 8131</div>
+        </div>
+        <div class="check-item">
+          <h3>Acceso ciudadano</h3>
+          <p>El ciudadano puede acceder, verificar y rectificar sus propios datos sin depender de una sucursal, token fisico o software propietario?</p>
+          <div class="ref">Ley 8968 Art. 7-8 / Constitucion Art. 27</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="gov-footer">
+    <div class="container">
+      <p>Attestto es infraestructura publica digital, de codigo abierto, bajo licencia <a href="https://www.apache.org/licenses/LICENSE-2.0" target="_blank" rel="noopener">Apache 2.0</a>.</p>
+      <p style="margin-top: 0.5rem;">Esta herramienta no almacena datos. El analisis se ejecuta directamente entre su navegador y la API de Anthropic.</p>
+      <p style="margin-top: 0.5rem;"><a href="/">attestto.org</a> · <a href="https://github.com/Attestto-com" target="_blank" rel="noopener">GitHub</a> · <a href="/why">Por que existe Attestto</a></p>
+    </div>
+  </footer>
+
+  <script>
+    // ── File handling ──
+    const fileDrop = document.getElementById('fileDrop');
+    const fileInput = document.getElementById('fileInput');
+    const fileName = document.getElementById('fileName');
+    const plegoText = document.getElementById('plegoText');
+    const apiKeyInput = document.getElementById('apiKey');
+    const analyzeBtn = document.getElementById('analyzeBtn');
+    const statusText = document.getElementById('statusText');
+    const results = document.getElementById('results');
+    const scoreBar = document.getElementById('scoreBar');
+    const riskCards = document.getElementById('riskCards');
+    const rawOutput = document.getElementById('rawOutput');
+
+    let extractedText = '';
+
+    fileDrop.addEventListener('click', () => fileInput.click());
+    fileDrop.addEventListener('dragover', (e) => { e.preventDefault(); fileDrop.classList.add('dragover'); });
+    fileDrop.addEventListener('dragleave', () => fileDrop.classList.remove('dragover'));
+    fileDrop.addEventListener('drop', (e) => {
+      e.preventDefault();
+      fileDrop.classList.remove('dragover');
+      if (e.dataTransfer.files.length) handleFile(e.dataTransfer.files[0]);
+    });
+    fileInput.addEventListener('change', (e) => {
+      if (e.target.files.length) handleFile(e.target.files[0]);
+    });
+
+    async function handleFile(file) {
+      fileName.textContent = file.name;
+      if (file.type === 'text/plain' || file.name.endsWith('.md') || file.name.endsWith('.txt')) {
+        extractedText = await file.text();
+        plegoText.value = extractedText;
+      } else {
+        // For PDF/DOCX, user should paste text manually for now
+        statusText.textContent = 'Archivo cargado. Para PDF/DOCX, copie y pegue el texto en el campo de abajo.';
+        statusText.style.color = '#fbbf24';
+      }
+      updateBtnState();
+    }
+
+    // ── Enable/disable button ──
+    function updateBtnState() {
+      const hasText = plegoText.value.trim().length > 50;
+      const hasKey = apiKeyInput.value.trim().startsWith('sk-');
+      analyzeBtn.disabled = !(hasText && hasKey);
+    }
+    plegoText.addEventListener('input', updateBtnState);
+    apiKeyInput.addEventListener('input', updateBtnState);
+
+    // ── Analysis ──
+    analyzeBtn.addEventListener('click', runAnalysis);
+
+    async function runAnalysis() {
+      const text = plegoText.value.trim();
+      const apiKey = apiKeyInput.value.trim();
+
+      if (!text || !apiKey) return;
+
+      analyzeBtn.disabled = true;
+      statusText.textContent = 'Analizando...';
+      statusText.style.color = '#4ade80';
+      results.classList.remove('visible');
+
+      const systemPrompt = `Eres un analista de contratacion publica de Costa Rica. Tu trabajo es revisar pliegos de licitacion y detectar problemas en las siguientes areas:
+
+1. DEPENDENCIA DE PROVEEDOR (vendor lock-in): requisitos que solo 1-2 empresas pueden cumplir, formatos propietarios, falta de portabilidad de datos, costos de cambio artificiales.
+
+2. PRIVACIDAD Y DATOS CIUDADANOS: falta de consentimiento informado, transferencia de datos sin autorizacion, almacenamiento sin cifrado, falta de notificacion al ciudadano, incumplimientos de Ley 8968.
+
+3. ESTANDARES ABIERTOS: uso de formatos cerrados vs abiertos (W3C, ISO, IETF), interoperabilidad, capacidad de auditoria independiente.
+
+4. RESILIENCIA: si el sistema es comprometido (como el ataque Conti 2022 que afecto 27 instituciones), los datos mantienen integridad verificable? Hay mecanismos criptograficos?
+
+5. CONCENTRACION DE MERCADO: barreras de entrada artificiales, requisitos de experiencia desproporcionados, exigencias de certificaciones exclusivas.
+
+6. ACCESO CIUDADANO: el ciudadano puede verificar y controlar sus propios datos sin depender de sucursales, tokens fisicos, o software propietario?
+
+Responde en formato JSON con esta estructura exacta:
+{
+  "scores": {
+    "vendor_lock_in": { "value": 0-100, "label": "Dependencia de proveedor" },
+    "privacy": { "value": 0-100, "label": "Privacidad ciudadana" },
+    "open_standards": { "value": 0-100, "label": "Estandares abiertos" },
+    "resilience": { "value": 0-100, "label": "Resiliencia" }
+  },
+  "risks": [
+    {
+      "title": "Titulo del riesgo",
+      "severity": "alta|media|baja",
+      "description": "Descripcion del riesgo encontrado con referencia especifica al texto del pliego.",
+      "recommendation": "Recomendacion concreta para mitigar el riesgo.",
+      "legal_ref": "Referencia legal aplicable (Ley, articulo, decreto)"
+    }
+  ],
+  "summary": "Resumen ejecutivo de 2-3 oraciones sobre el estado general del pliego."
+}
+
+Scores: 100 = excelente (sin riesgo), 0 = critico. Se estricto pero justo. Cita secciones especificas del pliego cuando sea posible. Responde SOLO con el JSON, sin texto adicional.`;
+
+      try {
+        const response = await fetch('https://api.anthropic.com/v1/messages', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'x-api-key': apiKey,
+            'anthropic-version': '2023-06-01',
+            'anthropic-dangerous-direct-browser-access': 'true'
+          },
+          body: JSON.stringify({
+            model: 'claude-sonnet-4-20250514',
+            max_tokens: 4096,
+            system: systemPrompt,
+            messages: [
+              { role: 'user', content: `Analiza el siguiente pliego de licitacion:\n\n${text.substring(0, 80000)}` }
+            ]
+          })
+        });
+
+        if (!response.ok) {
+          const err = await response.json().catch(() => ({}));
+          throw new Error(err.error?.message || `API error: ${response.status}`);
+        }
+
+        const data = await response.json();
+        const content = data.content[0].text;
+
+        // Parse JSON response
+        let analysis;
+        try {
+          // Extract JSON from response (handle markdown code blocks)
+          const jsonStr = content.replace(/^```json\s*/i, '').replace(/```\s*$/, '').trim();
+          analysis = JSON.parse(jsonStr);
+        } catch {
+          // If JSON parsing fails, show raw output
+          rawOutput.textContent = content;
+          results.classList.add('visible');
+          statusText.textContent = 'Analisis completo (formato libre)';
+          analyzeBtn.disabled = false;
+          return;
+        }
+
+        renderResults(analysis);
+        statusText.textContent = 'Analisis completo';
+      } catch (err) {
+        statusText.textContent = `Error: ${err.message}`;
+        statusText.style.color = '#ef4444';
+      }
+
+      analyzeBtn.disabled = false;
+    }
+
+    function renderResults(analysis) {
+      // Scores
+      scoreBar.innerHTML = '';
+      if (analysis.scores) {
+        for (const [key, score] of Object.entries(analysis.scores)) {
+          const colorClass = score.value >= 70 ? 'score-good' : score.value >= 40 ? 'score-warn' : 'score-bad';
+          scoreBar.innerHTML += `
+            <div class="score-item">
+              <div class="score-value ${colorClass}">${score.value}</div>
+              <div class="score-label">${score.label}</div>
+            </div>`;
+        }
+      }
+
+      // Risk cards
+      riskCards.innerHTML = '';
+      if (analysis.summary) {
+        riskCards.innerHTML += `<div class="risk-card" style="border-left: 3px solid #60a5fa; margin-bottom: var(--space-md);">
+          <p style="color: rgba(255,255,255,0.8);">${analysis.summary}</p>
+        </div>`;
+      }
+      if (analysis.risks) {
+        for (const risk of analysis.risks) {
+          riskCards.innerHTML += `
+            <div class="risk-card">
+              <span class="severity severity-${risk.severity}">${risk.severity}</span>
+              <h3 style="color: #ffffff;">${risk.title}</h3>
+              <p>${risk.description}</p>
+              <p style="margin-top: 0.5rem; color: #4ade80;"><strong>Recomendacion:</strong> ${risk.recommendation}</p>
+              ${risk.legal_ref ? `<div style="font-size: 0.75rem; color: rgba(255,255,255,0.3); margin-top: 0.4rem; font-family: var(--font-mono);">${risk.legal_ref}</div>` : ''}
+            </div>`;
+        }
+      }
+
+      // Raw output
+      rawOutput.textContent = JSON.stringify(analysis, null, 2);
+
+      results.classList.add('visible');
+      results.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  </script>
+
+  <!-- Plausible analytics (privacy-friendly) -->
+  <script defer data-domain="attestto.org" src="https://plausible.io/js/script.js"></script>
+
+</body>
+</html>
