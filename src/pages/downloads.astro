@@ -31,7 +31,7 @@ import Base from '../layouts/Base.astro'
         <div class="card">
           <span class="tag tag-mobile">PWA</span>
           <h3>Attestto App</h3>
-          <p>Sovereign citizen wallet. Identity, credentials, proctored exams, on-device AI, and perpetual competency — all offline-first. 9 macro-categories, dual-mode COSEVI/Attestto, Gemma 2B on-device. Installs from the browser.</p>
+          <p>Sovereign citizen wallet. Identity, credentials, proctored exams, on-device AI, and perpetual competency — all offline-first. Modular architecture, on-device LLM. Installs from the browser.</p>
           <div class="dl-links">
             <a href="https://app.attestto.com" class="dl-btn">Open app.attestto.com</a>
             <a href="https://app.attestto.com/demo.html" class="dl-btn">Live Demo</a>
@@ -43,7 +43,7 @@ import Base from '../layouts/Base.astro'
         <div class="card">
           <span class="tag tag-desktop">Desktop</span>
           <h3>Station</h3>
-          <p data-i18n="downloads.station_desc">Your verification station. Encrypted vault, document OCR, Firma Digital (BCCR PKI), centralized trust store. Required for mesh network nodes and professional modules (notarial, medical, legal). macOS, Windows, and Linux.</p>
+          <p data-i18n="downloads.station_desc">Your verification station. Encrypted vault, document OCR, national digital signature support, trust store. Required for mesh network nodes and professional modules (notarial, medical, legal). macOS, Windows, and Linux.</p>
           <div class="dl-links">
             <a href="https://github.com/Attestto-com/attestto-desktop/releases/latest" class="dl-btn">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:1rem;height:1rem"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.604-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.463-1.11-1.463-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.831.092-.646.35-1.086.636-1.336-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836c.85.004 1.705.114 2.504.336 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
@@ -62,7 +62,7 @@ import Base from '../layouts/Base.astro'
         <div class="card card-disabled">
           <span class="tag tag-extension">Extension</span>
           <h3>Attestto ID <span class="coming-soon-label">— Coming soon</span></h3>
-          <p data-i18n="downloads.extension_desc">Browser extension to verify TLS certificates issued by Attestto CA and manage your decentralized identity on the web.</p>
+          <p data-i18n="downloads.extension_desc">Browser extension that validates document signatures client-side and manages your decentralized identity on the web.</p>
           <div class="dl-links">
             <span class="dl-btn dl-btn-disabled">Chrome</span>
             <span class="dl-btn dl-btn-disabled">Firefox</span>
@@ -83,7 +83,7 @@ import Base from '../layouts/Base.astro'
         <div class="card">
           <div class="card-icon">&#10003;</div>
           <h3 data-i18n="downloads.verify_title">Verify</h3>
-          <p data-i18n="downloads.verify_desc">Verify signed documents. Drop a PDF and check the cryptographic signature, chain of trust (BCCR Persona Fisica + Juridica), and document integrity. Zero-config for Costa Rica.</p>
+          <p data-i18n="downloads.verify_desc">Verify signed documents. Drop a PDF and check the cryptographic signature, chain of trust, and document integrity. Supports national PKI roots per jurisdiction.</p>
           <div class="dl-links">
             <a href="https://verify.attestto.com" class="dl-btn" data-i18n="downloads.verify_btn">Open verify.attestto.com</a>
           </div>
@@ -156,7 +156,7 @@ import Base from '../layouts/Base.astro'
         <div class="card">
           <span class="tag tag-sdk">Trust</span>
           <h3>@attestto/trust</h3>
-          <p>Centralized trust store — hash-pinned X.509 CA certificates for national PKIs. Currently: Costa Rica (BCCR/SINPE). ESM exports.</p>
+          <p>Trust store — hash-pinned X.509 CA certificates for national PKIs. Multi-jurisdiction. ESM exports.</p>
           <div class="dl-links"><a href="https://github.com/Attestto-com/attestto-trust" class="dl-btn">GitHub</a></div>
         </div>
         <div class="card">
