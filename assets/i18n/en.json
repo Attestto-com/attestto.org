@@ -58,7 +58,7 @@
     "what_schemas_title": "Open schemas",
     "what_schemas_desc": "Machine-readable data models that define how verifiable information is structured. Domain-agnostic, extensible by design.",
     "what_trust_title": "Decentralized trust",
-    "what_trust_desc": "Trust comes from transparency and accountability — open code, public proofs, blockchain anchoring — not from taking anyone's word for it. Institutions and private companies alike can serve as trust anchors.",
+    "what_trust_desc": "Trust comes from transparency and accountability — open code, public proofs, and cryptographic anchoring — built on verifiable proof, not assumptions. Institutions and private companies alike can serve as trust anchors.",
     "what_privacy_title": "Privacy at every layer",
     "what_privacy_desc": "Selective disclosure, zero-knowledge proofs, and minimal data exposure — integrated at the architectural level, not just the protocol layer, so the privacy guarantees hold end-to-end.",
     "arch_title": "Three-layer verification",

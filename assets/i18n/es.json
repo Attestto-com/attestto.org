@@ -56,7 +56,7 @@
     "what_schemas_title": "Esquemas abiertos",
     "what_schemas_desc": "Modelos de datos legibles por máquinas que definen cómo se estructura la información verificable. Agnósticos al dominio, extensibles por diseño.",
     "what_trust_title": "Confianza descentralizada",
-    "what_trust_desc": "La confianza viene de la transparencia y la rendición de cuentas — código abierto, pruebas públicas, anclaje en blockchain — no de tomar la palabra de alguien. Instituciones y empresas privadas pueden servir como anclas de confianza.",
+    "what_trust_desc": "La confianza viene de la transparencia y la rendición de cuentas — código abierto, pruebas públicas y anclaje criptográfico — construida sobre pruebas verificables, no supuestos. Instituciones y empresas privadas pueden servir como anclas de confianza.",
     "what_privacy_title": "Privacidad en cada capa",
     "what_privacy_desc": "Divulgación selectiva, pruebas de conocimiento cero y exposición mínima de datos — integradas a nivel arquitectónico, no solo en la capa de protocolo, para que las garantías de privacidad se mantengan de extremo a extremo.",
     "arch_title": "Verificación de tres capas",
