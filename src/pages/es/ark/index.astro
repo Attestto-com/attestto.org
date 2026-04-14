@@ -42,7 +42,7 @@ import Base from '../../../layouts/Base.astro'
         <div class="hero-layer">
           <span class="hero-layer-num">03</span>
           <span class="hero-layer-label" data-i18n="ark.mesh_title">Mesh</span>
-          <span class="hero-layer-desc" data-i18n="ark.hero_mesh_desc">Every Station, extension, and mobile app becomes a node in a shared, encrypted network — your data lives across the community, not on someone else's server.</span>
+          <span class="hero-layer-desc" data-i18n="ark.hero_mesh_desc">Stations, extensions, and mobile apps can join a shared, encrypted network — your data lives across the community, not on a single server.</span>
         </div>
       </div>
     </div>
@@ -70,7 +70,7 @@ import Base from '../../../layouts/Base.astro'
         <div class="persona-card">
           <span class="persona-tag" data-i18n="ark.persona1_tag">Government</span>
           <h3 data-i18n="ark.persona1_title">Regulator or public institution</h3>
-          <p data-i18n="ark.persona1_desc">MICITT, BCCR, SINPE, MOPT, RN and peer agencies. Evaluate the architecture, request a briefing, reserve a Phase 1B shareholder position.</p>
+          <p data-i18n="ark.persona1_desc">National regulators and public institutions. Evaluate the architecture, request a briefing, and explore institutional participation.</p>
           <a class="persona-cta" href="mailto:open@attestto.com?subject=Ark%20%E2%80%94%20Institutional%20briefing" data-i18n="ark.persona1_cta">Request institutional briefing &rarr;</a>
         </div>
         <div class="persona-card">
@@ -158,7 +158,7 @@ import Base from '../../../layouts/Base.astro'
           <p data-i18n="ark.trust_desc">CA trust framework with Shamir shareholders, public on-chain transparency, and governance distributed across institutions.</p>
           <ul>
             <li data-i18n="ark.trust_l1">CA key split: 2-of-3 today, extensible to 3-of-5 with institutional partners</li>
-            <li data-i18n="ark.trust_l2">Trust root at ca.attestto.sol</li>
+            <li data-i18n="ark.trust_l2">Trust root at vault.attestto.sol</li>
             <li data-i18n="ark.trust_l3">Auditable blockchain transparency</li>
             <li data-i18n="ark.trust_l4">No actor has unilateral control</li>
           </ul>
@@ -232,7 +232,7 @@ import Base from '../../../layouts/Base.astro'
   <section id="governance" class="section-light">
     <div class="container">
       <div class="section-label" data-i18n="ark.gov_label">CA Governance</div>
-      <h2 class="section-title" data-i18n="ark.gov_title">Distributed trust, not centralized</h2>
+      <h2 class="section-title" data-i18n="ark.gov_title">Distributed trust by design</h2>
       <p class="section-desc" data-i18n="ark.gov_desc">The Certificate Authority private key is split using Shamir's Secret Sharing. No individual actor — including Attestto — can sign unilaterally.</p>
       <div class="grid-3">
         <div class="card">
@@ -260,7 +260,7 @@ import Base from '../../../layouts/Base.astro'
           <h3 data-i18n="ark.onchain_title">Public attestation log</h3>
           <p data-i18n="ark.onchain_desc">Ark is chain-agnostic by design. The W3C VC, W3C DID, GLEIF vLEI, and eIDAS standards do not depend on any single ledger. CA events are recorded as public on-chain attestations — providing sovereign naming, sub-second public commitment, and a per-event cost compatible with institutional rollout. Each jurisdiction can choose its anchoring layer as institutional partners require; credentials issued under one anchor remain verifiable under another.</p>
           <div class="detail-box">
-            <div><span class="hl">Root:</span> ca.attestto.sol</div>
+            <div><span class="hl">Root:</span> vault.attestto.sol</div>
             <div><span class="hl">Record:</span> Each CA event → on-chain attestation (planned)</div>
             <div><span class="hl">Verification:</span> Public and open</div>
           </div>
@@ -319,9 +319,9 @@ import Base from '../../../layouts/Base.astro'
           <h3 data-i18n="ark.multi_title">Multi-jurisdiction</h3>
           <p data-i18n="ark.multi_desc">Each country has its own electronic signature scheme. The appliance supports PKCS#11 to integrate with local signing hardware.</p>
           <div class="detail-box">
-            <div><span class="hl">Costa Rica:</span> Firma Digital — SINPE/BCCR (planned)</div>
-            <div><span class="hl">Brazil:</span> ICP-Brasil — ITI (planned)</div>
-            <div><span class="hl">Mexico:</span> e.firma — SAT (planned)</div>
+            <div><span class="hl">Costa Rica:</span> National digital signature framework (planned)</div>
+            <div><span class="hl">Brazil:</span> National PKI infrastructure (planned)</div>
+            <div><span class="hl">Mexico:</span> Federal electronic signature (planned)</div>
           </div>
         </div>
       </div>
@@ -338,7 +338,7 @@ import Base from '../../../layouts/Base.astro'
         <div class="timeline-when" data-i18n="ark.tls1_when">Now</div>
         <div class="timeline-content">
           <h3 data-i18n="ark.tls1_title">Browser extension</h3>
-          <p data-i18n="ark.tls1_desc">The Attestto ID extension validates certificates client-side against ca.attestto.sol and surfaces a sovereignty trust score in the browser. Day-1 deployment, no DNS infrastructure changes.</p>
+          <p data-i18n="ark.tls1_desc">The Attestto ID extension validates certificates client-side against vault.attestto.sol and surfaces a sovereignty trust score in the browser. Day-1 deployment, no DNS infrastructure changes.</p>
         </div>
       </div>
       <div class="timeline-item">
@@ -379,7 +379,7 @@ import Base from '../../../layouts/Base.astro'
             <h3 data-i18n="ark.cr_name">Costa Rica</h3>
           </div>
           <p class="sns-tld">fi-cr<span class="tld">.sol</span> · go-cr<span class="tld">.sol</span> · sa-cr<span class="tld">.sol</span> · ed-cr<span class="tld">.sol</span> · or-cr<span class="tld">.sol</span></p>
-          <p class="country-desc" data-i18n="ark.cr_desc">A namespace per sector — finance, government, health, education, organizations — and one for each province and municipality. Integration with TSE Census, SINPE, and BCCR Firma Digital.</p>
+          <p class="country-desc" data-i18n="ark.cr_desc">A namespace per sector — finance, government, health, education, organizations — and one for each province and municipality. Designed to integrate with national census, payment infrastructure, and digital signature frameworks.</p>
           <div class="country-meta">
             <a class="persona-cta" href="mailto:open@attestto.com?subject=Ark%20%E2%80%94%20Costa%20Rica" data-i18n="ark.cr_cta">Talk to the CR team &rarr;</a>
           </div>
