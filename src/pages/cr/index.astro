@@ -296,30 +296,38 @@ import Base from '../../layouts/Base.astro'
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: var(--space-lg, 24px);
-  background: var(--bg-card, #1a1f2e);
-  border: 1px solid var(--border-subtle, rgba(148, 163, 184, 0.12));
-  border-radius: var(--radius-md, 12px);
-  padding: var(--space-lg, 24px);
+  background: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 12px;
+  padding: 24px;
   align-items: start;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
 }
 .law-left h3 {
   font-size: 1rem;
+  font-weight: 700;
   margin-bottom: 0.5rem;
-  color: var(--color-accent, #22d3a8);
+  color: #1a1a2e;
 }
 .law-left p {
-  font-size: 0.9rem;
-  line-height: 1.6;
-  color: var(--color-ink, #e2e8f0);
+  font-size: 0.875rem;
+  line-height: 1.7;
+  color: #374151;
+}
+.law-left p strong {
+  color: #1a1a2e;
 }
 .law-right {
-  border-left: 2px solid var(--color-accent, #22d3a8);
-  padding-left: var(--space-md, 16px);
+  border-left: 3px solid #22d3a8;
+  padding-left: 20px;
+  display: flex;
+  align-items: center;
 }
 .law-right p {
-  font-size: 0.9rem;
-  line-height: 1.6;
-  color: var(--color-ink-muted, #94a3b8);
+  font-size: 0.875rem;
+  line-height: 1.7;
+  color: #4b5563;
+  margin: 0;
 }
 @media (max-width: 640px) {
   .law-row {
@@ -327,9 +335,9 @@ import Base from '../../layouts/Base.astro'
   }
   .law-right {
     border-left: none;
-    border-top: 1px solid var(--border-subtle, rgba(148, 163, 184, 0.12));
+    border-top: 2px solid #22d3a8;
     padding-left: 0;
-    padding-top: var(--space-md, 16px);
+    padding-top: 16px;
   }
 }
 </style>
