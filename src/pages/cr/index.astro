@@ -45,49 +45,68 @@ import Base from '../../layouts/Base.astro'
         neutralidad tecnológica. Estos instrumentos no son aspiracionales — son norma vigente.
         Attestto los implementa por arquitectura.
       </p>
-      <div class="grid-3">
-        <div class="card">
-          <h3>Ley 8642 · Art. 3(h)</h3>
-          <p><strong>Neutralidad tecnológica.</strong> Estándares comunes y garantizados. Ninguna tecnología favorecida sobre otra. Los operadores eligen su stack — el Estado no impone.</p>
-          <div class="detail-box">
-            <div><span class="hl">Attestto:</span> W3C Verifiable Credentials + Decentralized Identifiers. Estándares internacionales, chain-agnostic, auditable por cualquier parte.</div>
+      <div class="law-rows">
+
+        <div class="law-row">
+          <div class="law-left">
+            <h3>Ley 8642 · Art. 3(h)</h3>
+            <p><strong>Neutralidad tecnológica.</strong> Estándares comunes y garantizados. Ninguna tecnología favorecida sobre otra. Los operadores eligen su stack — el Estado no impone.</p>
+          </div>
+          <div class="law-right">
+            <p>W3C Verifiable Credentials + Decentralized Identifiers. Estándares internacionales, chain-agnostic, auditable por cualquier parte.</p>
           </div>
         </div>
-        <div class="card">
-          <h3>Ley 8454 · Art. 2(d)</h3>
-          <p><strong>Igualdad de tratamiento para las tecnologías</strong> de generación, proceso o almacenamiento. La firma digital tiene la misma validez que la manuscrita, sin importar la tecnología usada.</p>
-          <div class="detail-box">
-            <div><span class="hl">Attestto:</span> Firma electrónica Ed25519 + compatibilidad con PKCS#11. El ciudadano elige el mecanismo — smartcard, biometría, o clave criptográfica en dispositivo.</div>
+
+        <div class="law-row">
+          <div class="law-left">
+            <h3>Ley 8454 · Art. 2(d)</h3>
+            <p><strong>Igualdad de tratamiento para las tecnologías</strong> de generación, proceso o almacenamiento. La firma digital tiene la misma validez que la manuscrita, sin importar la tecnología usada.</p>
+          </div>
+          <div class="law-right">
+            <p>Firma electrónica Ed25519 + compatibilidad con PKCS#11. El ciudadano elige el mecanismo — smartcard, biometría, o clave criptográfica en dispositivo.</p>
           </div>
         </div>
-        <div class="card">
-          <h3>Ley 9986 · Art. 19</h3>
-          <p><strong>Formatos abiertos y neutralidad</strong> en el sistema de compras públicas. La información se almacena en formatos accesibles sin costo. Sin condicionantes que favorezcan unas tecnologías sobre otras.</p>
-          <div class="detail-box">
-            <div><span class="hl">Attestto:</span> JSON-LD, W3C VC Data Model, código abierto Apache 2.0. Cualquier proveedor puede leer, verificar y emitir credenciales compatibles.</div>
+
+        <div class="law-row">
+          <div class="law-left">
+            <h3>Ley 9986 · Art. 19</h3>
+            <p><strong>Formatos abiertos y neutralidad</strong> en el sistema de compras públicas. La información se almacena en formatos accesibles sin costo. Sin condicionantes que favorezcan unas tecnologías sobre otras.</p>
+          </div>
+          <div class="law-right">
+            <p>JSON-LD, W3C VC Data Model, código abierto Apache 2.0. Cualquier proveedor puede leer, verificar y emitir credenciales compatibles.</p>
           </div>
         </div>
-        <div class="card">
-          <h3>Ley 8968 · Protección de datos</h3>
-          <p><strong>Consentimiento, minimización, finalidad.</strong> Los datos personales del ciudadano requieren consentimiento informado. Se recopila solo lo estrictamente necesario.</p>
-          <div class="detail-box">
-            <div><span class="hl">Attestto:</span> Divulgación selectiva criptográfica. El ciudadano revela solo lo que el verificador necesita. Sin servidor central que almacene datos. Privacidad por arquitectura, no por política.</div>
+
+        <div class="law-row">
+          <div class="law-left">
+            <h3>Ley 8968 · Protección de datos</h3>
+            <p><strong>Consentimiento, minimización, finalidad.</strong> Los datos personales del ciudadano requieren consentimiento informado. Se recopila solo lo estrictamente necesario.</p>
+          </div>
+          <div class="law-right">
+            <p>Divulgación selectiva criptográfica. El ciudadano revela solo lo que el verificador necesita. Sin servidor central que almacene datos. Privacidad por arquitectura, no por política.</p>
           </div>
         </div>
-        <div class="card">
-          <h3>CNTD · D.E. 44507-MICITT</h3>
-          <p><strong>Código Nacional de Tecnologías Digitales (2024).</strong> Siete capítulos de aplicación obligatoria para todo el sector público. El Capítulo 6 está dedicado íntegramente a neutralidad tecnológica.</p>
-          <div class="detail-box">
-            <div><span class="hl">Attestto:</span> Cumple los 7 capítulos: accesibilidad (PWA), identificación (DID + WebAuthn), seguridad (local-first, post-Conti), interoperabilidad (W3C), neutralidad (chain-agnostic), IA (on-device, explicable).</div>
+
+        <div class="law-row">
+          <div class="law-left">
+            <h3>CNTD · D.E. 44507-MICITT</h3>
+            <p><strong>Código Nacional de Tecnologías Digitales (2024).</strong> Siete capítulos de aplicación obligatoria para todo el sector público. El Capítulo 6 está dedicado íntegramente a neutralidad tecnológica.</p>
+          </div>
+          <div class="law-right">
+            <p>Cumple los 7 capítulos: accesibilidad (PWA), identificación (DID + WebAuthn), seguridad (local-first, post-Conti), interoperabilidad (W3C), neutralidad (chain-agnostic), IA (on-device, explicable).</p>
           </div>
         </div>
-        <div class="card">
-          <h3>Art. 24 · Constitución Política</h3>
-          <p><strong>Derecho a la intimidad</strong> y autodeterminación informativa. Ningún sistema puede obligar al ciudadano a entregar datos personales más allá de lo estrictamente necesario.</p>
-          <div class="detail-box">
-            <div><span class="hl">Attestto:</span> El ciudadano porta sus propias credenciales. Nadie más almacena su información. La verificación es criptográfica — no requiere consultar bases de datos de terceros.</div>
+
+        <div class="law-row">
+          <div class="law-left">
+            <h3>Art. 24 · Constitución Política</h3>
+            <p><strong>Derecho a la intimidad</strong> y autodeterminación informativa. Ningún sistema puede obligar al ciudadano a entregar datos personales más allá de lo estrictamente necesario.</p>
+          </div>
+          <div class="law-right">
+            <p>El ciudadano porta sus propias credenciales. Nadie más almacena su información. La verificación es criptográfica — no requiere consultar bases de datos de terceros.</p>
           </div>
         </div>
+
       </div>
     </div>
   </section>
@@ -266,5 +285,53 @@ import Base from '../../layouts/Base.astro'
       </div>
     </div>
   </section>
+
+<style>
+.law-rows {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md, 16px);
+}
+.law-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-lg, 24px);
+  background: var(--bg-card, #1a1f2e);
+  border: 1px solid var(--border-subtle, rgba(148, 163, 184, 0.12));
+  border-radius: var(--radius-md, 12px);
+  padding: var(--space-lg, 24px);
+  align-items: start;
+}
+.law-left h3 {
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+  color: var(--color-accent, #22d3a8);
+}
+.law-left p {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: var(--color-ink, #e2e8f0);
+}
+.law-right {
+  border-left: 2px solid var(--color-accent, #22d3a8);
+  padding-left: var(--space-md, 16px);
+}
+.law-right p {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: var(--color-ink-muted, #94a3b8);
+}
+@media (max-width: 640px) {
+  .law-row {
+    grid-template-columns: 1fr;
+  }
+  .law-right {
+    border-left: none;
+    border-top: 1px solid var(--border-subtle, rgba(148, 163, 184, 0.12));
+    padding-left: 0;
+    padding-top: var(--space-md, 16px);
+  }
+}
+</style>
 
 </Base>
