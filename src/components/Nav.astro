@@ -1,0 +1,110 @@
+---
+interface Props {
+  variant?: 'default' | 'ark' | 'ark-sub' | 'developers' | 'downloads' | 'gobierno'
+}
+
+const { variant = 'default' } = Astro.props
+
+interface NavLink {
+  href: string
+  label: string
+  i18n?: string
+  color?: string
+  weight?: string
+}
+
+const navConfigs: Record<string, { brandSuffix: string; brandI18n?: string; links: NavLink[] }> = {
+  default: {
+    brandSuffix: 'Open',
+    brandI18n: 'nav.open',
+    links: [
+      { href: '/why', label: 'Why', i18n: 'nav.why', color: '#fbbf24', weight: '600' },
+      { href: '/#principles', label: 'Principles', i18n: 'nav.principles' },
+      { href: '/#architecture', label: 'Architecture', i18n: 'nav.architecture' },
+      { href: '/#source', label: 'Source', i18n: 'nav.source' },
+      { href: '/#adopt', label: 'Adopt', i18n: 'nav.adopt' },
+      { href: '/#governance', label: 'Governance', i18n: 'nav.governance' },
+      { href: '/for/developers', label: 'Developers', i18n: 'nav.developers', color: '#4ade80', weight: '600' },
+      { href: '/gobierno', label: 'Gobierno', color: '#60a5fa', weight: '600' },
+      { href: '/ark', label: 'Ark', i18n: 'nav.ark', color: '#4fc3f7', weight: '600' },
+    ],
+  },
+  ark: {
+    brandSuffix: 'Open · Ark',
+    brandI18n: 'nav.open_ark',
+    links: [
+      { href: '/ark/#components', label: 'Components', i18n: 'nav.components' },
+      { href: '/ark/desktop', label: 'Station', i18n: 'nav.station' },
+      { href: '/ark/proctoring', label: 'Proctoring', i18n: 'nav.proctoring' },
+      { href: '/ark/#governance', label: 'Governance', i18n: 'nav.governance' },
+    ],
+  },
+  'ark-sub': {
+    brandSuffix: 'Open · Ark',
+    brandI18n: 'nav.open_ark',
+    links: [
+      { href: '/ark/#components', label: 'Components', i18n: 'nav.components' },
+      { href: '/ark/desktop', label: 'Station', i18n: 'nav.station' },
+      { href: '/ark/proctoring', label: 'Proctoring', i18n: 'nav.proctoring' },
+      { href: '/ark/#how', label: 'How it works' },
+      { href: '/ark/#governance', label: 'Governance', i18n: 'nav.governance' },
+    ],
+  },
+  developers: {
+    brandSuffix: 'Developers',
+    brandI18n: 'nav.developers',
+    links: [
+      { href: '#start', label: 'Start Here', i18n: 'devnav.start' },
+      { href: '#architecture', label: 'Architecture', i18n: 'devnav.arch' },
+      { href: '#sdk', label: 'Module SDK', i18n: 'devnav.sdk' },
+      { href: '#bounties', label: 'Build This', i18n: 'devnav.bounties' },
+      { href: '#economics', label: 'Economics', i18n: 'devnav.economics' },
+      { href: 'https://github.com/Attestto-com', label: 'GitHub' },
+    ],
+  },
+  downloads: {
+    brandSuffix: 'Downloads',
+    brandI18n: 'nav.downloads',
+    links: [
+      { href: '#apps', label: 'Apps', i18n: 'nav.apps' },
+      { href: '#web', label: 'Web', i18n: 'nav.web' },
+      { href: '/for/developers', label: 'Developers', i18n: 'nav.developers', color: '#4ade80', weight: '600' },
+      { href: '/ark', label: 'Ark', i18n: 'nav.ark', color: '#4fc3f7', weight: '600' },
+      { href: 'https://attestto.com', label: 'attestto.com' },
+    ],
+  },
+  gobierno: {
+    brandSuffix: 'Gobierno',
+    links: [],
+  },
+}
+
+const config = navConfigs[variant]
+---
+
+<nav>
+  <div class="container">
+    <a href="/" class="nav-brand">
+      <img src="/logo-full-white.svg" alt="Attestto Open" class="nav-logo" />
+      <span data-i18n={config.brandI18n}>{config.brandSuffix}</span>
+    </a>
+    {config.links.length > 0 && (
+      <ul class="nav-links">
+        {config.links.map((link) => (
+          <li>
+            <a
+              href={link.href}
+              data-i18n={link.i18n}
+              style={[
+                link.color ? `color: ${link.color}` : '',
+                link.weight ? `font-weight: ${link.weight}` : '',
+              ].filter(Boolean).join('; ') || undefined}
+            >
+              {link.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+    )}
+  </div>
+</nav>

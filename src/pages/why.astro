@@ -1,0 +1,121 @@
+---
+import Base from '../layouts/Base.astro'
+---
+
+<Base
+  title="Why Attestto Exists — The Story Behind Sovereign Identity"
+  description="Identity shouldn't be a favor granted by an authority. It can be a mathematical proof you carry yourself. This is why Attestto exists."
+  canonicalPath="/why"
+  ogTitle="Why Attestto Exists"
+  ogDescription="Identity shouldn't be a favor granted by an authority. This is the story of why we built open infrastructure for sovereign identity."
+>
+  <!-- Hero -->
+  <section class="why-hero">
+    <div class="container">
+      <h1 data-i18n="why.title">Your identity. Not theirs.</h1>
+      <p class="lead" data-i18n="why.lead">Why we built open infrastructure for sovereign identity &mdash; and why it matters that no one owns it.</p>
+    </div>
+  </section>
+
+  <!-- Section 1: The world as it is -->
+  <section class="story-section">
+    <div class="container">
+      <div class="story-content">
+        <div class="story-label" data-i18n="why.s1_label">The world as it is</div>
+        <h2 class="story-title" data-i18n="why.s1_title">Identity is something someone else confirms</h2>
+        <div class="story-text">
+          <p data-i18n="why.s1_p1">In most of the world, proving who you are means carrying a physical card, presenting it to an institution, hoping they believe it, and trusting that whoever holds your data won't misuse it.</p>
+          <p data-i18n="why.s1_p2">Your identity exists only when someone else says it does. A government office. A bank. A platform. If they lose your record, revoke your access, or simply close for the day &mdash; you stop being provable.</p>
+          <p data-i18n="why.s1_p3">This isn't a technology problem. It's a design choice. And it can be redesigned.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 2: What goes wrong -->
+  <section class="story-section">
+    <div class="container">
+      <div class="story-content">
+        <div class="story-label" data-i18n="why.s2_label">What goes wrong</div>
+        <h2 class="story-title" data-i18n="why.s2_title">When identity depends on someone else</h2>
+        <div class="story-text">
+          <p data-i18n="why.s2_p1">The professional whose credentials don't travel across borders. The family whose last name was misspelled at the civil registry and now half of them exist under different identities. The small business that can't prove it's real to a foreign partner without paying a $15,000 compliance intermediary.</p>
+          <p data-i18n="why.s2_p2">The vendor who locks five million citizens into a proprietary identity system with no export, no interoperability, and a renewal clause that doubles the price. The government that can revoke your digital identity by decree.</p>
+          <p data-i18n="why.s2_p3">These aren't hypothetical. They're happening now, in the countries where we live and build.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 3: The insight (dark) -->
+  <section class="story-highlight">
+    <div class="container">
+      <div class="story-content">
+        <div class="story-label" data-i18n="why.s3_label">The insight</div>
+        <h2 class="story-title" data-i18n="why.s3_title">Identity doesn't have to be a favor</h2>
+        <div class="story-text">
+          <p data-i18n="why.s3_p1"><strong>Identity can be a mathematical proof you carry yourself.</strong> W3C Decentralized Identifiers and Verifiable Credentials make this technically possible. A cryptographic key pair on your device. A credential signed by an authority you choose to trust. A proof you present without revealing more than you must.</p>
+          <p data-i18n="why.s3_p2">The technology exists. What didn't exist &mdash; until now &mdash; was open infrastructure to make it deployable. Not a product. Not a platform. <strong>Public infrastructure</strong>, like roads or the postal service. Anyone can use it, anyone can verify it, anyone can fork it.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 4: What we built -->
+  <section class="story-section">
+    <div class="container">
+      <div class="story-content">
+        <div class="story-label" data-i18n="why.s4_label">What we built</div>
+        <h2 class="story-title" data-i18n="why.s4_title">Three layers, zero central servers</h2>
+        <div class="story-text">
+          <p data-i18n="why.s4_p1"><strong>Layer 1 &mdash; Institutional trust.</strong> Existing authorities (governments, professional bodies, universities) issue verifiable credentials signed with their own keys. We don't replace them. We give them a standards-based channel to issue digitally what they already issue on paper.</p>
+          <p data-i18n="why.s4_p2"><strong>Layer 2 &mdash; Mesh verification.</strong> A peer-to-peer network where every node can verify credentials independently, offline, without calling a central server. The credential holder controls what they share and with whom.</p>
+          <p data-i18n="why.s4_p3"><strong>Layer 3 &mdash; Ledger anchoring.</strong> Cryptographic timestamps on a public ledger prove that a credential existed at a specific time. Not the content &mdash; just the proof that it was issued. Immutable, auditable, independent of Attestto.</p>
+          <p data-i18n="why.s4_p4">Every component is <strong>open source</strong> (Apache 2.0). Every standard we use is <strong>W3C or IETF</strong>. Any government can fork the entire stack, deploy it on their own infrastructure, and never depend on us. That's the point.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 5: Commitments (dark) -->
+  <section class="story-highlight">
+    <div class="container">
+      <div class="story-content">
+        <div class="story-label" data-i18n="why.s5_label">What we ask of ourselves</div>
+        <h2 class="story-title" data-i18n="why.s5_title">Eight commitments, not eight features</h2>
+        <div class="story-text">
+          <p data-i18n="why.s5_p1">Infrastructure earns trust by what it refuses to do, not by what it promises. These aren't marketing principles. They're constraints we enforce in code.</p>
+        </div>
+        <ul class="principles-compact">
+          <li><strong>Sovereignty</strong> <span>Your keys, your device, your data. No custodian.</span></li>
+          <li><strong>Interoperability</strong> <span>W3C, IETF, ISO standards only. No proprietary formats.</span></li>
+          <li><strong>Privacy</strong> <span>Selective disclosure by default. Share only what's needed.</span></li>
+          <li><strong>No lock-in</strong> <span>Fork it, export it, leave. Your data comes with you.</span></li>
+          <li><strong>Reversibility</strong> <span>Revoke any credential. Delete any key. No permanent traces.</span></li>
+          <li><strong>Transparency</strong> <span>Open source, open governance, open audit.</span></li>
+          <li><strong>Neutrality</strong> <span>No blockchain maximalism. Solana today, anything tomorrow.</span></li>
+          <li><strong>Public good</strong> <span>Free for citizens, forever. Commerce pays for commerce.</span></li>
+        </ul>
+
+        <div class="founder-note">
+          <p>My family's last name is split across the Costa Rican civil registry. A clerical error at birth registration. Half of us exist under one spelling, half under another. Two different legal identities for the same family.</p>
+          <p style="margin-top: 0.75rem;">I didn't build Attestto because I read a whitepaper. I built it because I'm a case study.</p>
+          <div class="attribution">&mdash; Eduardo Chongkan, founder</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="story-highlight" style="padding-bottom: var(--space-xl);">
+    <div class="container">
+      <div class="story-content" style="text-align: center;">
+        <h2 class="story-title" data-i18n="why.cta_title">See what we've built</h2>
+        <div class="cta-row" style="justify-content: center;">
+          <a href="/ark" class="cta-primary">Explore the Ark &rarr;</a>
+          <a href="/for/developers" class="cta-secondary">Start building &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>

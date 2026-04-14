@@ -1,0 +1,108 @@
+---
+interface Props {
+  variant?: 'default' | 'ark' | 'ark-sub' | 'developers' | 'downloads' | 'gobierno'
+  tagline?: string
+  notes?: string[]
+}
+
+const { variant = 'default', tagline, notes = [] } = Astro.props
+
+interface FooterLink {
+  href: string
+  label: string
+  i18n?: string
+}
+
+const footerConfigs: Record<string, { brand: string; links: FooterLink[] }> = {
+  default: {
+    brand: 'Attestto Open',
+    links: [
+      { href: '/why', label: 'Why' },
+      { href: '/ark', label: 'Ark', i18n: 'footer.ark' },
+      { href: '/for/developers', label: 'Developers', i18n: 'nav.developers' },
+      { href: '/downloads', label: 'Downloads', i18n: 'footer.downloads' },
+      { href: 'https://attestto.com', label: 'attestto.com' },
+      { href: 'https://github.com/Attestto-com', label: 'GitHub', i18n: 'footer.github' },
+      { href: 'mailto:open@attestto.com', label: 'Contact', i18n: 'footer.contact' },
+    ],
+  },
+  ark: {
+    brand: 'Attestto Open · Ark',
+    links: [
+      { href: '/', label: 'Open', i18n: 'footer.open' },
+      { href: '/downloads', label: 'Downloads', i18n: 'footer.downloads' },
+      { href: 'https://attestto.com', label: 'attestto.com' },
+      { href: 'https://mobile.attestto.com', label: 'mobile.attestto.com' },
+      { href: 'https://github.com/Attestto-com', label: 'GitHub', i18n: 'footer.github' },
+      { href: 'https://trust.attestto.com', label: 'Trust mirror' },
+      { href: 'mailto:open@attestto.com', label: 'Contact', i18n: 'footer.contact' },
+    ],
+  },
+  'ark-sub': {
+    brand: 'Attestto Open · Ark',
+    links: [
+      { href: '/', label: 'Attestto Open', i18n: 'footer.open' },
+      { href: '/ark', label: 'Ark', i18n: 'footer.ark' },
+      { href: '/ark/desktop', label: 'Station' },
+      { href: '/ark/proctoring', label: 'Proctoring' },
+      { href: '/downloads', label: 'Downloads', i18n: 'footer.downloads' },
+      { href: 'https://attestto.com', label: 'attestto.com' },
+      { href: 'https://github.com/Attestto-com', label: 'GitHub', i18n: 'footer.github' },
+    ],
+  },
+  developers: {
+    brand: 'Attestto Open',
+    links: [
+      { href: '/', label: 'Attestto Open', i18n: 'footer.open' },
+      { href: '/ark', label: 'Ark', i18n: 'footer.ark' },
+      { href: '/downloads', label: 'Downloads', i18n: 'footer.downloads' },
+      { href: 'https://github.com/Attestto-com', label: 'GitHub', i18n: 'footer.github' },
+    ],
+  },
+  downloads: {
+    brand: 'Attestto',
+    links: [
+      { href: '/', label: 'Attestto Open', i18n: 'footer.open' },
+      { href: '/ark', label: 'Ark', i18n: 'footer.ark' },
+      { href: '/downloads', label: 'Downloads', i18n: 'footer.downloads' },
+      { href: 'https://attestto.com', label: 'attestto.com' },
+      { href: 'https://github.com/Attestto-com', label: 'GitHub', i18n: 'footer.github' },
+    ],
+  },
+  gobierno: {
+    brand: 'Attestto Gobierno',
+    links: [
+      { href: '/', label: 'Attestto Open' },
+      { href: 'https://github.com/Attestto-com/attestto-pliego-reviewer', label: 'Código fuente' },
+      { href: 'mailto:open@attestto.com', label: 'Contacto' },
+    ],
+  },
+}
+
+const config = footerConfigs[variant]
+---
+
+<footer>
+  <div class="container">
+    <span>{config.brand}</span>
+    <div class="footer-links">
+      {config.links.map((link) => (
+        <a href={link.href} data-i18n={link.i18n}>{link.label}</a>
+      ))}
+    </div>
+  </div>
+  {tagline && (
+    <div class="container footer-tagline-wrap">
+      <p class="footer-tagline">
+        {tagline}
+      </p>
+    </div>
+  )}
+  {notes.length > 0 && (
+    <div class="container footer-notes-wrap">
+      {notes.map((note) => (
+        <p class="footer-note" set:html={note} />
+      ))}
+    </div>
+  )}
+</footer>

@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://attestto.org/sitemap.xml

@@ -1,0 +1,293 @@
+---
+import Base from '../../layouts/Base.astro'
+---
+
+<Base
+  title="Attestto Ark · Proctoring — White-Box Exam Integrity, Local-Only"
+  description="The Attestto Ark Station's proctoring module runs entirely on the candidate's machine. Camera, screen, and process monitoring with zero cloud video upload. The proctor is auditable code, not a stranger watching a feed."
+  canonicalPath="/ark/proctoring"
+  ogTitle="Attestto Ark · Proctoring — White-Box Exam Integrity"
+  ogDescription="Camera, screen, and process monitoring with zero cloud video upload. The proctor is auditable code, not a stranger."
+  ogImage="https://attestto.org/assets/og-image-proctoring.png"
+  navVariant="ark-sub"
+  footerVariant="ark-sub"
+  footerTagline="Live infrastructure for sovereign digital identity. Free for citizens, always — commerce funds the network."
+>
+
+  <!-- Hero (dark) -->
+  <section class="hero hero-single">
+    <div class="container">
+      <div class="hero-text">
+        <p class="eyebrow" data-i18n="proctoring.eyebrow">Ark · Proctoring</p>
+        <h1 data-i18n="proctoring.hero_title">The proctor is code on your computer. Not a stranger in a cloud.</h1>
+        <p class="lead" data-i18n="proctoring.hero_lead">
+          Traditional remote proctoring sends your face, your screen, and your room to a foreign server, where an
+          unknown algorithm — or an unknown human — decides whether you cheated. The Attestto Ark Station inverts
+          the model: every byte of your exam stays on your machine, and the algorithm that judges you is open source.
+        </p>
+        <div class="hero-actions">
+          <a href="#how" class="btn btn-primary" data-i18n="proctoring.hero_cta_primary">How it works</a>
+          <a href="/ark/desktop" class="btn btn-secondary" data-i18n="proctoring.hero_cta_secondary">&larr; Station modules</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why this matters -->
+  <section class="section-light">
+    <div class="container">
+      <div class="section-label" data-i18n="proctoring.problem_label">The problem</div>
+      <h2 class="section-title" data-i18n="proctoring.problem_title">Cloud proctoring shouldn't be the only option</h2>
+      <p class="section-desc" data-i18n="proctoring.problem_desc1">
+        Examity, ProctorU, Honorlock, Respondus — every major remote proctoring vendor follows the same pattern: install a
+        browser extension, hand over your camera and microphone, and let a stranger or a third-party AI watch your exam
+        in real time on a server you don't control. The video is processed in foreign jurisdictions, retained for
+        years, and occasionally leaked. For high-stakes exams in countries with strong data-sovereignty rules, that
+        model is structurally incompatible with the law and with basic dignity.
+      </p>
+      <p class="section-desc" data-i18n="proctoring.problem_desc2">
+        The Ark proctoring module is the alternative: a <strong>white-box, local-only</strong> proctor that gives the
+        institution forensic-grade exam integrity without ever uploading the candidate's video, screen, or biometric
+        data. The institution gets a signed, hashed, tamper-evident exam record. The candidate keeps their privacy.
+        The auditor gets source code.
+      </p>
+    </div>
+  </section>
+
+  <!-- How it works -->
+  <section id="how" class="section-dark">
+    <div class="container">
+      <div class="section-label" data-i18n="proctoring.how_label">How it works</div>
+      <h2 class="section-title" data-i18n="proctoring.how_title">Three layers of local integrity</h2>
+      <p class="section-desc" data-i18n="proctoring.how_desc">
+        The proctoring module runs as a sub-system of the Attestto Ark Station — the same Electron desktop that holds
+        your vault and signs your credentials. Because the Station has Node.js underneath the Chromium engine, it can
+        do things a normal browser cannot: directly read camera frames, monitor the desktop, inspect running processes,
+        and write a tamper-evident log to disk.
+      </p>
+
+      <div class="grid-3">
+
+        <div class="card">
+          <div class="card-icon">&#127909;</div>
+          <h3 data-i18n="proctoring.layer1_title">1. Direct hardware access</h3>
+          <p data-i18n="proctoring.layer1_desc">
+            The Station uses standard Web APIs to open the camera, but processes the video <strong>locally</strong> on
+            the device's CPU/GPU to detect faces and verify liveness. The original frames never leave the machine.
+          </p>
+          <ul>
+            <li data-i18n="proctoring.layer1_l1">Camera + face detection on-device</li>
+            <li data-i18n="proctoring.layer1_l2">Liveness via blink + head-pose</li>
+            <li data-i18n="proctoring.layer1_l3">Screen monitoring via Electron <code>desktopCapturer</code></li>
+            <li data-i18n="proctoring.layer1_l4">Process inspection via Node.js</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <div class="card-icon">&#128737;</div>
+          <h3 data-i18n="proctoring.layer2_title">2. White box, not black box</h3>
+          <p data-i18n="proctoring.layer2_desc">
+            Traditional proctoring (Examity, ProctorU) sends your video to foreign servers for AI analysis. In the Ark,
+            the original video <strong>never leaves your device</strong> — the "AI" runs inside the Electron shell on
+            your machine, and the algorithm is open source.
+          </p>
+          <ul>
+            <li data-i18n="proctoring.layer2_l1">No cloud video upload, ever</li>
+            <li data-i18n="proctoring.layer2_l2">No foreign-jurisdiction storage</li>
+            <li data-i18n="proctoring.layer2_l3">Open-source detection models</li>
+            <li data-i18n="proctoring.layer2_l4">Auditable by any university or regulator</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <div class="card-icon">&#128274;</div>
+          <h3 data-i18n="proctoring.layer3_title">3. Forensic integrity layer</h3>
+          <p data-i18n="proctoring.layer3_desc">
+            Once the exam ends, the Station creates a <strong>SHA-256 hash</strong> of the entire session — anomaly logs,
+            timestamps, screen-state digests, biometric confidence scores — and signs it with the candidate's
+            <strong>Ed25519</strong> vault key. The institution receives a signed, byte-frozen receipt.
+          </p>
+          <ul>
+            <li data-i18n="proctoring.layer3_l1">SHA-256 session hash</li>
+            <li data-i18n="proctoring.layer3_l2">Ed25519 signature from vault</li>
+            <li data-i18n="proctoring.layer3_l3">Tamper-evident anomaly log</li>
+            <li data-i18n="proctoring.layer3_l4">Verifiable on verify.attestto.com</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- White box vs black box -->
+  <section class="section-light">
+    <div class="container">
+      <div class="section-label" data-i18n="proctoring.compare_label">White box vs black box</div>
+      <h2 class="section-title" data-i18n="proctoring.compare_title">Two execution models</h2>
+      <p class="section-desc" data-i18n="proctoring.compare_desc">
+        The decisive difference is not <em>what</em> the proctor watches, it is <em>where</em> the watching happens
+        and <em>who</em> can audit the watcher.
+      </p>
+
+      <div class="grid-3">
+        <div class="card">
+          <h3 data-i18n="proctoring.compare_cloud_title">&#9940; &nbsp;Cloud proctoring</h3>
+          <ul>
+            <li data-i18n="proctoring.compare_cloud_l1">Video uploaded to vendor's server</li>
+            <li data-i18n="proctoring.compare_cloud_l2">Stored in foreign jurisdiction</li>
+            <li data-i18n="proctoring.compare_cloud_l3">Reviewed by unknown humans or proprietary AI</li>
+            <li data-i18n="proctoring.compare_cloud_l4">No source-code access for institutions</li>
+            <li data-i18n="proctoring.compare_cloud_l5">Institution has no forensic guarantee — only the vendor's word</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3 data-i18n="proctoring.compare_ark_title">&#9989; &nbsp;Ark white-box proctoring</h3>
+          <ul>
+            <li data-i18n="proctoring.compare_ark_l1">Video processed on the candidate's device</li>
+            <li data-i18n="proctoring.compare_ark_l2">Original frames never leave the machine</li>
+            <li data-i18n="proctoring.compare_ark_l3">Detection models are open source and auditable</li>
+            <li data-i18n="proctoring.compare_ark_l4">Institution receives a signed, hashed exam receipt</li>
+            <li data-i18n="proctoring.compare_ark_l5">Independent auditor can verify the entire pipeline</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Technical summary -->
+  <section class="section-dark">
+    <div class="container">
+      <div class="section-label" data-i18n="proctoring.stack_label">Stack</div>
+      <h2 class="section-title" data-i18n="proctoring.stack_title">Technical summary</h2>
+      <p class="section-desc" data-i18n="proctoring.stack_desc">
+        The proctoring module is part of the Attestto Ark Station — the same Electron desktop that holds your vault
+        and signs your documents. There is no separate "proctoring app" to install. Every module shares one vault,
+        one identity, and one auditable codebase.
+      </p>
+
+      <div class="grid-3">
+        <div class="card">
+          <h3 data-i18n="proctoring.stack_engine_title">Engine</h3>
+          <p data-i18n="proctoring.stack_engine_desc"><strong>Electron + Vue 3.</strong> Chromium for the UI, Node.js for hardware. Cross-platform desktop binary.</p>
+        </div>
+        <div class="card">
+          <h3 data-i18n="proctoring.stack_detection_title">Detection</h3>
+          <p data-i18n="proctoring.stack_detection_desc"><strong>Local face + screen monitoring.</strong> Camera frames and screen captures stay on the device. Zero cloud video.</p>
+        </div>
+        <div class="card">
+          <h3 data-i18n="proctoring.stack_vault_title">Vault security</h3>
+          <p data-i18n="proctoring.stack_vault_desc"><strong>xsalsa20-poly1305 + scrypt.</strong> Encrypted local key store. Vault key is the proctoring receipt signer.</p>
+        </div>
+        <div class="card">
+          <h3 data-i18n="proctoring.stack_receipt_title">Receipt signing</h3>
+          <p data-i18n="proctoring.stack_receipt_desc"><strong>Ed25519 over SHA-256 session hash.</strong> Tamper-evident exam record verifiable on any Attestto verifier.</p>
+        </div>
+        <div class="card">
+          <h3 data-i18n="proctoring.stack_governance_title">Governance</h3>
+          <p data-i18n="proctoring.stack_governance_desc"><strong>3-of-4 multisig (planned).</strong> Trust framework keys are split across institutional shareholders. No single party can rewrite records.</p>
+        </div>
+        <div class="card">
+          <h3 data-i18n="proctoring.stack_license_title">License</h3>
+          <p data-i18n="proctoring.stack_license_desc"><strong>Open source.</strong> Apache 2.0. Read the source. Build it yourself. Verify the binary matches.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- The verdict -->
+  <section class="section-light">
+    <div class="container">
+      <div class="section-label" data-i18n="proctoring.verdict_label">The verdict</div>
+      <h2 class="section-title" data-i18n="proctoring.verdict_title">An auditable proctor that doesn't send your video to the cloud</h2>
+      <p class="section-desc" data-i18n="proctoring.verdict_desc1">
+        Electron is the perfect engine for the Ark because it lets the proctor be a piece of <strong>auditable code on
+        your computer</strong> rather than a stranger in a cloud server. That makes high-stakes remote exams
+        technically sovereign and ethically sound — and gives institutions a forensic guarantee that no SaaS vendor
+        can credibly match.
+      </p>
+      <p class="section-desc" data-i18n="proctoring.verdict_desc2">
+        If you run a Colegio, a university, a certifying body, or a continuing-education program and you want to offer
+        remote exams without giving away your candidates' privacy, the Ark proctoring module is built for you. We are
+        opening early-access pilots to a small number of institutions in 2026.
+      </p>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section-dark">
+    <div class="container">
+      <div class="section-label" data-i18n="proctoring.faq_label">FAQ</div>
+      <h2 class="section-title" data-i18n="proctoring.faq_title">Hard questions, honest answers</h2>
+
+      <div class="grid-3">
+        <div class="card">
+          <h3 data-i18n="proctoring.faq_q1">Can the Station spy on me beyond the exam?</h3>
+          <p data-i18n="proctoring.faq_a1">
+            No. The proctoring module only activates inside an exam session that the candidate explicitly starts,
+            and stops the moment the session ends. Because the source is open, any auditor can verify that the
+            camera and screen capture pipelines are not running outside an active exam.
+          </p>
+        </div>
+        <div class="card">
+          <h3 data-i18n="proctoring.faq_q2">What if my computer crashes mid-exam?</h3>
+          <p data-i18n="proctoring.faq_a2">
+            The session log is written incrementally to disk and signed at every checkpoint. A crash produces a
+            partial signed record up to the last checkpoint. The institution decides whether to allow a re-take based
+            on the partial record — there is no proctoring vendor to blame.
+          </p>
+        </div>
+        <div class="card">
+          <h3 data-i18n="proctoring.faq_q3">Where is the exam video stored?</h3>
+          <p data-i18n="proctoring.faq_a3">
+            Nowhere outside your machine. The Ark never uploads raw video. What the institution receives is a
+            cryptographically signed log of <em>events</em> (face detected, screen anomaly, process opened),
+            never the underlying frames.
+          </p>
+        </div>
+        <div class="card">
+          <h3 data-i18n="proctoring.faq_q4">Who issues my Ed25519 signing key?</h3>
+          <p data-i18n="proctoring.faq_a4">
+            You do. The Station generates the keypair locally on first launch, stores it in the encrypted vault,
+            and never transmits it to Attestto or anyone else. The corresponding public key is what verifiers use
+            to confirm a session record came from your machine.
+          </p>
+        </div>
+        <div class="card">
+          <h3 data-i18n="proctoring.faq_q5">How does the institution trust the receipt?</h3>
+          <p data-i18n="proctoring.faq_a5">
+            Each receipt embeds the candidate's public key, the SHA-256 of the session log, the timestamps, and the
+            Ed25519 signature. The institution verifies the signature against the candidate's enrolled public key —
+            the same way verify.attestto.com verifies signed PDFs.
+          </p>
+        </div>
+        <div class="card">
+          <h3 data-i18n="proctoring.faq_q6">Can I read the proctoring code?</h3>
+          <p data-i18n="proctoring.faq_a6">
+            Yes — every line. The Station, the verifier, and the wallet adapter are public on GitHub under
+            Apache 2.0. If anything looks wrong, file an issue or open a coordinated disclosure to
+            <a href="mailto:security@attestto.com" style="color: var(--color-accent, #22d3a8); font-weight: 600;">security@attestto.com</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section id="contact" class="section-light cta-center">
+    <div class="container">
+      <div class="section-label" data-i18n="proctoring.cta_label">Pilot the Ark</div>
+      <h2 class="section-title" data-i18n="proctoring.cta_title">Sovereign exam integrity for your institution</h2>
+      <p class="section-desc" data-i18n="proctoring.cta_desc">
+        We are running early-access pilots with Colegios, universities, and continuing-education programs in 2026.
+        If your institution wants forensic exam integrity without surrendering candidate privacy, get in touch.
+      </p>
+      <a href="mailto:open@attestto.com?subject=Ark%20Proctoring%20%E2%80%94%20pilot%20interest" class="btn btn-primary" data-i18n="proctoring.cta_btn">Request a pilot</a>
+      <div class="cta-links">
+        <a href="/ark">Back to Ark overview</a>
+        <a href="/ark/desktop">Station modules</a>
+        <a href="https://github.com/Attestto-com/attestto-desktop">Source code</a>
+      </div>
+    </div>
+  </section>
+
+</Base>

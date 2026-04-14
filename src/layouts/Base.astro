@@ -1,0 +1,85 @@
+---
+import Nav from '../components/Nav.astro'
+import Footer from '../components/Footer.astro'
+import '../styles/tokens.css'
+import '../styles/base.css'
+import '../styles/components.css'
+
+interface Props {
+  title: string
+  description: string
+  canonicalPath?: string
+  ogTitle?: string
+  ogDescription?: string
+  ogImage?: string
+  themeColor?: string
+  lang?: string
+  navVariant?: 'default' | 'ark' | 'ark-sub' | 'developers' | 'downloads' | 'gobierno'
+  footerVariant?: 'default' | 'ark' | 'ark-sub' | 'developers' | 'downloads' | 'gobierno'
+  footerTagline?: string
+  footerNotes?: string[]
+  structuredData?: object
+  bodyClass?: string
+  extraHead?: string
+}
+
+const {
+  title,
+  description,
+  canonicalPath = '',
+  ogTitle,
+  ogDescription,
+  ogImage = 'https://attestto.org/og-image.png',
+  themeColor = '#0a1628',
+  lang = 'en',
+  navVariant = 'default',
+  footerVariant = 'default',
+  footerTagline,
+  footerNotes = [],
+  structuredData,
+  bodyClass,
+} = Astro.props
+
+const canonicalUrl = `https://attestto.org${canonicalPath}`
+---
+
+<!DOCTYPE html>
+<html lang={lang}>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <meta name="theme-color" content={themeColor} />
+  <link rel="canonical" href={canonicalUrl} />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content={ogTitle || title} />
+  <meta property="og:description" content={ogDescription || description} />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content={canonicalUrl} />
+  <meta property="og:site_name" content="Attestto Open" />
+  <meta property="og:image" content={ogImage} />
+
+  {structuredData && (
+    <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
+  )}
+
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="icon" type="image/jpeg" href="/favicon.jpg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <slot name="head" />
+</head>
+<body class={bodyClass}>
+  <Nav variant={navVariant} />
+
+  <slot />
+
+  <Footer variant={footerVariant} tagline={footerTagline} notes={footerNotes} />
+
+  <script is:inline src="/assets/js/i18n.js"></script>
+</body>
+</html>

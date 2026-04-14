@@ -1,12 +1,17 @@
 {
   "name": "attestto-org",
   "private": true,
+  "type": "module",
   "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
     "test": "vitest run",
     "test:watch": "vitest"
   },
   "devDependencies": {
-    "vitest": "^3.1.1",
-    "jsdom": "^26.1.0"
+    "astro": "^6.1.5",
+    "jsdom": "^26.1.0",
+    "vitest": "^3.1.1"
   }
 }
