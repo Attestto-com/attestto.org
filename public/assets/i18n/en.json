@@ -255,7 +255,7 @@
     "step2_title": "Scan the QR with your phone",
     "step3_desc": "Front, back of document, and selfie with liveness proof (blink detection). Everything transmits in real-time to the desktop.",
     "step3_title": "Capture document and selfie",
-    "step4_desc": "Station runs OCR, extracts MRZ data, queries the TSE Census, validates the name, and generates the verifiable credential.",
+    "step4_desc": "Station runs OCR, extracts MRZ data, validates the document, and generates the verifiable credential.",
     "step4_title": "Automatic processing",
     "step5_desc": "The credential is stored encrypted in the local vault. Sign it with Digital Signature, anchor it on a public ledger, or share it via verifiable presentation.",
     "step5_title": "Credential in your vault",

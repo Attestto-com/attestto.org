@@ -253,7 +253,7 @@
     "step2_title": "Escanea el QR con tú telefono",
     "step3_desc": "Frente, reverso del documento y selfie con prueba de vida (deteccion de parpadeo). Todo se transmite en tiempo real al escritorio.",
     "step3_title": "Captura documento y selfie",
-    "step4_desc": "Station ejecuta OCR, extrae datos del MRZ, consulta el Padron TSE, valida el nombre y genera la credencial verificable.",
+    "step4_desc": "Station ejecuta OCR, extrae datos del MRZ, valida el documento y genera la credencial verificable.",
     "step4_title": "Procesamiento automatico",
     "step5_desc": "La credencial se almacena cifrada en la boveda local. Firmala con Firma Digital, anclala en un ledger público o compartela vía presentacion verificable.",
     "step5_title": "Credencial en tú boveda",
