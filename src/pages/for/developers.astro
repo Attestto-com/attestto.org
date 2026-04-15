@@ -63,41 +63,41 @@ const moduleInterfaceHtml = `<pre><span class="kw">interface</span> <span class=
       <p class="section-desc" data-i18n="dev.start_desc">Pick your path based on what you need. Each leads to a different part of the stack.</p>
 
       <div class="decision-tree">
-        <div class="decision-branch">
+        <a href="/docs/quickstart/verify-a-document/" class="decision-branch">
           <span class="branch-arrow">&rarr;</span>
           <div>
-            <h4 data-i18n="dev.path1_title">I want to build a module for the Attestto App</h4>
-            <p data-i18n="dev.path1_desc">Start with <code>@attestto/module-sdk</code>. Your module runs inside the PWA. You get identity, vault, LLM, and distribution for free.</p>
+            <h4 data-i18n="dev.path2_title">I need to verify documents</h4>
+            <p data-i18n="dev.path2_desc">Use the <code>&lt;attestto-verify&gt;</code> web component. One script tag, drag-and-drop PDF verification. Zero config.</p>
           </div>
-        </div>
-        <div class="decision-branch">
-          <span class="branch-arrow">&rarr;</span>
-          <div>
-            <h4 data-i18n="dev.path2_title">I need to verify Costa Rica documents</h4>
-            <p data-i18n="dev.path2_desc">Use <code>@attestto/verify</code> web component. Drop it in your page. Drag-and-drop PDF verification against national PKI roots. Zero config.</p>
-          </div>
-        </div>
-        <div class="decision-branch">
+        </a>
+        <a href="/docs/quickstart/issue-a-credential/" class="decision-branch">
           <span class="branch-arrow">&rarr;</span>
           <div>
             <h4 data-i18n="dev.path3_title">I need to issue verifiable credentials</h4>
-            <p data-i18n="dev.path3_desc">Use <code>cr-vc-sdk</code> + <code>cr-vc-schemas</code>. Define your credential type, sign with your DID, deliver to wallets.</p>
+            <p data-i18n="dev.path3_desc">Use <code>@attestto-com/vc-sdk</code>. Generate keys, issue W3C VCs, verify them. 20 lines of code.</p>
           </div>
-        </div>
-        <div class="decision-branch">
+        </a>
+        <a href="/docs/quickstart/add-did-login/" class="decision-branch">
           <span class="branch-arrow">&rarr;</span>
           <div>
-            <h4 data-i18n="dev.path4_title">I'm building on Solana + identity</h4>
-            <p data-i18n="dev.path4_desc">Read the <code>did:sns</code> spec. Resolve decentralized identifiers via Solana Name Service. W3C standards-track.</p>
+            <h4 data-i18n="dev.path4_title">I want to add DID-based login</h4>
+            <p data-i18n="dev.path4_desc">Use <code>@attestto/id-wallet-adapter</code>. Discover wallets, request credentials, verify presentations. No passwords.</p>
           </div>
-        </div>
-        <div class="decision-branch">
+        </a>
+        <a href="/docs/integration/forms/" class="decision-branch">
           <span class="branch-arrow">&rarr;</span>
           <div>
-            <h4 data-i18n="dev.path5_title">I want to run a mesh node</h4>
-            <p data-i18n="dev.path5_desc">Download Station (desktop app) or run <code>attestto-mesh</code> directly. Relay verification proofs for the network and earn micropayments.</p>
+            <h4>I need signature validation in my forms</h4>
+            <p>Add credential checks to existing web forms. Verify professional licenses, check document signatures, age verification with selective disclosure.</p>
           </div>
-        </div>
+        </a>
+        <a href="/docs/identity/did-sns/" class="decision-branch">
+          <span class="branch-arrow">&rarr;</span>
+          <div>
+            <h4 data-i18n="dev.path5_title">I'm building on Solana + identity</h4>
+            <p data-i18n="dev.path5_desc">Read the <code>did:sns</code> spec. Human-readable DIDs via Solana Name Service. W3C standards-track.</p>
+          </div>
+        </a>
       </div>
     </div>
   </section>

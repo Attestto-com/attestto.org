@@ -25,21 +25,26 @@ import Callout from '../../../components/docs/Callout.astro'
   </div>
 
   <div class="playground-panel active" id="panel-verify">
-    <attestto-verify theme="dark"></attestto-verify>
+    <iframe
+      src="https://verify.attestto.com"
+      class="playground-iframe"
+      title="Attestto Verify — live demo"
+      loading="lazy"
+      sandbox="allow-scripts allow-same-origin allow-popups"
+    ></iframe>
   </div>
 
   <div class="playground-panel" id="panel-sign">
-    <attestto-sign theme="dark"></attestto-sign>
+    <iframe
+      src="https://verify.attestto.com/sign/"
+      class="playground-iframe"
+      title="Attestto Sign — live demo"
+      loading="lazy"
+      sandbox="allow-scripts allow-same-origin allow-popups"
+    ></iframe>
   </div>
 
   <script is:inline>
-    // Load the verify web components
-    var s = document.createElement('script')
-    s.type = 'module'
-    s.src = 'https://unpkg.com/@attestto/verify'
-    document.head.appendChild(s)
-
-    // Tab switching
     document.addEventListener('DOMContentLoaded', function () {
       var tabs = document.querySelectorAll('.playground-tab')
       var panels = document.querySelectorAll('.playground-panel')
@@ -89,13 +94,25 @@ import Callout from '../../../components/docs/Callout.astro'
 
     .playground-panel {
       display: none;
-      padding: 2rem 0;
+      padding: 1rem 0;
     }
 
     .playground-panel.active {
       display: block;
     }
+
+    .playground-iframe {
+      width: 100%;
+      height: 600px;
+      border: 1px solid var(--docs-border, #2a2a3a);
+      border-radius: 8px;
+      background: #0f0f1a;
+    }
   </style>
+
+  <p style="text-align: center; margin-top: 0.5rem;">
+    <a href="https://verify.attestto.com" target="_blank" style="color: var(--docs-text-dim); font-size: 0.82rem;">Open full screen at verify.attestto.com &rarr;</a>
+  </p>
 
   <h2>What to try</h2>
   <div class="docs-steps">
@@ -120,7 +137,7 @@ import Callout from '../../../components/docs/Callout.astro'
   </div>
 
   <h2>Embed this on your own site</h2>
-  <p>This entire playground is just two HTML elements and one script tag:</p>
+  <p>Once <code>@attestto/verify</code> is published to npm, embedding is just two HTML elements and one script tag:</p>
 
   <div class="docs-code-block">
     <div class="docs-code-header">
@@ -131,6 +148,12 @@ import Callout from '../../../components/docs/Callout.astro'
 <span class="c-tag">&lt;attestto-verify&gt;&lt;/attestto-verify&gt;</span>
 <span class="c-tag">&lt;attestto-sign&gt;&lt;/attestto-sign&gt;</span>`} /></pre>
   </div>
+
+  <Callout type="info">
+    <strong>npm publish pending.</strong> The <code>@attestto/verify</code> package is built and tested
+    but not yet published to npm. Until then, use the iframe approach above or
+    <a href="https://verify.attestto.com">verify.attestto.com</a> directly.
+  </Callout>
 
   <h2>See also</h2>
   <ul style="color: var(--docs-text-muted); font-size: 0.95rem; line-height: 2; padding-left: 1.5rem;">

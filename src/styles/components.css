@@ -1482,6 +1482,8 @@ footer a:hover { color: #ffffff; text-decoration: none; }
   font-size: 0.9375rem;
 }
 .decision-branch:nth-child(odd) { background: rgba(255,255,255,0.03); }
+a.decision-branch { text-decoration: none; color: inherit; transition: background 0.15s, border-color 0.15s; border: 1px solid transparent; }
+a.decision-branch:hover { background: rgba(89, 79, 211, 0.08); border-color: rgba(89, 79, 211, 0.2); }
 .decision-branch .if { color: #4ade80; font-weight: 600; min-width: 4rem; }
 .decision-branch .then { color: rgba(255,255,255,0.7); }
 .decision-branch .arrow { color: rgba(255,255,255,0.3); }
