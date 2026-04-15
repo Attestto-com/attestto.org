@@ -1,0 +1,5 @@
+Contact: mailto:security@attestto.com
+Contact: mailto:open@attestto.com
+Preferred-Languages: en, es
+Canonical: https://attestto.org/.well-known/security.txt
+Expires: 2027-04-15T00:00:00.000Z
