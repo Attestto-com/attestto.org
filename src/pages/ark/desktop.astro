@@ -88,6 +88,8 @@ const structuredData = [
       <p class="section-desc" data-i18n="desktop.modules_desc">The Station is a composition of independent modules that share a single encrypted vault. Each module is opt-in. You can run the Station purely as a vault, purely as a verifier, or activate every module for a full sovereign-identity workstation.</p>
       <div class="grid-3" style="grid-template-columns: repeat(3, 1fr);">
 
+        <h3 style="grid-column: 1 / -1; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-accent); margin: 0;">Core</h3>
+
         <div class="card">
           <div class="card-icon">&#128274;</div>
           <h3 data-i18n="desktop.vault_title">Vault</h3>
@@ -123,6 +125,8 @@ const structuredData = [
             <li data-i18n="desktop.verifier_l4">Works without internet</li>
           </ul>
         </div>
+
+        <h3 style="grid-column: 1 / -1; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-accent); margin: var(--space-sm) 0 0;">Network</h3>
 
         <div class="card">
           <div class="card-icon">&#9881;</div>
@@ -208,26 +212,41 @@ const structuredData = [
         signer presented.
       </p>
 
-      <div class="grid-3">
-        <div class="card">
-          <h3>A+ &nbsp;<small style="color: #16a34a;">Smart card</small></h3>
-          <p data-i18n="desktop.trust_aplus_desc">Costa Rica Firma Digital smart card (PKCS#11). Qualified electronic signature recognized under Ley 8454.</p>
+      <div class="trust-ladder">
+        <div class="trust-tier">
+          <span class="trust-tier-badge">A+</span>
+          <div class="trust-tier-content">
+            <h3>Smart card</h3>
+            <p data-i18n="desktop.trust_aplus_desc">Costa Rica Firma Digital smart card (PKCS#11). Qualified electronic signature recognized under Ley 8454.</p>
+          </div>
         </div>
-        <div class="card">
-          <h3>A &nbsp;<small style="color: #16a34a;">Full KYC</small></h3>
-          <p data-i18n="desktop.trust_a_desc">Cedula scan + Padron Electoral + facial recognition + liveness proof + Firma Digital seal.</p>
+        <div class="trust-tier">
+          <span class="trust-tier-badge">A</span>
+          <div class="trust-tier-content">
+            <h3>Full KYC</h3>
+            <p data-i18n="desktop.trust_a_desc">Cedula scan + Padron Electoral + facial recognition + liveness proof + Firma Digital seal.</p>
+          </div>
         </div>
-        <div class="card">
-          <h3>B &nbsp;<small style="color: #2563eb;">Padron verified</small></h3>
-          <p data-i18n="desktop.trust_b_desc">Cedula scan + Padron Electoral cross-check + facial recognition + liveness proof. The default for citizen-issued credentials.</p>
+        <div class="trust-tier">
+          <span class="trust-tier-badge">B</span>
+          <div class="trust-tier-content">
+            <h3>Padron verified</h3>
+            <p data-i18n="desktop.trust_b_desc">Cedula scan + Padron Electoral cross-check + facial recognition + liveness proof. The default for citizen-issued credentials.</p>
+          </div>
         </div>
-        <div class="card">
-          <h3>C &nbsp;<small style="color: #d97706;">Document only</small></h3>
-          <p data-i18n="desktop.trust_c_desc">Cedula scanned and OCR'd, no Padron cross-check, no biometrics. Useful for non-binding workflows.</p>
+        <div class="trust-tier">
+          <span class="trust-tier-badge">C</span>
+          <div class="trust-tier-content">
+            <h3>Document only</h3>
+            <p data-i18n="desktop.trust_c_desc">Cedula scanned and OCR'd, no Padron cross-check, no biometrics. Useful for non-binding workflows.</p>
+          </div>
         </div>
-        <div class="card">
-          <h3>D &nbsp;<small style="color: #94a3b8;">Self-declared</small></h3>
-          <p data-i18n="desktop.trust_d_desc">Holder-asserted data with no external verification. Always labeled, never silently upgraded.</p>
+        <div class="trust-tier">
+          <span class="trust-tier-badge">D</span>
+          <div class="trust-tier-content">
+            <h3>Self-declared</h3>
+            <p data-i18n="desktop.trust_d_desc">Holder-asserted data with no external verification. Always labeled, never silently upgraded.</p>
+          </div>
         </div>
       </div>
     </div>
@@ -244,6 +263,8 @@ const structuredData = [
       </p>
 
       <div class="grid-3">
+        <h3 style="grid-column: 1 / -1; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-accent); margin: 0;">Core Applications</h3>
+
         <div class="card">
           <h3>attestto-desktop</h3>
           <p>The Station itself. Vault, signer, verifier, proctor, mesh node — all in one Electron app.</p>
@@ -254,6 +275,8 @@ const structuredData = [
           <p>The browser-side verification engine. Same code runs at verify.attestto.com and inside the Station.</p>
           <p><a href="https://github.com/Attestto-com/verify" style="color: var(--color-accent, #22d3a8); font-weight: 600;">github.com/Attestto-com/verify →</a></p>
         </div>
+        <h3 style="grid-column: 1 / -1; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-accent); margin: var(--space-sm) 0 0;">Infrastructure</h3>
+
         <div class="card">
           <h3>id-wallet-adapter</h3>
           <p>The open wallet handoff protocol that bridges browser pages, the extension, and the Station.</p>
@@ -264,6 +287,8 @@ const structuredData = [
           <p>The libp2p mesh node. Blind-courier transport, Public ledger anchoring, peer discovery.</p>
           <p><a href="https://github.com/Attestto-com/attestto-mesh" style="color: var(--color-accent, #22d3a8); font-weight: 600;">github.com/Attestto-com/attestto-mesh →</a></p>
         </div>
+        <h3 style="grid-column: 1 / -1; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-accent); margin: var(--space-sm) 0 0;">Security</h3>
+
         <div class="card">
           <h3>attestto-trust</h3>
           <p>Independent public mirror of national CA roots — a reference, never a replacement for the issuing authority.</p>
@@ -294,5 +319,45 @@ const structuredData = [
       </div>
     </div>
   </section>
+
+  <style>
+    .trust-ladder {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+      max-width: 48rem;
+    }
+
+    .trust-tier {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--space-md);
+      padding: var(--space-md);
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: 12px;
+    }
+
+    .trust-tier-badge {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--color-accent);
+      min-width: 3rem;
+      text-align: center;
+      flex-shrink: 0;
+    }
+
+    .trust-tier-content h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 0.25rem;
+    }
+
+    .trust-tier-content p {
+      font-size: 0.875rem;
+      color: var(--color-ink-muted);
+      margin: 0;
+    }
+  </style>
 
 </Base>

@@ -78,7 +78,7 @@ const structuredData = [
       <div class="section-label" data-i18n="downloads.apps_label">Apps</div>
       <h2 class="section-title" data-i18n="downloads.apps_title">Applications</h2>
       <p class="section-desc" data-i18n="downloads.apps_desc">Install Station on your desktop for verification, signing, and mesh networking. Open the App on your phone for credentials and exams. Every surface connects to the same identity.</p>
-      <div class="grid-2">
+      <div class="apps-grid">
         <!-- App (PWA) -->
         <div class="card">
           <span class="tag tag-mobile">PWA</span>
@@ -125,6 +125,19 @@ const structuredData = [
     </div>
   </section>
 
+  <style>
+    .apps-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-md);
+      margin-top: var(--space-md);
+    }
+
+    @media (max-width: 768px) {
+      .apps-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+
   <!-- Web apps (dark) -->
   <section id="web" class="section-dark">
     <div class="container">
@@ -167,6 +180,7 @@ const structuredData = [
       <h2 class="section-title" data-i18n="downloads.dev_title">SDKs and open source</h2>
       <p class="section-desc" data-i18n="downloads.dev_desc">Integrate credential verification, decentralized identity, and verifiable schemas in your application. Everything is open source on GitHub.</p>
       <div class="grid-3">
+        <h3 style="grid-column: 1 / -1; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-accent); margin: 0;">Schemas &amp; Specs</h3>
         <div class="card">
           <span class="tag tag-sdk">SDK</span>
           <h3>cr-vc-schemas</h3>
@@ -175,6 +189,13 @@ const structuredData = [
           <div class="dl-links"><a href="https://github.com/Attestto-com/cr-vc-schemas" class="dl-btn">GitHub</a></div>
         </div>
         <div class="card">
+          <span class="tag tag-sdk">Spec</span>
+          <h3>did-sns-spec</h3>
+          <p>DID method specification for Solana Name Service domains.</p>
+          <div class="dl-links"><a href="https://github.com/Attestto-com/did-sns-spec" class="dl-btn">GitHub</a></div>
+        </div>
+        <h3 style="grid-column: 1 / -1; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-accent); margin: 0; margin-top: var(--space-sm);">Identity &amp; Wallet</h3>
+        <div class="card">
           <span class="tag tag-sdk">SDK</span>
           <h3>cr-vc-sdk</h3>
           <p>Typed SDK for issuing and verifying Costa Rica credentials.</p>
@@ -182,22 +203,10 @@ const structuredData = [
           <div class="dl-links"><a href="https://github.com/Attestto-com/cr-vc-sdk" class="dl-btn">GitHub</a></div>
         </div>
         <div class="card">
-          <span class="tag tag-sdk">Spec</span>
-          <h3>did-sns-spec</h3>
-          <p>DID method specification for Solana Name Service domains.</p>
-          <div class="dl-links"><a href="https://github.com/Attestto-com/did-sns-spec" class="dl-btn">GitHub</a></div>
-        </div>
-        <div class="card">
           <span class="tag tag-sdk">Bridge</span>
           <h3>vLEI-Solana-Bridge</h3>
           <p>On-chain vLEI attestations with Groth16 zero-knowledge proofs.</p>
           <div class="dl-links"><a href="https://github.com/Attestto-com/vLei-Solana-Bridge" class="dl-btn">GitHub</a></div>
-        </div>
-        <div class="card">
-          <span class="tag tag-sdk">Network</span>
-          <h3>attestto-mesh</h3>
-          <p>P2P data mesh over libp2p — encrypted state-sync for sovereign identity.</p>
-          <div class="dl-links"><a href="https://github.com/Attestto-com/attestto-mesh" class="dl-btn">GitHub</a></div>
         </div>
         <div class="card">
           <span class="tag tag-sdk">Wallet</span>
@@ -210,6 +219,13 @@ const structuredData = [
           <h3>@attestto/trust</h3>
           <p>Trust store — hash-pinned X.509 CA certificates for national PKIs. Multi-jurisdiction. ESM exports.</p>
           <div class="dl-links"><a href="https://github.com/Attestto-com/attestto-trust" class="dl-btn">GitHub</a></div>
+        </div>
+        <h3 style="grid-column: 1 / -1; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-accent); margin: 0; margin-top: var(--space-sm);">Infrastructure</h3>
+        <div class="card">
+          <span class="tag tag-sdk">Network</span>
+          <h3>attestto-mesh</h3>
+          <p>P2P data mesh over libp2p — encrypted state-sync for sovereign identity.</p>
+          <div class="dl-links"><a href="https://github.com/Attestto-com/attestto-mesh" class="dl-btn">GitHub</a></div>
         </div>
         <div class="card">
           <span class="tag tag-sdk">Component</span>

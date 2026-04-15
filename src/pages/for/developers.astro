@@ -46,7 +46,7 @@ const moduleInterfaceHtml = `<pre><span class="kw">interface</span> <span class=
     <div class="container">
       <div class="hero-text">
         <h1 data-i18n="dev.hero_title">The credential infrastructure layer.<br><em>Fork it, extend it, ship it.</em></h1>
-        <p class="lead" data-i18n="dev.hero_lead">Attestto is sovereign identity infrastructure. You build modules on top. Citizens use your module. You earn 60% of every transaction fee. The platform handles identity, verification, and distribution.</p>
+        <p class="lead" data-i18n="dev.hero_lead">Attestto is sovereign identity infrastructure. You build modules on top. Citizens use your module. You earn a revenue share on every transaction. The platform handles identity, verification, and distribution.</p>
         <div class="hero-actions">
           <a href="#sdk" class="btn btn-primary" data-i18n="dev.hero_cta1">Read the SDK</a>
           <a href="#build-this" class="btn btn-secondary" data-i18n="dev.hero_cta2">See what to build</a>
@@ -223,210 +223,145 @@ const moduleInterfaceHtml = `<pre><span class="kw">interface</span> <span class=
     <div class="container">
       <div class="section-label" data-i18n="dev.bounty_label">BUILD THIS</div>
       <h2 class="section-title" data-i18n="dev.bounty_title">Unsolved problems waiting for builders</h2>
-      <p class="section-desc" data-i18n="dev.bounty_desc">Each card is a real problem affecting real people. Full specs are written. You build the module, you earn 60% of transaction fees. Forever.</p>
+      <p class="section-desc" data-i18n="dev.bounty_desc">Each card is a real problem affecting real people. Full specs are written. You build the module, you earn a revenue share on every transaction your module generates.</p>
 
       <div class="bounty-grid">
 
         <div class="bounty-card">
           <span class="bounty-tier tier-medium">Medium</span>
           <h4>HealthOS</h4>
-          <p class="bounty-problem">5M Costa Ricans are entitled to universal healthcare but can't navigate CCSS appointments, medication rights, or disability appeals.</p>
+          <p class="bounty-problem">Citizens entitled to universal healthcare can't navigate appointments, medication rights, or disability appeals. Health literacy tools with on-device LLM guidance.</p>
           <div class="bounty-meta">
             <span class="bounty-tag">VCs</span>
             <span class="bounty-tag">LLM</span>
             <span class="bounty-tag">CR</span>
           </div>
-          <p class="bounty-revenue">8 tools. Health navigation + literacy. No external API required.</p>
         </div>
 
         <div class="bounty-card">
           <span class="bounty-tier tier-medium">Medium</span>
           <h4>NotarialOS</h4>
-          <p class="bounty-problem">8,000 notaries must file biweekly digital indices by Dec 2026. Currently 300-800 manual field entries per fortnight.</p>
+          <p class="bounty-problem">Notaries must file digital indices by law, but current processes involve hundreds of manual field entries per cycle. Automate submission with credential-backed identity.</p>
           <div class="bounty-meta">
             <span class="bounty-tag">VCs</span>
             <span class="bounty-tag">Firma Digital</span>
-            <span class="bounty-tag">PKCS#11</span>
             <span class="bounty-tag">CR</span>
           </div>
-          <p class="bounty-revenue">Per-submission fee + SaaS per notary. ~8,000 addressable users.</p>
         </div>
 
         <div class="bounty-card">
           <span class="bounty-tier tier-easy">Easy</span>
           <h4>FinancialInclusion</h4>
-          <p class="bounty-problem">68% of CR adults lack basic financial literacy. Most sign credit contracts without understanding the real cost of debt.</p>
+          <p class="bounty-problem">Most people sign credit contracts without understanding the real cost of debt. Build financial literacy paths, calculators, and contract analysis tools.</p>
           <div class="bounty-meta">
             <span class="bounty-tag">LLM</span>
             <span class="bounty-tag">Mastery</span>
             <span class="bounty-tag">VCs</span>
-            <span class="bounty-tag">CR</span>
           </div>
-          <p class="bounty-revenue">8 learning paths + 7 calculators + contract analyzer. BCCR rate feed (public API).</p>
         </div>
 
         <div class="bounty-card">
           <span class="bounty-tier tier-medium">Medium</span>
           <h4>MigrationOS</h4>
-          <p class="bounty-problem">45K+ unresolved migration files and 220K+ pending asylum cases in CR. Migrants spend $500-$2,000 on lawyers for deterministic processes.</p>
+          <p class="bounty-problem">Migrants spend thousands on lawyers for processes that are largely deterministic. Build status trackers, rights guides, and document navigators.</p>
           <div class="bounty-meta">
             <span class="bounty-tag">DIDs</span>
             <span class="bounty-tag">VCs</span>
             <span class="bounty-tag">LLM</span>
-            <span class="bounty-tag">CR</span>
           </div>
-          <p class="bounty-revenue">6 tools: status tracker, rights guide, DIMEX navigator, asylum prep.</p>
         </div>
 
         <div class="bounty-card">
           <span class="bounty-tier tier-medium">Medium</span>
           <h4>CreditOS</h4>
-          <p class="bounty-problem">~800K CR adults with consistent income are invisible to credit bureaus. Rejected or charged high rates despite being reliable.</p>
+          <p class="bounty-problem">People with consistent income are invisible to credit bureaus. Build privacy-preserving credit profiles from verifiable credential history.</p>
           <div class="bounty-meta">
             <span class="bounty-tag">VCs</span>
             <span class="bounty-tag">ZKP</span>
-            <span class="bounty-tag">Mesh</span>
             <span class="bounty-tag">LATAM</span>
           </div>
-          <p class="bounty-revenue">Per credit profile query from lending institutions. Compounding value.</p>
         </div>
 
         <div class="bounty-card">
           <span class="bounty-tier tier-medium">Medium</span>
           <h4>LaborMarketOS</h4>
-          <p class="bounty-problem">CR's labor market is fragmented across WhatsApp groups. INA certifications exist on paper only. 40% informal workforce has no track record.</p>
+          <p class="bounty-problem">Labor markets fragmented across informal channels. Professional certifications exist on paper only. Build verified job matching with credential-backed track records.</p>
           <div class="bounty-meta">
             <span class="bounty-tag">VCs</span>
             <span class="bounty-tag">Mesh</span>
-            <span class="bounty-tag">CR</span>
           </div>
-          <p class="bounty-revenue">Verified job matching + employer background checks + INA credential verification.</p>
         </div>
 
         <div class="bounty-card">
           <span class="bounty-tier tier-hard">Hard</span>
           <h4>CrossBorderOS</h4>
-          <p class="bounty-problem">CR-Nicaragua remittance corridor: $2B/yr, 3-6% fees. Credentials don't cross borders. Identity isn't portable.</p>
+          <p class="bounty-problem">Remittance corridors charge high fees while credentials don't cross borders. Build portable identity for cross-border verification and low-cost settlement.</p>
           <div class="bounty-meta">
             <span class="bounty-tag">USDC</span>
             <span class="bounty-tag">Solana</span>
             <span class="bounty-tag">VCs</span>
-            <span class="bounty-tag">SIPA</span>
           </div>
-          <p class="bounty-revenue">Sub-1% remittance fee on $2B/yr corridor. Credential verification fees.</p>
         </div>
 
         <div class="bounty-card">
           <span class="bounty-tier tier-hard">Hard</span>
           <h4>CreatorOS</h4>
-          <p class="bounty-problem">Colombian creator industry: $1B/yr. Models keep 15-30 cents per dollar. No portable identity, no piracy protection, no credit access.</p>
+          <p class="bounty-problem">Content creators keep a fraction of their earnings. No portable identity, no piracy protection, no credit access. Build sovereign creator identity.</p>
           <div class="bounty-meta">
             <span class="bounty-tag">DIDs</span>
             <span class="bounty-tag">C2PA</span>
             <span class="bounty-tag">ZKP</span>
-            <span class="bounty-tag">USDC</span>
           </div>
-          <p class="bounty-revenue">Royalty smart contracts, ZK age verification, content provenance.</p>
         </div>
 
         <div class="bounty-card">
           <span class="bounty-tier tier-hard">Hard</span>
           <h4>HumanitarianKit</h4>
-          <p class="bounty-problem">Displaced persons arrive with zero documents. No institutional backing. Community and math are all that remain.</p>
+          <p class="bounty-problem">Displaced persons arrive with zero documents. No institutional backing. Build crisis identity bootstrap using community attestation and mesh networking.</p>
           <div class="bounty-meta">
             <span class="bounty-tag">DIDs</span>
             <span class="bounty-tag">Offline</span>
             <span class="bounty-tag">Mesh</span>
-            <span class="bounty-tag">Global</span>
           </div>
-          <p class="bounty-revenue">Grant-funded Phase 1. Aid disbursement anchoring at scale.</p>
         </div>
 
         <div class="bounty-card">
           <span class="bounty-tier tier-medium">Medium</span>
           <h4>RealEstateOS</h4>
-          <p class="bounty-problem">Foreign buyers and first-time CR buyers lose patrimony through ZMT traps, hidden liens, and environmental restrictions.</p>
+          <p class="bounty-problem">Property buyers lose patrimony through regulatory traps, hidden liens, and environmental restrictions. Build credential-backed due diligence tools.</p>
           <div class="bounty-meta">
             <span class="bounty-tag">VCs</span>
             <span class="bounty-tag">LLM</span>
-            <span class="bounty-tag">CR</span>
           </div>
-          <p class="bounty-revenue">PropertyDID anchoring + due diligence reports + contract analysis.</p>
         </div>
 
         <div class="bounty-card">
           <span class="bounty-tier tier-hard">Hard</span>
           <h4>DataEconomyOS</h4>
-          <p class="bounty-problem">Behavioral data from the ecosystem has commercial value but can't be sold without violating privacy. Users earn nothing from their own data.</p>
+          <p class="bounty-problem">User behavioral data has value but can't be monetized without violating privacy. Build privacy-preserving data aggregation where users control and benefit.</p>
           <div class="bounty-meta">
             <span class="bounty-tag">ZKP</span>
             <span class="bounty-tag">MPC</span>
-            <span class="bounty-tag">Federated</span>
             <span class="bounty-tag">Global</span>
           </div>
-          <p class="bounty-revenue">Per-query fees for privacy-preserving aggregates sold to institutions.</p>
         </div>
 
         <div class="bounty-card">
           <span class="bounty-tier tier-easy">Easy</span>
           <h4>PartnerConnect</h4>
-          <p class="bounty-problem">Identity-verified users are high-value leads for fintechs (Deel $1,500, Coinbase $200, IBKR 20-40% lifetime). No channel exists.</p>
+          <p class="bounty-problem">Identity-verified users are high-value leads for financial services. No consent-based referral channel exists. Build the bridge.</p>
           <div class="bounty-meta">
             <span class="bounty-tag">VCs</span>
             <span class="bounty-tag">KYC</span>
             <span class="bounty-tag">Global</span>
           </div>
-          <p class="bounty-revenue">Direct referral fees $25-$1,500 per conversion + lifetime commission sharing.</p>
         </div>
 
       </div>
 
       <p style="text-align:center;margin-top:2rem;color:var(--color-ink-muted)">
-        <a href="https://github.com/Attestto-com/attestto-app/tree/main/modules" style="color:var(--color-accent);font-weight:600" data-i18n="dev.bounty_cta">Full specs and reference implementation on GitHub &rarr;</a>
+        <a href="https://github.com/Attestto-com/attestto-app/tree/main/modules" style="color:var(--color-accent);font-weight:600" data-i18n="dev.bounty_cta">Reference implementation and module template on GitHub &rarr;</a>
       </p>
-    </div>
-  </section>
-
-  <!-- ECONOMICS -->
-  <section id="economics" class="section-dark">
-    <div class="container">
-      <div class="section-label" data-i18n="dev.econ_label">ECONOMICS</div>
-      <h2 class="section-title" data-i18n="dev.econ_title">You earn 60% of every transaction. Forever.</h2>
-      <p class="section-desc" data-i18n="dev.econ_desc">No upfront cost. No subscription. Build a module, submit it, and earn a majority share of every transaction fee your module generates.</p>
-
-      <div class="fee-split">
-        <div class="fee-bar">
-          <span class="pct">60%</span>
-          <span class="who">You (Builder)</span>
-          <span class="what">Your revenue share</span>
-        </div>
-        <div class="fee-bar">
-          <span class="pct">25%</span>
-          <span class="who">Attestto</span>
-          <span class="what">Platform + infrastructure</span>
-        </div>
-        <div class="fee-bar">
-          <span class="pct">10%</span>
-          <span class="who">Testers</span>
-          <span class="what">Quality assurance</span>
-        </div>
-        <div class="fee-bar">
-          <span class="pct">5%</span>
-          <span class="who">Open</span>
-          <span class="what">Community fund</span>
-        </div>
-      </div>
-
-      <div class="grid-2" style="margin-top:3rem">
-        <div class="card">
-          <h3 data-i18n="dev.econ_example_title">Example: NotarialOS</h3>
-          <p data-i18n="dev.econ_example_desc">8,000 notaries, ~20 filings/month, $2 per filing = $320K/month gross. Your 60% = $192K/month. That's the addressable market for a single Costa Rica module.</p>
-        </div>
-        <div class="card">
-          <h3 data-i18n="dev.econ_sponsor_title">Institutional Sponsors</h3>
-          <p data-i18n="dev.econ_sponsor_desc">When an institution sponsors your module (e.g., a bank sponsors FinancialInclusion), the split adjusts: 50% Attestto / 35% sponsor / 10% testers / 5% open. You negotiate directly with the sponsor.</p>
-        </div>
-      </div>
     </div>
   </section>
 
