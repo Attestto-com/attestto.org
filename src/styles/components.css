@@ -274,9 +274,23 @@ nav .container {
   background: var(--color-surface);
 }
 
+a.card-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  transition: border-color 0.15s, transform 0.15s;
+}
+a.card-link:hover {
+  border-color: var(--color-accent);
+  transform: translateY(-2px);
+}
+
 .section-dark .card {
   background: rgba(255, 255, 255, 0.05);
   border-color: var(--color-dark-border);
+}
+.section-dark a.card-link:hover {
+  border-color: #4ade80;
 }
 
 .section-dark .card h3 { color: #ffffff; }
@@ -1541,8 +1555,89 @@ footer a:hover { color: #ffffff; text-decoration: none; }
   color: #4ade80;
   margin-bottom: 0.5rem;
 }
-.step-card h3 { color: #fff; font-size: 0.9375rem; margin-bottom: 0.25rem; }
+.step-card h3,
+.step-card h4 { color: #fff; font-size: 0.9375rem; margin-bottom: 0.25rem; }
 .step-card p { color: rgba(255,255,255,0.6); font-size: 0.8125rem; line-height: 1.5; }
+.step-card code { background: rgba(255,255,255,0.08); padding: 0.15rem 0.4rem; border-radius: 4px; font-size: 0.8rem; }
+
+/* Light-section step-card overrides */
+.section-light .step-card { background: var(--color-surface); border-color: var(--color-border); }
+.section-light .step-card h3,
+.section-light .step-card h4 { color: var(--color-ink); }
+.section-light .step-card p { color: var(--color-ink-muted); }
+.section-light .step-card code { background: rgba(0,0,0,0.06); color: var(--color-ink); }
+
+/* ── Step number (explicit, overrides ::before counter) ── */
+.step-num {
+  font-family: var(--font-mono);
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--color-ink-muted);
+  margin-bottom: 0.5rem;
+}
+.section-dark .step-num { color: rgba(255,255,255,0.3); }
+
+/* ── Architecture diagram (developer page) ── */
+.arch-diagram {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  overflow: hidden;
+  max-width: 56rem;
+}
+
+.arch-row {
+  display: flex;
+  align-items: stretch;
+  border-bottom: 1px solid var(--color-border);
+}
+.arch-row:last-child { border-bottom: none; }
+
+.layer-label {
+  min-width: 7rem;
+  padding: 1rem 1.25rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-accent);
+  background: rgba(0,0,0,0.02);
+  border-right: 1px solid var(--color-border);
+  display: flex;
+  align-items: center;
+}
+
+.layer-items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding: 1rem 1.25rem;
+  align-items: center;
+}
+
+.layer-items span {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  padding: 0.3rem 0.75rem;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  color: var(--color-ink);
+}
+
+.layer-items span.you {
+  background: var(--color-accent);
+  color: #fff;
+  border-color: var(--color-accent);
+  font-weight: 700;
+}
+
+@media (max-width: 768px) {
+  .arch-row { flex-direction: column; }
+  .layer-label { border-right: none; border-bottom: 1px solid var(--color-border); min-width: auto; }
+}
 
 /* ── Rights callout (ark page) ── */
 .rights-callout {
