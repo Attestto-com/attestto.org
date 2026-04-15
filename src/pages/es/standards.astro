@@ -1,24 +1,25 @@
 ---
-import Base from '../layouts/Base.astro'
+import Base from '../../layouts/Base.astro'
 
 const structuredData = [
   {
     "@context": "https://schema.org",
     "@type": "WebPage",
-    "name": "Attestto Standards — DID Methods & Use Cases",
-    "url": "https://attestto.org/standards",
-    "description": "Two W3C DID methods (did:pki, did:sns), a live universal resolver, and real-world deployment across professional credentials, document signing, and national PKI bridging.",
+    "name": "Estándares Attestto — Métodos DID y Casos de Uso",
+    "url": "https://attestto.org/es/standards",
+    "inLanguage": "es",
+    "description": "Dos métodos DID del W3C (did:pki, did:sns), un resolver universal en producción, y despliegue real en credenciales profesionales, firma de documentos y puente de PKI nacional.",
     "mainEntity": [
       {
         "@type": "DefinedTerm",
         "name": "did:pki",
-        "description": "Read-only DID method that derives DIDs from X.509 CA certificates in national PKI hierarchies",
+        "description": "Método DID de solo lectura que deriva DIDs a partir de certificados X.509 de CAs en jerarquías de PKI nacionales",
         "url": "https://github.com/Attestto-com/did-pki-spec"
       },
       {
         "@type": "DefinedTerm",
         "name": "did:sns",
-        "description": "Alias-anchored DID method using the Solana Name Service",
+        "description": "Método DID anclado en alias usando el Solana Name Service",
         "url": "https://github.com/Attestto-com/did-sns-spec"
       }
     ]
@@ -29,50 +30,50 @@ const structuredData = [
     "mainEntity": [
       {
         "@type": "Question",
-        "name": "What is did:pki?",
+        "name": "¿Qué es did:pki?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "did:pki is a read-only DID method that deterministically derives Decentralized Identifiers from X.509 CA certificates in national Public Key Infrastructures. No registration or on-chain writes are needed — if a government CA certificate exists, it already has a DID. Any conformant resolver will derive the same identifier."
+          "text": "did:pki es un método DID de solo lectura que deriva Identificadores Descentralizados de forma determinista a partir de certificados X.509 de Autoridades Certificadoras en infraestructuras de clave pública nacionales. No requiere registro ni escrituras en cadena — si un certificado de CA gubernamental existe, ya tiene un DID."
         }
       },
       {
         "@type": "Question",
-        "name": "What is did:sns?",
+        "name": "¿Qué es did:sns?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "did:sns is an alias-anchored DID method using the Solana Name Service. It provides human-readable identifiers (like did:sns:attestto) that resolve to DID Documents via on-chain lookup, suitable for organizations and professionals who want a memorable, verifiable identifier."
+          "text": "did:sns es un método DID anclado en alias que utiliza el Solana Name Service. Proporciona identificadores legibles (como did:sns:attestto) que se resuelven a DID Documents mediante consulta on-chain, ideal para organizaciones y profesionales que quieren un identificador memorable y verificable."
         }
       },
       {
         "@type": "Question",
-        "name": "How does the Attestto resolver work?",
+        "name": "¿Cómo funciona el resolver de Attestto?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "The Attestto resolver at resolver.attestto.com is a unified HTTP endpoint that resolves both did:pki and did:sns identifiers. It conforms to the DIF Universal Resolver interface and returns W3C DID Resolution Results with public keys, certificate metadata, and PKI hierarchy information."
+          "text": "El resolver en resolver.attestto.com es un endpoint HTTP unificado que resuelve identificadores did:pki y did:sns. Cumple con la interfaz del DIF Universal Resolver y retorna resultados de resolución W3C DID con claves públicas, metadatos de certificados e información de jerarquía PKI."
         }
       },
       {
         "@type": "Question",
-        "name": "Why not use eIDAS Trusted Lists or Adobe AATL instead of did:pki?",
+        "name": "¿Por qué no usar listas de confianza eIDAS o Adobe AATL en lugar de did:pki?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "eIDAS Trusted Lists depend on diplomatic agreements per country pair and scale slowly. Adobe AATL depends on a private company's inclusion criteria and you lose sovereignty. Bridge CAs depend on a central authority cross-signing. did:pki uses deterministic derivation from the certificate itself — no registration, no agreements, no vendor dependency."
+          "text": "Las listas eIDAS dependen de acuerdos diplomáticos entre cada par de países y escalan lentamente. Adobe AATL depende de los criterios de inclusión de una empresa privada y se pierde la soberanía. Las CAs puente dependen de una autoridad central que firma cruzadamente. did:pki usa derivación determinista del propio certificado — sin registro, sin acuerdos, sin dependencia de proveedores."
         }
       },
       {
         "@type": "Question",
-        "name": "Which countries does did:pki support?",
+        "name": "¿Qué países soporta did:pki?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Costa Rica's full BCCR/MICITT PKI hierarchy is live. Spain (FNMT), Brazil (ICP-Brasil), and the United States (Federal PKI) are planned. Adding a country means adding its CA certificates to the open-source attestto-trust repository."
+          "text": "La jerarquía PKI completa de Costa Rica (BCCR/MICITT) está en producción. España (FNMT), Brasil (ICP-Brasil) y Estados Unidos (Federal PKI) están planificados. Agregar un país significa agregar sus certificados de CA al repositorio open-source attestto-trust."
         }
       },
       {
         "@type": "Question",
-        "name": "Are did:pki and did:sns on the W3C standards track?",
+        "name": "¿Están did:pki y did:sns en la vía de estándares del W3C?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Yes. did:pki is registered via W3C DID Extensions PR #697 and did:sns via PR #674. Both methods are also submitted to the DIF Universal Resolver (PR #542). The specifications are open source and publicly auditable."
+          "text": "Sí. did:pki está registrado mediante W3C DID Extensions PR #697 y did:sns mediante PR #674. Ambos métodos también están registrados en el DIF Universal Resolver (PR #542). Las especificaciones son open source y auditables públicamente."
         }
       }
     ]
@@ -82,35 +83,45 @@ const structuredData = [
     "@type": "BreadcrumbList",
     "itemListElement": [
       { "@type": "ListItem", "position": 1, "name": "Attestto", "item": "https://attestto.org" },
-      { "@type": "ListItem", "position": 2, "name": "Standards", "item": "https://attestto.org/standards" }
+      { "@type": "ListItem", "position": 2, "name": "Estándares", "item": "https://attestto.org/es/standards" }
     ]
   }
 ]
 ---
 
 <Base
-  title="Standards — Attestto DID Methods & Use Cases"
+  title="Estándares — Métodos DID y Casos de Uso de Attestto"
   structuredData={structuredData}
-  description="Two W3C DID methods (did:pki, did:sns), a live universal resolver, and real-world deployment across professional credentials, document signing, and national PKI bridging."
-  canonicalPath="/standards"
-  ogTitle="Attestto Standards — DID Methods & Use Cases"
-  ogDescription="Open DID methods bridging national PKI and decentralized identity. Live resolver, W3C standards-track, real deployments."
+  description="Dos métodos DID del W3C (did:pki, did:sns), un resolver universal en producción, y despliegue real en credenciales profesionales, firma de documentos y puente de PKI nacional."
+  canonicalPath="/es/standards"
+  ogTitle="Estándares Attestto — Métodos DID y Casos de Uso"
+  ogDescription="Métodos DID abiertos que conectan PKI nacional con identidad descentralizada. Resolver en producción, estándares W3C, despliegues reales."
   navVariant="standards"
   footerVariant="default"
-  footerTagline="Open standards for sovereign identity. W3C and DIF standards-track."
+  footerTagline="Estándares abiertos para identidad soberana. Estándares W3C y DIF."
+  lang="es"
 >
   <Fragment slot="head">
-    <meta name="keywords" content="DID method, did:pki, did:sns, W3C, DIF Universal Resolver, verifiable credentials, PKI bridge, cross-border verification, decentralized identity, X.509" />
+    <link rel="alternate" hreflang="es" href="https://attestto.org/es/standards" />
+    <link rel="alternate" hreflang="en" href="https://attestto.org/standards" />
+    <link rel="alternate" hreflang="x-default" href="https://attestto.org/standards" />
+    <meta property="og:locale" content="es_CR" />
+    <meta property="og:locale:alternate" content="en_US" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Estándares Attestto — Métodos DID y Casos de Uso" />
+    <meta name="twitter:description" content="Métodos DID abiertos que conectan PKI nacional con identidad descentralizada. Resolver en producción, estándares W3C, despliegues reales." />
+    <meta name="twitter:image" content="https://attestto.org/og-image.png" />
+    <meta name="keywords" content="método DID, did:pki, did:sns, W3C, DIF Universal Resolver, credenciales verificables, puente PKI, verificación transfronteriza, identidad descentralizada, X.509" />
   </Fragment>
   <!-- Hero -->
   <section class="story-highlight" style="padding: var(--space-xl) 0 var(--space-lg);">
     <div class="container">
       <div class="story-content">
-        <div class="story-label" data-i18n="standards.hero_label">W3C Standards Track</div>
-        <h1 class="story-title" data-i18n="standards.hero_title">Open DID methods for real-world identity</h1>
+        <div class="story-label">Estándares W3C</div>
+        <h1 class="story-title">Métodos DID abiertos para identidad real</h1>
         <div class="story-text">
-          <p data-i18n="standards.hero_p1">Attestto develops and maintains two Decentralized Identifier methods &mdash; both on the W3C standards track, both with live resolvers, both open source.</p>
-          <p data-i18n="standards.hero_p2">These methods bridge existing trust infrastructure (national PKIs, domain name systems) into the DID ecosystem <strong>without replacing anything</strong>. Verifiers get interoperable resolution. Issuers keep their existing keys.</p>
+          <p>Attestto desarrolla y mantiene dos métodos de Identificador Descentralizado &mdash; ambos en el proceso de estandarización del W3C, ambos con resolvers en producción, ambos de código abierto.</p>
+          <p>Estos métodos conectan infraestructura de confianza existente (PKIs nacionales, sistemas de nombres de dominio) con el ecosistema DID <strong>sin reemplazar nada</strong>. Los verificadores obtienen resolución interoperable. Los emisores conservan sus claves existentes.</p>
         </div>
       </div>
     </div>
@@ -120,8 +131,8 @@ const structuredData = [
   <section id="methods" class="story-section">
     <div class="container">
       <div class="story-content">
-        <div class="story-label" data-i18n="standards.methods_label">DID Methods</div>
-        <h2 class="story-title" data-i18n="standards.methods_title">Two methods, one resolver</h2>
+        <div class="story-label">Métodos DID</div>
+        <h2 class="story-title">Dos métodos, un resolver</h2>
       </div>
 
       <div class="methods-grid">
@@ -131,21 +142,21 @@ const structuredData = [
             <code class="method-name">did:pki</code>
             <span class="method-version">v0.1.0</span>
           </div>
-          <p class="method-desc">Read-only DID method that deterministically derives DIDs from X.509 CA certificates in national Public Key Infrastructures. No registration, no on-chain writes &mdash; if a government CA exists, it already has a DID.</p>
+          <p class="method-desc">Método DID de solo lectura que deriva DIDs de forma determinista a partir de certificados X.509 de CAs en Infraestructuras de Clave Pública nacionales. Sin registro, sin escrituras on-chain &mdash; si una CA gubernamental existe, ya tiene un DID.</p>
 
           <div class="method-example">
             <code>did:pki:cr:raiz-nacional</code>
-            <span class="method-example-label">Costa Rica Root CA</span>
+            <span class="method-example-label">CA Raíz de Costa Rica</span>
           </div>
           <div class="method-example">
             <code>did:pki:cr:sinpe:persona-fisica</code>
-            <span class="method-example-label">SINPE end-user issuing CA</span>
+            <span class="method-example-label">CA emisora de SINPE para usuario final</span>
           </div>
 
           <ul class="method-links">
-            <li><a href="https://github.com/Attestto-com/did-pki-spec">Specification</a></li>
-            <li><a href="https://github.com/Attestto-com/did-pki-resolver">Reference implementation</a></li>
-            <li><a href="https://github.com/Attestto-com/did-pki-spec/tree/main/test-vectors">Test vectors</a></li>
+            <li><a href="https://github.com/Attestto-com/did-pki-spec">Especificación</a></li>
+            <li><a href="https://github.com/Attestto-com/did-pki-resolver">Implementación de referencia</a></li>
+            <li><a href="https://github.com/Attestto-com/did-pki-spec/tree/main/test-vectors">Vectores de prueba</a></li>
             <li><a href="https://github.com/w3c/did-extensions/pull/697">W3C DID Extensions PR #697</a></li>
           </ul>
         </div>
@@ -156,20 +167,20 @@ const structuredData = [
             <code class="method-name">did:sns</code>
             <span class="method-version">v0.4.0</span>
           </div>
-          <p class="method-desc">Alias-anchored DID method using the Solana Name Service. Human-readable identifiers that resolve to DID Documents via on-chain lookup. Suitable for organizations, professionals, and any entity that wants a memorable, verifiable identifier.</p>
+          <p class="method-desc">Método DID anclado en alias usando el Solana Name Service. Identificadores legibles para humanos que resuelven a DID Documents mediante consulta on-chain. Adecuado para organizaciones, profesionales y cualquier entidad que quiera un identificador memorable y verificable.</p>
 
           <div class="method-example">
             <code>did:sns:attestto</code>
-            <span class="method-example-label">Attestto organization</span>
+            <span class="method-example-label">Organización Attestto</span>
           </div>
           <div class="method-example">
             <code>did:sns:fi-cr</code>
-            <span class="method-example-label">Costa Rica finance authority</span>
+            <span class="method-example-label">Autoridad financiera de Costa Rica</span>
           </div>
 
           <ul class="method-links">
-            <li><a href="https://github.com/Attestto-com/did-sns-spec">Specification</a></li>
-            <li><a href="https://github.com/Attestto-com/attestto-did-resolver">Reference implementation</a></li>
+            <li><a href="https://github.com/Attestto-com/did-sns-spec">Especificación</a></li>
+            <li><a href="https://github.com/Attestto-com/attestto-did-resolver">Implementación de referencia</a></li>
             <li><a href="https://github.com/w3c/did-extensions/pull/674">W3C DID Extensions PR #674</a></li>
           </ul>
         </div>
@@ -181,10 +192,10 @@ const structuredData = [
   <section id="resolver" class="story-highlight">
     <div class="container">
       <div class="story-content">
-        <div class="story-label" data-i18n="standards.resolver_label">Live Infrastructure</div>
-        <h2 class="story-title" data-i18n="standards.resolver_title">Universal resolver</h2>
+        <div class="story-label">Infraestructura en producción</div>
+        <h2 class="story-title">Resolver universal</h2>
         <div class="story-text">
-          <p>A unified HTTP endpoint resolving both <code>did:pki</code> and <code>did:sns</code> identifiers. Conforms to the <a href="https://github.com/decentralized-identity/universal-resolver" style="color: #4ade80;">DIF Universal Resolver</a> interface.</p>
+          <p>Un endpoint HTTP unificado que resuelve identificadores tanto <code>did:pki</code> como <code>did:sns</code>. Conforme a la interfaz del <a href="https://github.com/decentralized-identity/universal-resolver" style="color: #4ade80;">DIF Universal Resolver</a>.</p>
         </div>
 
         <div class="resolver-demo">
@@ -192,13 +203,13 @@ const structuredData = [
             <span class="resolver-method">GET</span>
             <code>https://resolver.attestto.com/1.0/identifiers/did:pki:cr:raiz-nacional</code>
           </div>
-          <p class="resolver-note">Returns a W3C DID Resolution Result with the CA's public key as JWK, certificate metadata, and PKI hierarchy information.</p>
+          <p class="resolver-note">Retorna un DID Resolution Result del W3C con la clave pública de la CA como JWK, metadatos del certificado e información de la jerarquía PKI.</p>
         </div>
 
         <ul class="method-links" style="margin-top: var(--space-md);">
-          <li><a href="https://resolver.attestto.com/1.0/identifiers/did:pki:cr:raiz-nacional">Try it &mdash; CR Root CA</a></li>
-          <li><a href="https://resolver.attestto.com/1.0/identifiers/did:sns:attestto">Try it &mdash; did:sns:attestto</a></li>
-          <li><a href="https://github.com/Attestto-com/attestto-did-resolver">Source code</a></li>
+          <li><a href="https://resolver.attestto.com/1.0/identifiers/did:pki:cr:raiz-nacional">Pruébalo &mdash; CA Raíz CR</a></li>
+          <li><a href="https://resolver.attestto.com/1.0/identifiers/did:sns:attestto">Pruébalo &mdash; did:sns:attestto</a></li>
+          <li><a href="https://github.com/Attestto-com/attestto-did-resolver">Código fuente</a></li>
           <li><a href="https://github.com/decentralized-identity/universal-resolver/pull/542">DIF Universal Resolver PR #542</a></li>
         </ul>
       </div>
@@ -209,10 +220,10 @@ const structuredData = [
   <section id="why" class="story-section">
     <div class="container">
       <div class="story-content">
-        <div class="story-label">The problem</div>
-        <h2 class="story-title">Why existing approaches don't scale</h2>
+        <div class="story-label">El problema</div>
+        <h2 class="story-title">Por qué los enfoques existentes no escalan</h2>
         <div class="story-text">
-          <p>Over 100 countries operate sovereign PKI hierarchies for digital signatures. These hierarchies are islands — a certificate issued by Costa Rica's BCCR is unverifiable in Panama without custom tooling. The industry has tried several approaches, each with structural limitations.</p>
+          <p>Más de 100 países operan jerarquías de PKI soberanas para firmas digitales. Estas jerarquías son islas — un certificado emitido por el BCCR de Costa Rica no es verificable en Panamá sin herramientas a medida. La industria ha intentado varios enfoques, cada uno con limitaciones estructurales.</p>
         </div>
       </div>
 
@@ -220,42 +231,42 @@ const structuredData = [
         <table>
           <thead>
             <tr>
-              <th>Approach</th>
-              <th>Depends on</th>
-              <th>Neutrality</th>
-              <th>Scales?</th>
+              <th>Enfoque</th>
+              <th>Depende de</th>
+              <th>Neutralidad</th>
+              <th>¿Escala?</th>
             </tr>
           </thead>
           <tbody>
             <tr class="highlight-row">
               <td><code>did:pki</code></td>
-              <td>Mathematics (X.509 certificate)</td>
-              <td><strong>Full</strong></td>
-              <td>Automatic — add certs, get DIDs</td>
+              <td>Matemáticas (certificado X.509)</td>
+              <td><strong>Total</strong></td>
+              <td>Automático — agrega certificados, obtén DIDs</td>
             </tr>
             <tr>
-              <td>Trusted Lists (eIDAS)</td>
-              <td>Diplomatic agreements per country pair</td>
-              <td>Medium</td>
-              <td>Slow — requires treaties</td>
+              <td>Listas de confianza (eIDAS)</td>
+              <td>Acuerdos diplomáticos por par de países</td>
+              <td>Media</td>
+              <td>Lento — requiere tratados</td>
             </tr>
             <tr>
-              <td>Vendor programs (Adobe AATL)</td>
-              <td>Private company's inclusion criteria</td>
-              <td>None</td>
-              <td>Easy — but you lose sovereignty</td>
+              <td>Programas de vendor (Adobe AATL)</td>
+              <td>Criterios de inclusión de una empresa privada</td>
+              <td>Ninguna</td>
+              <td>Fácil — pero pierdes soberanía</td>
             </tr>
             <tr>
               <td>Bridge CAs (Federal Bridge)</td>
-              <td>Central authority cross-signing</td>
-              <td>Low</td>
-              <td>Rigid — single point of political control</td>
+              <td>Autoridad central que firma cruzado</td>
+              <td>Baja</td>
+              <td>Rígido — punto único de control político</td>
             </tr>
             <tr>
               <td><code>did:web</code> / <code>did:tdw</code></td>
-              <td>DNS infrastructure + hosting</td>
-              <td>Medium</td>
-              <td>Easy — but domain dies, DID dies</td>
+              <td>Infraestructura DNS + hosting</td>
+              <td>Media</td>
+              <td>Fácil — pero si el dominio muere, el DID muere</td>
             </tr>
           </tbody>
         </table>
@@ -263,8 +274,8 @@ const structuredData = [
 
       <div class="story-content" style="margin-top: var(--space-md);">
         <div class="story-text">
-          <p><code>did:pki</code> takes a fundamentally different approach: <strong>deterministic derivation from the certificate itself</strong>. No registration, no agreements, no vendor dependency, no DNS reliance. If a government CA certificate exists, it already has a DID — any conformant resolver will derive the same identifier and return the same public key.</p>
-          <p>This is the <strong>technical fast lane</strong>: instead of waiting for diplomatic agreements to recognize trust lists, <code>did:pki</code> translates the trust that already exists in the certificate into a language that modern applications (wallets, verifiers, smart contracts) understand natively.</p>
+          <p><code>did:pki</code> toma un enfoque fundamentalmente diferente: <strong>derivación determinista del certificado mismo</strong>. Sin registro, sin acuerdos, sin dependencia de vendors, sin dependencia de DNS. Si un certificado de CA gubernamental existe, ya tiene un DID — cualquier resolver conforme derivará el mismo identificador y retornará la misma clave pública.</p>
+          <p>Esta es la <strong>vía rápida técnica</strong>: en lugar de esperar acuerdos diplomáticos para reconocer listas de confianza, <code>did:pki</code> traduce la confianza que ya existe en el certificado a un lenguaje que las aplicaciones modernas (wallets, verificadores, contratos inteligentes) entienden nativamente.</p>
         </div>
       </div>
     </div>
@@ -274,40 +285,40 @@ const structuredData = [
   <section id="usecases" class="story-section">
     <div class="container">
       <div class="story-content">
-        <div class="story-label" data-i18n="standards.usecases_label">Where DIDs are deployed</div>
-        <h2 class="story-title" data-i18n="standards.usecases_title">Real-world use cases</h2>
+        <div class="story-label">Dónde se despliegan los DIDs</div>
+        <h2 class="story-title">Casos de uso reales</h2>
         <div class="story-text">
-          <p>These aren't hypothetical. Each use case below is either live or in active development, using <code>did:pki</code> and/or <code>did:sns</code> for identity resolution and credential verification.</p>
+          <p>Estos no son hipotéticos. Cada caso de uso a continuación está en producción o en desarrollo activo, usando <code>did:pki</code> y/o <code>did:sns</code> para resolución de identidad y verificación de credenciales.</p>
         </div>
       </div>
 
       <div class="usecases-grid">
         <div class="usecase-card">
           <div class="usecase-icon">&#x1F3DB;</div>
-          <h3>National PKI Bridge</h3>
-          <p>Costa Rica's Firma Digital PKI hierarchy (BCCR/MICITT) mapped to <code>did:pki</code>. Every CA &mdash; root, policy, issuing &mdash; resolvable as a DID Document with its public key. Enables cross-border signature verification without bilateral agreements.</p>
-          <span class="usecase-status live">Live</span>
+          <h3>Puente PKI Nacional</h3>
+          <p>La jerarquía PKI de Firma Digital de Costa Rica (BCCR/MICITT) mapeada a <code>did:pki</code>. Cada CA &mdash; raíz, política, emisora &mdash; resoluble como DID Document con su clave pública. Permite verificación de firmas transfronteriza sin acuerdos bilaterales.</p>
+          <span class="usecase-status live">En vivo</span>
         </div>
 
         <div class="usecase-card">
           <div class="usecase-icon">&#x1F4DD;</div>
-          <h3>Document Signature Verification</h3>
-          <p>PDF documents signed with national digital signatures (PKCS#7/CAdES) verified cryptographically in-browser. The verifier doesn't need to bundle every country's trust store &mdash; the resolver provides the CA public keys.</p>
-          <span class="usecase-status live">Live</span>
+          <h3>Verificación de Firma de Documentos</h3>
+          <p>Documentos PDF firmados con firmas digitales nacionales (PKCS#7/CAdES) verificados criptográficamente en el navegador. El verificador no necesita empaquetar el trust store de cada país &mdash; el resolver provee las claves públicas de las CAs.</p>
+          <span class="usecase-status live">En vivo</span>
         </div>
 
         <div class="usecase-card">
           <div class="usecase-icon">&#x2695;</div>
-          <h3>Professional Credentials</h3>
-          <p>Proposed framework for Verifiable Credentials for licensed professionals (doctors, lawyers, engineers). Professional identity anchored via <code>did:sns</code>, issuing authority verified via <code>did:pki</code> chain.</p>
-          <span class="usecase-status proposed">Proposed</span>
+          <h3>Credenciales Profesionales</h3>
+          <p>Marco propuesto para Credenciales Verificables de profesionales colegiados (médicos, abogados, ingenieros). Identidad profesional anclada vía <code>did:sns</code>, autoridad emisora verificada vía cadena <code>did:pki</code>.</p>
+          <span class="usecase-status proposed">Propuesto</span>
         </div>
 
         <div class="usecase-card">
           <div class="usecase-icon">&#x1F697;</div>
-          <h3>Digital Driving Credentials</h3>
-          <p>Proposed mobile driving license architecture following ISO 18013-5, with mastery-based continuous competency verification. Exam proctoring, decay scoring, and renewal gates &mdash; anchored to the holder's DID.</p>
-          <span class="usecase-status proposed">Proposed</span>
+          <h3>Credenciales Digitales de Conducción</h3>
+          <p>Arquitectura de licencia de conducir móvil propuesta siguiendo ISO 18013-5, con verificación de competencia continua basada en maestría. Exámenes supervisados, puntuación por decaimiento y puertas de renovación &mdash; anclados al DID del titular.</p>
+          <span class="usecase-status proposed">Propuesto</span>
         </div>
 
       </div>
@@ -318,52 +329,51 @@ const structuredData = [
   <section id="coverage" class="story-highlight">
     <div class="container">
       <div class="story-content">
-        <div class="story-label" data-i18n="standards.countries_label">Coverage</div>
-        <h2 class="story-title" data-i18n="standards.countries_title">PKI trust store</h2>
+        <div class="story-label">Cobertura</div>
+        <h2 class="story-title">Trust store de PKI</h2>
         <div class="story-text">
-          <p>The <code>did:pki</code> resolver draws from the <a href="https://github.com/Attestto-com/attestto-trust" style="color: #4ade80;">attestto-trust</a> repository &mdash; an independent, open-source mirror of national PKI root and intermediate CA certificates. Adding a country means adding its certificates to the trust store.</p>
+          <p>El resolver <code>did:pki</code> se alimenta del repositorio <a href="https://github.com/Attestto-com/attestto-trust" style="color: #4ade80;">attestto-trust</a> &mdash; un espejo público independiente de código abierto de certificados de CA raíz e intermedios de PKIs nacionales. Agregar un país significa agregar sus certificados al trust store.</p>
         </div>
 
         <div class="countries-list">
           <div class="country-item active">
             <span class="country-flag">&#x1F1E8;&#x1F1F7;</span>
             <span>Costa Rica</span>
-            <span class="country-status">Live &mdash; BCCR/MICITT full hierarchy</span>
+            <span class="country-status">En vivo &mdash; jerarquía completa BCCR/MICITT</span>
           </div>
           <div class="country-item planned">
             <span class="country-flag">&#x1F1EA;&#x1F1F8;</span>
-            <span>Spain</span>
-            <span class="country-status">Planned &mdash; FNMT certificates</span>
+            <span>España</span>
+            <span class="country-status">Planificado &mdash; certificados FNMT</span>
           </div>
           <div class="country-item planned">
             <span class="country-flag">&#x1F1E7;&#x1F1F7;</span>
-            <span>Brazil</span>
-            <span class="country-status">Planned &mdash; ICP-Brasil hierarchy</span>
+            <span>Brasil</span>
+            <span class="country-status">Planificado &mdash; jerarquía ICP-Brasil</span>
           </div>
           <div class="country-item planned">
             <span class="country-flag">&#x1F1FA;&#x1F1F8;</span>
-            <span>United States</span>
-            <span class="country-status">Planned &mdash; Federal PKI</span>
+            <span>Estados Unidos</span>
+            <span class="country-status">Planificado &mdash; Federal PKI</span>
           </div>
         </div>
 
-        <p class="resolver-note" style="margin-top: var(--space-md);">Want your country's PKI in the trust store? <a href="mailto:open@attestto.com" style="color: #4ade80;">Reach out</a> or <a href="https://github.com/Attestto-com/attestto-trust/pulls" style="color: #4ade80;">submit a PR</a>.</p>
+        <p class="resolver-note" style="margin-top: var(--space-md);">¿Quieres que la PKI de tu país esté en el trust store? <a href="mailto:open@attestto.com" style="color: #4ade80;">Contáctanos</a> o <a href="https://github.com/Attestto-com/attestto-trust/pulls" style="color: #4ade80;">envía un PR</a>.</p>
       </div>
     </div>
   </section>
 
   <!-- CTA -->
-  <!-- CTA -->
   <section class="story-highlight" style="padding: var(--space-lg) 0;">
     <div class="container">
       <div class="cta-banner">
         <div class="cta-banner-text">
-          <h2>Ready to explore?</h2>
-          <p>Browse the source code, read the specs, or try the live resolver.</p>
+          <h2>¿Listo para explorar?</h2>
+          <p>Explora el código fuente, lee las especificaciones o prueba el resolver en producción.</p>
         </div>
         <div class="cta-banner-actions">
-          <a href="https://github.com/Attestto-com" class="cta-primary">View on GitHub &rarr;</a>
-          <a href="https://resolver.attestto.com/1.0/identifiers/did:pki:cr:raiz-nacional" class="cta-secondary">Try the resolver &rarr;</a>
+          <a href="https://github.com/Attestto-com" class="cta-primary">Ver en GitHub &rarr;</a>
+          <a href="https://resolver.attestto.com/1.0/identifiers/did:pki:cr:raiz-nacional" class="cta-secondary">Prueba el resolver &rarr;</a>
         </div>
       </div>
     </div>

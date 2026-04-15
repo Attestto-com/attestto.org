@@ -1,18 +1,58 @@
 ---
 import Base from '../layouts/Base.astro'
 
-const structuredData = {
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  "name": "Attestto",
-  "url": "https://attestto.org",
-  "description": "Open-source sovereign identity infrastructure. Verifiable credentials, decentralized identifiers, and cryptographic verification for governments, professionals, and citizens.",
-  "license": "https://www.apache.org/licenses/LICENSE-2.0",
-  "sameAs": [
-    "https://github.com/Attestto-com",
-    "https://attestto.com"
-  ]
-}
+const structuredData = [
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Attestto",
+    "url": "https://attestto.org",
+    "description": "Open-source sovereign identity infrastructure. Verifiable credentials, decentralized identifiers, and cryptographic verification for governments, professionals, and citizens.",
+    "license": "https://www.apache.org/licenses/LICENSE-2.0",
+    "sameAs": [
+      "https://github.com/Attestto-com",
+      "https://attestto.com"
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is Attestto?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Attestto is open-source sovereign identity infrastructure built on W3C and IETF standards. It lets you verify documents, issue verifiable credentials, and bridge national PKI systems — all without vendor lock-in. Apache 2.0 licensed."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How does Attestto verify documents?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Drop a PDF on verify.attestto.com and it verifies the digital signature entirely in your browser. No file upload, no backend. The verifier checks the certificate chain against national PKI trust anchors and validates document integrity cryptographically."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What are did:pki and did:sns?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "did:pki bridges national PKI certificates into the DID ecosystem — if a government CA exists, it already has a DID. did:sns provides human-readable identifiers via the Solana Name Service. Both are on the W3C standards track with live resolvers at resolver.attestto.com."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is Attestto free to use?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Identity, signature, anchoring, recovery, and verification are free for citizens, forever. Professional credential issuance and the module marketplace have fee structures that fund the free infrastructure."
+        }
+      }
+    ]
+  }
+]
 ---
 
 <Base

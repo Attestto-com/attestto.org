@@ -1,0 +1,398 @@
+---
+import Base from '../../layouts/Base.astro'
+
+const structuredData = [
+  {
+    "@context": "https://schema.org",
+    "@type": "AboutPage",
+    "name": "Por qué existe Attestto",
+    "url": "https://attestto.org/es/why",
+    "inLanguage": "es",
+    "description": "La identidad no debería ser un favor que otorga una autoridad. Puede ser una prueba matemática que llevas contigo."
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "¿Qué es Attestto?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Attestto es infraestructura pública open-source para identidad digital soberana. Proporciona Identificadores Descentralizados (DIDs) compatibles con W3C, Credenciales Verificables, una red mesh peer-to-peer y anclaje en ledger — todo sin servidores centrales ni dependencia de proveedores. Licencia Apache 2.0."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Es gratis Attestto?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Identidad, firma, anclaje, recuperación y verificación son gratis para ciudadanos, para siempre. Las funcionalidades comerciales (emisión de credenciales profesionales, marketplace de módulos) tienen estructuras de tarifas que financian el nivel gratuito."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Qué estándares usa Attestto?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Attestto usa exclusivamente estándares W3C, IETF e ISO: W3C Decentralized Identifiers (DIDs), W3C Verifiable Credentials, e ISO 18013-5 para licencias de conducir digitales. Dos métodos DID (did:pki y did:sns) están en la vía de estándares del W3C. Sin formatos propietarios."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Puede un gobierno hacer fork de Attestto?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Sí. Cada componente es open source bajo licencia Apache 2.0. Cualquier gobierno puede hacer fork de todo el stack y desplegarlo de forma independiente, sin depender de Attestto. Eso es por diseño — la infraestructura pública nunca debería crear dependencia de proveedor."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Cómo protege Attestto la privacidad?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Attestto usa divulgación selectiva por defecto — compartes solo lo necesario. Tus claves están en tu dispositivo, tus datos nunca salen sin tu consentimiento, y la red mesh peer-to-peer verifica credenciales sin contactar un servidor central. Toda credencial puede ser revocada y toda clave eliminada."
+        }
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Attestto", "item": "https://attestto.org" },
+      { "@type": "ListItem", "position": 2, "name": "Por qué", "item": "https://attestto.org/es/why" }
+    ]
+  }
+]
+---
+
+<Base
+  structuredData={structuredData}
+  title="Por qué existe Attestto — La historia detrás de la identidad soberana"
+  description="La identidad no debería ser un favor que otorga una autoridad. Puede ser una prueba matemática que llevas contigo. Por eso existe Attestto."
+  canonicalPath="/es/why"
+  ogTitle="Por qué existe Attestto"
+  ogDescription="La identidad no debería ser un favor que otorga una autoridad. Esta es la historia de por qué construimos infraestructura abierta para identidad soberana."
+  footerVariant="default"
+  lang="es"
+>
+  <Fragment slot="head">
+    <link rel="alternate" hreflang="es" href="https://attestto.org/es/why" />
+    <link rel="alternate" hreflang="en" href="https://attestto.org/why" />
+    <link rel="alternate" hreflang="x-default" href="https://attestto.org/why" />
+    <meta property="og:locale" content="es_CR" />
+    <meta property="og:locale:alternate" content="en_US" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Por qué existe Attestto — Identidad soberana" />
+    <meta name="twitter:description" content="La identidad no debería ser un favor que otorga una autoridad. Puede ser una prueba matemática que llevas contigo. Por eso existe Attestto." />
+    <meta name="twitter:image" content="https://attestto.org/og-image.png" />
+  </Fragment>
+
+  <!-- Hero -->
+  <section class="why-hero">
+    <div class="container">
+      <h1>Tu identidad. Tu prueba.</h1>
+      <p class="lead">Por qué construimos infraestructura abierta para identidad soberana &mdash; y por qué importa que nadie sea su dueño.</p>
+    </div>
+  </section>
+
+  <!-- Section 1: The world as it is -->
+  <section class="story-section">
+    <div class="container">
+      <div class="story-content">
+        <div class="story-label">El mundo como es</div>
+        <h2 class="story-title">La identidad es algo que otro confirma</h2>
+        <div class="story-text">
+          <p>En la mayor parte del mundo, demostrar quién eres significa cargar una tarjeta física, presentarla ante una institución, esperar que la crean y confiar en que quien guarda tus datos no los va a usar mal.</p>
+          <p>Tu identidad existe solo cuando alguien más dice que existe. Una oficina de gobierno. Un banco. Una plataforma. Si pierden tu registro, revocan tu acceso o simplemente cierran por el día &mdash; dejas de ser comprobable.</p>
+        </div>
+        <div class="pullquote">Esto no es un problema de tecnología. Es una decisión de diseño. Y se puede rediseñar.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 2: What goes wrong — cards -->
+  <section class="story-section">
+    <div class="container">
+      <div class="story-content">
+        <div class="story-label">Lo que sale mal</div>
+        <h2 class="story-title">Cuando la identidad depende de otro</h2>
+      </div>
+      <div class="why-problems-grid">
+        <div class="why-problem-card">
+          <div class="why-problem-icon">&#x1F30D;</div>
+          <p>El profesional cuyas credenciales no viajan entre países.</p>
+        </div>
+        <div class="why-problem-card">
+          <div class="why-problem-icon">&#x270D;</div>
+          <p>La familia cuyo apellido fue mal escrito en el Registro Civil &mdash; la mitad existe bajo identidades distintas.</p>
+        </div>
+        <div class="why-problem-card">
+          <div class="why-problem-icon">&#x1F4B0;</div>
+          <p>La pequeña empresa que no puede demostrar que es real ante un socio extranjero sin pagar $15,000 a un intermediario de cumplimiento.</p>
+        </div>
+        <div class="why-problem-card">
+          <div class="why-problem-icon">&#x1F512;</div>
+          <p>El proveedor que encierra a cinco millones de ciudadanos en un sistema de identidad propietario sin exportación, sin interoperabilidad y con una cláusula de renovación que duplica el precio.</p>
+        </div>
+      </div>
+      <div class="story-content" style="margin-top: var(--space-md);">
+        <div class="pullquote">Esto no es hipotético. Está pasando ahora, en los países donde vivimos y construimos.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 3: The insight (dark) -->
+  <section class="story-highlight">
+    <div class="container">
+      <div class="story-content">
+        <div class="story-label">La visión</div>
+        <h2 class="story-title">La identidad no tiene que ser un favor</h2>
+        <div class="story-text">
+          <p><strong>La identidad puede ser una prueba matemática que llevas contigo.</strong> Los W3C Decentralized Identifiers y las Verifiable Credentials lo hacen técnicamente posible. Un par de llaves criptográficas en tu dispositivo. Una credencial firmada por una autoridad en la que eliges confiar. Una prueba que presentas sin revelar más de lo necesario.</p>
+          <p>La tecnología existe. Lo que no existía &mdash; hasta ahora &mdash; era infraestructura abierta para hacerla desplegable. No un producto. No una plataforma. <strong>Infraestructura pública</strong>, como las carreteras o el correo. Cualquiera puede usarla, cualquiera puede verificar, cualquiera puede hacer un fork.</p>
+        </div>
+        <div class="why-cta-inline">
+          <a href="/es/standards" class="cta-primary">Ver los estándares que construimos &rarr;</a>
+          <a href="https://verify.attestto.com" class="cta-secondary">Probar el verificador &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 4: What we built — visual layers -->
+  <section class="story-section">
+    <div class="container">
+      <div class="story-content">
+        <div class="story-label">Lo que construimos</div>
+        <h2 class="story-title">Tres capas, cero servidores centrales</h2>
+      </div>
+      <div class="why-layers">
+        <div class="why-layer">
+          <div class="why-layer-num">01</div>
+          <div class="why-layer-content">
+            <h3>Confianza institucional</h3>
+            <p>Las autoridades existentes (gobiernos, colegios profesionales, universidades) emiten credenciales verificables firmadas con sus propias llaves. No las reemplazamos. Les damos un canal basado en estándares para emitir digitalmente lo que ya emiten en papel.</p>
+          </div>
+        </div>
+        <div class="why-layer">
+          <div class="why-layer-num">02</div>
+          <div class="why-layer-content">
+            <h3>Verificación en malla</h3>
+            <p>Una red peer-to-peer donde cada nodo puede verificar credenciales de forma independiente, sin conexión, sin llamar a un servidor central. El titular de la credencial controla qué comparte y con quién.</p>
+          </div>
+        </div>
+        <div class="why-layer">
+          <div class="why-layer-num">03</div>
+          <div class="why-layer-content">
+            <h3>Anclaje en ledger</h3>
+            <p>Marcas de tiempo criptográficas en un ledger público demuestran que una credencial existió en un momento específico. No el contenido &mdash; solo la prueba de que fue emitida. Inmutable, auditable, independiente de Attestto.</p>
+          </div>
+        </div>
+      </div>
+      <div class="story-content" style="margin-top: var(--space-md);">
+        <div class="pullquote">Cada componente es open source (Apache 2.0). Cada estándar es W3C o IETF. Cualquier gobierno puede hacer fork de todo el stack y nunca depender de nosotros. Ese es el punto.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 5: The number -->
+  <section class="story-highlight why-stat-section">
+    <div class="container">
+      <div class="why-stat">
+        <div class="why-stat-number">100+</div>
+        <div class="why-stat-label">países operan jerarquías PKI soberanas</div>
+        <div class="why-stat-desc">Cada una es una isla. Un certificado emitido por Costa Rica no se puede verificar en Panamá. did:pki las conecta a todas a través de un solo endpoint de resolución.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 6: Commitments (dark) -->
+  <section class="story-highlight">
+    <div class="container">
+      <div class="story-content">
+        <div class="story-label">Lo que nos exigimos</div>
+        <h2 class="story-title">Ocho compromisos, no ocho funcionalidades</h2>
+        <div class="story-text">
+          <p>La infraestructura gana confianza por lo que se niega a hacer, no por lo que promete. Estos no son principios de marketing. Son restricciones que aplicamos en código.</p>
+        </div>
+        <ul class="principles-compact">
+          <li><strong>Soberanía</strong> <span>Tus llaves, tu dispositivo, tus datos. Sin custodios.</span></li>
+          <li><strong>Interoperabilidad</strong> <span>Solo estándares W3C, IETF, ISO. Sin formatos propietarios.</span></li>
+          <li><strong>Privacidad</strong> <span>Divulgación selectiva por defecto. Comparte solo lo necesario.</span></li>
+          <li><strong>Portabilidad total</strong> <span>Haz fork, exporta, migra libremente. Tus datos viajan contigo.</span></li>
+          <li><strong>Reversibilidad</strong> <span>Revoca cualquier credencial. Elimina cualquier llave. Sin rastros permanentes.</span></li>
+          <li><strong>Transparencia</strong> <span>Código abierto, gobernanza abierta, auditoría abierta.</span></li>
+          <li><strong>Neutralidad</strong> <span>Agnóstico de cadena, agnóstico de stack. Tú eliges la tecnología, no nosotros.</span></li>
+          <li><strong>Bien público</strong> <span>Gratis para ciudadanos, para siempre. El comercio paga por el comercio.</span></li>
+        </ul>
+
+        <div class="founder-note">
+          <p>El apellido de mi familia está dividido en el Registro Civil de Costa Rica. Un error administrativo en la inscripción de nacimiento. La mitad de nosotros existe bajo una escritura, la otra mitad bajo otra. Dos identidades legales distintas para la misma familia.</p>
+          <p style="margin-top: 0.75rem;">No construí Attestto porque leí un whitepaper. Lo construí porque yo soy un caso de estudio.</p>
+          <div class="attribution">&mdash; Eduardo Chongkan, fundador</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="story-section" style="padding-bottom: var(--space-xl);">
+    <div class="container">
+      <div class="story-content" style="text-align: center;">
+        <h2 class="story-title">Mira lo que construimos</h2>
+        <div class="cta-row" style="justify-content: center;">
+          <a href="/es/standards" class="cta-primary">Explorar los estándares &rarr;</a>
+          <a href="/ark" class="cta-secondary">Arquitectura &rarr;</a>
+          <a href="https://github.com/Attestto-com" class="cta-secondary">GitHub &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  /* ── Pull Quote ── */
+  .pullquote {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--color-ink);
+    border-left: 3px solid var(--color-accent);
+    padding-left: var(--space-sm);
+    margin-top: var(--space-md);
+    line-height: 1.5;
+  }
+
+  .story-highlight .pullquote {
+    color: #ffffff;
+    border-left-color: #4ade80;
+  }
+
+  /* ── Problem Cards ── */
+  .why-problems-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-sm);
+    margin-top: var(--space-md);
+  }
+
+  .why-problem-card {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 10px;
+    padding: var(--space-sm) var(--space-md);
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-sm);
+  }
+
+  .why-problem-icon {
+    font-size: 1.5rem;
+    flex-shrink: 0;
+    margin-top: 0.15rem;
+  }
+
+  .why-problem-card p {
+    font-size: 0.9375rem;
+    color: var(--color-ink-muted);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  /* ── Inline CTA ── */
+  .why-cta-inline {
+    display: flex;
+    gap: var(--space-sm);
+    margin-top: var(--space-md);
+  }
+
+  /* ── Layer Cards ── */
+  .why-layers {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+    margin-top: var(--space-md);
+  }
+
+  .why-layer {
+    display: flex;
+    gap: var(--space-md);
+    padding: var(--space-md);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 10px;
+  }
+
+  .why-layer-num {
+    font-family: var(--font-mono);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-accent);
+    flex-shrink: 0;
+    line-height: 1;
+    margin-top: 0.2rem;
+  }
+
+  .why-layer-content h3 {
+    font-size: 1.0625rem;
+    font-weight: 700;
+    color: var(--color-ink);
+    margin-bottom: 0.5rem;
+  }
+
+  .why-layer-content p {
+    font-size: 0.9375rem;
+    color: var(--color-ink-muted);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  /* ── Stat Section ── */
+  .why-stat-section {
+    padding: var(--space-lg) 0;
+  }
+
+  .why-stat {
+    text-align: center;
+    max-width: 36rem;
+    margin: 0 auto;
+  }
+
+  .why-stat-number {
+    font-size: clamp(3rem, 8vw, 5rem);
+    font-weight: 800;
+    color: #4ade80;
+    line-height: 1;
+    margin-bottom: var(--space-xs);
+  }
+
+  .why-stat-label {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #ffffff;
+    margin-bottom: var(--space-xs);
+  }
+
+  .why-stat-desc {
+    font-size: 0.9375rem;
+    color: rgba(255, 255, 255, 0.5);
+    line-height: 1.6;
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 768px) {
+    .why-problems-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .why-layer {
+      flex-direction: column;
+      gap: var(--space-xs);
+    }
+
+    .why-cta-inline {
+      flex-direction: column;
+    }
+  }
+</style>

@@ -1,13 +1,69 @@
 ---
 import Base from '../layouts/Base.astro'
 
-const structuredData = {
-  "@context": "https://schema.org",
-  "@type": "AboutPage",
-  "name": "Why Attestto Exists",
-  "url": "https://attestto.org/why",
-  "description": "Identity shouldn't be a favor granted by an authority. It can be a mathematical proof you carry yourself."
-}
+const structuredData = [
+  {
+    "@context": "https://schema.org",
+    "@type": "AboutPage",
+    "name": "Why Attestto Exists",
+    "url": "https://attestto.org/why",
+    "description": "Identity shouldn't be a favor granted by an authority. It can be a mathematical proof you carry yourself."
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is Attestto?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Attestto is open-source public infrastructure for sovereign digital identity. It provides W3C-compliant Decentralized Identifiers (DIDs), Verifiable Credentials, a peer-to-peer mesh network, and ledger anchoring — all without central servers or vendor lock-in. Licensed under Apache 2.0."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is Attestto free?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Identity, signature, anchoring, recovery, and verification are free for citizens, forever. Commerce-layer features (professional credential issuance, module marketplace) have fee structures that fund the free tier."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What standards does Attestto use?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Attestto uses only W3C, IETF, and ISO standards: W3C Decentralized Identifiers (DIDs), W3C Verifiable Credentials, and ISO 18013-5 for mobile driving licenses. Two DID methods (did:pki and did:sns) are on the W3C standards track. No proprietary formats."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can a government fork Attestto?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. Every component is open source under the Apache 2.0 license. Any government can fork the entire stack and deploy it independently, without depending on Attestto. That's by design — public infrastructure should never create vendor dependency."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How does Attestto protect privacy?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Attestto uses selective disclosure by default — you share only what's needed. Your keys stay on your device, your data never leaves without your consent, and the peer-to-peer mesh network verifies credentials without calling a central server. Every credential can be revoked and every key can be deleted."
+        }
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Attestto", "item": "https://attestto.org" },
+      { "@type": "ListItem", "position": 2, "name": "Why", "item": "https://attestto.org/why" }
+    ]
+  }
+]
 ---
 
 <Base
