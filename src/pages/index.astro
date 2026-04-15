@@ -7,12 +7,60 @@ const structuredData = [
     "@type": "Organization",
     "name": "Attestto",
     "url": "https://attestto.org",
+    "logo": "https://attestto.org/logo.svg",
     "description": "Open-source sovereign identity infrastructure. Verifiable credentials, decentralized identifiers, and cryptographic verification for governments, professionals, and citizens.",
     "license": "https://www.apache.org/licenses/LICENSE-2.0",
+    "foundingDate": "2024",
     "sameAs": [
       "https://github.com/Attestto-com",
-      "https://attestto.com"
+      "https://attestto.com",
+      "https://www.npmjs.com/org/attestto",
+      "https://resolver.attestto.com",
+      "https://spec.attestto.com"
     ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Attestto",
+    "url": "https://attestto.org",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": {
+        "@type": "EntryPoint",
+        "urlTemplate": "https://attestto.org/?q={search_term_string}"
+      },
+      "query-input": "required name=search_term_string"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "How to verify a digitally signed document",
+    "description": "Verify the digital signature, certificate chain, and document integrity of any signed PDF — entirely in your browser.",
+    "step": [
+      {
+        "@type": "HowToStep",
+        "name": "Open the verifier",
+        "text": "Go to verify.attestto.com in any modern browser. No account or installation needed.",
+        "url": "https://verify.attestto.com"
+      },
+      {
+        "@type": "HowToStep",
+        "name": "Drop your PDF",
+        "text": "Drag and drop a digitally signed PDF onto the page. The file stays in your browser — nothing is uploaded."
+      },
+      {
+        "@type": "HowToStep",
+        "name": "Review the results",
+        "text": "The verifier checks the cryptographic signature, validates the certificate chain against national PKI trust anchors, and confirms document integrity. Results appear in seconds."
+      }
+    ],
+    "totalTime": "PT30S",
+    "tool": {
+      "@type": "HowToTool",
+      "name": "Any modern web browser"
+    }
   },
   {
     "@context": "https://schema.org",
