@@ -25,24 +25,18 @@ import Callout from '../../../components/docs/Callout.astro'
   </div>
 
   <div class="playground-panel active" id="panel-verify">
-    <iframe
-      src="https://verify.attestto.com"
-      class="playground-iframe"
-      title="Attestto Verify — live demo"
-      loading="lazy"
-      sandbox="allow-scripts allow-same-origin allow-popups"
-    ></iframe>
+    <div class="playground-embed">
+      <attestto-verify></attestto-verify>
+    </div>
   </div>
 
   <div class="playground-panel" id="panel-sign">
-    <iframe
-      src="https://verify.attestto.com/sign/"
-      class="playground-iframe"
-      title="Attestto Sign — live demo"
-      loading="lazy"
-      sandbox="allow-scripts allow-same-origin allow-popups"
-    ></iframe>
+    <div class="playground-embed">
+      <attestto-sign></attestto-sign>
+    </div>
   </div>
+
+  <script is:inline type="module" src="https://unpkg.com/@attestto/verify"></script>
 
   <script is:inline>
     document.addEventListener('DOMContentLoaded', function () {
@@ -101,12 +95,12 @@ import Callout from '../../../components/docs/Callout.astro'
       display: block;
     }
 
-    .playground-iframe {
-      width: 100%;
-      height: 600px;
+    .playground-embed {
+      padding: 2rem;
       border: 1px solid var(--docs-border, #2a2a3a);
       border-radius: 8px;
       background: #0f0f1a;
+      min-height: 300px;
     }
   </style>
 
@@ -137,7 +131,7 @@ import Callout from '../../../components/docs/Callout.astro'
   </div>
 
   <h2>Embed this on your own site</h2>
-  <p>Once <code>@attestto/verify</code> is published to npm, embedding is just two HTML elements and one script tag:</p>
+  <p>Embedding is just one script tag and the components you need:</p>
 
   <div class="docs-code-block">
     <div class="docs-code-header">
@@ -150,9 +144,9 @@ import Callout from '../../../components/docs/Callout.astro'
   </div>
 
   <Callout type="info">
-    <strong>npm publish pending.</strong> The <code>@attestto/verify</code> package is built and tested
-    but not yet published to npm. Until then, use the iframe approach above or
-    <a href="https://verify.attestto.com">verify.attestto.com</a> directly.
+    <strong>Live on npm.</strong> <code>@attestto/verify</code> is available at
+    <a href="https://www.npmjs.com/package/@attestto/verify">npmjs.com/package/@attestto/verify</a>
+    and via CDN at <a href="https://unpkg.com/@attestto/verify">unpkg.com/@attestto/verify</a>.
   </Callout>
 
   <h2>See also</h2>
