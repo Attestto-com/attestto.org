@@ -1,6 +1,6 @@
 ---
 interface Props {
-  variant?: 'default' | 'ark' | 'ark-sub' | 'developers' | 'downloads' | 'revisor' | 'standards'
+  variant?: 'default' | 'revisor' | 'standards'
 }
 
 const { variant = 'default' } = Astro.props
@@ -19,50 +19,9 @@ const navConfigs: Record<string, { brandSuffix: string; brandI18n?: string; link
     links: [
       { href: '/why', label: 'Why', i18n: 'nav.why', color: '#fbbf24', weight: '600' },
       { href: '/standards', label: 'Standards', i18n: 'nav.standards' },
-      { href: '/ark', label: 'Architecture', i18n: 'nav.architecture' },
+      { href: '/ark', label: 'Ark', i18n: 'nav.architecture' },
       { href: '/downloads', label: 'Downloads', i18n: 'nav.downloads' },
       { href: 'https://github.com/Attestto-com', label: 'GitHub' },
-    ],
-  },
-  ark: {
-    brandSuffix: 'Open · Ark',
-    brandI18n: 'nav.open_ark',
-    links: [
-      { href: '/ark/#components', label: 'Components', i18n: 'nav.components' },
-      { href: '/ark/desktop', label: 'Station', i18n: 'nav.station' },
-      { href: '/ark/#governance', label: 'Governance', i18n: 'nav.governance' },
-    ],
-  },
-  'ark-sub': {
-    brandSuffix: 'Open · Ark',
-    brandI18n: 'nav.open_ark',
-    links: [
-      { href: '/ark/#components', label: 'Components', i18n: 'nav.components' },
-      { href: '/ark/desktop', label: 'Station', i18n: 'nav.station' },
-      { href: '/ark/#how', label: 'How it works' },
-      { href: '/ark/#governance', label: 'Governance', i18n: 'nav.governance' },
-    ],
-  },
-  developers: {
-    brandSuffix: 'Developers',
-    brandI18n: 'nav.developers',
-    links: [
-      { href: '#start', label: 'Start Here', i18n: 'devnav.start' },
-      { href: '#architecture', label: 'Architecture', i18n: 'devnav.arch' },
-      { href: '#sdk', label: 'Module SDK', i18n: 'devnav.sdk' },
-      { href: '#bounties', label: 'Build This', i18n: 'devnav.bounties' },
-      { href: '#economics', label: 'Economics', i18n: 'devnav.economics' },
-      { href: 'https://github.com/Attestto-com', label: 'GitHub' },
-    ],
-  },
-  downloads: {
-    brandSuffix: 'Downloads',
-    brandI18n: 'nav.downloads',
-    links: [
-      { href: '#apps', label: 'Apps', i18n: 'nav.apps' },
-      { href: '#web', label: 'Web', i18n: 'nav.web' },
-      { href: '/ark', label: 'Ark', i18n: 'nav.ark', color: '#4fc3f7', weight: '600' },
-      { href: 'https://attestto.com', label: 'attestto.com' },
     ],
   },
   revisor: {
@@ -70,7 +29,7 @@ const navConfigs: Record<string, { brandSuffix: string; brandI18n?: string; link
     links: [
       { href: '/cr', label: 'Costa Rica' },
       { href: 'https://github.com/Attestto-com/attestto-pliego-reviewer', label: 'GitHub' },
-      { href: 'https://app.attestto.com', label: 'Verificador Online', color: '#4ade80', weight: '600' },
+      { href: 'https://app.attestto.com', label: 'Verificador', color: '#4ade80', weight: '600' },
     ],
   },
   standards: {
@@ -90,8 +49,8 @@ const config = navConfigs[variant]
 <nav>
   <div class="container">
     <a href="/" class="nav-brand">
-      <img src="/logo-full-white.svg" alt="Attestto Open" class="nav-logo" />
-      <span data-i18n={config.brandI18n}>{config.brandSuffix}</span>
+      <img src="/logo-full-white.svg" alt="Attestto" class="nav-logo" />
+      {config.brandSuffix && <span data-i18n={config.brandI18n}>{config.brandSuffix}</span>}
     </a>
     {config.links.length > 0 && (
       <ul class="nav-links">
