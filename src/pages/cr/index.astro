@@ -1,8 +1,21 @@
 ---
 import Base from '../../layouts/Base.astro'
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Attestto · Costa Rica",
+  "url": "https://attestto.org/cr",
+  "inLanguage": "es",
+  "about": {
+    "@type": "Thing",
+    "name": "Infraestructura de identidad digital soberana para Costa Rica"
+  }
+}
 ---
 
 <Base
+  structuredData={structuredData}
   title="Attestto · Costa Rica — Infraestructura de Identidad Digital Soberana"
   description="Cómo Attestto implementa los principios de neutralidad tecnológica, protección de datos y estándares abiertos mandados por el marco legal costarricense."
   canonicalPath="/cr"

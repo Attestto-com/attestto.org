@@ -41,6 +41,12 @@ const {
 } = Astro.props
 
 const canonicalUrl = `https://attestto.org${canonicalPath}`
+
+// Pages that have Spanish equivalents in /es/
+const pagesWithSpanish = ['', '/ark', '/ark/desktop', '/ark/patrons', '/downloads']
+const hasSpanish = pagesWithSpanish.includes(canonicalPath)
+const enUrl = `https://attestto.org${canonicalPath}`
+const esUrl = `https://attestto.org/es${canonicalPath}`
 ---
 
 <!DOCTYPE html>
@@ -79,6 +85,13 @@ const canonicalUrl = `https://attestto.org${canonicalPath}`
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- hreflang -->
+  {hasSpanish && (
+    <link rel="alternate" hreflang="en" href={enUrl} />
+    <link rel="alternate" hreflang="es" href={esUrl} />
+    <link rel="alternate" hreflang="x-default" href={enUrl} />
+  )}
 
   <slot name="head" />
 </head>
