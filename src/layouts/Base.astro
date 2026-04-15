@@ -42,6 +42,62 @@ const {
 
 const canonicalUrl = `https://attestto.org${canonicalPath}`
 
+// ── Breadcrumb generation ──
+// Maps path segments to display names (EN + ES)
+const breadcrumbNames: Record<string, Record<string, string>> = {
+  en: {
+    '': 'Attestto',
+    'ark': 'Architecture',
+    'desktop': 'Desktop',
+    'patrons': 'Patrons',
+    'standards': 'Standards',
+    'why': 'Why',
+    'downloads': 'Downloads',
+    'cr': 'Costa Rica',
+    'for': 'For',
+    'developers': 'Developers',
+  },
+  es: {
+    '': 'Attestto',
+    'ark': 'Arquitectura',
+    'desktop': 'Escritorio',
+    'patrons': 'Patrocinadores',
+    'standards': 'Estándares',
+    'why': 'Por qué',
+    'downloads': 'Descargas',
+    'cr': 'Costa Rica',
+    'for': 'Para',
+    'developers': 'Desarrolladores',
+  },
+}
+
+// Build breadcrumb items from canonical path
+const isSpanish = lang === 'es'
+const pathForBreadcrumb = isSpanish ? canonicalPath.replace(/^\/es/, '') : canonicalPath
+const segments = pathForBreadcrumb.split('/').filter(Boolean)
+const names = breadcrumbNames[lang] || breadcrumbNames['en']
+
+interface BreadcrumbItem {
+  label: string
+  href: string
+}
+
+const breadcrumbs: BreadcrumbItem[] = [
+  { label: 'Attestto', href: isSpanish ? '/es' : '/' },
+]
+
+let buildPath = isSpanish ? '/es' : ''
+for (const seg of segments) {
+  buildPath += `/${seg}`
+  breadcrumbs.push({
+    label: names[seg] || seg.charAt(0).toUpperCase() + seg.slice(1),
+    href: buildPath,
+  })
+}
+
+// Only show breadcrumb if we're deeper than homepage
+const showBreadcrumb = breadcrumbs.length > 1
+
 // Pages that have Spanish equivalents in /es/
 const pagesWithSpanish = ['', '/ark', '/ark/desktop', '/ark/patrons', '/downloads', '/standards', '/why']
 const hasSpanish = pagesWithSpanish.includes(canonicalPath)
@@ -99,6 +155,24 @@ const esUrl = `https://attestto.org/es${canonicalPath}`
   <header>
     <Nav variant={navVariant} />
   </header>
+
+  {showBreadcrumb && (
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <div class="container">
+        <ol class="breadcrumb-list">
+          {breadcrumbs.map((item, i) => (
+            <li class="breadcrumb-item">
+              {i < breadcrumbs.length - 1 ? (
+                <a href={item.href}>{item.label}</a>
+              ) : (
+                <span aria-current="page">{item.label}</span>
+              )}
+            </li>
+          ))}
+        </ol>
+      </div>
+    </nav>
+  )}
 
   <main>
     <slot />
