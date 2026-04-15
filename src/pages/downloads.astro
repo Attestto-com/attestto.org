@@ -1,15 +1,27 @@
 ---
 import Base from '../layouts/Base.astro'
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Attestto",
+  "url": "https://attestto.org/downloads",
+  "applicationCategory": "SecurityApplication",
+  "operatingSystem": "Cross-platform",
+  "license": "https://www.apache.org/licenses/LICENSE-2.0",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+}
 ---
 
 <Base
+  structuredData={structuredData}
   title="Downloads — Attestto"
   description="Download the desktop app, install the browser extension, open the web apps, or integrate Attestto SDKs."
   canonicalPath="/downloads"
   ogTitle="Downloads — Attestto"
   ogDescription="All Attestto apps and tools in one place. Desktop, mobile, extension, verification, signing, and SDKs."
-  navVariant="downloads"
-  footerVariant="downloads"
+  navVariant="default"
+  footerVariant="default"
 >
 
   <!-- Hero (dark) -->

@@ -1,6 +1,6 @@
 ---
 interface Props {
-  variant?: 'default' | 'ark' | 'ark-sub' | 'developers' | 'downloads' | 'revisor'
+  variant?: 'default' | 'revisor'
   tagline?: string
   notes?: string[]
 }
@@ -13,86 +13,49 @@ interface FooterLink {
   i18n?: string
 }
 
-const footerConfigs: Record<string, { brand: string; links: FooterLink[] }> = {
+const footerConfigs: Record<string, { brand: string; description: string; links: FooterLink[] }> = {
   default: {
-    brand: 'Attestto Open',
+    brand: 'Attestto',
+    description: 'Open-source identity infrastructure built on W3C and IETF standards. Technologically neutral, sovereign by design.',
     links: [
       { href: '/why', label: 'Why' },
-      { href: '/ark', label: 'Ark', i18n: 'footer.ark' },
-      { href: '/downloads', label: 'Downloads', i18n: 'footer.downloads' },
-      { href: 'https://attestto.com', label: 'attestto.com' },
-      { href: 'https://github.com/Attestto-com', label: 'GitHub', i18n: 'footer.github' },
-      { href: 'mailto:open@attestto.com', label: 'Contact', i18n: 'footer.contact' },
-    ],
-  },
-  ark: {
-    brand: 'Attestto Open · Ark',
-    links: [
-      { href: '/', label: 'Open', i18n: 'footer.open' },
-      { href: '/downloads', label: 'Downloads', i18n: 'footer.downloads' },
-      { href: 'https://attestto.com', label: 'attestto.com' },
-      { href: 'https://github.com/Attestto-com', label: 'GitHub', i18n: 'footer.github' },
-      { href: 'https://trust.attestto.com', label: 'Trust mirror' },
-      { href: 'mailto:open@attestto.com', label: 'Contact', i18n: 'footer.contact' },
-    ],
-  },
-  'ark-sub': {
-    brand: 'Attestto Open · Ark',
-    links: [
-      { href: '/', label: 'Attestto Open', i18n: 'footer.open' },
-      { href: '/ark', label: 'Ark', i18n: 'footer.ark' },
-      { href: '/ark/desktop', label: 'Station' },
-      { href: '/downloads', label: 'Downloads', i18n: 'footer.downloads' },
-      { href: 'https://attestto.com', label: 'attestto.com' },
-      { href: 'https://github.com/Attestto-com', label: 'GitHub', i18n: 'footer.github' },
-    ],
-  },
-  developers: {
-    brand: 'Attestto Open',
-    links: [
-      { href: '/', label: 'Attestto Open', i18n: 'footer.open' },
-      { href: '/ark', label: 'Ark', i18n: 'footer.ark' },
+      { href: '/standards', label: 'Standards' },
+      { href: '/ark', label: 'Architecture', i18n: 'nav.architecture' },
       { href: '/downloads', label: 'Downloads', i18n: 'footer.downloads' },
       { href: 'https://github.com/Attestto-com', label: 'GitHub', i18n: 'footer.github' },
-    ],
-  },
-  downloads: {
-    brand: 'Attestto',
-    links: [
-      { href: '/', label: 'Attestto Open', i18n: 'footer.open' },
-      { href: '/ark', label: 'Ark', i18n: 'footer.ark' },
-      { href: '/downloads', label: 'Downloads', i18n: 'footer.downloads' },
-      { href: 'https://attestto.com', label: 'attestto.com' },
-      { href: 'https://github.com/Attestto-com', label: 'GitHub', i18n: 'footer.github' },
+      { href: 'mailto:open@attestto.com', label: 'open@attestto.com' },
     ],
   },
   revisor: {
     brand: 'Attestto · Revisor de Pliegos',
+    description: 'Herramienta de verificación de pliegos de licitación.',
     links: [
-      { href: '/', label: 'Attestto Open' },
+      { href: '/', label: 'Attestto' },
       { href: 'https://github.com/Attestto-com/attestto-pliego-reviewer', label: 'Código fuente' },
-      { href: 'mailto:open@attestto.com', label: 'Contacto' },
+      { href: 'mailto:open@attestto.com', label: 'open@attestto.com' },
     ],
   },
 }
 
 const config = footerConfigs[variant]
+const year = new Date().getFullYear()
 ---
 
 <footer>
-  <div class="container">
-    <span>{config.brand}</span>
-    <div class="footer-links">
+  <div class="container footer-grid">
+    <div class="footer-brand">
+      <img src="/logo-full-white.svg" alt="Attestto" class="footer-logo" />
+      <p class="footer-desc">{config.description}</p>
+    </div>
+    <nav class="footer-nav" aria-label="Footer navigation">
       {config.links.map((link) => (
         <a href={link.href} data-i18n={link.i18n}>{link.label}</a>
       ))}
-    </div>
+    </nav>
   </div>
   {tagline && (
     <div class="container footer-tagline-wrap">
-      <p class="footer-tagline">
-        {tagline}
-      </p>
+      <p class="footer-tagline">{tagline}</p>
     </div>
   )}
   {notes.length > 0 && (
@@ -102,4 +65,7 @@ const config = footerConfigs[variant]
       ))}
     </div>
   )}
+  <div class="container footer-bottom">
+    <span>&copy; {year} Attestto Inc. Apache 2.0</span>
+  </div>
 </footer>

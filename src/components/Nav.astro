@@ -1,6 +1,6 @@
 ---
 interface Props {
-  variant?: 'default' | 'ark' | 'ark-sub' | 'developers' | 'downloads' | 'revisor'
+  variant?: 'default' | 'ark' | 'ark-sub' | 'developers' | 'downloads' | 'revisor' | 'standards'
 }
 
 const { variant = 'default' } = Astro.props
@@ -15,16 +15,13 @@ interface NavLink {
 
 const navConfigs: Record<string, { brandSuffix: string; brandI18n?: string; links: NavLink[] }> = {
   default: {
-    brandSuffix: 'Open',
-    brandI18n: 'nav.open',
+    brandSuffix: '',
     links: [
       { href: '/why', label: 'Why', i18n: 'nav.why', color: '#fbbf24', weight: '600' },
-      { href: '/#principles', label: 'Principles', i18n: 'nav.principles' },
-      { href: '/#architecture', label: 'Architecture', i18n: 'nav.architecture' },
-      { href: '/#source', label: 'Source', i18n: 'nav.source' },
-      { href: '/#adopt', label: 'Adopt', i18n: 'nav.adopt' },
-      { href: '/#governance', label: 'Governance', i18n: 'nav.governance' },
-      { href: '/ark', label: 'Ark', i18n: 'nav.ark', color: '#4fc3f7', weight: '600' },
+      { href: '/standards', label: 'Standards', i18n: 'nav.standards' },
+      { href: '/ark', label: 'Architecture', i18n: 'nav.architecture' },
+      { href: '/downloads', label: 'Downloads', i18n: 'nav.downloads' },
+      { href: 'https://github.com/Attestto-com', label: 'GitHub' },
     ],
   },
   ark: {
@@ -74,6 +71,17 @@ const navConfigs: Record<string, { brandSuffix: string; brandI18n?: string; link
       { href: '/cr', label: 'Costa Rica' },
       { href: 'https://github.com/Attestto-com/attestto-pliego-reviewer', label: 'GitHub' },
       { href: 'https://app.attestto.com', label: 'Verificador Online', color: '#4ade80', weight: '600' },
+    ],
+  },
+  standards: {
+    brandSuffix: 'Standards',
+    brandI18n: 'nav.standards',
+    links: [
+      { href: '/standards#methods', label: 'DID Methods' },
+      { href: '/standards#resolver', label: 'Resolver' },
+      { href: '/standards#usecases', label: 'Use Cases' },
+      { href: '/standards#coverage', label: 'Coverage' },
+      { href: 'https://github.com/Attestto-com', label: 'GitHub' },
     ],
   },
 }

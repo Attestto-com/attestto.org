@@ -1,0 +1,662 @@
+---
+import Base from '../layouts/Base.astro'
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Attestto Standards — DID Methods & Use Cases",
+  "url": "https://attestto.org/standards",
+  "description": "Two W3C DID methods (did:pki, did:sns), a live universal resolver, and real-world deployment across professional credentials, document signing, and national PKI bridging.",
+  "mainEntity": [
+    {
+      "@type": "DefinedTerm",
+      "name": "did:pki",
+      "description": "Read-only DID method that derives DIDs from X.509 CA certificates in national PKI hierarchies",
+      "url": "https://github.com/Attestto-com/did-pki-spec"
+    },
+    {
+      "@type": "DefinedTerm",
+      "name": "did:sns",
+      "description": "Alias-anchored DID method using the Solana Name Service",
+      "url": "https://github.com/Attestto-com/did-sns-spec"
+    }
+  ]
+}
+---
+
+<Base
+  title="Standards — Attestto DID Methods & Use Cases"
+  structuredData={structuredData}
+  description="Two W3C DID methods (did:pki, did:sns), a live universal resolver, and real-world deployment across professional credentials, document signing, and national PKI bridging."
+  canonicalPath="/standards"
+  ogTitle="Attestto Standards — DID Methods & Use Cases"
+  ogDescription="Open DID methods bridging national PKI and decentralized identity. Live resolver, W3C standards-track, real deployments."
+  navVariant="standards"
+  footerVariant="default"
+  footerTagline="Open standards for sovereign identity. W3C and DIF standards-track."
+>
+  <!-- Hero -->
+  <section class="story-highlight" style="padding: var(--space-xl) 0 var(--space-lg);">
+    <div class="container">
+      <div class="story-content">
+        <div class="story-label" data-i18n="standards.hero_label">W3C Standards Track</div>
+        <h1 class="story-title" data-i18n="standards.hero_title">Open DID methods for real-world identity</h1>
+        <div class="story-text">
+          <p data-i18n="standards.hero_p1">Attestto develops and maintains two Decentralized Identifier methods &mdash; both on the W3C standards track, both with live resolvers, both open source.</p>
+          <p data-i18n="standards.hero_p2">These methods bridge existing trust infrastructure (national PKIs, domain name systems) into the DID ecosystem <strong>without replacing anything</strong>. Verifiers get interoperable resolution. Issuers keep their existing keys.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DID Methods -->
+  <section id="methods" class="story-section">
+    <div class="container">
+      <div class="story-content">
+        <div class="story-label" data-i18n="standards.methods_label">DID Methods</div>
+        <h2 class="story-title" data-i18n="standards.methods_title">Two methods, one resolver</h2>
+      </div>
+
+      <div class="methods-grid">
+        <!-- did:pki -->
+        <div class="method-card">
+          <div class="method-header">
+            <code class="method-name">did:pki</code>
+            <span class="method-version">v0.1.0</span>
+          </div>
+          <p class="method-desc">Read-only DID method that deterministically derives DIDs from X.509 CA certificates in national Public Key Infrastructures. No registration, no on-chain writes &mdash; if a government CA exists, it already has a DID.</p>
+
+          <div class="method-example">
+            <code>did:pki:cr:raiz-nacional</code>
+            <span class="method-example-label">Costa Rica Root CA</span>
+          </div>
+          <div class="method-example">
+            <code>did:pki:cr:sinpe:persona-fisica</code>
+            <span class="method-example-label">SINPE end-user issuing CA</span>
+          </div>
+
+          <ul class="method-links">
+            <li><a href="https://github.com/Attestto-com/did-pki-spec">Specification</a></li>
+            <li><a href="https://github.com/Attestto-com/did-pki-resolver">Reference implementation</a></li>
+            <li><a href="https://github.com/Attestto-com/did-pki-spec/tree/main/test-vectors">Test vectors</a></li>
+            <li><a href="https://github.com/w3c/did-extensions/pull/697">W3C DID Extensions PR #697</a></li>
+          </ul>
+        </div>
+
+        <!-- did:sns -->
+        <div class="method-card">
+          <div class="method-header">
+            <code class="method-name">did:sns</code>
+            <span class="method-version">v0.4.0</span>
+          </div>
+          <p class="method-desc">Alias-anchored DID method using the Solana Name Service. Human-readable identifiers that resolve to DID Documents via on-chain lookup. Suitable for organizations, professionals, and any entity that wants a memorable, verifiable identifier.</p>
+
+          <div class="method-example">
+            <code>did:sns:attestto</code>
+            <span class="method-example-label">Attestto organization</span>
+          </div>
+          <div class="method-example">
+            <code>did:sns:fi-cr</code>
+            <span class="method-example-label">Costa Rica finance authority</span>
+          </div>
+
+          <ul class="method-links">
+            <li><a href="https://github.com/Attestto-com/did-sns-spec">Specification</a></li>
+            <li><a href="https://github.com/Attestto-com/attestto-did-resolver">Reference implementation</a></li>
+            <li><a href="https://github.com/w3c/did-extensions/pull/674">W3C DID Extensions PR #674</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Live Resolver -->
+  <section id="resolver" class="story-highlight">
+    <div class="container">
+      <div class="story-content">
+        <div class="story-label" data-i18n="standards.resolver_label">Live Infrastructure</div>
+        <h2 class="story-title" data-i18n="standards.resolver_title">Universal resolver</h2>
+        <div class="story-text">
+          <p>A unified HTTP endpoint resolving both <code>did:pki</code> and <code>did:sns</code> identifiers. Conforms to the <a href="https://github.com/decentralized-identity/universal-resolver" style="color: #4ade80;">DIF Universal Resolver</a> interface.</p>
+        </div>
+
+        <div class="resolver-demo">
+          <div class="resolver-url">
+            <span class="resolver-method">GET</span>
+            <code>https://resolver.attestto.com/1.0/identifiers/did:pki:cr:raiz-nacional</code>
+          </div>
+          <p class="resolver-note">Returns a W3C DID Resolution Result with the CA's public key as JWK, certificate metadata, and PKI hierarchy information.</p>
+        </div>
+
+        <ul class="method-links" style="margin-top: var(--space-md);">
+          <li><a href="https://resolver.attestto.com/1.0/identifiers/did:pki:cr:raiz-nacional">Try it &mdash; CR Root CA</a></li>
+          <li><a href="https://resolver.attestto.com/1.0/identifiers/did:sns:attestto">Try it &mdash; did:sns:attestto</a></li>
+          <li><a href="https://github.com/Attestto-com/attestto-did-resolver">Source code</a></li>
+          <li><a href="https://github.com/decentralized-identity/universal-resolver/pull/542">DIF Universal Resolver PR #542</a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why did:pki — Comparison -->
+  <section id="why" class="story-section">
+    <div class="container">
+      <div class="story-content">
+        <div class="story-label">The problem</div>
+        <h2 class="story-title">Why existing approaches don't scale</h2>
+        <div class="story-text">
+          <p>Over 100 countries operate sovereign PKI hierarchies for digital signatures. These hierarchies are islands — a certificate issued by Costa Rica's BCCR is unverifiable in Panama without custom tooling. The industry has tried several approaches, each with structural limitations.</p>
+        </div>
+      </div>
+
+      <div class="comparison-table">
+        <table>
+          <thead>
+            <tr>
+              <th>Approach</th>
+              <th>Depends on</th>
+              <th>Neutrality</th>
+              <th>Scales?</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="highlight-row">
+              <td><code>did:pki</code></td>
+              <td>Mathematics (X.509 certificate)</td>
+              <td><strong>Full</strong></td>
+              <td>Automatic — add certs, get DIDs</td>
+            </tr>
+            <tr>
+              <td>Trusted Lists (eIDAS)</td>
+              <td>Diplomatic agreements per country pair</td>
+              <td>Medium</td>
+              <td>Slow — requires treaties</td>
+            </tr>
+            <tr>
+              <td>Vendor programs (Adobe AATL)</td>
+              <td>Private company's inclusion criteria</td>
+              <td>None</td>
+              <td>Easy — but you lose sovereignty</td>
+            </tr>
+            <tr>
+              <td>Bridge CAs (Federal Bridge)</td>
+              <td>Central authority cross-signing</td>
+              <td>Low</td>
+              <td>Rigid — single point of political control</td>
+            </tr>
+            <tr>
+              <td><code>did:web</code> / <code>did:tdw</code></td>
+              <td>DNS infrastructure + hosting</td>
+              <td>Medium</td>
+              <td>Easy — but domain dies, DID dies</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="story-content" style="margin-top: var(--space-md);">
+        <div class="story-text">
+          <p><code>did:pki</code> takes a fundamentally different approach: <strong>deterministic derivation from the certificate itself</strong>. No registration, no agreements, no vendor dependency, no DNS reliance. If a government CA certificate exists, it already has a DID — any conformant resolver will derive the same identifier and return the same public key.</p>
+          <p>This is the <strong>technical fast lane</strong>: instead of waiting for diplomatic agreements to recognize trust lists, <code>did:pki</code> translates the trust that already exists in the certificate into a language that modern applications (wallets, verifiers, smart contracts) understand natively.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Use Cases -->
+  <section id="usecases" class="story-section">
+    <div class="container">
+      <div class="story-content">
+        <div class="story-label" data-i18n="standards.usecases_label">Where DIDs are deployed</div>
+        <h2 class="story-title" data-i18n="standards.usecases_title">Real-world use cases</h2>
+        <div class="story-text">
+          <p>These aren't hypothetical. Each use case below is either live or in active development, using <code>did:pki</code> and/or <code>did:sns</code> for identity resolution and credential verification.</p>
+        </div>
+      </div>
+
+      <div class="usecases-grid">
+        <div class="usecase-card">
+          <div class="usecase-icon">&#x1F3DB;</div>
+          <h3>National PKI Bridge</h3>
+          <p>Costa Rica's Firma Digital PKI hierarchy (BCCR/MICITT) mapped to <code>did:pki</code>. Every CA &mdash; root, policy, issuing &mdash; resolvable as a DID Document with its public key. Enables cross-border signature verification without bilateral agreements.</p>
+          <span class="usecase-status live">Live</span>
+        </div>
+
+        <div class="usecase-card">
+          <div class="usecase-icon">&#x1F4DD;</div>
+          <h3>Document Signature Verification</h3>
+          <p>PDF documents signed with national digital signatures (PKCS#7/CAdES) verified cryptographically in-browser. The verifier doesn't need to bundle every country's trust store &mdash; the resolver provides the CA public keys.</p>
+          <span class="usecase-status live">Live</span>
+        </div>
+
+        <div class="usecase-card">
+          <div class="usecase-icon">&#x2695;</div>
+          <h3>Professional Credentials</h3>
+          <p>Proposed framework for Verifiable Credentials for licensed professionals (doctors, lawyers, engineers). Professional identity anchored via <code>did:sns</code>, issuing authority verified via <code>did:pki</code> chain.</p>
+          <span class="usecase-status proposed">Proposed</span>
+        </div>
+
+        <div class="usecase-card">
+          <div class="usecase-icon">&#x1F697;</div>
+          <h3>Digital Driving Credentials</h3>
+          <p>Proposed mobile driving license architecture following ISO 18013-5, with mastery-based continuous competency verification. Exam proctoring, decay scoring, and renewal gates &mdash; anchored to the holder's DID.</p>
+          <span class="usecase-status proposed">Proposed</span>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Countries -->
+  <section id="coverage" class="story-highlight">
+    <div class="container">
+      <div class="story-content">
+        <div class="story-label" data-i18n="standards.countries_label">Coverage</div>
+        <h2 class="story-title" data-i18n="standards.countries_title">PKI trust store</h2>
+        <div class="story-text">
+          <p>The <code>did:pki</code> resolver draws from the <a href="https://github.com/Attestto-com/attestto-trust" style="color: #4ade80;">attestto-trust</a> repository &mdash; an independent, open-source mirror of national PKI root and intermediate CA certificates. Adding a country means adding its certificates to the trust store.</p>
+        </div>
+
+        <div class="countries-list">
+          <div class="country-item active">
+            <span class="country-flag">&#x1F1E8;&#x1F1F7;</span>
+            <span>Costa Rica</span>
+            <span class="country-status">Live &mdash; BCCR/MICITT full hierarchy</span>
+          </div>
+          <div class="country-item planned">
+            <span class="country-flag">&#x1F1EA;&#x1F1F8;</span>
+            <span>Spain</span>
+            <span class="country-status">Planned &mdash; FNMT certificates</span>
+          </div>
+          <div class="country-item planned">
+            <span class="country-flag">&#x1F1E7;&#x1F1F7;</span>
+            <span>Brazil</span>
+            <span class="country-status">Planned &mdash; ICP-Brasil hierarchy</span>
+          </div>
+          <div class="country-item planned">
+            <span class="country-flag">&#x1F1FA;&#x1F1F8;</span>
+            <span>United States</span>
+            <span class="country-status">Planned &mdash; Federal PKI</span>
+          </div>
+        </div>
+
+        <p class="resolver-note" style="margin-top: var(--space-md);">Want your country's PKI in the trust store? <a href="mailto:open@attestto.com" style="color: #4ade80;">Reach out</a> or <a href="https://github.com/Attestto-com/attestto-trust/pulls" style="color: #4ade80;">submit a PR</a>.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <!-- CTA -->
+  <section class="story-highlight" style="padding: var(--space-lg) 0;">
+    <div class="container">
+      <div class="cta-banner">
+        <div class="cta-banner-text">
+          <h2>Ready to explore?</h2>
+          <p>Browse the source code, read the specs, or try the live resolver.</p>
+        </div>
+        <div class="cta-banner-actions">
+          <a href="https://github.com/Attestto-com" class="cta-primary">View on GitHub &rarr;</a>
+          <a href="https://resolver.attestto.com/1.0/identifiers/did:pki:cr:raiz-nacional" class="cta-secondary">Try the resolver &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  /* ── Method Cards ── */
+  .methods-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-md);
+    margin-top: var(--space-md);
+  }
+
+  .method-card {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+    padding: var(--space-md);
+  }
+
+  .method-header {
+    display: flex;
+    align-items: baseline;
+    gap: var(--space-sm);
+    margin-bottom: var(--space-sm);
+  }
+
+  .method-name {
+    font-family: var(--font-mono);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-accent);
+  }
+
+  .method-version {
+    font-size: 0.875rem;
+    color: var(--color-ink-muted);
+    font-weight: 500;
+  }
+
+  .method-desc {
+    color: var(--color-ink-muted);
+    font-size: 0.9375rem;
+    line-height: 1.6;
+    margin-bottom: var(--space-sm);
+  }
+
+  .method-example {
+    background: #f8fafc;
+    border: 1px solid var(--color-border);
+    border-radius: 6px;
+    padding: 0.5rem 0.75rem;
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: baseline;
+    gap: var(--space-sm);
+  }
+
+  .method-example code {
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    color: var(--color-ink);
+    font-weight: 600;
+  }
+
+  .method-example-label {
+    font-size: 0.8125rem;
+    color: var(--color-ink-subtle);
+  }
+
+  .method-links {
+    list-style: none;
+    padding: 0;
+    margin-top: var(--space-sm);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.5rem;
+  }
+
+  .method-links a {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--color-accent);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.15s;
+  }
+
+  .method-links a:hover {
+    border-bottom-color: var(--color-accent);
+  }
+
+  .story-highlight .method-links a {
+    color: #4ade80;
+  }
+
+  .story-highlight .method-links a:hover {
+    border-bottom-color: #4ade80;
+  }
+
+  /* ── Resolver Demo ── */
+  .resolver-demo {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    padding: var(--space-sm) var(--space-md);
+    margin-top: var(--space-md);
+  }
+
+  .resolver-url {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    overflow-x: auto;
+  }
+
+  .resolver-method {
+    background: #4ade80;
+    color: #0a1628;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    flex-shrink: 0;
+  }
+
+  .resolver-url code {
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    color: rgba(255, 255, 255, 0.9);
+    white-space: nowrap;
+  }
+
+  .resolver-note {
+    font-size: 0.8125rem;
+    color: rgba(255, 255, 255, 0.5);
+    margin-top: 0.5rem;
+  }
+
+  /* ── Use Case Cards ── */
+  .usecases-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-md);
+    margin-top: var(--space-md);
+  }
+
+  .usecase-card {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+    padding: var(--space-md);
+    position: relative;
+  }
+
+  .usecase-icon {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .usecase-card h3 {
+    font-size: 1.0625rem;
+    font-weight: 700;
+    color: var(--color-ink);
+    margin-bottom: 0.5rem;
+  }
+
+  .usecase-card p {
+    font-size: 0.875rem;
+    color: var(--color-ink-muted);
+    line-height: 1.6;
+  }
+
+  .usecase-card code {
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    background: #f1f5f9;
+    padding: 0.1rem 0.3rem;
+    border-radius: 3px;
+  }
+
+  .usecase-status {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 0.15rem 0.5rem;
+    border-radius: 4px;
+    margin-top: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .usecase-status.live {
+    background: #dcfce7;
+    color: #15803d;
+  }
+
+  .usecase-status.poc {
+    background: #dbeafe;
+    color: #1e40af;
+  }
+
+  .usecase-status.building {
+    background: #fef3c7;
+    color: #92400e;
+  }
+
+  .usecase-status.proposed {
+    background: #f3e8ff;
+    color: #6b21a8;
+  }
+
+  .usecase-status.planned {
+    background: #f1f5f9;
+    color: #475569;
+  }
+
+  /* ── Countries ── */
+  .countries-list {
+    margin-top: var(--space-md);
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .country-item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    padding: 0.75rem 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: 500;
+  }
+
+  .country-item.active {
+    border-color: #4ade80;
+  }
+
+  .country-flag {
+    font-size: 1.25rem;
+  }
+
+  .country-status {
+    margin-left: auto;
+    font-size: 0.8125rem;
+    color: rgba(255, 255, 255, 0.5);
+    font-weight: 400;
+  }
+
+  /* ── CTA Banner ── */
+  .cta-banner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-md);
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: var(--space-md) var(--space-lg);
+  }
+
+  .cta-banner h2 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 0.25rem;
+  }
+
+  .cta-banner p {
+    font-size: 0.875rem;
+    color: rgba(255, 255, 255, 0.5);
+    margin: 0;
+  }
+
+  .cta-banner-actions {
+    display: flex;
+    gap: var(--space-sm);
+    flex-shrink: 0;
+  }
+
+  @media (max-width: 768px) {
+    .cta-banner { flex-direction: column; text-align: center; }
+    .cta-banner-actions { width: 100%; justify-content: center; }
+  }
+
+  /* ── Comparison Table ── */
+  .comparison-table {
+    margin-top: var(--space-md);
+    overflow-x: auto;
+  }
+
+  .comparison-table table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9375rem;
+  }
+
+  .comparison-table th {
+    text-align: left;
+    padding: 0.75rem 1rem;
+    font-weight: 600;
+    color: var(--color-ink);
+    border-bottom: 2px solid var(--color-border);
+    font-size: 0.8125rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .comparison-table td {
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid var(--color-border);
+    color: var(--color-ink-muted);
+  }
+
+  .comparison-table code {
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--color-ink);
+  }
+
+  .highlight-row {
+    background: #f0fdf4;
+  }
+
+  .highlight-row td {
+    color: var(--color-ink);
+    font-weight: 500;
+  }
+
+  .highlight-row code {
+    color: var(--color-accent);
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 768px) {
+    .methods-grid,
+    .usecases-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .resolver-url {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .country-item {
+      flex-wrap: wrap;
+    }
+
+    .country-status {
+      margin-left: 0;
+      width: 100%;
+      margin-top: 0.25rem;
+    }
+  }
+</style>

@@ -1,15 +1,24 @@
 ---
 import Base from '../../layouts/Base.astro'
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Attestto Architecture — Sovereign Digital Identity Infrastructure",
+  "url": "https://attestto.org/ark",
+  "description": "The complete architecture for sovereign digital identity. Station, Web Extension, Mesh, Ceremony, Trust."
+}
 ---
 
 <Base
-  title="Attestto Open · Ark — Sovereign Digital Identity Infrastructure"
+  structuredData={structuredData}
+  title="Attestto — Architecture for Sovereign Digital Identity"
   description="The complete architecture for sovereign digital identity. Station, Web Extension, Mesh, Ceremony, Trust — everything an institution needs to issue, verify, and govern verifiable credentials."
   canonicalPath="/ark"
-  ogTitle="Attestto Open · Ark — Sovereign Digital Identity Infrastructure"
+  ogTitle="Attestto — Architecture for Sovereign Digital Identity"
   ogDescription="The complete architecture for sovereign digital identity. Desktop verification, mobile credentials, P2P mesh, CA key ceremonies, and trust governance."
-  navVariant="ark"
-  footerVariant="ark"
+  navVariant="default"
+  footerVariant="default"
   footerNotes={[
     'PKI trust data sourced from <a href="https://trust.attestto.com">trust.attestto.com</a> — independent public mirror, not an official government publication.',
     'Domain names listed are held by Attestto as governance anchors; institution-specific domains will transfer to respective bodies upon formal agreements.',
@@ -266,17 +275,16 @@ import Base from '../../layouts/Base.astro'
         </div>
       </div>
 
-      <div class="arch-subsection">
-        <div>
-          <h3 class="arch-subsection-title" data-i18n="ark.vlei_title">vLEI Verification</h3>
-          <p class="arch-subsection-desc" data-i18n-html="ark.vlei_desc">The framework requires each shareholder to hold a verified LEI (Legal Entity Identifier) and a vLEI issued by <a href="https://www.gleif.org/en/vlei/introducing-the-vlei" target="_blank" rel="noopener">GLEIF</a> before joining a ceremony, so they legitimately represent their institution. On-chain verification path is planned.</p>
+      <div class="vlei-callout">
+        <div class="vlei-callout-header">
+          <div class="vlei-callout-badge">GLEIF + ISO 17442</div>
+          <h3 data-i18n="ark.vlei_title">vLEI Verification</h3>
         </div>
-        <div>
-          <div class="detail-box">
-            <div><span class="hl">Pre-requisite:</span> Active LEI + issued vLEI</div>
-            <div><span class="hl">Verification:</span> On-chain attestation (planned)</div>
-            <div><span class="hl">Standard:</span> GLEIF + ISO 17442</div>
-          </div>
+        <p data-i18n-html="ark.vlei_desc">Every shareholder must hold a verified LEI (Legal Entity Identifier) and a vLEI issued by <a href="https://www.gleif.org/en/vlei/introducing-the-vlei" target="_blank" rel="noopener">GLEIF</a> before joining a ceremony — proving they legitimately represent their institution. On-chain verification path is planned.</p>
+        <div class="vlei-callout-details">
+          <div class="vlei-detail"><span class="vlei-detail-label">Pre-requisite</span><span>Active LEI + issued vLEI</span></div>
+          <div class="vlei-detail"><span class="vlei-detail-label">Verification</span><span>On-chain attestation (planned)</span></div>
+          <div class="vlei-detail"><span class="vlei-detail-label">Standard</span><span>GLEIF + ISO 17442</span></div>
         </div>
       </div>
     </div>
@@ -438,3 +446,83 @@ import Base from '../../layouts/Base.astro'
   </section>
 
 </Base>
+
+<style>
+  .vlei-callout {
+    margin-top: var(--space-md);
+    background: linear-gradient(135deg, #f0fdf4, #ecfdf5);
+    border: 2px solid var(--color-accent);
+    border-radius: 12px;
+    padding: var(--space-md) var(--space-lg);
+  }
+
+  .vlei-callout-header {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    margin-bottom: var(--space-sm);
+  }
+
+  .vlei-callout-badge {
+    font-size: 0.6875rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    background: var(--color-accent);
+    color: #ffffff;
+    padding: 0.2rem 0.6rem;
+    border-radius: 4px;
+    flex-shrink: 0;
+  }
+
+  .vlei-callout h3 {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: var(--color-ink);
+    margin: 0;
+  }
+
+  .vlei-callout > p {
+    font-size: 0.9375rem;
+    color: var(--color-ink-muted);
+    line-height: 1.6;
+    margin-bottom: var(--space-md);
+  }
+
+  .vlei-callout > p a {
+    color: var(--color-accent);
+    font-weight: 600;
+  }
+
+  .vlei-callout-details {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-sm);
+  }
+
+  .vlei-detail {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .vlei-detail-label {
+    font-size: 0.6875rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-accent);
+  }
+
+  .vlei-detail span:last-child {
+    font-size: 0.875rem;
+    color: var(--color-ink);
+    font-weight: 500;
+  }
+
+  @media (max-width: 768px) {
+    .vlei-callout-details {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

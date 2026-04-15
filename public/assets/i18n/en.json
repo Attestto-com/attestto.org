@@ -41,8 +41,10 @@
     "sns_note": "Identifiers shown (fi-cr, vault.attestto.sol, etc.) resolve today via the Solana Name Service — the first anchor we shipped. The naming layer is pluggable; jurisdictions can run their own."
   },
   "index": {
-    "title": "Open digital public infrastructure",
-    "lead": "Verifiable data primitives anyone can build on. Sovereign, interoperable, privacy-preserving. Deploy it yourself, fork it, or extend it.",
+    "title": "Verify any document. Issue any credential. Bridge any PKI.",
+    "lead": "Identity infrastructure built on W3C and IETF standards. Technologically neutral — works with any stack, any vendor, any government. Open source reference implementations anyone can deploy.",
+    "btn_verify": "Verify a document",
+    "btn_standards": "Explore the standards",
     "btn_ark": "Explore the Ark",
     "btn_github": "View on GitHub",
     "btn_learn": "Learn more",

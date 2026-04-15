@@ -55,8 +55,8 @@ section { padding: var(--space-xl) 0; }
 
 /* ── Section headings ── */
 .section-label {
-  font-size: 0.8125rem;
-  font-weight: 600;
+  font-size: 0.9375rem;
+  font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.08em;
   color: var(--color-accent);
@@ -64,8 +64,8 @@ section { padding: var(--space-xl) 0; }
 }
 
 .section-title {
-  font-size: 1.75rem;
-  font-weight: 700;
+  font-size: clamp(1.75rem, 3vw, 2.5rem);
+  font-weight: 800;
   letter-spacing: -0.02em;
   margin-bottom: var(--space-sm);
 }

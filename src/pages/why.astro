@@ -1,8 +1,17 @@
 ---
 import Base from '../layouts/Base.astro'
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "AboutPage",
+  "name": "Why Attestto Exists",
+  "url": "https://attestto.org/why",
+  "description": "Identity shouldn't be a favor granted by an authority. It can be a mathematical proof you carry yourself."
+}
 ---
 
 <Base
+  structuredData={structuredData}
   title="Why Attestto Exists — The Story Behind Sovereign Identity"
   description="Identity shouldn't be a favor granted by an authority. It can be a mathematical proof you carry yourself. This is why Attestto exists."
   canonicalPath="/why"
@@ -26,23 +35,39 @@ import Base from '../layouts/Base.astro'
         <div class="story-text">
           <p data-i18n="why.s1_p1">In most of the world, proving who you are means carrying a physical card, presenting it to an institution, hoping they believe it, and trusting that whoever holds your data won't misuse it.</p>
           <p data-i18n="why.s1_p2">Your identity exists only when someone else says it does. A government office. A bank. A platform. If they lose your record, revoke your access, or simply close for the day &mdash; you stop being provable.</p>
-          <p data-i18n="why.s1_p3">This isn't a technology problem. It's a design choice. And it can be redesigned.</p>
         </div>
+        <div class="pullquote" data-i18n="why.s1_p3">This isn't a technology problem. It's a design choice. And it can be redesigned.</div>
       </div>
     </div>
   </section>
 
-  <!-- Section 2: What goes wrong -->
+  <!-- Section 2: What goes wrong — cards instead of text wall -->
   <section class="story-section">
     <div class="container">
       <div class="story-content">
         <div class="story-label" data-i18n="why.s2_label">What goes wrong</div>
         <h2 class="story-title" data-i18n="why.s2_title">When identity depends on someone else</h2>
-        <div class="story-text">
-          <p data-i18n="why.s2_p1">The professional whose credentials don't travel across borders. The family whose last name was misspelled at the civil registry and now half of them exist under different identities. The small business that can't prove it's real to a foreign partner without paying a $15,000 compliance intermediary.</p>
-          <p data-i18n="why.s2_p2">Identity systems built without open standards and data portability create dependencies that are hard to undo. When the technology changes or the contract ends, citizens and institutions face costly migrations — or get locked into terms they didn't choose.</p>
-          <p data-i18n="why.s2_p3">These aren't hypothetical. They're happening now, in the countries where we live and build.</p>
+      </div>
+      <div class="why-problems-grid">
+        <div class="why-problem-card">
+          <div class="why-problem-icon">&#x1F30D;</div>
+          <p>The professional whose credentials don't travel across borders.</p>
         </div>
+        <div class="why-problem-card">
+          <div class="why-problem-icon">&#x270D;</div>
+          <p>The family whose last name was misspelled at the civil registry &mdash; half of them exist under different identities.</p>
+        </div>
+        <div class="why-problem-card">
+          <div class="why-problem-icon">&#x1F4B0;</div>
+          <p>The small business that can't prove it's real to a foreign partner without paying a $15,000 compliance intermediary.</p>
+        </div>
+        <div class="why-problem-card">
+          <div class="why-problem-icon">&#x1F512;</div>
+          <p>The vendor who locks five million citizens into a proprietary identity system with no export, no interoperability, and a renewal clause that doubles the price.</p>
+        </div>
+      </div>
+      <div class="story-content" style="margin-top: var(--space-md);">
+        <div class="pullquote" data-i18n="why.s2_p3">These aren't hypothetical. They're happening now, in the countries where we live and build.</div>
       </div>
     </div>
   </section>
@@ -57,27 +82,62 @@ import Base from '../layouts/Base.astro'
           <p data-i18n="why.s3_p1"><strong>Identity can be a mathematical proof you carry yourself.</strong> W3C Decentralized Identifiers and Verifiable Credentials make this technically possible. A cryptographic key pair on your device. A credential signed by an authority you choose to trust. A proof you present without revealing more than you must.</p>
           <p data-i18n="why.s3_p2">The technology exists. What didn't exist &mdash; until now &mdash; was open infrastructure to make it deployable. Not a product. Not a platform. <strong>Public infrastructure</strong>, like roads or the postal service. Anyone can use it, anyone can verify it, anyone can fork it.</p>
         </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Section 4: What we built -->
-  <section class="story-section">
-    <div class="container">
-      <div class="story-content">
-        <div class="story-label" data-i18n="why.s4_label">What we built</div>
-        <h2 class="story-title" data-i18n="why.s4_title">Three layers, zero central servers</h2>
-        <div class="story-text">
-          <p data-i18n="why.s4_p1"><strong>Layer 1 &mdash; Institutional trust.</strong> Existing authorities (governments, professional bodies, universities) issue verifiable credentials signed with their own keys. We don't replace them. We give them a standards-based channel to issue digitally what they already issue on paper.</p>
-          <p data-i18n="why.s4_p2"><strong>Layer 2 &mdash; Mesh verification.</strong> A peer-to-peer network where every node can verify credentials independently, offline, without calling a central server. The credential holder controls what they share and with whom.</p>
-          <p data-i18n="why.s4_p3"><strong>Layer 3 &mdash; Ledger anchoring.</strong> Cryptographic timestamps on a public ledger prove that a credential existed at a specific time. Not the content &mdash; just the proof that it was issued. Immutable, auditable, independent of Attestto.</p>
-          <p data-i18n="why.s4_p4">Every component is <strong>open source</strong> (Apache 2.0). Every standard we use is <strong>W3C or IETF</strong>. Any government can fork the entire stack, deploy it on their own infrastructure, and never depend on us. That's the point.</p>
+        <div class="why-cta-inline">
+          <a href="/standards" class="cta-primary">See the standards we built &rarr;</a>
+          <a href="https://verify.attestto.com" class="cta-secondary">Try the verifier &rarr;</a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Section 5: Commitments (dark) -->
+  <!-- Section 4: What we built — visual layers -->
+  <section class="story-section">
+    <div class="container">
+      <div class="story-content">
+        <div class="story-label" data-i18n="why.s4_label">What we built</div>
+        <h2 class="story-title" data-i18n="why.s4_title">Three layers, zero central servers</h2>
+      </div>
+      <div class="why-layers">
+        <div class="why-layer">
+          <div class="why-layer-num">01</div>
+          <div class="why-layer-content">
+            <h3>Institutional trust</h3>
+            <p data-i18n="why.s4_p1">Existing authorities (governments, professional bodies, universities) issue verifiable credentials signed with their own keys. We don't replace them. We give them a standards-based channel to issue digitally what they already issue on paper.</p>
+          </div>
+        </div>
+        <div class="why-layer">
+          <div class="why-layer-num">02</div>
+          <div class="why-layer-content">
+            <h3>Mesh verification</h3>
+            <p data-i18n="why.s4_p2">A peer-to-peer network where every node can verify credentials independently, offline, without calling a central server. The credential holder controls what they share and with whom.</p>
+          </div>
+        </div>
+        <div class="why-layer">
+          <div class="why-layer-num">03</div>
+          <div class="why-layer-content">
+            <h3>Ledger anchoring</h3>
+            <p data-i18n="why.s4_p3">Cryptographic timestamps on a public ledger prove that a credential existed at a specific time. Not the content &mdash; just the proof that it was issued. Immutable, auditable, independent of Attestto.</p>
+          </div>
+        </div>
+      </div>
+      <div class="story-content" style="margin-top: var(--space-md);">
+        <div class="pullquote" data-i18n="why.s4_p4">Every component is open source (Apache 2.0). Every standard is W3C or IETF. Any government can fork the entire stack and never depend on us. That's the point.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 5: The number -->
+  <section class="story-highlight why-stat-section">
+    <div class="container">
+      <div class="why-stat">
+        <div class="why-stat-number">100+</div>
+        <div class="why-stat-label">countries operate sovereign PKI hierarchies</div>
+        <div class="why-stat-desc">Each one is an island. A certificate issued by Costa Rica is unverifiable in Panama. did:pki bridges them all through a single resolver endpoint.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 6: Commitments (dark) -->
   <section class="story-highlight">
     <div class="container">
       <div class="story-content">
@@ -107,15 +167,161 @@ import Base from '../layouts/Base.astro'
   </section>
 
   <!-- CTA -->
-  <section class="story-highlight" style="padding-bottom: var(--space-xl);">
+  <section class="story-section" style="padding-bottom: var(--space-xl);">
     <div class="container">
       <div class="story-content" style="text-align: center;">
         <h2 class="story-title" data-i18n="why.cta_title">See what we've built</h2>
         <div class="cta-row" style="justify-content: center;">
-          <a href="/ark" class="cta-primary">Explore the Ark &rarr;</a>
-          <a href="https://github.com/Attestto-com" class="cta-secondary">View on GitHub &rarr;</a>
+          <a href="/standards" class="cta-primary">Explore the standards &rarr;</a>
+          <a href="/ark" class="cta-secondary">Architecture &rarr;</a>
+          <a href="https://github.com/Attestto-com" class="cta-secondary">GitHub &rarr;</a>
         </div>
       </div>
     </div>
   </section>
 </Base>
+
+<style>
+  /* ── Pull Quote ── */
+  .pullquote {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--color-ink);
+    border-left: 3px solid var(--color-accent);
+    padding-left: var(--space-sm);
+    margin-top: var(--space-md);
+    line-height: 1.5;
+  }
+
+  .story-highlight .pullquote {
+    color: #ffffff;
+    border-left-color: #4ade80;
+  }
+
+  /* ── Problem Cards ── */
+  .why-problems-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-sm);
+    margin-top: var(--space-md);
+  }
+
+  .why-problem-card {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 10px;
+    padding: var(--space-sm) var(--space-md);
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-sm);
+  }
+
+  .why-problem-icon {
+    font-size: 1.5rem;
+    flex-shrink: 0;
+    margin-top: 0.15rem;
+  }
+
+  .why-problem-card p {
+    font-size: 0.9375rem;
+    color: var(--color-ink-muted);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  /* ── Inline CTA ── */
+  .why-cta-inline {
+    display: flex;
+    gap: var(--space-sm);
+    margin-top: var(--space-md);
+  }
+
+  /* ── Layer Cards ── */
+  .why-layers {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+    margin-top: var(--space-md);
+  }
+
+  .why-layer {
+    display: flex;
+    gap: var(--space-md);
+    padding: var(--space-md);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 10px;
+  }
+
+  .why-layer-num {
+    font-family: var(--font-mono);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-accent);
+    flex-shrink: 0;
+    line-height: 1;
+    margin-top: 0.2rem;
+  }
+
+  .why-layer-content h3 {
+    font-size: 1.0625rem;
+    font-weight: 700;
+    color: var(--color-ink);
+    margin-bottom: 0.5rem;
+  }
+
+  .why-layer-content p {
+    font-size: 0.9375rem;
+    color: var(--color-ink-muted);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  /* ── Stat Section ── */
+  .why-stat-section {
+    padding: var(--space-lg) 0;
+  }
+
+  .why-stat {
+    text-align: center;
+    max-width: 36rem;
+    margin: 0 auto;
+  }
+
+  .why-stat-number {
+    font-size: clamp(3rem, 8vw, 5rem);
+    font-weight: 800;
+    color: #4ade80;
+    line-height: 1;
+    margin-bottom: var(--space-xs);
+  }
+
+  .why-stat-label {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #ffffff;
+    margin-bottom: var(--space-xs);
+  }
+
+  .why-stat-desc {
+    font-size: 0.9375rem;
+    color: rgba(255, 255, 255, 0.5);
+    line-height: 1.6;
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 768px) {
+    .why-problems-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .why-layer {
+      flex-direction: column;
+      gap: var(--space-xs);
+    }
+
+    .why-cta-inline {
+      flex-direction: column;
+    }
+  }
+</style>

@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://attestto.org/sitemap.xml
+Sitemap: https://attestto.org/sitemap-index.xml
