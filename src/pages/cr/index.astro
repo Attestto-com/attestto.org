@@ -1,17 +1,57 @@
 ---
 import Base from '../../layouts/Base.astro'
 
-const structuredData = {
-  "@context": "https://schema.org",
-  "@type": "WebPage",
-  "name": "Attestto · Costa Rica",
-  "url": "https://attestto.org/cr",
-  "inLanguage": "es",
-  "about": {
-    "@type": "Thing",
-    "name": "Infraestructura de identidad digital soberana para Costa Rica"
+const structuredData = [
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Attestto · Costa Rica",
+    "url": "https://attestto.org/cr",
+    "inLanguage": "es",
+    "about": {
+      "@type": "Thing",
+      "name": "Infraestructura de identidad digital soberana para Costa Rica"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "¿Qué es Firma Digital en Costa Rica?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Firma Digital es el sistema nacional de certificación digital de Costa Rica, regulado por la Ley 8454. El Banco Central (BCCR) administra la jerarquía PKI, y la Dirección de Gobernanza Digital (MICITT) supervisa. Attestto implementa did:pki para hacer verificables estos certificados en cualquier país."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Cómo se alinea Attestto con la legislación costarricense?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Attestto implementa los principios de neutralidad tecnológica (Ley 8642), certificación digital (Ley 8454), protección de datos personales (Ley 8968), simplificación de trámites (Ley 9986), y el Código Nacional de Tecnologías Digitales — sin reemplazar ni competir con la infraestructura existente."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Puedo verificar documentos firmados con Firma Digital de Costa Rica?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Sí. En verify.attestto.com puede verificar documentos PDF firmados con Firma Digital directamente en su navegador. La verificación es criptográfica, sin subir archivos a ningún servidor, y valida la cadena de certificados contra las CAs del BCCR."
+        }
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Attestto", "item": "https://attestto.org" },
+      { "@type": "ListItem", "position": 2, "name": "Costa Rica", "item": "https://attestto.org/cr" }
+    ]
   }
-}
+]
 ---
 
 <Base

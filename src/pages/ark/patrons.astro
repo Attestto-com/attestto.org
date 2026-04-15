@@ -1,8 +1,50 @@
 ---
 import Base from '../../layouts/Base.astro'
+
+const structuredData = [
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Attestto Patron Program",
+    "url": "https://attestto.org/ark/patrons",
+    "description": "Institutional patronage tiers for the Attestto sovereign digital identity deployment."
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is the Attestto Patron Program?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The Patron Program provides institutional patronage of the Attestto sovereign digital identity deployment, in the tradition of museum and scientific expedition funding. Four tiers: Founding Patron, Sustaining Patron, Supporting Patron, and Institutional Partner."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How does patronage differ from investment?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Patronage funds public infrastructure without equity or token expectations. Patrons receive governance seats, early access, and naming rights — not financial returns. This keeps Attestto's citizen-free-forever principle intact."
+        }
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Attestto", "item": "https://attestto.org" },
+      { "@type": "ListItem", "position": 2, "name": "Architecture", "item": "https://attestto.org/ark" },
+      { "@type": "ListItem", "position": 3, "name": "Patrons", "item": "https://attestto.org/ark/patrons" }
+    ]
+  }
+]
 ---
 
 <Base
+  structuredData={structuredData}
   title="Attestto Ark — Patron Program"
   description="Institutional patronage tiers for the Attestto Ark sovereign digital identity deployment. Founding Patron, Sustaining Patron, Supporting Patron, Institutional Partner."
   canonicalPath="/ark/patrons"

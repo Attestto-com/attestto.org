@@ -1,27 +1,66 @@
 ---
 import Base from '../../layouts/Base.astro'
 
-const structuredData = {
-  "@context": "https://schema.org",
-  "@type": "SoftwareApplication",
-  "name": "Attestto Open",
-  "url": "https://attestto.org",
-  "description": "Open-source public digital infrastructure for sovereign identity — P2P mesh, verifiable credentials, and decentralized identifiers anchored on Solana.",
-  "applicationCategory": "DeveloperApplication",
-  "operatingSystem": "Cross-platform",
-  "license": "https://www.apache.org/licenses/LICENSE-2.0",
-  "author": { "@type": "Organization", "name": "Attestto", "url": "https://attestto.com" },
-  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
-  "codeRepository": "https://github.com/Attestto-com"
-}
+const structuredData = [
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Attestto",
+    "url": "https://attestto.org",
+    "description": "Infraestructura de identidad soberana de código abierto. Credenciales verificables, identificadores descentralizados y verificación criptográfica para gobiernos, profesionales y ciudadanos.",
+    "license": "https://www.apache.org/licenses/LICENSE-2.0",
+    "sameAs": [
+      "https://github.com/Attestto-com",
+      "https://attestto.com"
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "¿Qué es Attestto?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Attestto es infraestructura de identidad soberana de código abierto construida sobre estándares W3C e IETF. Permite verificar documentos, emitir credenciales verificables y conectar sistemas PKI nacionales — todo sin dependencia de proveedor. Licencia Apache 2.0."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Cómo verifica documentos Attestto?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Arrastra un PDF a verify.attestto.com y la firma digital se verifica completamente en tu navegador. Sin subir archivos, sin backend. El verificador valida la cadena de certificados contra las anclas de confianza PKI nacionales y verifica la integridad del documento criptográficamente."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Qué son did:pki y did:sns?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "did:pki conecta certificados PKI nacionales al ecosistema DID — si existe una CA gubernamental, ya tiene un DID. did:sns proporciona identificadores legibles mediante Solana Name Service. Ambos están en el track de estándares W3C con resolvers en vivo en resolver.attestto.com."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Es gratis usar Attestto?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Identidad, firma, anclaje, recuperación y verificación son gratuitos para los ciudadanos, para siempre. La emisión de credenciales profesionales y el marketplace de módulos tienen estructuras de tarifas que financian la infraestructura gratuita."
+        }
+      }
+    ]
+  }
+]
 ---
 
 <Base
-  title="Attestto Open — Infraestructura Digital Pública para Identidad Soberana"
-  description="Mesh P2P de código abierto para identidad soberana. Credenciales verificables, identificadores descentralizados y sincronización cifrada anclada en Solana. Sin lock-in. Forkéalo, despliégalo, hazlo tuyo."
+  title="Attestto — Infraestructura de Identidad Soberana"
+  description="Infraestructura de código abierto para credenciales verificables e identidad descentralizada. Verifica documentos, emite credenciales, conecta PKIs nacionales — con estándares W3C y resolvers en vivo."
   canonicalPath="/es"
-  ogTitle="Attestto Open — Infraestructura Digital Pública para Identidad Soberana"
-  ogDescription="Mesh P2P de código abierto para identidad soberana. Sincronización cifrada entre miles de pares, anclada en Solana. ~120 KB por ciudadano. Sin servidor central. Sin lock-in."
+  ogTitle="Attestto — Infraestructura de Identidad Soberana"
+  ogDescription="Infraestructura de código abierto para credenciales verificables e identidad descentralizada. Métodos DID en track de estándares W3C, resolver en vivo, despliegues reales."
   lang="es"
   structuredData={structuredData}
 >
@@ -32,208 +71,579 @@ const structuredData = {
     <meta property="og:locale" content="es_CR" />
     <meta property="og:locale:alternate" content="en_US" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Attestto Open — Infraestructura Digital Pública" />
-    <meta name="twitter:description" content="Mesh P2P de código abierto para identidad soberana. Sincronización cifrada entre miles de pares, anclada en Solana. ~120 KB por ciudadano. Sin servidor central. Sin lock-in." />
+    <meta name="twitter:title" content="Attestto — Infraestructura de Identidad Soberana" />
+    <meta name="twitter:description" content="Infraestructura de código abierto para credenciales verificables e identidad descentralizada. Estándares W3C, resolver en vivo, despliegues reales." />
     <meta name="twitter:image" content="https://attestto.org/og-image.png" />
+    <meta name="keywords" content="identidad soberana, identidad descentralizada, DID, credenciales verificables, verificación de firma digital, did:pki, did:sns, W3C, código abierto, identidad LATAM" />
   </Fragment>
 
-  <!-- Hero (dark) -->
-  <section class="hero">
+  <!-- Hero -->
+  <section class="hero hero-single">
     <div class="container">
       <div class="hero-text">
-        <h1 data-i18n="index.title">Open digital public infrastructure</h1>
-        <p class="lead" data-i18n="index.lead">
-          Verifiable data primitives anyone can build on.
-          Sovereign, interoperable, privacy-preserving.
-          Deploy it yourself, fork it, or extend it.
+        <h1>Verifica cualquier documento. Emite cualquier credencial. Conecta cualquier PKI.</h1>
+        <p class="lead">
+          Infraestructura de identidad construida sobre estándares W3C e IETF.
+          Tecnológicamente neutral &mdash; funciona con cualquier stack, cualquier proveedor, cualquier gobierno.
+          Implementaciones de referencia de código abierto que cualquiera puede desplegar.
         </p>
         <div class="hero-actions">
-          <a href="/ark" class="btn btn-primary" data-i18n="index.btn_ark">Explore the Ark</a>
-          <a href="https://github.com/Attestto-com" class="btn btn-secondary" data-i18n="index.btn_github">View on GitHub</a>
-        </div>
-      </div>
-      <div class="hero-layers">
-        <div class="hero-layer">
-          <span class="hero-layer-num">01</span>
-          <span class="hero-layer-label" data-i18n="index.layer1_label">Institutional</span>
-          <span class="hero-layer-desc" data-i18n="index.layer1_desc">DID-based issuer verification</span>
-        </div>
-        <div class="hero-layer">
-          <span class="hero-layer-num">02</span>
-          <span class="hero-layer-label" data-i18n="index.layer2_label">Mesh</span>
-          <span class="hero-layer-desc" data-i18n="index.layer2_desc">P2P encrypted state-sync</span>
-        </div>
-        <div class="hero-layer">
-          <span class="hero-layer-num">03</span>
-          <span class="hero-layer-label" data-i18n="index.layer3_label">Ledger</span>
-          <span class="hero-layer-desc" data-i18n="index.layer3_desc">Solana proof-of-existence</span>
+          <a href="https://verify.attestto.com" class="btn btn-primary">Verificar un documento</a>
+          <a href="/es/standards" class="btn btn-secondary">Explorar los estándares</a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- What (light) -->
-  <section id="what" class="section-light">
+  <!-- What Attestto Does — Use Cases -->
+  <section id="usecases" class="section-light">
     <div class="container">
-      <h2 class="section-title" data-i18n="index.what_title">What is Attestto Open Ark?</h2>
-      <p class="section-desc" data-i18n="index.what_desc">
-        Attestto Open assembles open standards into deployable infrastructure for verifiable digital systems.
-        Open schemas, decentralized identifiers, and cryptographic verification
-        that any government, institution, or developer can adopt and extend —
-        with no single-vendor lock-in.
+      <div class="section-label">Lo que construimos</div>
+      <h2 class="section-title">Infraestructura de identidad para el mundo real</h2>
+      <p class="section-desc">
+        Cada caso de uso a continuación está en vivo o en desarrollo activo,
+        utilizando estándares abiertos para resolución de identidad y verificación de credenciales.
       </p>
-      <div class="grid-3">
-        <div class="card">
-          <div class="card-icon">◇</div>
-          <h3 data-i18n="index.what_schemas_title">Open schemas</h3>
-          <p data-i18n="index.what_schemas_desc">Machine-readable data models that define how verifiable information is structured. Domain-agnostic, extensible by design.</p>
+      <div class="usecases-grid">
+        <div class="usecase-card">
+          <h3>Verificación de documentos</h3>
+          <p>Arrastra un PDF firmado digitalmente. La firma, la cadena de certificados y la autoridad emisora se verifican criptográficamente — sin cuenta, sin subir datos.</p>
+          <div class="usecase-meta">
+            <span class="usecase-status live">En vivo</span>
+            <a href="https://verify.attestto.com" class="usecase-link">verify.attestto.com</a>
+          </div>
         </div>
-        <div class="card">
-          <div class="card-icon">⟁</div>
-          <h3 data-i18n="index.what_trust_title">Decentralized trust</h3>
-          <p data-i18n="index.what_trust_desc">Trust comes from transparency and accountability — open code, public proofs, blockchain anchoring — not from taking anyone's word for it. Institutions and private companies alike can serve as trust anchors.</p>
-        </div>
-        <div class="card">
-          <div class="card-icon">⊘</div>
-          <h3 data-i18n="index.what_privacy_title">Privacy at every layer</h3>
-          <p data-i18n="index.what_privacy_desc">Selective disclosure, zero-knowledge proofs, and minimal data exposure — integrated at the architectural level, not just the protocol layer, so the privacy guarantees hold end-to-end.</p>
-        </div>
-      </div>
 
-      <div class="arch-subsection" id="architecture">
-        <div>
-          <h3 class="arch-subsection-title" data-i18n="index.arch_title">Three-layer verification</h3>
-          <p class="arch-subsection-desc" data-i18n="index.arch_desc">
-            Every piece of verifiable data can be checked at three independent layers.
-            Any two of three is sufficient for full verification.
-          </p>
-          <p class="arch-note" data-i18n="index.arch_note">The system degrades gracefully, never catastrophically.</p>
-        </div>
-        <div class="arch-layers">
-          <div class="arch-layer">
-            <span class="arch-layer-num">01</span>
-            <span class="arch-layer-name" data-i18n="index.arch_l1_name">Institutional</span>
-            <span class="arch-layer-desc" data-i18n="index.arch_l1_desc">Issuer resolves via DID document hosted at their domain</span>
-          </div>
-          <div class="arch-layer">
-            <span class="arch-layer-num">02</span>
-            <span class="arch-layer-name" data-i18n="index.arch_l2_name">Mesh</span>
-            <span class="arch-layer-desc" data-i18n="index.arch_l2_desc">State synced across a P2P mesh — no central server required</span>
-          </div>
-          <div class="arch-layer">
-            <span class="arch-layer-num">03</span>
-            <span class="arch-layer-name" data-i18n="index.arch_l3_name">Ledger</span>
-            <span class="arch-layer-desc" data-i18n="index.arch_l3_desc">Cryptographic proof anchored on a public, immutable ledger</span>
+        <div class="usecase-card">
+          <h3>Puente PKI transfronterizo</h3>
+          <p>La jerarquía PKI de Firma Digital de Costa Rica mapeada a DIDs <code>did:pki</code>. Cada CA resoluble como un DID Document. Un documento firmado en CR se puede verificar en cualquier lugar — un solo endpoint, cualquier país.</p>
+          <div class="usecase-meta">
+            <span class="usecase-status live">En vivo</span>
+            <a href="/es/standards#methods" class="usecase-link">Spec did:pki</a>
           </div>
         </div>
-      </div>
 
-      <div class="arch-subsection">
-        <div>
-          <h3 class="arch-subsection-title" data-i18n="index.mesh_title">Distributed mesh network</h3>
-          <p class="arch-subsection-desc" data-i18n="index.mesh_desc">
-            Every installation is a node. Citizens, lawyers, and institutions contribute
-            storage to a peer-to-peer mesh that replicates encrypted identity state
-            across the network. No central server. No cloud dependency.
-          </p>
-          <p class="arch-note" data-i18n="index.mesh_note">Privacy is not a policy — it is a mathematical guarantee.</p>
-        </div>
-        <div>
-          <div class="arch-layers">
-            <div class="arch-layer">
-              <span class="arch-layer-num">L1</span>
-              <span class="arch-layer-name" data-i18n="index.mesh_l1_name">Local cache</span>
-              <span class="arch-layer-desc" data-i18n="index.mesh_l1_desc">0ms — data on your device</span>
-            </div>
-            <div class="arch-layer">
-              <span class="arch-layer-num">L2</span>
-              <span class="arch-layer-name" data-i18n="index.mesh_l2_name">Mesh peers</span>
-              <span class="arch-layer-desc" data-i18n="index.mesh_l2_desc">&lt;100ms — encrypted blobs from nearby nodes</span>
-            </div>
-            <div class="arch-layer">
-              <span class="arch-layer-num">L3</span>
-              <span class="arch-layer-name" data-i18n="index.mesh_l3_name">Solana anchor</span>
-              <span class="arch-layer-desc" data-i18n="index.mesh_l3_desc">200-500ms — cryptographic proof on public ledger</span>
-            </div>
+        <div class="usecase-card">
+          <h3>Credenciales profesionales</h3>
+          <p>Marco propuesto para Credenciales Verificables para profesionales con licencia — médicos, abogados, ingenieros. Modelo de competencia continua basado en maestría con emisión por colegios profesionales.</p>
+          <div class="usecase-meta">
+            <span class="usecase-status proposed">Propuesto</span>
+            <a href="/es/ark" class="usecase-link">Arquitectura</a>
           </div>
-          <p style="margin-top: var(--space-sm); font-size: 0.875rem; color: var(--color-ink-muted);">
-            ~120 KB per citizen. A national mesh for 5 million people fits in 600 GB
-            distributed across thousands of nodes. Each node stores encrypted data
-            it cannot read — the <strong>Blind Courier</strong> principle.
-          </p>
+        </div>
+
+        <div class="usecase-card">
+          <h3>Credenciales digitales de conducción</h3>
+          <p>Arquitectura propuesta de licencia de conducir móvil siguiendo ISO 18013-5, con exámenes supervisados, puntuación por decaimiento y puertas de renovación — anclada al DID del titular.</p>
+          <div class="usecase-meta">
+            <span class="usecase-status proposed">Propuesto</span>
+            <a href="/cr" class="usecase-link">Costa Rica</a>
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Surfaces — What you can use today -->
+  <section id="surfaces" class="section-dark">
+    <div class="container">
+      <div class="section-label">Herramientas</div>
+      <h2 class="section-title">Úsalo hoy</h2>
+      <p class="section-desc">
+        Cuatro superficies, adopción progresiva. Empieza sin fricción en el navegador,
+        profundiza según lo necesites.
+      </p>
+      <div class="grid-4 surfaces-grid">
+        <div class="card surface-card">
+          <div class="surface-badge live">En vivo</div>
+          <h3>Verify</h3>
+          <p>Arrastra y suelta un PDF firmado. Verifica la firma, la cadena de certificados y la CA emisora — en tu navegador, sin subir nada.</p>
+          <a href="https://verify.attestto.com" class="surface-link">verify.attestto.com &rarr;</a>
+        </div>
+        <div class="card surface-card">
+          <div class="surface-badge live">En vivo</div>
+          <h3>App</h3>
+          <p>Billetera de identidad soberana. Almacena credenciales, presenta pruebas, realiza exámenes supervisados. Progressive Web App — funciona en cualquier dispositivo.</p>
+          <a href="https://app.attestto.com" class="surface-link">app.attestto.com &rarr;</a>
+        </div>
+        <div class="card surface-card">
+          <div class="surface-badge soon">Pre-lanzamiento</div>
+          <h3>Station</h3>
+          <p>Bóveda de escritorio, firmador, verificador y nodo mesh. Capacidad offline completa. Electron en macOS, Windows y Linux.</p>
+          <a href="/es/ark/desktop" class="surface-link">Más información &rarr;</a>
+        </div>
+        <div class="card surface-card">
+          <div class="surface-badge soon">Próximamente</div>
+          <h3>Extension</h3>
+          <p>Extensión de navegador para verificación nativa en la web. Valida firmas digitales en cualquier página que visites.</p>
+          <a href="/es/downloads" class="surface-link">Descargas &rarr;</a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Principles (dark) -->
+  <!-- Standards — Social Proof -->
+  <section id="standards" class="section-light">
+    <div class="container">
+      <div class="section-label">Estándares</div>
+      <h2 class="section-title">Métodos DID en track de estándares W3C</h2>
+      <p class="section-desc">
+        Dos métodos DID, ambos en el track de estándares W3C, ambos con resolvers en vivo.
+        Conectan infraestructura de confianza existente al ecosistema DID
+        sin reemplazar nada.
+      </p>
+      <div class="standards-row">
+        <div class="standard-card">
+          <code class="standard-name">did:pki</code>
+          <p>DIDs de solo lectura derivados de certificados X.509 de CA. Si existe una CA gubernamental, ya tiene un DID.</p>
+          <div class="standard-links">
+            <a href="https://github.com/Attestto-com/did-pki-spec">Spec</a>
+            <a href="https://github.com/w3c/did-extensions/pull/697">W3C PR #697</a>
+          </div>
+        </div>
+        <div class="standard-card">
+          <code class="standard-name">did:sns</code>
+          <p>DIDs anclados a alias vía Solana Name Service. Identificadores legibles y verificables.</p>
+          <div class="standard-links">
+            <a href="https://github.com/Attestto-com/did-sns-spec">Spec</a>
+            <a href="https://github.com/w3c/did-extensions/pull/674">W3C PR #674</a>
+          </div>
+        </div>
+        <div class="standard-card resolver-card">
+          <code class="standard-name">resolver</code>
+          <p>Endpoint HTTP unificado que resuelve ambos métodos. Compatible con DIF Universal Resolver.</p>
+          <div class="standard-links">
+            <a href="https://resolver.attestto.com/1.0/identifiers/did:pki:cr:raiz-nacional">Probarlo en vivo</a>
+            <a href="https://github.com/decentralized-identity/universal-resolver/pull/542">DIF PR #542</a>
+          </div>
+        </div>
+      </div>
+      <div style="text-align: center; margin-top: var(--space-md);">
+        <a href="/es/standards" class="btn btn-outline">Todos los estándares y casos de uso &rarr;</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Open Source -->
+  <section id="source" class="section-dark">
+    <div class="container">
+      <div class="section-label">Implementaciones de referencia</div>
+      <h2 class="section-title">Basado en estándares. Código abierto. Desplegable.</h2>
+      <p class="section-desc">
+        Publicamos implementaciones de referencia para cada estándar que proponemos.
+        Los proveedores tradicionales pueden adoptar los estándares sin usar nuestro código. O bifurcarlo. Apache 2.0.
+      </p>
+      <div class="repo-grid">
+        <a href="https://github.com/Attestto-com/did-pki-spec" class="repo">
+          <img src="/github.svg" class="repo-icon" alt="GitHub" />
+          <div>
+            <div class="repo-name">did-pki-spec</div>
+            <div class="repo-desc">Método DID para jerarquías PKI nacionales. En track de estándares W3C.</div>
+            <span class="repo-tag">Spec</span>
+          </div>
+        </a>
+        <a href="https://github.com/Attestto-com/did-pki-resolver" class="repo">
+          <img src="/github.svg" class="repo-icon" alt="GitHub" />
+          <div>
+            <div class="repo-name">did-pki-resolver</div>
+            <div class="repo-desc">Implementación de referencia — resolución de X.509 a DID Document.</div>
+            <span class="repo-tag">Resolver</span>
+          </div>
+        </a>
+        <a href="https://github.com/Attestto-com/did-sns-spec" class="repo">
+          <img src="/github.svg" class="repo-icon" alt="GitHub" />
+          <div>
+            <div class="repo-name">did-sns-spec</div>
+            <div class="repo-desc">Método DID para Solana Name Service. En track de estándares W3C.</div>
+            <span class="repo-tag">Spec</span>
+          </div>
+        </a>
+        <a href="https://github.com/Attestto-com/attestto-did-resolver" class="repo">
+          <img src="/github.svg" class="repo-icon" alt="GitHub" />
+          <div>
+            <div class="repo-name">attestto-did-resolver</div>
+            <div class="repo-desc">Resolver unificado — did:pki + did:sns en un solo servicio HTTP.</div>
+            <span class="repo-tag">Infraestructura</span>
+          </div>
+        </a>
+        <a href="https://github.com/Attestto-com/attestto-verify" class="repo">
+          <img src="/github.svg" class="repo-icon" alt="GitHub" />
+          <div>
+            <div class="repo-name">attestto-verify</div>
+            <div class="repo-desc">Componentes web de verificación de documentos — arrastra un PDF, verifica la matemática.</div>
+            <span class="repo-tag">Web</span>
+          </div>
+        </a>
+        <a href="https://github.com/Attestto-com/attestto-trust" class="repo">
+          <img src="/github.svg" class="repo-icon" alt="GitHub" />
+          <div>
+            <div class="repo-name">attestto-trust</div>
+            <div class="repo-desc">Almacén de confianza PKI multipaís — espejo público independiente de raíces CA nacionales.</div>
+            <span class="repo-tag">Confianza</span>
+          </div>
+        </a>
+        <a href="https://github.com/Attestto-com/cr-vc-sdk" class="repo">
+          <img src="/github.svg" class="repo-icon" alt="GitHub" />
+          <div>
+            <div class="repo-name">cr-vc-sdk</div>
+            <div class="repo-desc">SDK tipado para emitir y verificar credenciales de Costa Rica.</div>
+            <span class="repo-tag">Costa Rica</span>
+          </div>
+        </a>
+        <a href="https://github.com/Attestto-com/attestto-mesh" class="repo">
+          <img src="/github.svg" class="repo-icon" alt="GitHub" />
+          <div>
+            <div class="repo-name">attestto-mesh</div>
+            <div class="repo-desc">Mesh de datos P2P sobre libp2p — sincronización cifrada de estado para identidad soberana.</div>
+            <span class="repo-tag">Red</span>
+          </div>
+        </a>
+        <a href="https://github.com/Attestto-com/cr-vc-schemas" class="repo">
+          <img src="/github.svg" class="repo-icon" alt="GitHub" />
+          <div>
+            <div class="repo-name">cr-vc-schemas</div>
+            <div class="repo-desc">Esquemas JSON-LD para tipos de credenciales de Costa Rica. W3C VDL + ISO 18013-5.</div>
+            <span class="repo-tag">Costa Rica</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Audience Routing -->
+  <section id="adopt" class="section-light">
+    <div class="container">
+      <div class="section-label">Empieza aquí</div>
+      <h2 class="section-title">Construido para ser desplegado</h2>
+      <div class="audience-grid">
+        <a href="/cr" class="audience-card">
+          <h3>Gobiernos</h3>
+          <p>Despliega infraestructura de identidad soberana. Emite documentos públicos verificables. Interopera entre jurisdicciones.</p>
+          <span class="audience-cta">Ver despliegue en Costa Rica &rarr;</span>
+        </a>
+        <a href="/es/ark/desktop" class="audience-card">
+          <h3>Profesionales</h3>
+          <p>Credenciales verificables para tu licencia, firma y competencia. Emitidas por tu Colegio, en tu dispositivo.</p>
+          <span class="audience-cta">Explorar Station &rarr;</span>
+        </a>
+        <a href="/es/standards" class="audience-card">
+          <h3>Organismos de estándares</h3>
+          <p>Dos métodos DID W3C, integración con DIF Universal Resolver, vectores de prueba abiertos e implementaciones funcionales.</p>
+          <span class="audience-cta">Revisar los estándares &rarr;</span>
+        </a>
+        <a href="https://github.com/Attestto-com" class="audience-card">
+          <h3>Desarrolladores</h3>
+          <p>Bifurca los SDKs, extiende los esquemas, implementa nuevos métodos DID o construye módulos para el marketplace de credenciales.</p>
+          <span class="audience-cta">Ver en GitHub &rarr;</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Principles (compact) -->
   <section id="principles" class="section-dark">
     <div class="container">
-      <div class="section-label" data-i18n="index.principles_label">Principles</div>
-      <h2 class="section-title" data-i18n="index.principles_title">What we stand for</h2>
-      <p class="section-desc" data-i18n="index.principles_desc">
-        These principles are non-negotiable. Every component we build,
-        every standard we propose, and every governance decision we make
-        is measured against them.
-      </p>
-      <div class="grid-4">
-        <div class="card"><h3 data-i18n="index.p_sovereignty">Sovereignty</h3><p data-i18n="index.p_sovereignty_desc">You control your own data and infrastructure. No external dependency required to operate.</p></div>
-        <div class="card"><h3 data-i18n="index.p_interop">Interoperability</h3><p data-i18n="index.p_interop_desc">Built on W3C, IETF, and ISO standards. If your system is compliant, it works with ours — and vice versa.</p></div>
-        <div class="card"><h3 data-i18n="index.p_privacy">Privacy by design</h3><p data-i18n="index.p_privacy_desc">Data minimization at every layer. Verifiers learn only what they need. Consent is cryptographically enforced, not policy-based.</p></div>
-        <div class="card"><h3 data-i18n="index.p_nolock">No vendor lock-in</h3><p data-i18n="index.p_nolock_desc">Every component is open source, every format is open standard. You can fork it, replace it, or run it yourself. Forever.</p></div>
-        <div class="card"><h3 data-i18n="index.p_reversibility">Reversibility</h3><p data-i18n="index.p_reversibility_desc">Any deployment can export its data in open formats and migrate to another implementation. No trapped data, ever.</p></div>
-        <div class="card"><h3 data-i18n="index.p_transparency">Transparency</h3><p data-i18n="index.p_transparency_desc">Governance decisions, technical choices, and roadmap priorities are public. You can see exactly how and why things change.</p></div>
-        <div class="card"><h3 data-i18n="index.p_neutrality">Technological neutrality</h3><p data-i18n="index.p_neutrality_desc">Blockchain, PKI, cloud, on-premise — the architecture supports all. You pick the stack, not us.</p></div>
-        <div class="card"><h3 data-i18n="index.p_public">Public infrastructure</h3><p data-i18n="index.p_public_desc">The open layer is infrastructure for everyone. Attestto builds products on top — but the foundation is free to use and extend.</p></div>
+      <div class="section-label">Principios</div>
+      <h2 class="section-title">Lo que defendemos</h2>
+      <div class="principles-row">
+        <div class="principle-item">
+          <strong>Soberanía</strong>
+          <span>Tus llaves, tu dispositivo, tus datos.</span>
+        </div>
+        <div class="principle-item">
+          <strong>Interoperabilidad</strong>
+          <span>Solo estándares W3C, IETF, ISO.</span>
+        </div>
+        <div class="principle-item">
+          <strong>Privacidad</strong>
+          <span>Divulgación selectiva por defecto.</span>
+        </div>
+        <div class="principle-item">
+          <strong>Portabilidad</strong>
+          <span>Bifúrcalo, expórtalo, migra libremente.</span>
+        </div>
+        <div class="principle-item">
+          <strong>Transparencia</strong>
+          <span>Código abierto, gobernanza abierta, auditoría abierta.</span>
+        </div>
+        <div class="principle-item">
+          <strong>Neutralidad</strong>
+          <span>Tú eliges la tecnología, no nosotros.</span>
+        </div>
+        <div class="principle-item">
+          <strong>Bien público</strong>
+          <span>Gratis para ciudadanos, para siempre.</span>
+        </div>
       </div>
-    </div>
-  </section>
-
-  <!-- Source (light) -->
-  <section id="source" class="section-light">
-    <div class="container">
-      <div class="section-label" data-i18n="index.source_label">Open Source</div>
-      <h2 class="section-title" data-i18n="index.source_title">Open source, open standards</h2>
-      <p class="section-desc" data-i18n="index.source_desc">Reference implementations, schemas, and SDKs. Everything is on GitHub. Fork it, audit it, extend it.</p>
-      <div class="repo-grid">
-        <a href="https://github.com/Attestto-com/attestto-mesh" class="repo"><img src="/github.svg" class="repo-icon" alt="GitHub" /><div><div class="repo-name">attestto-mesh</div><div class="repo-desc" data-i18n="index.repo_mesh_desc">P2P data mesh over libp2p — encrypted state-sync for sovereign identity.</div><span class="repo-tag" data-i18n="index.tag_network">Network</span></div></a>
-        <a href="https://github.com/Attestto-com/attestto-desktop" class="repo"><img src="/github.svg" class="repo-icon" alt="GitHub" /><div><div class="repo-name">attestto-desktop</div><div class="repo-desc" data-i18n="index.repo_desktop_desc">Electron app — every installation is a mesh node with offline verification.</div><span class="repo-tag" data-i18n="index.tag_desktop">Desktop</span></div></a>
-        <a href="https://github.com/Attestto-com/verify" class="repo"><img src="/github.svg" class="repo-icon" alt="GitHub" /><div><div class="repo-name">attestto-verify</div><div class="repo-desc" data-i18n="index.repo_verify_desc">Document verification web components — drop a PDF, verify the math.</div><span class="repo-tag" data-i18n="index.tag_web">Web</span></div></a>
-        <a href="https://github.com/Attestto-com/did-sns-spec" class="repo"><img src="/github.svg" class="repo-icon" alt="GitHub" /><div><div class="repo-name">did-sns-spec</div><div class="repo-desc" data-i18n="index.repo_didsns_desc">DID method specification for Solana Name Service domains.</div><span class="repo-tag" data-i18n="index.tag_spec">Spec</span></div></a>
-        <a href="https://github.com/Attestto-com/vLei-Solana-Bridge" class="repo"><img src="/github.svg" class="repo-icon" alt="GitHub" /><div><div class="repo-name">vLEI-Solana-Bridge</div><div class="repo-desc" data-i18n="index.repo_vlei_desc">On-chain vLEI attestation with Groth16 zero-knowledge proofs.</div><span class="repo-tag">GLEIF vLEI</span></div></a>
-        <a href="https://github.com/Attestto-com/attestto-trust" class="repo"><img src="/github.svg" class="repo-icon" alt="GitHub" /><div><div class="repo-name">attestto-trust</div><div class="repo-desc" data-i18n="index.repo_trust_desc">Multi-country trust registry — independent public mirror of national PKI roots.</div><span class="repo-tag" data-i18n="index.tag_trust">Trust</span></div></a>
-        <a href="https://github.com/Attestto-com/cr-vc-schemas" class="repo"><img src="/github.svg" class="repo-icon" alt="GitHub" /><div><div class="repo-name">cr-vc-schemas</div><div class="repo-desc" data-i18n="index.repo_crschemas_desc">JSON-LD schemas for 11 Costa Rica credential types. W3C VDL + ISO 18013-5.</div><span class="repo-tag" data-i18n="index.tag_cr">Costa Rica</span></div></a>
-        <a href="https://github.com/Attestto-com/cr-vc-sdk" class="repo"><img src="/github.svg" class="repo-icon" alt="GitHub" /><div><div class="repo-name">cr-vc-sdk</div><div class="repo-desc" data-i18n="index.repo_crsdk_desc">Typed SDK for issuing and verifying Costa Rica credentials.</div><span class="repo-tag" data-i18n="index.tag_cr">Costa Rica</span></div></a>
-        <a href="https://github.com/Attestto-com/id-wallet-adapter" class="repo"><img src="/github.svg" class="repo-icon" alt="GitHub" /><div><div class="repo-name">id-wallet-adapter</div><div class="repo-desc" data-i18n="index.repo_wallet_desc">Universal wallet adapter for DID-based identity and credential storage.</div><span class="repo-tag" data-i18n="index.tag_identity">Identity</span></div></a>
-      </div>
-    </div>
-  </section>
-
-  <!-- Adopt (dark) -->
-  <section id="adopt" class="section-dark">
-    <div class="container">
-      <div class="section-label" data-i18n="index.adopt_label">Adopt</div>
-      <h2 class="section-title" data-i18n="index.adopt_title">Built to be deployed</h2>
-      <p class="section-desc" data-i18n="index.adopt_desc">Whether you're a government digitizing public services, an institution issuing verifiable documents, or a developer building on verifiable data — you can start here.</p>
-      <div class="grid-3">
-        <div class="card adopt-path"><h3 data-i18n="index.adopt_gov">Governments</h3><ul><li data-i18n="index.adopt_gov_b1">Deploy sovereign identity infrastructure</li><li data-i18n="index.adopt_gov_b2">Issue verifiable public documents</li><li data-i18n="index.adopt_gov_b3">Interoperate across jurisdictions</li><li data-i18n="index.adopt_gov_b4">No vendor dependency</li></ul></div>
-        <div class="card adopt-path"><h3 data-i18n="index.adopt_inst">Institutions</h3><ul><li data-i18n="index.adopt_inst_b1">Issue verifiable credentials</li><li data-i18n="index.adopt_inst_b2">Verify third-party documents</li><li data-i18n="index.adopt_inst_b3">Plug into existing systems via SDK</li><li data-i18n="index.adopt_inst_b4">Define domain-specific schemas</li></ul></div>
-        <div class="card adopt-path"><h3 data-i18n="index.adopt_dev">Developers</h3><ul><li data-i18n="index.adopt_dev_b1">Fork and extend the SDKs</li><li data-i18n="index.adopt_dev_b2">Build schema plugins for new domains</li><li data-i18n="index.adopt_dev_b3">Implement new DID methods</li><li data-i18n="index.adopt_dev_b4">Contribute to the standard</li></ul></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Governance (light) -->
-  <section id="governance" class="section-light">
-    <div class="container">
-      <div class="section-label" data-i18n="index.gov_label">Governance</div>
-      <h2 class="section-title" data-i18n="index.gov_title">Stewardship, not control</h2>
-      <p class="section-desc" data-i18n="index.gov_desc">Attestto Open is stewarded, not owned. The governance model is designed so that no single entity — including Attestto — can unilaterally control the infrastructure, the standards, or the roadmap.</p>
-      <div class="grid-3">
-        <div class="card"><h3 data-i18n="index.gov_open">Open governance</h3><p data-i18n="index.gov_open_desc">Technical decisions are made transparently. Proposals and discussions are public. As the community grows, so does shared decision-making.</p></div>
-        <div class="card"><h3 data-i18n="index.gov_contrib">Contributor model</h3><p data-i18n="index.gov_contrib_desc">Institutions, governments, and developers can propose schemas, DID methods, and protocol extensions through a structured contribution process.</p></div>
-        <div class="card"><h3 data-i18n="index.gov_noowner">No single owner</h3><p data-i18n="index.gov_noowner_desc">The infrastructure is designed to outlive any single organization. Forkable, portable, and built for community governance from day one.</p></div>
+      <div style="margin-top: var(--space-md);">
+        <a href="/es/why" class="btn btn-outline">Lee la historia completa &rarr;</a>
       </div>
     </div>
   </section>
 </Base>
+
+<style>
+  /* ── Use Case Cards ── */
+  .usecases-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-md);
+    margin-top: var(--space-md);
+  }
+
+  .usecase-card {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+    padding: var(--space-md);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .usecase-card h3 {
+    font-size: 1.0625rem;
+    font-weight: 700;
+    color: var(--color-ink);
+    margin-bottom: 0.5rem;
+  }
+
+  .usecase-card p {
+    font-size: 0.875rem;
+    color: var(--color-ink-muted);
+    line-height: 1.6;
+    flex: 1;
+  }
+
+  .usecase-card code {
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    background: #f1f5f9;
+    padding: 0.1rem 0.3rem;
+    border-radius: 3px;
+  }
+
+  .usecase-meta {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    margin-top: var(--space-sm);
+    padding-top: var(--space-sm);
+    border-top: 1px solid var(--color-border);
+  }
+
+  .usecase-status {
+    font-size: 0.6875rem;
+    font-weight: 700;
+    padding: 0.15rem 0.5rem;
+    border-radius: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .usecase-status.live { background: #dcfce7; color: #15803d; }
+  .usecase-status.poc { background: #dbeafe; color: #1e40af; }
+  .usecase-status.building { background: #fef3c7; color: #92400e; }
+  .usecase-status.proposed { background: #f3e8ff; color: #6b21a8; }
+  .usecase-status.planned { background: #f1f5f9; color: #475569; }
+
+  .usecase-link {
+    font-size: 0.8125rem;
+    color: var(--color-accent);
+    font-weight: 500;
+    margin-left: auto;
+  }
+
+  /* ── Surface Cards ── */
+  .surfaces-grid {
+    gap: var(--space-sm) !important;
+  }
+
+  .surface-card {
+    position: relative;
+    padding-top: calc(var(--space-md) + 0.5rem) !important;
+  }
+
+  .surface-badge {
+    position: absolute;
+    top: var(--space-sm);
+    right: var(--space-sm);
+    font-size: 0.6875rem;
+    font-weight: 700;
+    padding: 0.15rem 0.5rem;
+    border-radius: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .surface-badge.live { background: #dcfce7; color: #15803d; }
+  .surface-badge.soon { background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.5); }
+
+  .surface-link {
+    display: inline-block;
+    margin-top: var(--space-xs);
+    font-size: 0.875rem;
+    color: #4ade80;
+    font-weight: 500;
+  }
+
+  /* ── Standards Row ── */
+  .standards-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-md);
+    margin-top: var(--space-md);
+  }
+
+  .standard-card {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+    padding: var(--space-md);
+  }
+
+  .standard-name {
+    font-family: var(--font-mono);
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--color-accent);
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+
+  .standard-card p {
+    font-size: 0.875rem;
+    color: var(--color-ink-muted);
+    line-height: 1.6;
+  }
+
+  .standard-links {
+    display: flex;
+    gap: 1rem;
+    margin-top: var(--space-sm);
+  }
+
+  .standard-links a {
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: var(--color-accent);
+  }
+
+  .resolver-card {
+    border-color: var(--color-accent);
+  }
+
+  .btn-outline {
+    display: inline-block;
+    padding: 0.6rem 1.5rem;
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 6px;
+    color: rgba(255,255,255,0.8);
+    font-size: 0.9375rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.15s;
+  }
+
+  .section-light .btn-outline {
+    border-color: var(--color-accent);
+    color: var(--color-accent);
+  }
+
+  .btn-outline:hover {
+    background: rgba(255,255,255,0.05);
+    color: #ffffff;
+    text-decoration: none;
+  }
+
+  .section-light .btn-outline:hover {
+    background: var(--color-accent);
+    color: #ffffff;
+  }
+
+  /* ── Audience Cards ── */
+  .audience-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-md);
+    margin-top: var(--space-md);
+  }
+
+  .audience-card {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+    padding: var(--space-md);
+    text-decoration: none;
+    transition: border-color 0.15s, box-shadow 0.15s;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .audience-card:hover {
+    border-color: var(--color-accent);
+    box-shadow: 0 4px 12px rgba(21, 128, 61, 0.1);
+    text-decoration: none;
+  }
+
+  .audience-card h3 {
+    font-size: 1.0625rem;
+    font-weight: 700;
+    color: var(--color-ink);
+    margin-bottom: 0.5rem;
+  }
+
+  .audience-card p {
+    font-size: 0.875rem;
+    color: var(--color-ink-muted);
+    line-height: 1.6;
+    flex: 1;
+  }
+
+  .audience-cta {
+    display: block;
+    margin-top: var(--space-sm);
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--color-accent);
+  }
+
+  /* ── Principles Row ── */
+  .principles-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-sm) var(--space-md);
+    margin-top: var(--space-md);
+  }
+
+  .principle-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .principle-item strong {
+    color: #ffffff;
+    font-size: 0.9375rem;
+  }
+
+  .principle-item span {
+    color: rgba(255,255,255,0.5);
+    font-size: 0.8125rem;
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 1024px) {
+    .usecases-grid { grid-template-columns: repeat(2, 1fr); }
+    .audience-grid { grid-template-columns: repeat(2, 1fr); }
+    .principles-row { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (max-width: 768px) {
+    .usecases-grid,
+    .standards-row,
+    .audience-grid { grid-template-columns: 1fr; }
+    .principles-row { grid-template-columns: 1fr 1fr; }
+  }
+</style>

@@ -1,13 +1,53 @@
 ---
 import Base from '../../layouts/Base.astro'
 
-const structuredData = {
-  "@context": "https://schema.org",
-  "@type": "WebPage",
-  "name": "Attestto Architecture — Sovereign Digital Identity Infrastructure",
-  "url": "https://attestto.org/ark",
-  "description": "The complete architecture for sovereign digital identity. Station, Web Extension, Mesh, Ceremony, Trust."
-}
+const structuredData = [
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Attestto Architecture — Sovereign Digital Identity Infrastructure",
+    "url": "https://attestto.org/ark",
+    "description": "The complete architecture for sovereign digital identity. Station, Web Extension, Mesh, Ceremony, Trust."
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is the Attestto architecture?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Attestto's architecture has five pillars: Station (desktop app with vault, signer, verifier, mesh node), Web Extension (browser-level certificate verification), Mesh (peer-to-peer credential verification network), Ceremony (CA key governance with Shamir secret sharing), and Trust (multi-country PKI trust store)."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does Attestto require a central server?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. Attestto uses a peer-to-peer mesh network where every node can verify credentials independently, even offline. There is no central server that stores your data or controls access. Cryptographic timestamps are anchored on a public ledger for auditability."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the Attestto trust ladder?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The trust ladder defines four identity verification tiers: C (self-attested), B (government ID verified), A+ (professional credential verified), and A (institutional attestation). Each tier unlocks different capabilities and credential types."
+        }
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Attestto", "item": "https://attestto.org" },
+      { "@type": "ListItem", "position": 2, "name": "Architecture", "item": "https://attestto.org/ark" }
+    ]
+  }
+]
 ---
 
 <Base
