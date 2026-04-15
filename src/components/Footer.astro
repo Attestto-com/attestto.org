@@ -1,6 +1,6 @@
 ---
 interface Props {
-  variant?: 'default' | 'ark' | 'ark-sub' | 'developers' | 'downloads' | 'gobierno'
+  variant?: 'default' | 'ark' | 'ark-sub' | 'developers' | 'downloads' | 'revisor'
   tagline?: string
   notes?: string[]
 }
@@ -66,8 +66,8 @@ const footerConfigs: Record<string, { brand: string; links: FooterLink[] }> = {
       { href: 'https://github.com/Attestto-com', label: 'GitHub', i18n: 'footer.github' },
     ],
   },
-  gobierno: {
-    brand: 'Attestto Gobierno',
+  revisor: {
+    brand: 'Attestto · Revisor de Pliegos',
     links: [
       { href: '/', label: 'Attestto Open' },
       { href: 'https://github.com/Attestto-com/attestto-pliego-reviewer', label: 'Código fuente' },

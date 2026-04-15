@@ -1,444 +1,23 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Revisor de Pliegos — Attestto Gobierno</title>
-  <meta name="description" content="Herramienta gratuita para funcionarios publicos. Suba un pliego de licitacion y reciba un analisis de dependencia de proveedor, privacidad y estandares abiertos.">
-  <meta name="theme-color" content="#0a1628">
-  <link rel="canonical" href="https://attestto.org/gobierno">
+---
+import Base from '../layouts/Base.astro'
+---
 
-  <meta property="og:title" content="Revisor de Pliegos — Attestto Gobierno">
-  <meta property="og:description" content="Suba un pliego de licitacion y reciba un analisis gratuito de vendor lock-in, privacidad y estandares abiertos.">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://attestto.org/gobierno">
-  <meta property="og:site_name" content="Attestto Open">
-  <meta property="og:image" content="https://attestto.org/og-image.png">
-
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-  <link rel="icon" type="image/jpeg" href="/favicon.jpg">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/assets/css/main.css">
-  <style>
-    body { background: var(--color-dark); color: #e2e8f0; }
-    a { color: #4ade80; }
-
-    .gov-hero {
-      padding: var(--space-xl) 0 var(--space-lg);
-      text-align: center;
-      border-bottom: 1px solid rgba(255,255,255,0.06);
-    }
-    .gov-hero h1 {
-      font-size: clamp(2rem, 5vw, 3rem);
-      font-weight: 800;
-      color: #ffffff;
-      margin-bottom: var(--space-xs);
-    }
-    .gov-hero .lead {
-      font-size: 1.15rem;
-      color: rgba(255,255,255,0.6);
-      max-width: 48ch;
-      margin: 0 auto;
-      line-height: 1.7;
-    }
-    .gov-hero .badge {
-      display: inline-block;
-      background: rgba(74, 222, 128, 0.12);
-      color: #4ade80;
-      font-size: 0.8rem;
-      font-weight: 600;
-      padding: 0.35rem 1rem;
-      border-radius: 999px;
-      margin-bottom: var(--space-sm);
-      letter-spacing: 0.04em;
-    }
-
-    .analyzer {
-      max-width: 80rem;
-      margin: 0 auto;
-      padding: var(--space-lg) clamp(1rem, 5vw, 4rem);
-    }
-
-    .file-drop {
-      border: 2px dashed rgba(255,255,255,0.15);
-      border-radius: 12px;
-      padding: var(--space-lg) var(--space-md);
-      text-align: center;
-      color: rgba(255,255,255,0.5);
-      cursor: pointer;
-      transition: border-color 0.2s, background 0.2s;
-      margin-bottom: var(--space-md);
-    }
-    .file-drop:hover, .file-drop.dragover {
-      border-color: #4ade80;
-      background: rgba(74,222,128,0.04);
-    }
-    .file-drop input[type="file"] { display: none; }
-    .file-drop .icon { font-size: 3rem; margin-bottom: var(--space-sm); }
-    .file-drop .main-text { font-size: 1.1rem; font-weight: 600; color: rgba(255,255,255,0.7); }
-    .file-drop .sub-text { font-size: 0.85rem; margin-top: 0.4rem; color: rgba(255,255,255,0.35); }
-    .file-drop .file-name {
-      color: #4ade80;
-      font-weight: 600;
-      font-size: 1rem;
-      margin-top: var(--space-sm);
-    }
-
-    .btn-analyze {
-      display: block;
-      width: 100%;
-      background: #4ade80;
-      color: #0a1628;
-      font-weight: 700;
-      font-size: 1.1rem;
-      border: none;
-      border-radius: 10px;
-      padding: 1rem;
-      cursor: pointer;
-      transition: background 0.2s, transform 0.1s;
-    }
-    .btn-analyze:hover { background: #22c55e; }
-    .btn-analyze:active { transform: scale(0.98); }
-    .btn-analyze:disabled {
-      background: rgba(255,255,255,0.08);
-      color: rgba(255,255,255,0.25);
-      cursor: not-allowed;
-    }
-
-    .status-msg {
-      text-align: center;
-      margin-top: var(--space-sm);
-      font-size: 0.9rem;
-      min-height: 1.5em;
-    }
-
-    /* Results */
-    .results { margin-top: var(--space-lg); display: none; }
-    .results.visible { display: block; }
-    .results h2 {
-      font-size: 1.5rem;
-      font-weight: 700;
-      color: #ffffff;
-      margin-bottom: var(--space-sm);
-    }
-
-    .score-bar {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
-      gap: var(--space-sm);
-      margin-bottom: var(--space-md);
-    }
-    .score-item {
-      background: rgba(255,255,255,0.03);
-      border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 10px;
-      padding: var(--space-sm);
-      text-align: center;
-    }
-    .score-item .score-value {
-      font-size: 2rem;
-      font-weight: 800;
-      font-family: var(--font-mono);
-    }
-    .score-item .score-label {
-      font-size: 0.78rem;
-      color: rgba(255,255,255,0.45);
-      margin-top: 0.25rem;
-    }
-    .score-good { color: #4ade80; }
-    .score-warn { color: #fbbf24; }
-    .score-bad { color: #ef4444; }
-
-    .risk-card {
-      background: rgba(255,255,255,0.03);
-      border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 10px;
-      padding: var(--space-sm) 1.25rem;
-      margin-bottom: var(--space-sm);
-    }
-    .risk-card h3 { font-size: 1rem; font-weight: 700; color: #fff; margin-bottom: 0.4rem; }
-    .risk-card p { font-size: 0.92rem; color: rgba(255,255,255,0.6); line-height: 1.7; }
-    .severity {
-      display: inline-block;
-      font-size: 0.72rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      padding: 0.2rem 0.6rem;
-      border-radius: 4px;
-      margin-bottom: 0.4rem;
-    }
-    .severity-alta { background: rgba(239,68,68,0.15); color: #ef4444; }
-    .severity-media { background: rgba(251,191,36,0.15); color: #fbbf24; }
-    .severity-baja { background: rgba(74,222,128,0.15); color: #4ade80; }
-
-    /* Matrix table */
-    .matrix-tabs {
-      display: flex;
-      gap: 0;
-      border-bottom: 1px solid rgba(255,255,255,0.08);
-      margin-bottom: var(--space-md);
-      overflow-x: auto;
-    }
-    .matrix-tab {
-      padding: 0.6rem 1rem;
-      font-size: 0.85rem;
-      font-weight: 500;
-      color: rgba(255,255,255,0.4);
-      cursor: pointer;
-      border-bottom: 2px solid transparent;
-      white-space: nowrap;
-      background: none;
-      border-top: none;
-      border-left: none;
-      border-right: none;
-    }
-    .matrix-tab:hover { color: rgba(255,255,255,0.7); }
-    .matrix-tab.active { color: #4ade80; border-bottom-color: #4ade80; }
-
-    .matrix-counters {
-      display: flex;
-      gap: var(--space-md);
-      margin-bottom: var(--space-sm);
-    }
-    .matrix-counter {
-      display: flex;
-      align-items: baseline;
-      gap: 0.4rem;
-    }
-    .matrix-counter .num {
-      font-size: 2rem;
-      font-weight: 800;
-      font-family: var(--font-mono);
-    }
-    .matrix-counter .lbl {
-      font-size: 0.8rem;
-      color: rgba(255,255,255,0.45);
-    }
-
-    .matrix-table {
-      width: 100%;
-      border-collapse: collapse;
-    }
-    .matrix-table th {
-      text-align: left;
-      font-size: 0.72rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: rgba(255,255,255,0.35);
-      padding: 0.6rem 0.8rem;
-      border-bottom: 1px solid rgba(255,255,255,0.08);
-    }
-    .matrix-table td {
-      padding: 0.7rem 0.8rem;
-      font-size: 0.88rem;
-      color: rgba(255,255,255,0.7);
-      border-bottom: 1px solid rgba(255,255,255,0.04);
-      vertical-align: top;
-    }
-    .matrix-table tr:hover td { background: rgba(255,255,255,0.02); }
-    .matrix-table td:first-child {
-      font-family: var(--font-mono);
-      font-weight: 600;
-      color: rgba(255,255,255,0.5);
-      width: 50px;
-    }
-    .matrix-table td:nth-child(3) { width: 120px; }
-
-    .badge-cumple { background: rgba(74,222,128,0.15); color: #4ade80; }
-    .badge-insuficiente { background: rgba(251,191,36,0.15); color: #fbbf24; }
-    .badge-ausente { background: rgba(148,163,184,0.15); color: #94a3b8; }
-    .badge-incumple { background: rgba(239,68,68,0.15); color: #ef4444; }
-    .eval-badge {
-      display: inline-block;
-      font-size: 0.7rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      padding: 0.2rem 0.6rem;
-      border-radius: 4px;
-    }
-
-    .violations-section {
-      margin-top: var(--space-md);
-      padding: var(--space-sm);
-      background: rgba(239,68,68,0.05);
-      border: 1px solid rgba(239,68,68,0.15);
-      border-radius: 10px;
-    }
-    .violations-section h3 { color: #ef4444; font-size: 1rem; margin-bottom: 0.5rem; }
-    .violation-item {
-      padding: 0.5rem 0;
-      border-bottom: 1px solid rgba(239,68,68,0.08);
-      font-size: 0.88rem;
-      color: rgba(255,255,255,0.7);
-    }
-    .violation-item:last-child { border-bottom: none; }
-    .violation-law { font-size: 0.75rem; color: #60a5fa; font-family: var(--font-mono); margin-top: 0.2rem; }
-
-    .raw-output {
-      background: rgba(255,255,255,0.03);
-      border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 8px;
-      padding: var(--space-sm);
-      font-family: var(--font-mono);
-      font-size: 0.85rem;
-      color: rgba(255,255,255,0.7);
-      white-space: pre-wrap;
-      word-break: break-word;
-      line-height: 1.7;
-      max-height: 600px;
-      overflow-y: auto;
-    }
-
-    /* Checklist */
-    .checklist {
-      padding: var(--space-lg) 0;
-      border-top: 1px solid rgba(255,255,255,0.06);
-    }
-    .checklist h2 { font-size: 1.5rem; font-weight: 700; color: #fff; margin-bottom: var(--space-xs); }
-    .checklist-intro { color: rgba(255,255,255,0.5); margin-bottom: var(--space-md); max-width: 55ch; }
-    .checklist-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: var(--space-sm);
-    }
-    .check-item {
-      background: rgba(255,255,255,0.03);
-      border: 1px solid rgba(255,255,255,0.06);
-      border-radius: 10px;
-      padding: 1rem 1.25rem;
-    }
-    .check-item h3 { font-size: 0.92rem; font-weight: 700; color: #fff; margin-bottom: 0.3rem; }
-    .check-item p { font-size: 0.85rem; color: rgba(255,255,255,0.5); line-height: 1.6; }
-    .check-item .ref {
-      font-size: 0.75rem;
-      color: #60a5fa;
-      margin-top: 0.4rem;
-      font-family: var(--font-mono);
-    }
-
-    /* Chat */
-    .chat-msg {
-      padding: 0.75rem 1rem;
-      border-radius: 10px;
-      margin-bottom: 0.5rem;
-      font-size: 0.92rem;
-      line-height: 1.7;
-    }
-    .chat-user {
-      background: rgba(89,79,211,0.12);
-      color: rgba(255,255,255,0.85);
-      margin-left: 20%;
-    }
-    .chat-bot {
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.06);
-      color: rgba(255,255,255,0.75);
-      margin-right: 10%;
-    }
-    .chat-typing {
-      color: rgba(255,255,255,0.35);
-      font-style: italic;
-    }
-    #chatInput:focus { outline: none; border-color: #594FD3; }
-
-    /* Extension CTA */
-    .ext-cta {
-      margin-top: var(--space-md);
-      background: linear-gradient(135deg, rgba(89,79,211,0.08), rgba(74,222,128,0.06));
-      border: 1px solid rgba(89,79,211,0.2);
-      border-radius: 12px;
-      padding: 1.5rem;
-    }
-    .ext-cta-inner {
-      display: flex;
-      gap: var(--space-md);
-      align-items: center;
-      flex-wrap: wrap;
-    }
-    .ext-cta-left { flex: 1; min-width: 280px; }
-    .ext-cta-right { text-align: center; }
-    .ext-cta-title {
-      font-size: 1.1rem;
-      font-weight: 700;
-      color: #fff;
-      margin-bottom: 0.3rem;
-    }
-    .ext-cta-desc {
-      font-size: 0.9rem;
-      color: rgba(255,255,255,0.6);
-      margin-bottom: 0.6rem;
-    }
-    .ext-cta-benefits {
-      list-style: none;
-      padding: 0;
-    }
-    .ext-cta-benefits li {
-      font-size: 0.85rem;
-      color: rgba(255,255,255,0.55);
-      padding: 0.2rem 0;
-      padding-left: 1.2rem;
-      position: relative;
-    }
-    .ext-cta-benefits li::before {
-      content: '✓';
-      position: absolute;
-      left: 0;
-      color: #4ade80;
-      font-weight: 700;
-    }
-    .btn-ext {
-      display: inline-block;
-      background: #594FD3;
-      color: #fff;
-      font-weight: 700;
-      font-size: 0.95rem;
-      border: none;
-      border-radius: 8px;
-      padding: 0.75rem 2rem;
-      text-decoration: none;
-      transition: background 0.2s;
-    }
-    .btn-ext:hover { background: #6b63e0; text-decoration: none; }
-    .ext-cta-note {
-      font-size: 0.75rem;
-      color: rgba(255,255,255,0.3);
-      margin-top: 0.4rem;
-    }
-
-    .gov-footer {
-      padding: var(--space-lg) 0 var(--space-md);
-      border-top: 1px solid rgba(255,255,255,0.06);
-      text-align: center;
-      color: rgba(255,255,255,0.3);
-      font-size: 0.85rem;
-    }
-    .gov-footer a { color: #4ade80; }
-  </style>
-</head>
-<body>
-
-  <!-- Nav -->
-  <nav>
-    <div class="container">
-      <a href="/" class="nav-brand"><img src="/logo-full-white.svg" alt="Attestto Open" style="height: 2rem; vertical-align: middle; margin-right: 0.5rem;">Open</a>
-      <ul class="nav-links">
-        <li><a href="/why" style="color: #fbbf24; font-weight: 600;">Why</a></li>
-        <li><a href="/for/developers" style="color: #4ade80; font-weight: 600;">Developers</a></li>
-        <li><a href="/gobierno" style="color: #60a5fa; font-weight: 600;">Gobierno</a></li>
-      </ul>
-    </div>
-  </nav>
+<Base
+  title="Revisor de Pliegos — Attestto"
+  description="Herramienta gratuita para funcionarios publicos. Suba un pliego de licitacion y reciba un analisis de cumplimiento del marco legal costarricense: portabilidad de datos, privacidad ciudadana y estandares abiertos."
+  canonicalPath="/revisor-pliegos"
+  lang="es"
+  navVariant="revisor"
+  footerVariant="revisor"
+  bodyClass="page-revisor"
+>
 
   <!-- Hero -->
   <section class="gov-hero">
     <div class="container">
       <div class="badge">Herramienta gratuita para funcionarios publicos</div>
       <h1>Revisor de Pliegos</h1>
-      <p class="lead">Suba un pliego de licitacion y reciba un analisis automatico de dependencia de proveedor, privacidad ciudadana y cumplimiento de estandares abiertos.</p>
+      <p class="lead">Suba un pliego de licitacion y reciba un analisis automatico contra el marco legal costarricense: Ley 8968 (proteccion de datos), Ley 8642 (neutralidad tecnologica), Ley 7494 (contratacion administrativa) y estandares abiertos W3C/ISO.</p>
     </div>
   </section>
 
@@ -510,7 +89,7 @@
         </div>
         <div id="chatMessages" style="margin-bottom: var(--space-sm); max-height: 400px; overflow-y: auto;"></div>
         <div style="display: flex; gap: 0.5rem;">
-          <input type="text" id="chatInput" placeholder="Ej: Por que la verificacion contra TSE viola la Ley 8968?" style="flex: 1; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; color: #e2e8f0; padding: 0.75rem 1rem; font-size: 0.92rem;">
+          <input type="text" id="chatInput" placeholder="Ej: Que requisitos de portabilidad de datos exige la Ley 8968?" style="flex: 1; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; color: #e2e8f0; padding: 0.75rem 1rem; font-size: 0.92rem;">
           <button id="chatSend" style="background: #594FD3; color: #fff; border: none; border-radius: 8px; padding: 0.75rem 1.5rem; font-weight: 600; cursor: pointer; font-size: 0.92rem;">Preguntar</button>
         </div>
       </div>
@@ -529,69 +108,259 @@
     </div>
   </div>
 
-  <!-- Manual checklist -->
+  <!-- Marco legal — checklist -->
   <div class="analyzer">
     <div class="checklist">
-      <h2>Lista de verificacion manual</h2>
-      <p class="checklist-intro">Preguntas que todo funcionario deberia hacer antes de adjudicar una licitacion que involucre datos de ciudadanos.</p>
-      <div class="checklist-grid">
-        <div class="check-item">
-          <h3>Portabilidad de datos</h3>
-          <p>Si el contrato termina, los datos del ciudadano se pueden exportar en formato estandar? O quedan atrapados en el sistema del proveedor?</p>
-          <div class="ref">Art. 24 Constitucion Politica / Ley 8968 Art. 7</div>
+      <h2>Marco legal aplicable</h2>
+      <p class="checklist-intro">Cada requisito legal tiene una forma concreta de resolverse en un pliego de licitacion.</p>
+      <div class="legal-rows">
+
+        <div class="legal-row">
+          <div class="legal-req">
+            <h3>Ley 8968 Art. 7 · Portabilidad</h3>
+            <p>El ciudadano tiene derecho a que sus datos sean exportables en formato estandar al terminar un contrato.</p>
+          </div>
+          <div class="legal-fix">
+            <p>Exigir en el pliego que el sistema exporte datos en formatos abiertos (JSON, CSV, XML) sin costo adicional y sin depender del proveedor.</p>
+          </div>
         </div>
-        <div class="check-item">
-          <h3>Estandares abiertos</h3>
-          <p>El sistema usa formatos abiertos (W3C, ISO) o depende de formatos propietarios que solo un proveedor puede leer?</p>
-          <div class="ref">Decreto 40199-MP Art. 3 / INTE/ISO 21188</div>
+
+        <div class="legal-row">
+          <div class="legal-req">
+            <h3>Ley 8642 Art. 3(h) · Neutralidad tecnologica</h3>
+            <p>Ningun requisito tecnico debe favorecer una tecnologia sobre otra.</p>
+          </div>
+          <div class="legal-fix">
+            <p>Especificar estandares (W3C, ISO, IETF) en lugar de productos. Aceptar cualquier implementacion que cumpla el estandar.</p>
+          </div>
         </div>
-        <div class="check-item">
-          <h3>Auditabilidad</h3>
-          <p>Un auditor independiente puede verificar la integridad de los datos sin depender del proveedor?</p>
-          <div class="ref">Ley 8292 Control Interno / CGR</div>
+
+        <div class="legal-row">
+          <div class="legal-req">
+            <h3>Ley 8968 Art. 4-5 · Minimizacion y finalidad</h3>
+            <p>Solo recopilar datos estrictamente necesarios. No usar datos para fines distintos al declarado.</p>
+          </div>
+          <div class="legal-fix">
+            <p>Definir en el pliego exactamente que datos se recopilan y para que. Prohibir reutilizacion o venta. Exigir mecanismos de divulgacion selectiva.</p>
+          </div>
         </div>
-        <div class="check-item">
-          <h3>Consentimiento informado</h3>
-          <p>El sistema notifica al ciudadano cuando sus datos son accedidos o compartidos con terceros?</p>
-          <div class="ref">Ley 8968 Art. 5 / Acuerdo SUGEF 35-21 Art. 10</div>
+
+        <div class="legal-row">
+          <div class="legal-req">
+            <h3>Ley 8292 · Control Interno / CGR</h3>
+            <p>Un auditor independiente debe poder verificar la integridad de los datos sin depender del proveedor.</p>
+          </div>
+          <div class="legal-fix">
+            <p>Incluir clausula de auditoria independiente. Exigir logs inmutables y firmas criptograficas verificables por terceros.</p>
+          </div>
         </div>
-        <div class="check-item">
-          <h3>Resiliencia ante ataques</h3>
-          <p>Si el servidor es comprometido (como en el ataque Conti 2022), los documentos mantienen su integridad verificable?</p>
-          <div class="ref">Decreto 45061-MICITT / NIST CSF 2.0</div>
+
+        <div class="legal-row">
+          <div class="legal-req">
+            <h3>D.E. 45061-MICITT · Ciberseguridad</h3>
+            <p>Los sistemas deben mantener integridad verificable aun si el servidor es comprometido.</p>
+          </div>
+          <div class="legal-fix">
+            <p>Exigir integridad criptografica a nivel de documento (firmas digitales, hashes), no solo seguridad perimetral. Arquitectura resiliente a compromiso de servidor.</p>
+          </div>
         </div>
-        <div class="check-item">
-          <h3>Concentracion de mercado</h3>
-          <p>Los requisitos tecnicos del pliego solo pueden ser cumplidos por 1-2 proveedores? Existen barreras artificiales?</p>
-          <div class="ref">Ley 7494 Contratacion Administrativa Art. 5</div>
+
+        <div class="legal-row">
+          <div class="legal-req">
+            <h3>Ley 7494 Art. 5 · Contratacion administrativa</h3>
+            <p>Los pliegos deben permitir la participacion de multiples proveedores en igualdad de condiciones.</p>
+          </div>
+          <div class="legal-fix">
+            <p>Evitar requisitos que solo un proveedor pueda cumplir. Especificar capacidades funcionales, no marcas o productos especificos.</p>
+          </div>
         </div>
-        <div class="check-item">
-          <h3>Costo de cambio</h3>
-          <p>Cuanto costaria migrar a otro proveedor al final del contrato? Los datos y flujos son reutilizables?</p>
-          <div class="ref">Principio de eficiencia — Ley 8131</div>
+
+        <div class="legal-row">
+          <div class="legal-req">
+            <h3>Ley 8131 · Eficiencia en gasto publico</h3>
+            <p>El Estado debe minimizar costos de cambio y evitar dependencias contractuales innecesarias.</p>
+          </div>
+          <div class="legal-fix">
+            <p>Incluir clausula de transicion: datos y flujos deben ser migrables a otro proveedor. Codigo fuente o APIs documentadas como entregable.</p>
+          </div>
         </div>
-        <div class="check-item">
-          <h3>Acceso ciudadano</h3>
-          <p>El ciudadano puede verificar y rectificar sus propios datos sin depender de sucursales, tokens fisicos o software propietario?</p>
-          <div class="ref">Ley 8968 Art. 7-8 / Constitucion Art. 27</div>
+
+        <div class="legal-row">
+          <div class="legal-req">
+            <h3>Art. 24 Constitucion · Autodeterminacion informativa</h3>
+            <p>El ciudadano debe poder verificar y rectificar sus datos sin depender de intermediarios.</p>
+          </div>
+          <div class="legal-fix">
+            <p>Exigir acceso directo del ciudadano a sus datos. No condicionar acceso a sucursales, tokens fisicos o software propietario.</p>
+          </div>
         </div>
+
       </div>
     </div>
   </div>
 
-  <!-- Footer -->
-  <footer class="gov-footer">
-    <div class="container">
-      <p>Attestto es infraestructura publica digital de codigo abierto bajo licencia <a href="https://www.apache.org/licenses/LICENSE-2.0" target="_blank" rel="noopener">Apache 2.0</a>.</p>
-      <p style="margin-top: 0.5rem;">Esta herramienta no almacena sus documentos. El archivo se procesa en memoria y se descarta inmediatamente. Solo se guardan los resultados del analisis (puntuaciones y hallazgos), sin datos del documento original. <a href="https://github.com/Attestto-com/attestto-pliego-reviewer" target="_blank" rel="noopener">Verifiquelo usted mismo — codigo abierto</a>.</p>
-      <p style="margin-top: 0.5rem;"><a href="/">attestto.org</a> · <a href="https://github.com/Attestto-com" target="_blank" rel="noopener">GitHub</a> · <a href="/why">Por que existe Attestto</a></p>
-    </div>
-  </footer>
+  <!-- Checklist para diseño de pliegos -->
+  <div class="analyzer">
+    <div class="checklist">
+      <h2>Checklist para diseño de pliegos</h2>
+      <p class="checklist-intro">Use esta lista al redactar los requisitos de una licitacion que involucre datos ciudadanos. Cada clausula esta respaldada por legislacion vigente.</p>
 
-  <script>
+      <div class="tender-checklist" id="tenderChecklist">
+
+        <div class="tender-category">
+          <h3>Portabilidad y formatos</h3>
+          <label class="tender-item">
+            <input type="checkbox">
+            <span class="tender-text">El sistema debe permitir exportacion completa de datos en formatos abiertos (JSON, CSV, XML) sin costo adicional.</span>
+            <span class="tender-law">Ley 8968 Art. 7</span>
+          </label>
+          <label class="tender-item">
+            <input type="checkbox">
+            <span class="tender-text">Los requisitos tecnicos se especifican por estandar internacional (W3C, ISO, IETF), no por producto o marca.</span>
+            <span class="tender-law">Ley 8642 Art. 3(h)</span>
+          </label>
+          <label class="tender-item">
+            <input type="checkbox">
+            <span class="tender-text">Al finalizar el contrato, los datos y flujos deben ser migrables a otro proveedor sin perdida ni conversion propietaria.</span>
+            <span class="tender-law">Ley 8131 · Eficiencia</span>
+          </label>
+        </div>
+
+        <div class="tender-category">
+          <h3>Privacidad y datos personales</h3>
+          <label class="tender-item">
+            <input type="checkbox">
+            <span class="tender-text">El pliego define explicitamente que datos personales se recopilan y con que finalidad exclusiva.</span>
+            <span class="tender-law">Ley 8968 Art. 4-5</span>
+          </label>
+          <label class="tender-item">
+            <input type="checkbox">
+            <span class="tender-text">Se prohibe el uso de datos para fines distintos al declarado, incluyendo venta o cesion a terceros.</span>
+            <span class="tender-law">Ley 8968 Art. 5</span>
+          </label>
+          <label class="tender-item">
+            <input type="checkbox">
+            <span class="tender-text">El ciudadano puede acceder, verificar y rectificar sus datos directamente, sin depender de sucursales o software propietario.</span>
+            <span class="tender-law">Art. 24 Constitucion</span>
+          </label>
+        </div>
+
+        <div class="tender-category">
+          <h3>Seguridad e integridad</h3>
+          <label class="tender-item">
+            <input type="checkbox">
+            <span class="tender-text">Los documentos y datos deben tener integridad criptografica a nivel individual (firmas digitales, hashes), no solo seguridad perimetral.</span>
+            <span class="tender-law">D.E. 45061-MICITT</span>
+          </label>
+          <label class="tender-item">
+            <input type="checkbox">
+            <span class="tender-text">El sistema debe mantener verificabilidad aun si el servidor es comprometido (resiliencia post-Conti).</span>
+            <span class="tender-law">D.E. 45061-MICITT / NIST CSF 2.0</span>
+          </label>
+          <label class="tender-item">
+            <input type="checkbox">
+            <span class="tender-text">Se incluye clausula de auditoria independiente: logs inmutables y firmas verificables por terceros.</span>
+            <span class="tender-law">Ley 8292 · CGR</span>
+          </label>
+        </div>
+
+        <div class="tender-category">
+          <h3>Competencia y transparencia</h3>
+          <label class="tender-item">
+            <input type="checkbox">
+            <span class="tender-text">Los requisitos son funcionales (que debe hacer el sistema), no restrictivos (que producto debe usar).</span>
+            <span class="tender-law">Ley 7494 Art. 5</span>
+          </label>
+          <label class="tender-item">
+            <input type="checkbox">
+            <span class="tender-text">Se incluye clausula de transicion con entregables documentados: APIs, codigo fuente o especificaciones suficientes para migrar.</span>
+            <span class="tender-law">Ley 8131 · Eficiencia</span>
+          </label>
+          <label class="tender-item">
+            <input type="checkbox">
+            <span class="tender-text">El consentimiento informado del ciudadano esta contemplado antes de cualquier recopilacion o transferencia de datos.</span>
+            <span class="tender-law">Ley 8968 Art. 5</span>
+          </label>
+        </div>
+
+      </div>
+
+      <div class="tender-actions">
+        <div class="tender-progress">
+          <span id="checkCount">0</span> / <span id="checkTotal">12</span> clausulas incluidas
+        </div>
+        <button class="btn-analyze" id="printChecklist" style="max-width: 320px;">Imprimir checklist</button>
+      </div>
+
+    </div>
+  </div>
+
+  <script is:inline>
+  // ── Tender checklist counter + print ──
+  (function() {
+    var checks = document.querySelectorAll('#tenderChecklist input[type="checkbox"]');
+    var countEl = document.getElementById('checkCount');
+    var totalEl = document.getElementById('checkTotal');
+    totalEl.textContent = checks.length;
+
+    checks.forEach(function(cb) {
+      cb.addEventListener('change', function() {
+        var n = 0;
+        checks.forEach(function(c) { if (c.checked) n++; });
+        countEl.textContent = n;
+      });
+    });
+
+    document.getElementById('printChecklist').addEventListener('click', function() {
+      var items = [];
+      checks.forEach(function(cb) {
+        var label = cb.closest('.tender-item');
+        var text = label.querySelector('.tender-text').textContent;
+        var law = label.querySelector('.tender-law').textContent;
+        items.push({ text: text, law: law, checked: cb.checked });
+      });
+
+      var date = new Date().toLocaleDateString('es-CR', { year: 'numeric', month: 'long', day: 'numeric' });
+      var html = '<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8">' +
+        '<title>Checklist para Diseño de Pliegos — Attestto</title>' +
+        '<style>' +
+        'body{font-family:Arial,sans-serif;color:#1a1a2e;padding:40px;font-size:13px;line-height:1.6;}' +
+        'h1{font-size:18px;margin-bottom:4px;}' +
+        '.meta{color:#666;font-size:12px;margin-bottom:24px;}' +
+        '.item{display:flex;gap:10px;padding:8px 0;border-bottom:1px solid #eee;align-items:flex-start;}' +
+        '.box{width:16px;height:16px;border:2px solid #333;border-radius:3px;flex-shrink:0;margin-top:2px;display:flex;align-items:center;justify-content:center;font-size:12px;}' +
+        '.box.done{background:#dcfce7;border-color:#16a34a;}' +
+        '.text{flex:1;}' +
+        '.law{font-size:11px;color:#4a6cf7;font-family:monospace;white-space:nowrap;}' +
+        '.footer{margin-top:30px;padding-top:12px;border-top:1px solid #ddd;font-size:11px;color:#999;text-align:center;}' +
+        '@media print{body{padding:20px;}@page{margin:1.5cm;}}' +
+        '</style></head><body>';
+      html += '<h1>Checklist para Diseño de Pliegos de Licitacion</h1>';
+      html += '<div class="meta">Fecha: ' + date + ' · Basado en legislacion costarricense vigente · attestto.org/revisor-pliegos/</div>';
+
+      for (var i = 0; i < items.length; i++) {
+        var it = items[i];
+        html += '<div class="item">' +
+          '<div class="box' + (it.checked ? ' done' : '') + '">' + (it.checked ? '✓' : '') + '</div>' +
+          '<div class="text">' + it.text + '</div>' +
+          '<div class="law">' + it.law + '</div></div>';
+      }
+
+      html += '<div class="footer">Generado por Attestto · attestto.org/revisor-pliegos/ · Herramienta gratuita, codigo abierto Apache 2.0<br>Esta lista es una guia basada en el marco legal. No constituye asesoria legal.</div>';
+      html += '</body></html>';
+
+      var win = window.open('', '_blank');
+      win.document.write(html);
+      win.document.close();
+      setTimeout(function() { win.print(); }, 500);
+    });
+  })();
+  </script>
+
+  <script is:inline>
   (function() {
     var PLIEGO_API = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
-      ? 'http://localhost:3101'
+      ? 'http://localhost:3100'
       : 'https://pliego.attestto.org';
 
     var fileDrop = document.getElementById('fileDrop');
@@ -942,7 +711,7 @@
         '</style></head><body>';
 
       html += '<h1>Reporte de Cumplimiento de Pliego</h1>';
-      html += '<div class="meta">Fecha: ' + date + ' · Framework v1.0.0 (34 checks, 7 categorias) · attestto.org/gobierno/</div>';
+      html += '<div class="meta">Fecha: ' + date + ' · Framework v1.0.0 (34 checks, 7 categorias) · attestto.org/revisor-pliegos/</div>';
 
       if (a.summary) {
         html += '<div class="summary">' + a.summary + '</div>';
@@ -982,7 +751,7 @@
         }
       }
 
-      html += '<div class="footer">Generado por Attestto Pliego Reviewer · attestto.org/gobierno/ · Codigo abierto Apache 2.0<br>Este reporte es una evaluacion automatizada. No constituye asesoria legal.</div>';
+      html += '<div class="footer">Generado por Attestto Pliego Reviewer · attestto.org/revisor-pliegos/ · Codigo abierto Apache 2.0<br>Este reporte es una evaluacion automatizada. No constituye asesoria legal.</div>';
       html += '</body></html>';
 
       // Open in new window for print/save
@@ -994,11 +763,11 @@
 
     // Expose for testing
     if (typeof window !== 'undefined') {
-      window._gobierno = { renderResults: renderResults };
+      window._revisor = { renderResults: renderResults };
     }
   })();
   </script>
 
-  <script defer data-domain="attestto.org" src="https://plausible.io/js/script.js"></script>
-</body>
-</html>
+  <script is:inline defer data-domain="attestto.org" src="https://plausible.io/js/script.js"></script>
+
+</Base>

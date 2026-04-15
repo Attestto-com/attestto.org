@@ -878,9 +878,9 @@ footer a:hover { color: #ffffff; }
   color: rgba(255,255,255,0.5);
 }
 
-/* ── /gobierno/ page (full dark theme) ── */
-.page-gobierno { background: var(--color-dark); color: #e2e8f0; }
-.page-gobierno a { color: #4ade80; }
+/* ── /revisor-pliegos/ page (full dark theme) ── */
+.page-revisor { background: var(--color-dark); color: #e2e8f0; }
+.page-revisor a { color: #4ade80; }
 
 .gov-hero {
   padding: var(--space-xl) 0 var(--space-lg);
@@ -1173,6 +1173,126 @@ footer a:hover { color: #ffffff; }
   color: #60a5fa;
   margin-top: 0.4rem;
   font-family: var(--font-mono);
+}
+
+/* Tender checklist — revisor-pliegos */
+.tender-category {
+  margin-bottom: var(--space-md);
+}
+.tender-category h3 {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: rgba(255,255,255,0.7);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: var(--space-xs);
+  padding-bottom: 0.35rem;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.tender-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding: 0.6rem 0.75rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.tender-item:hover {
+  background: rgba(255,255,255,0.03);
+}
+.tender-item input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  margin-top: 2px;
+  flex-shrink: 0;
+  accent-color: #22d3a8;
+  cursor: pointer;
+}
+.tender-text {
+  flex: 1;
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.65);
+  line-height: 1.6;
+}
+.tender-item:has(input:checked) .tender-text {
+  color: rgba(255,255,255,0.85);
+}
+.tender-law {
+  font-size: 0.72rem;
+  color: #60a5fa;
+  font-family: var(--font-mono);
+  white-space: nowrap;
+  margin-top: 3px;
+  flex-shrink: 0;
+}
+.tender-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-md);
+  margin-top: var(--space-md);
+  padding-top: var(--space-md);
+  border-top: 1px solid rgba(255,255,255,0.06);
+}
+.tender-progress {
+  font-size: 0.92rem;
+  color: rgba(255,255,255,0.5);
+  font-weight: 600;
+}
+.tender-progress span:first-child {
+  color: #22d3a8;
+  font-size: 1.1rem;
+}
+
+/* Legal rows — revisor-pliegos marco legal */
+.legal-rows {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+.legal-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-md);
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 10px;
+  padding: 1.25rem;
+  align-items: start;
+}
+.legal-req h3 {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 0.35rem;
+}
+.legal-req p {
+  font-size: 0.82rem;
+  color: rgba(255,255,255,0.5);
+  line-height: 1.6;
+  margin: 0;
+}
+.legal-fix {
+  border-left: 3px solid #22d3a8;
+  padding-left: 16px;
+  display: flex;
+  align-items: center;
+}
+.legal-fix p {
+  font-size: 0.82rem;
+  color: rgba(255,255,255,0.7);
+  line-height: 1.6;
+  margin: 0;
+}
+@media (max-width: 640px) {
+  .legal-row { grid-template-columns: 1fr; }
+  .legal-fix {
+    border-left: none;
+    border-top: 2px solid #22d3a8;
+    padding-left: 0;
+    padding-top: 12px;
+  }
 }
 
 .chat-msg {

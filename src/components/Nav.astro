@@ -1,6 +1,6 @@
 ---
 interface Props {
-  variant?: 'default' | 'ark' | 'ark-sub' | 'developers' | 'downloads' | 'gobierno'
+  variant?: 'default' | 'ark' | 'ark-sub' | 'developers' | 'downloads' | 'revisor'
 }
 
 const { variant = 'default' } = Astro.props
@@ -68,9 +68,13 @@ const navConfigs: Record<string, { brandSuffix: string; brandI18n?: string; link
       { href: 'https://attestto.com', label: 'attestto.com' },
     ],
   },
-  gobierno: {
-    brandSuffix: 'Gobierno',
-    links: [],
+  revisor: {
+    brandSuffix: 'Revisor de Pliegos',
+    links: [
+      { href: '/cr', label: 'Costa Rica' },
+      { href: 'https://github.com/Attestto-com/attestto-pliego-reviewer', label: 'GitHub' },
+      { href: 'https://app.attestto.com', label: 'Verificador Online', color: '#4ade80', weight: '600' },
+    ],
   },
 }
 
