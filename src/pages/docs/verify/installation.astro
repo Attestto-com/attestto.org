@@ -1,0 +1,131 @@
+---
+import DocsLayout from '../../../layouts/DocsLayout.astro'
+import CodeBlock from '../../../components/docs/CodeBlock.astro'
+import Callout from '../../../components/docs/Callout.astro'
+---
+
+<DocsLayout
+  title="Installation"
+  description="Install @attestto/verify via CDN, npm, or individual imports. Works with React, Vue, Svelte, and plain HTML."
+  currentPath="/docs/verify/installation/"
+>
+  <h1>Installation</h1>
+  <p class="docs-hero-sub">
+    Three ways to add @attestto/verify to your project. Pick whichever fits your stack.
+  </p>
+
+  <h2>CDN (fastest)</h2>
+  <p>Add a single script tag. No build step, no bundler. Components register themselves automatically.</p>
+
+  <CodeBlock lang="HTML" title="index.html">
+<Fragment set:html={`<span class="c-tag">&lt;script</span> <span class="c-attr">type</span>=<span class="c-str">"module"</span>
+  <span class="c-attr">src</span>=<span class="c-str">"https://unpkg.com/@attestto/verify"</span>
+<span class="c-tag">&gt;&lt;/script&gt;</span>
+
+<span class="c-cm">&lt;!-- Both components are now available --&gt;</span>
+<span class="c-tag">&lt;attestto-verify&gt;&lt;/attestto-verify&gt;</span>
+<span class="c-tag">&lt;attestto-sign&gt;&lt;/attestto-sign&gt;</span>`} />
+  </CodeBlock>
+
+  <h2>npm</h2>
+  <p>Install the package and import it in your application entry point.</p>
+
+  <CodeBlock title="Terminal">
+<Fragment set:html={`<span class="c-fn">npm</span> <span class="c-str">install</span> @attestto/verify`} />
+  </CodeBlock>
+
+  <p>Then import the library to register the components:</p>
+
+  <CodeBlock lang="JavaScript" title="main.js">
+<Fragment set:html={`<span class="c-kw">import</span> <span class="c-str">'@attestto/verify'</span>
+
+<span class="c-cm">// &lt;attestto-verify&gt; and &lt;attestto-sign&gt; are now registered globally</span>`} />
+  </CodeBlock>
+
+  <h2>Individual imports</h2>
+  <p>If you only need one component, import it directly to reduce bundle size:</p>
+
+  <CodeBlock lang="JavaScript" title="verify-only.js">
+<Fragment set:html={`<span class="c-cm">// Only registers &lt;attestto-verify&gt;</span>
+<span class="c-kw">import</span> <span class="c-str">'@attestto/verify/verify'</span>
+
+<span class="c-cm">// Only registers &lt;attestto-sign&gt;</span>
+<span class="c-kw">import</span> <span class="c-str">'@attestto/verify/sign'</span>`} />
+  </CodeBlock>
+
+  <h2>Framework integration</h2>
+  <p>
+    Web Components are native HTML elements. They work in every framework without wrappers or adapters.
+    Shadow DOM encapsulation means they will never conflict with your existing styles or CSS framework.
+  </p>
+
+  <h3>React</h3>
+
+  <CodeBlock lang="JSX" title="App.jsx">
+<Fragment set:html={`<span class="c-kw">import</span> <span class="c-str">'@attestto/verify'</span>
+
+<span class="c-kw">export default function</span> <span class="c-fn">App</span>() <span class="c-br">{</span>
+  <span class="c-kw">return</span> <span class="c-br">(</span>
+    <span class="c-tag">&lt;div&gt;</span>
+      <span class="c-tag">&lt;h1&gt;</span>Document Verification<span class="c-tag">&lt;/h1&gt;</span>
+      <span class="c-tag">&lt;attestto-verify&gt;&lt;/attestto-verify&gt;</span>
+    <span class="c-tag">&lt;/div&gt;</span>
+  <span class="c-br">)</span>
+<span class="c-br">}</span>`} />
+  </CodeBlock>
+
+  <Callout type="info">
+    React 19+ handles Custom Elements natively. For React 18 and below, string attributes work fine.
+    If you need to pass objects or listen to custom events, use a <code>ref</code>.
+  </Callout>
+
+  <h3>Vue</h3>
+
+  <CodeBlock lang="Vue" title="App.vue">
+<Fragment set:html={`<span class="c-tag">&lt;script</span> <span class="c-attr">setup</span><span class="c-tag">&gt;</span>
+<span class="c-kw">import</span> <span class="c-str">'@attestto/verify'</span>
+<span class="c-tag">&lt;/script&gt;</span>
+
+<span class="c-tag">&lt;template&gt;</span>
+  <span class="c-tag">&lt;attestto-verify</span>
+    <span class="c-attr">@verification-complete</span>=<span class="c-str">"onResult"</span>
+  <span class="c-tag">/&gt;</span>
+<span class="c-tag">&lt;/template&gt;</span>`} />
+  </CodeBlock>
+
+  <Callout type="info">
+    Add <code>attestto-</code> to <code>compilerOptions.isCustomElement</code> in your
+    <code>vite.config.ts</code> to silence Vue's unknown-component warning.
+  </Callout>
+
+  <h3>Svelte</h3>
+
+  <CodeBlock lang="Svelte" title="App.svelte">
+<Fragment set:html={`<span class="c-tag">&lt;script&gt;</span>
+  <span class="c-kw">import</span> <span class="c-str">'@attestto/verify'</span>
+<span class="c-tag">&lt;/script&gt;</span>
+
+<span class="c-tag">&lt;attestto-verify</span>
+  <span class="c-attr">on:verification-complete</span>=<span class="c-str">"{handleResult}"</span>
+<span class="c-tag">/&gt;</span>`} />
+  </CodeBlock>
+
+  <h2>Shadow DOM &amp; style isolation</h2>
+  <p>
+    Both components render inside Shadow DOM. This means:
+  </p>
+  <ul style="color: var(--docs-text-muted); font-size: 0.95rem; line-height: 2; padding-left: 1.5rem;">
+    <li>Your page CSS cannot accidentally break the component</li>
+    <li>The component CSS cannot leak into your page</li>
+    <li>Tailwind, Bootstrap, or any CSS reset will not affect it</li>
+    <li>You can still customize appearance with <a href="/docs/verify/theming/">CSS custom properties and ::part() selectors</a></li>
+  </ul>
+
+  <h2>Next steps</h2>
+  <ul style="color: var(--docs-text-muted); font-size: 0.95rem; line-height: 2; padding-left: 1.5rem;">
+    <li><a href="/docs/verify/verify-component/">&lt;attestto-verify&gt; API</a> &mdash; attributes, events, and CSS parts</li>
+    <li><a href="/docs/verify/sign-component/">&lt;attestto-sign&gt; API</a> &mdash; wallet-based document signing</li>
+    <li><a href="/docs/verify/theming/">Theming</a> &mdash; customize colors, fonts, and layout</li>
+    <li><a href="/docs/quickstart/verify-a-document/">Quickstart</a> &mdash; complete working example in 2 minutes</li>
+  </ul>
+</DocsLayout>

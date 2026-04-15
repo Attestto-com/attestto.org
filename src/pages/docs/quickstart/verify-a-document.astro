@@ -1,0 +1,106 @@
+---
+import DocsLayout from '../../../layouts/DocsLayout.astro'
+import CodeBlock from '../../../components/docs/CodeBlock.astro'
+import Callout from '../../../components/docs/Callout.astro'
+---
+
+<DocsLayout
+  title="Verify a Document"
+  description="Add document verification to any web page in under 2 minutes with a single script tag."
+  currentPath="/docs/quickstart/verify-a-document/"
+>
+  <div class="docs-hero-badge">Quickstart &middot; 2 minutes</div>
+  <h1>Verify a Document</h1>
+  <p class="docs-hero-sub">
+    Add client-side document verification to any web page.
+    One script tag, one HTML element. No backend, no API keys, no data transmitted.
+  </p>
+
+  <h2>The simplest integration</h2>
+  <p>This is a complete, working HTML page that verifies PDF documents:</p>
+
+  <CodeBlock lang="HTML" title="index.html">
+<Fragment set:html={`<span class="c-tag">&lt;!DOCTYPE html&gt;</span>
+<span class="c-tag">&lt;html</span> <span class="c-attr">lang</span>=<span class="c-str">"en"</span><span class="c-tag">&gt;</span>
+<span class="c-tag">&lt;head&gt;</span>
+  <span class="c-tag">&lt;script</span> <span class="c-attr">type</span>=<span class="c-str">"module"</span>
+    <span class="c-attr">src</span>=<span class="c-str">"https://unpkg.com/@attestto/verify"</span>
+  <span class="c-tag">&gt;&lt;/script&gt;</span>
+<span class="c-tag">&lt;/head&gt;</span>
+<span class="c-tag">&lt;body&gt;</span>
+
+  <span class="c-cm">&lt;!-- That's it. Drop this anywhere. --&gt;</span>
+  <span class="c-tag">&lt;attestto-verify&gt;&lt;/attestto-verify&gt;</span>
+
+<span class="c-tag">&lt;/body&gt;</span>
+<span class="c-tag">&lt;/html&gt;</span>`} />
+  </CodeBlock>
+
+  <p>Save this as <code>index.html</code>, open it in a browser, and drop any PDF. The component will:</p>
+
+  <div class="docs-steps">
+    <div class="docs-step">
+      <div class="docs-step-num">1</div>
+      <div class="docs-step-body"><p><strong>Hash</strong> the entire file (SHA-256) — locally, in the browser</p></div>
+    </div>
+    <div class="docs-step">
+      <div class="docs-step-num">2</div>
+      <div class="docs-step-body"><p><strong>Detect</strong> digital signatures (PAdES/PKCS#7)</p></div>
+    </div>
+    <div class="docs-step">
+      <div class="docs-step-num">3</div>
+      <div class="docs-step-body"><p><strong>Run a forensic audit</strong> — JavaScript injection, OpenAction scripts, embedded files, encryption</p></div>
+    </div>
+    <div class="docs-step">
+      <div class="docs-step-num">4</div>
+      <div class="docs-step-body"><p><strong>Display results</strong> with verification level badges</p></div>
+    </div>
+  </div>
+
+  <Callout type="privacy">
+    <strong>Privacy guarantee:</strong> Your documents never leave the device.
+    All verification runs 100% client-side. No analytics, no tracking, no network requests.
+  </Callout>
+
+  <h2>Add signing too</h2>
+  <p>Want users to sign documents with their DID wallet? Add the sign component:</p>
+
+  <CodeBlock lang="HTML" title="sign.html">
+<Fragment set:html={`<span class="c-tag">&lt;script</span> <span class="c-attr">type</span>=<span class="c-str">"module"</span>
+  <span class="c-attr">src</span>=<span class="c-str">"https://unpkg.com/@attestto/verify"</span>
+<span class="c-tag">&gt;&lt;/script&gt;</span>
+
+<span class="c-cm">&lt;!-- Verify documents --&gt;</span>
+<span class="c-tag">&lt;attestto-verify&gt;&lt;/attestto-verify&gt;</span>
+
+<span class="c-cm">&lt;!-- Sign with any DID wallet --&gt;</span>
+<span class="c-tag">&lt;attestto-sign&gt;&lt;/attestto-sign&gt;</span>`} />
+  </CodeBlock>
+
+  <h2>Listen for results</h2>
+  <p>Both components emit standard DOM events that cross Shadow DOM boundaries:</p>
+
+  <CodeBlock lang="JavaScript">
+<Fragment set:html={`<span class="c-kw">const</span> el = document.<span class="c-fn">querySelector</span>(<span class="c-str">'attestto-verify'</span>)
+
+el.<span class="c-fn">addEventListener</span>(<span class="c-str">'verification-complete'</span>, (e) <span class="c-op">=&gt;</span> <span class="c-br">{</span>
+  console.<span class="c-fn">log</span>(<span class="c-str">'Hash:'</span>, e.detail.hash)
+  console.<span class="c-fn">log</span>(<span class="c-str">'Signatures:'</span>, e.detail.signatures.length)
+
+  <span class="c-cm">// Send hash to your backend for recording</span>
+  <span class="c-fn">fetch</span>(<span class="c-str">'/api/verify'</span>, <span class="c-br">{</span>
+    method: <span class="c-str">'POST'</span>,
+    body: JSON.<span class="c-fn">stringify</span>(e.detail)
+  <span class="c-br">}</span>)
+<span class="c-br">}</span>)`} />
+  </CodeBlock>
+
+  <h2>Next steps</h2>
+  <p>Now that you have verification working:</p>
+  <ul style="color: var(--docs-text-muted); font-size: 0.95rem; line-height: 2; padding-left: 1.5rem;">
+    <li><a href="/docs/verify/theming/">Theme it</a> — match the component to your brand with CSS custom properties</li>
+    <li><a href="/docs/verify/plugins/">Add plugins</a> — extend verification with DID resolution, trust registries, or custom checks</li>
+    <li><a href="/docs/verify/verify-component/">Full API reference</a> — all attributes, events, and CSS parts</li>
+    <li><a href="/docs/quickstart/issue-a-credential/">Issue a credential</a> — go deeper with the VC SDK</li>
+  </ul>
+</DocsLayout>

@@ -1,0 +1,100 @@
+---
+import DocsLayout from '../../../layouts/DocsLayout.astro'
+import CodeBlock from '../../../components/docs/CodeBlock.astro'
+import Callout from '../../../components/docs/Callout.astro'
+---
+
+<DocsLayout
+  title="Joomla"
+  description="Joomla authentication plugin for DID-based login. Under development (ATT-487). Supports Joomla 4.x and 5.x."
+  currentPath="/docs/integration/joomla/"
+>
+  <h1>Joomla</h1>
+
+  <Callout type="warning">
+    <p>
+      <strong>This plugin is under development</strong> (ATT-487). The
+      information below describes planned functionality. For immediate
+      integration, use the
+      <a href="/docs/integration/javascript/">JavaScript guide</a> to add
+      DID login manually.
+    </p>
+  </Callout>
+
+  <h2>Why Joomla Matters</h2>
+  <p>
+    Many Costa Rican government websites and institutional portals run on
+    Joomla. A native authentication plugin ensures these sites can adopt
+    DID-based identity without custom development.
+  </p>
+
+  <h2>What the Plugin Will Do</h2>
+  <ul>
+    <li><strong>Authentication plugin</strong> — integrates with Joomla's authentication framework as a standard plugin</li>
+    <li><strong>Admin configuration</strong> — trusted issuers, resolver URL, and login behavior configurable from the Joomla admin panel</li>
+    <li><strong>Joomla 4.x and 5.x</strong> — compatible with current Joomla LTS releases</li>
+    <li><strong>User group mapping</strong> — map credential types to Joomla user groups (e.g., professional license holders get elevated access)</li>
+  </ul>
+
+  <h2>Planned Configuration</h2>
+  <CodeBlock lang="XML" title="attestto-auth.xml">
+    <Fragment set:html={`<span class="c-kw">&lt;extension</span> <span class="c-attr">type</span>=<span class="c-str">"plugin"</span> <span class="c-attr">group</span>=<span class="c-str">"authentication"</span><span class="c-kw">&gt;</span>
+  <span class="c-kw">&lt;name&gt;</span>plg_authentication_attestto<span class="c-kw">&lt;/name&gt;</span>
+  <span class="c-kw">&lt;version&gt;</span>1.0.0<span class="c-kw">&lt;/version&gt;</span>
+  <span class="c-kw">&lt;description&gt;</span>DID-based authentication for Joomla<span class="c-kw">&lt;/description&gt;</span>
+
+  <span class="c-kw">&lt;config&gt;</span>
+    <span class="c-kw">&lt;fields&gt;</span>
+      <span class="c-kw">&lt;fieldset</span> <span class="c-attr">name</span>=<span class="c-str">"basic"</span><span class="c-kw">&gt;</span>
+        <span class="c-kw">&lt;field</span> <span class="c-attr">name</span>=<span class="c-str">"resolver_url"</span>
+          <span class="c-attr">type</span>=<span class="c-str">"url"</span>
+          <span class="c-attr">default</span>=<span class="c-str">"https://resolver.attestto.com"</span>
+          <span class="c-attr">label</span>=<span class="c-str">"DID Resolver URL"</span> <span class="c-kw">/&gt;</span>
+        <span class="c-kw">&lt;field</span> <span class="c-attr">name</span>=<span class="c-str">"trusted_issuers"</span>
+          <span class="c-attr">type</span>=<span class="c-str">"textarea"</span>
+          <span class="c-attr">label</span>=<span class="c-str">"Trusted Issuers (one DID per line)"</span> <span class="c-kw">/&gt;</span>
+        <span class="c-kw">&lt;field</span> <span class="c-attr">name</span>=<span class="c-str">"auto_register"</span>
+          <span class="c-attr">type</span>=<span class="c-str">"radio"</span>
+          <span class="c-attr">default</span>=<span class="c-str">"1"</span>
+          <span class="c-attr">label</span>=<span class="c-str">"Auto-register new users"</span> <span class="c-kw">/&gt;</span>
+      <span class="c-kw">&lt;/fieldset&gt;</span>
+    <span class="c-kw">&lt;/fields&gt;</span>
+  <span class="c-kw">&lt;/config&gt;</span>
+<span class="c-kw">&lt;/extension&gt;</span>`} />
+  </CodeBlock>
+
+  <h2>Planned Features</h2>
+  <ul>
+    <li><strong>Login module override</strong> — replace the default login form with a DID login button</li>
+    <li><strong>Credential-gated content</strong> — restrict articles or menu items to users with specific credential types</li>
+    <li><strong>Audit log</strong> — track DID-based authentication events in the Joomla log</li>
+  </ul>
+
+  <h2>Manual Approach (Available Now)</h2>
+  <p>
+    Until the plugin ships, use the
+    <a href="/docs/integration/javascript/">vanilla JavaScript approach</a>.
+    Add the adapter script to your Joomla template's <code>index.php</code>
+    or use a custom HTML module:
+  </p>
+  <CodeBlock lang="HTML">
+    <Fragment set:html={`<span class="c-kw">&lt;script</span>
+  <span class="c-attr">type</span>=<span class="c-str">"module"</span>
+  <span class="c-attr">src</span>=<span class="c-str">"https://cdn.attestto.com/id-wallet-adapter/0.4.1/index.mjs"</span>
+<span class="c-kw">&gt;&lt;/script&gt;</span>
+
+<span class="c-kw">&lt;button</span> <span class="c-attr">id</span>=<span class="c-str">"did-login"</span><span class="c-kw">&gt;</span>Sign in with DID<span class="c-kw">&lt;/button&gt;</span>
+
+<span class="c-kw">&lt;script</span> <span class="c-attr">type</span>=<span class="c-str">"module"</span><span class="c-kw">&gt;</span>
+  <span class="c-kw">import</span> { pickWallet } <span class="c-kw">from</span>
+    <span class="c-str">'https://cdn.attestto.com/id-wallet-adapter/0.4.1/index.mjs'</span>
+
+  document.<span class="c-fn">getElementById</span><span class="c-br">(</span><span class="c-str">'did-login'</span><span class="c-br">)</span>
+    .<span class="c-fn">addEventListener</span><span class="c-br">(</span><span class="c-str">'click'</span>, <span class="c-kw">async</span> <span class="c-br">(</span><span class="c-br">)</span> <span class="c-kw">=&gt;</span> <span class="c-br">{</span>
+      <span class="c-kw">const</span> wallet = <span class="c-kw">await</span> <span class="c-fn">pickWallet</span><span class="c-br">(</span><span class="c-br">{</span> <span class="c-attr">render</span>: <span class="c-str">'modal'</span> <span class="c-br">}</span><span class="c-br">)</span>
+      <span class="c-cm">// Continue with VP request and backend verify</span>
+      <span class="c-cm">// See JavaScript guide for full example</span>
+    <span class="c-br">}</span><span class="c-br">)</span>
+<span class="c-kw">&lt;/script&gt;</span>`} />
+  </CodeBlock>
+</DocsLayout>

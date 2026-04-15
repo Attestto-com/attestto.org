@@ -1,0 +1,143 @@
+---
+import DocsLayout from '../../../layouts/DocsLayout.astro'
+import Callout from '../../../components/docs/Callout.astro'
+---
+
+<DocsLayout
+  title="Playground"
+  description="Try @attestto/verify live in the browser. Drop a PDF to verify or sign it — nothing leaves your device."
+  currentPath="/docs/verify/playground/"
+>
+  <h1>Playground</h1>
+  <p class="docs-hero-sub">
+    Live demo of both components. Drop a PDF to verify or sign it.
+    Everything runs in your browser &mdash; no data is transmitted.
+  </p>
+
+  <Callout type="privacy">
+    <strong>Your documents never leave this device.</strong> The components below run entirely
+    client-side. No files are uploaded, no hashes are sent, no analytics are collected.
+  </Callout>
+
+  <div class="playground-tabs" id="playground-tabs">
+    <button class="playground-tab active" data-tab="verify">Verify</button>
+    <button class="playground-tab" data-tab="sign">Sign</button>
+  </div>
+
+  <div class="playground-panel active" id="panel-verify">
+    <attestto-verify theme="dark"></attestto-verify>
+  </div>
+
+  <div class="playground-panel" id="panel-sign">
+    <attestto-sign theme="dark"></attestto-sign>
+  </div>
+
+  <script is:inline>
+    // Load the verify web components
+    var s = document.createElement('script')
+    s.type = 'module'
+    s.src = 'https://unpkg.com/@attestto/verify'
+    document.head.appendChild(s)
+
+    // Tab switching
+    document.addEventListener('DOMContentLoaded', function () {
+      var tabs = document.querySelectorAll('.playground-tab')
+      var panels = document.querySelectorAll('.playground-panel')
+
+      tabs.forEach(function (tab) {
+        tab.addEventListener('click', function () {
+          var target = tab.getAttribute('data-tab')
+
+          tabs.forEach(function (t) { t.classList.remove('active') })
+          panels.forEach(function (p) { p.classList.remove('active') })
+
+          tab.classList.add('active')
+          document.getElementById('panel-' + target).classList.add('active')
+        })
+      })
+    })
+  </script>
+
+  <style>
+    .playground-tabs {
+      display: flex;
+      gap: 0;
+      margin: 2rem 0 0;
+      border-bottom: 1px solid var(--docs-border, #2a2a3a);
+    }
+
+    .playground-tab {
+      padding: 0.75rem 1.5rem;
+      background: none;
+      border: none;
+      border-bottom: 2px solid transparent;
+      color: var(--docs-text-muted, #8b8ba3);
+      font-size: 0.95rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: color 0.2s, border-color 0.2s;
+    }
+
+    .playground-tab:hover {
+      color: var(--docs-text, #e2e2f0);
+    }
+
+    .playground-tab.active {
+      color: var(--docs-brand, #594FD3);
+      border-bottom-color: var(--docs-brand, #594FD3);
+    }
+
+    .playground-panel {
+      display: none;
+      padding: 2rem 0;
+    }
+
+    .playground-panel.active {
+      display: block;
+    }
+  </style>
+
+  <h2>What to try</h2>
+  <div class="docs-steps">
+    <div class="docs-step">
+      <div class="docs-step-num">1</div>
+      <div class="docs-step-body">
+        <p><strong>Verify tab:</strong> Drop any PDF. The component will hash it, detect signatures, and run a forensic audit.</p>
+      </div>
+    </div>
+    <div class="docs-step">
+      <div class="docs-step-num">2</div>
+      <div class="docs-step-body">
+        <p><strong>Signed PDFs:</strong> Try a digitally signed PDF (e.g., from Adobe Sign or Costa Rica Firma Digital) to see signature details and trust levels.</p>
+      </div>
+    </div>
+    <div class="docs-step">
+      <div class="docs-step-num">3</div>
+      <div class="docs-step-body">
+        <p><strong>Sign tab:</strong> Connect a DID wallet and sign a document. The result is a Verifiable Credential stored in your wallet.</p>
+      </div>
+    </div>
+  </div>
+
+  <h2>Embed this on your own site</h2>
+  <p>This entire playground is just two HTML elements and one script tag:</p>
+
+  <div class="docs-code-block">
+    <div class="docs-code-header">
+      <span>HTML</span>
+      <button class="docs-code-copy" onclick="this.closest('.docs-code-block').querySelector('pre')?.textContent && navigator.clipboard.writeText(this.closest('.docs-code-block').querySelector('pre').textContent).then(() => { this.textContent = 'Copied!'; setTimeout(() => this.textContent = 'Copy', 1500) })">Copy</button>
+    </div>
+    <pre><Fragment set:html={`<span class="c-tag">&lt;script</span> <span class="c-attr">type</span>=<span class="c-str">"module"</span> <span class="c-attr">src</span>=<span class="c-str">"https://unpkg.com/@attestto/verify"</span><span class="c-tag">&gt;&lt;/script&gt;</span>
+<span class="c-tag">&lt;attestto-verify&gt;&lt;/attestto-verify&gt;</span>
+<span class="c-tag">&lt;attestto-sign&gt;&lt;/attestto-sign&gt;</span>`} /></pre>
+  </div>
+
+  <h2>See also</h2>
+  <ul style="color: var(--docs-text-muted); font-size: 0.95rem; line-height: 2; padding-left: 1.5rem;">
+    <li><a href="/docs/verify/">Verify &amp; Sign overview</a> &mdash; architecture and trust levels</li>
+    <li><a href="/docs/verify/installation/">Installation</a> &mdash; CDN, npm, and framework setup</li>
+    <li><a href="/docs/verify/verify-component/">&lt;attestto-verify&gt; API</a> &mdash; full attribute and event reference</li>
+    <li><a href="/docs/verify/sign-component/">&lt;attestto-sign&gt; API</a> &mdash; wallet-based signing</li>
+    <li><a href="/docs/verify/theming/">Theming</a> &mdash; customize the look of both components</li>
+  </ul>
+</DocsLayout>

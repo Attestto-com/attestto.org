@@ -1,0 +1,89 @@
+---
+import DocsLayout from '../../../layouts/DocsLayout.astro'
+import CodeBlock from '../../../components/docs/CodeBlock.astro'
+import Callout from '../../../components/docs/Callout.astro'
+---
+
+<DocsLayout
+  title="Document Signing"
+  description="Request cryptographic signatures from credential wallets using requestSignature(). Nonce-based CustomEvent pattern with user consent."
+  currentPath="/docs/wallets/signing/"
+>
+  <h1>Document Signing</h1>
+  <p>
+    <code>requestSignature()</code> asks the user's credential wallet to sign
+    a document hash. The wallet shows a consent popup; the user approves or
+    rejects. No private key ever leaves the wallet.
+  </p>
+
+  <h2>SignRequest</h2>
+  <CodeBlock lang="TypeScript">
+    <Fragment set:html={`<span class="c-kw">interface</span> <span class="c-typ">SignRequest</span> <span class="c-br">{</span>
+  <span class="c-attr">hash</span>: <span class="c-typ">string</span>            <span class="c-cm">// Hex-encoded file hash</span>
+  <span class="c-attr">fileName</span>: <span class="c-typ">string</span>        <span class="c-cm">// Original file name (displayed to user)</span>
+  <span class="c-attr">hashAlgorithm</span>: <span class="c-typ">string</span>   <span class="c-cm">// 'SHA-256' | 'SHA-384' | 'SHA-512'</span>
+  <span class="c-attr">fileSize</span>: <span class="c-typ">number</span>        <span class="c-cm">// File size in bytes</span>
+<span class="c-br">}</span>`} />
+  </CodeBlock>
+
+  <h2>SignResponse</h2>
+  <CodeBlock lang="TypeScript">
+    <Fragment set:html={`<span class="c-kw">interface</span> <span class="c-typ">SignResponse</span> <span class="c-br">{</span>
+  <span class="c-attr">approved</span>: <span class="c-typ">boolean</span>       <span class="c-cm">// Whether the user approved</span>
+  <span class="c-attr">did</span>: <span class="c-typ">string</span>             <span class="c-cm">// Signer's DID</span>
+  <span class="c-attr">signature</span>: <span class="c-typ">string</span>       <span class="c-cm">// Base64url-encoded signature</span>
+  <span class="c-attr">publicKeyJwk</span>: <span class="c-typ">JsonWebKey</span> <span class="c-cm">// Public key for verification</span>
+  <span class="c-attr">timestamp</span>: <span class="c-typ">string</span>       <span class="c-cm">// ISO 8601 timestamp</span>
+  <span class="c-attr">storeToken</span>: <span class="c-typ">string</span>      <span class="c-cm">// Opaque token for anchoring</span>
+<span class="c-br">}</span>`} />
+  </CodeBlock>
+
+  <h2>Nonce-based CustomEvent Pattern</h2>
+  <p>
+    Each signing request generates a unique nonce. The wallet extension listens
+    for <code>sign-request</code> CustomEvents and responds on
+    <code>sign-response</code> with the matching nonce. This prevents replay
+    and cross-tab interference.
+  </p>
+
+  <h2>User Consent</h2>
+  <Callout type="info">
+    <p>
+      The wallet extension displays a popup showing the file name, hash
+      algorithm, file size, and the requesting origin. The user must explicitly
+      approve before any signature is produced. If the user rejects,
+      <code>approved</code> is <code>false</code> and all other fields are
+      <code>undefined</code>.
+    </p>
+  </Callout>
+
+  <h2>Full Example</h2>
+  <CodeBlock lang="TypeScript">
+    <Fragment set:html={`<span class="c-kw">import</span> { pickWallet, requestSignature } <span class="c-kw">from</span> <span class="c-str">'@attestto/id-wallet-adapter'</span>
+
+<span class="c-cm">// 1. Hash the file</span>
+<span class="c-kw">const</span> file = document.<span class="c-fn">querySelector</span><span class="c-br">(</span><span class="c-str">'input[type=file]'</span><span class="c-br">)</span>.files<span class="c-br">[</span><span class="c-num">0</span><span class="c-br">]</span>
+<span class="c-kw">const</span> buffer = <span class="c-kw">await</span> file.<span class="c-fn">arrayBuffer</span><span class="c-br">(</span><span class="c-br">)</span>
+<span class="c-kw">const</span> hashBuffer = <span class="c-kw">await</span> crypto.subtle.<span class="c-fn">digest</span><span class="c-br">(</span><span class="c-str">'SHA-256'</span>, buffer<span class="c-br">)</span>
+<span class="c-kw">const</span> hash = <span class="c-br">[</span>...<span class="c-kw">new</span> <span class="c-typ">Uint8Array</span><span class="c-br">(</span>hashBuffer<span class="c-br">)</span><span class="c-br">]</span>
+  .<span class="c-fn">map</span><span class="c-br">(</span><span class="c-attr">b</span> <span class="c-kw">=&gt;</span> b.<span class="c-fn">toString</span><span class="c-br">(</span><span class="c-num">16</span><span class="c-br">)</span>.<span class="c-fn">padStart</span><span class="c-br">(</span><span class="c-num">2</span>, <span class="c-str">'0'</span><span class="c-br">)</span><span class="c-br">)</span>
+  .<span class="c-fn">join</span><span class="c-br">(</span><span class="c-str">''</span><span class="c-br">)</span>
+
+<span class="c-cm">// 2. Pick a wallet</span>
+<span class="c-kw">const</span> wallet = <span class="c-kw">await</span> <span class="c-fn">pickWallet</span><span class="c-br">(</span><span class="c-br">{</span> <span class="c-attr">render</span>: <span class="c-str">'modal'</span> <span class="c-br">}</span><span class="c-br">)</span>
+
+<span class="c-cm">// 3. Request signature</span>
+<span class="c-kw">const</span> response = <span class="c-kw">await</span> <span class="c-fn">requestSignature</span><span class="c-br">(</span>wallet, <span class="c-br">{</span>
+  <span class="c-attr">hash</span>,
+  <span class="c-attr">fileName</span>: file.name,
+  <span class="c-attr">hashAlgorithm</span>: <span class="c-str">'SHA-256'</span>,
+  <span class="c-attr">fileSize</span>: file.size,
+<span class="c-br">}</span><span class="c-br">)</span>
+
+<span class="c-cm">// 4. Verify the response</span>
+<span class="c-kw">if</span> <span class="c-br">(</span>response.approved<span class="c-br">)</span> <span class="c-br">{</span>
+  console.<span class="c-fn">log</span><span class="c-br">(</span><span class="c-str">'Signed by:'</span>, response.did<span class="c-br">)</span>
+  console.<span class="c-fn">log</span><span class="c-br">(</span><span class="c-str">'Signature:'</span>, response.signature<span class="c-br">)</span>
+<span class="c-br">}</span>`} />
+  </CodeBlock>
+</DocsLayout>

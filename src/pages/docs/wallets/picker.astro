@@ -1,0 +1,105 @@
+---
+import DocsLayout from '../../../layouts/DocsLayout.astro'
+import CodeBlock from '../../../components/docs/CodeBlock.astro'
+import Callout from '../../../components/docs/Callout.astro'
+---
+
+<DocsLayout
+  title="Wallet Picker"
+  description="The pickWallet() API — discover credential wallets with three usage tiers: headless, built-in modal, or custom renderer."
+  currentPath="/docs/wallets/picker/"
+>
+  <h1>Wallet Picker</h1>
+  <p>
+    <code>pickWallet()</code> discovers installed credential wallets and lets
+    the user choose one. Three usage tiers cover every integration style.
+  </p>
+
+  <h2>Three Tiers</h2>
+
+  <h3>Tier 1 — Headless</h3>
+  <p>
+    No UI at all. You get a list of announced wallets and render the chooser
+    yourself.
+  </p>
+  <CodeBlock lang="TypeScript">
+    <Fragment set:html={`<span class="c-kw">import</span> { pickWallet } <span class="c-kw">from</span> <span class="c-str">'@attestto/id-wallet-adapter'</span>
+
+<span class="c-kw">const</span> wallet = <span class="c-kw">await</span> <span class="c-fn">pickWallet</span><span class="c-br">(</span><span class="c-br">{</span>
+  <span class="c-attr">render</span>: <span class="c-str">'headless'</span>,
+  <span class="c-attr">timeoutMs</span>: <span class="c-num">3000</span>,
+<span class="c-br">}</span><span class="c-br">)</span>`} />
+  </CodeBlock>
+
+  <h3>Tier 2 — Built-in Modal</h3>
+  <p>
+    The adapter injects a styled modal into the page. Zero UI code on your side.
+  </p>
+  <CodeBlock lang="TypeScript">
+    <Fragment set:html={`<span class="c-kw">const</span> wallet = <span class="c-kw">await</span> <span class="c-fn">pickWallet</span><span class="c-br">(</span><span class="c-br">{</span>
+  <span class="c-attr">render</span>: <span class="c-str">'modal'</span>,
+  <span class="c-attr">requiredProtocols</span>: <span class="c-br">[</span><span class="c-str">'chapi'</span><span class="c-br">]</span>,
+  <span class="c-attr">requiredGoals</span>: <span class="c-br">[</span><span class="c-str">'authentication'</span><span class="c-br">]</span>,
+<span class="c-br">}</span><span class="c-br">)</span>`} />
+  </CodeBlock>
+
+  <h3>Tier 3 — Custom Renderer</h3>
+  <p>
+    Provide your own <code>render</code> function. You receive the list of
+    <code>WalletAnnouncement</code> objects and return the user's selection.
+  </p>
+  <CodeBlock lang="TypeScript">
+    <Fragment set:html={`<span class="c-kw">const</span> wallet = <span class="c-kw">await</span> <span class="c-fn">pickWallet</span><span class="c-br">(</span><span class="c-br">{</span>
+  <span class="c-attr">render</span>: <span class="c-br">(</span><span class="c-attr">wallets</span><span class="c-br">)</span> <span class="c-kw">=&gt;</span> <span class="c-br">{</span>
+    <span class="c-cm">// Show your own UI, return the chosen wallet</span>
+    <span class="c-kw">return</span> <span class="c-fn">myCustomPicker</span><span class="c-br">(</span>wallets<span class="c-br">)</span>
+  <span class="c-br">}</span>,
+  <span class="c-attr">timeoutMs</span>: <span class="c-num">5000</span>,
+<span class="c-br">}</span><span class="c-br">)</span>`} />
+  </CodeBlock>
+
+  <h2>PickWalletOptions</h2>
+  <table class="docs-table">
+    <thead>
+      <tr><th>Property</th><th>Type</th><th>Description</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><code>timeoutMs</code></td><td><code>number</code></td><td>How long to wait for wallet announcements (default 3000)</td></tr>
+      <tr><td><code>requiredProtocols</code></td><td><code>string[]</code></td><td>Filter wallets by supported wire protocol (<code>'chapi'</code>, <code>'oid4vp'</code>, <code>'didcomm-v2'</code>, <code>'waci'</code>)</td></tr>
+      <tr><td><code>requiredGoals</code></td><td><code>string[]</code></td><td>Filter by declared goal (<code>'authentication'</code>, <code>'issuance'</code>, <code>'signing'</code>)</td></tr>
+      <tr><td><code>qrFallback</code></td><td><code>boolean</code></td><td>Show a QR code if no wallets are discovered (for mobile)</td></tr>
+      <tr><td><code>render</code></td><td><code>'headless' | 'modal' | Function</code></td><td>UI mode — headless, built-in modal, or custom renderer</td></tr>
+    </tbody>
+  </table>
+
+  <h2>WalletAnnouncement</h2>
+  <p>Each wallet that responds to the discovery event provides:</p>
+  <CodeBlock lang="TypeScript">
+    <Fragment set:html={`<span class="c-kw">interface</span> <span class="c-typ">WalletAnnouncement</span> <span class="c-br">{</span>
+  <span class="c-attr">did</span>: <span class="c-typ">string</span>           <span class="c-cm">// Wallet's DID</span>
+  <span class="c-attr">name</span>: <span class="c-typ">string</span>          <span class="c-cm">// Display name</span>
+  <span class="c-attr">icon</span>: <span class="c-typ">string</span>          <span class="c-cm">// Data URI or URL</span>
+  <span class="c-attr">version</span>: <span class="c-typ">string</span>       <span class="c-cm">// Semver version</span>
+  <span class="c-attr">protocols</span>: <span class="c-typ">string</span><span class="c-br">[]</span>   <span class="c-cm">// Supported wire protocols</span>
+  <span class="c-attr">goals</span>: <span class="c-typ">string</span><span class="c-br">[]</span>       <span class="c-cm">// What the wallet can do</span>
+  <span class="c-attr">maintainer</span>: <span class="c-typ">string</span>    <span class="c-cm">// Publisher DID or URL</span>
+<span class="c-br">}</span>`} />
+  </CodeBlock>
+
+  <h2>Late-arriving Wallets</h2>
+  <Callout type="info">
+    <p>
+      Extensions may load after your page script runs. The adapter listens for
+      <code>wallet-announce</code> CustomEvents throughout the timeout window.
+      Wallets that arrive after the picker is shown are appended to the list
+      in real time.
+    </p>
+  </Callout>
+
+  <h2>QR Fallback for Mobile</h2>
+  <p>
+    When <code>qrFallback: true</code> and no desktop extension responds, the
+    picker displays a QR code containing a <code>didcomm-v2</code> out-of-band
+    invitation. Mobile wallets scan it to begin the interaction.
+  </p>
+</DocsLayout>

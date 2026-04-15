@@ -1,0 +1,232 @@
+---
+import DocsLayout from '../../../layouts/DocsLayout.astro'
+import CodeBlock from '../../../components/docs/CodeBlock.astro'
+import Callout from '../../../components/docs/Callout.astro'
+---
+
+<DocsLayout
+  title="Plugin System"
+  description="Extend @attestto/verify with custom plugins. Four plugin types form a sandwich pipeline: parser, crypto, trust, and verifier."
+  currentPath="/docs/verify/plugins/"
+>
+  <h1>Plugin System</h1>
+  <p class="docs-hero-sub">
+    Extend the verification pipeline with custom logic. Plugins run in a fixed order &mdash;
+    parser, crypto, trust, verifier &mdash; and each type has a clear contract.
+  </p>
+
+  <h2>Architecture</h2>
+  <p>
+    Plugins execute in a sandwich order. Each stage receives the output of the previous stage
+    and enriches the verification result:
+  </p>
+
+  <div class="docs-arch-flow">
+    <div class="docs-arch-box">Parser<br /><small>Extract data from file</small></div>
+    <div class="docs-arch-arrow">&rarr;</div>
+    <div class="docs-arch-box">Crypto<br /><small>Verify signatures</small></div>
+    <div class="docs-arch-arrow">&rarr;</div>
+    <div class="docs-arch-box">Trust<br /><small>Resolve anchors</small></div>
+    <div class="docs-arch-arrow">&rarr;</div>
+    <div class="docs-arch-box">Verifier<br /><small>Identity &amp; level</small></div>
+  </div>
+
+  <h2>Plugin types</h2>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Stage</th>
+        <th>Purpose</th>
+        <th>Example</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>parser</code></td>
+        <td>1st</td>
+        <td>Extract structured data from the file. Receives raw bytes, returns metadata.</td>
+        <td>XML invoice parser, image EXIF extractor</td>
+      </tr>
+      <tr>
+        <td><code>crypto</code></td>
+        <td>2nd</td>
+        <td>Verify cryptographic signatures. Receives parsed data, returns signature validity.</td>
+        <td>PGP verifier, JWS validator, XMLDSig checker</td>
+      </tr>
+      <tr>
+        <td><code>trust</code></td>
+        <td>3rd</td>
+        <td>Resolve trust anchors. Receives verified signatures, returns trust chain status.</td>
+        <td>Blockchain anchor lookup, CA bundle resolver, DID trust registry</td>
+      </tr>
+      <tr>
+        <td><code>verifier</code></td>
+        <td>4th</td>
+        <td>Determine identity and final trust level. Receives trust data, returns verification result.</td>
+        <td>DID resolver, vLEI credential checker, eIDAS validator</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>Registering a plugin (npm)</h2>
+
+  <CodeBlock lang="JavaScript" title="register.js">
+<Fragment set:html={`<span class="c-kw">import</span> <span class="c-br">{</span> attesttoPlugins <span class="c-br">}</span> <span class="c-kw">from</span> <span class="c-str">'@attestto/verify'</span>
+
+attesttoPlugins.<span class="c-fn">register</span>(<span class="c-br">{</span>
+  name: <span class="c-str">'my-trust-registry'</span>,
+  type: <span class="c-str">'trust'</span>,
+  version: <span class="c-str">'1.0.0'</span>,
+
+  <span class="c-cm">// Called for each signature that needs trust resolution</span>
+  <span class="c-kw">async</span> <span class="c-fn">execute</span>(context) <span class="c-br">{</span>
+    <span class="c-kw">const</span> <span class="c-br">{</span> signature, certificates <span class="c-br">}</span> = context
+
+    <span class="c-cm">// Check your trust registry</span>
+    <span class="c-kw">const</span> isTrusted = <span class="c-kw">await</span> <span class="c-fn">checkRegistry</span>(certificates[<span class="c-num">0</span>].issuer)
+
+    <span class="c-kw">return</span> <span class="c-br">{</span>
+      trusted: isTrusted,
+      registry: <span class="c-str">'my-org-registry'</span>,
+      detail: isTrusted
+        ? <span class="c-str">'Signer is in the corporate trust registry'</span>
+        : <span class="c-str">'Signer not found in registry'</span>
+    <span class="c-br">}</span>
+  <span class="c-br">}</span>
+<span class="c-br">}</span>)`} />
+  </CodeBlock>
+
+  <h2>Registering a plugin (CDN)</h2>
+  <p>When using the CDN build, plugins register through the global <code>window.Attestto</code> object:</p>
+
+  <CodeBlock lang="HTML" title="cdn-plugin.html">
+<Fragment set:html={`<span class="c-tag">&lt;script</span> <span class="c-attr">type</span>=<span class="c-str">"module"</span>
+  <span class="c-attr">src</span>=<span class="c-str">"https://unpkg.com/@attestto/verify"</span>
+<span class="c-tag">&gt;&lt;/script&gt;</span>
+
+<span class="c-tag">&lt;script&gt;</span>
+  window.<span class="c-fn">addEventListener</span>(<span class="c-str">'attestto-ready'</span>, () <span class="c-op">=&gt;</span> <span class="c-br">{</span>
+    window.Attestto.<span class="c-fn">registerPlugin</span>(<span class="c-br">{</span>
+      name: <span class="c-str">'blockchain-anchor'</span>,
+      type: <span class="c-str">'trust'</span>,
+      version: <span class="c-str">'1.0.0'</span>,
+      <span class="c-kw">async</span> <span class="c-fn">execute</span>(context) <span class="c-br">{</span>
+        <span class="c-cm">// Look up hash on Solana</span>
+        <span class="c-kw">const</span> anchor = <span class="c-kw">await</span> <span class="c-fn">findAnchor</span>(context.hash)
+        <span class="c-kw">return</span> <span class="c-br">{</span>
+          trusted: <span class="c-op">!!</span>anchor,
+          chain: <span class="c-str">'solana'</span>,
+          slot: anchor<span class="c-op">?.</span>slot
+        <span class="c-br">}</span>
+      <span class="c-br">}</span>
+    <span class="c-br">}</span>)
+  <span class="c-br">}</span>)
+<span class="c-tag">&lt;/script&gt;</span>`} />
+  </CodeBlock>
+
+  <h2>Plugin execution context</h2>
+  <p>Each plugin's <code>execute</code> function receives a context object with data from previous stages:</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Field</th>
+        <th>Type</th>
+        <th>Available in</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>file</code></td>
+        <td><code>File</code></td>
+        <td>All</td>
+        <td>The original file object.</td>
+      </tr>
+      <tr>
+        <td><code>hash</code></td>
+        <td><code>string</code></td>
+        <td>All</td>
+        <td>SHA-256 hex hash of the file.</td>
+      </tr>
+      <tr>
+        <td><code>bytes</code></td>
+        <td><code>Uint8Array</code></td>
+        <td>parser</td>
+        <td>Raw file bytes.</td>
+      </tr>
+      <tr>
+        <td><code>parsed</code></td>
+        <td><code>object</code></td>
+        <td>crypto, trust, verifier</td>
+        <td>Combined output from all parser plugins.</td>
+      </tr>
+      <tr>
+        <td><code>signatures</code></td>
+        <td><code>Signature[]</code></td>
+        <td>trust, verifier</td>
+        <td>Verified signatures from crypto stage.</td>
+      </tr>
+      <tr>
+        <td><code>certificates</code></td>
+        <td><code>Certificate[]</code></td>
+        <td>trust, verifier</td>
+        <td>Signer certificates.</td>
+      </tr>
+      <tr>
+        <td><code>trustResults</code></td>
+        <td><code>TrustResult[]</code></td>
+        <td>verifier</td>
+        <td>Results from all trust plugins.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>Result schema</h2>
+  <p>The final verification result follows the <code>AttesttoVerificationResult</code> interface:</p>
+
+  <CodeBlock lang="TypeScript" title="AttesttoVerificationResult">
+<Fragment set:html={`<span class="c-kw">interface</span> <span class="c-typ">AttesttoVerificationResult</span> <span class="c-br">{</span>
+  hash: <span class="c-typ">string</span>                     <span class="c-cm">// SHA-256 hex</span>
+  fileName: <span class="c-typ">string</span>                 <span class="c-cm">// Original file name</span>
+  fileSize: <span class="c-typ">number</span>                 <span class="c-cm">// Bytes</span>
+  trustLevel: <span class="c-typ">TrustLevel</span>           <span class="c-cm">// 'detected' | 'signed' | 'trusted' | 'qualified'</span>
+  signatures: <span class="c-typ">Signature</span>[]          <span class="c-cm">// Verified signatures</span>
+  audit: <span class="c-typ">AuditResult</span>               <span class="c-cm">// Forensic audit findings</span>
+  plugins: <span class="c-typ">PluginResult</span>[]          <span class="c-cm">// Results from each plugin</span>
+  timestamp: <span class="c-typ">string</span>               <span class="c-cm">// ISO 8601</span>
+<span class="c-br">}</span>
+
+<span class="c-kw">interface</span> <span class="c-typ">Signature</span> <span class="c-br">{</span>
+  signerName: <span class="c-typ">string</span>
+  did<span class="c-op">?</span>: <span class="c-typ">string</span>                     <span class="c-cm">// If resolved by a verifier plugin</span>
+  algorithm: <span class="c-typ">string</span>
+  signedAt: <span class="c-typ">string</span>                 <span class="c-cm">// ISO 8601</span>
+  valid: <span class="c-typ">boolean</span>
+  trustLevel: <span class="c-typ">TrustLevel</span>
+  certificate<span class="c-op">?</span>: <span class="c-typ">CertificateInfo</span>
+<span class="c-br">}</span>
+
+<span class="c-kw">interface</span> <span class="c-typ">PluginResult</span> <span class="c-br">{</span>
+  pluginName: <span class="c-typ">string</span>
+  type: <span class="c-str">'parser'</span> <span class="c-op">|</span> <span class="c-str">'crypto'</span> <span class="c-op">|</span> <span class="c-str">'trust'</span> <span class="c-op">|</span> <span class="c-str">'verifier'</span>
+  data: <span class="c-typ">Record</span><span class="c-op">&lt;</span><span class="c-typ">string</span>, <span class="c-typ">unknown</span><span class="c-op">&gt;</span>
+<span class="c-br">}</span>`} />
+  </CodeBlock>
+
+  <Callout type="info">
+    <strong>Plugin isolation:</strong> Each plugin runs independently. A failing plugin does not
+    block the pipeline &mdash; its error is captured in the <code>plugins</code> array and the
+    remaining plugins continue executing.
+  </Callout>
+
+  <h2>See also</h2>
+  <ul style="color: var(--docs-text-muted); font-size: 0.95rem; line-height: 2; padding-left: 1.5rem;">
+    <li><a href="/docs/verify/">Verify &amp; Sign overview</a> &mdash; architecture and trust levels</li>
+    <li><a href="/docs/verify/verify-component/">&lt;attestto-verify&gt; API</a> &mdash; the <code>allow-plugins</code> attribute</li>
+    <li><a href="/docs/verify/composables/">Composables</a> &mdash; headless API for custom pipelines</li>
+    <li><a href="/docs/credentials/">Credentials</a> &mdash; VC issuance that plugins can verify</li>
+  </ul>
+</DocsLayout>

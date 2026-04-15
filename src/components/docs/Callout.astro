@@ -1,0 +1,23 @@
+---
+interface Props {
+  type?: 'info' | 'warning' | 'privacy'
+  icon?: string
+}
+
+const { type = 'info', icon } = Astro.props
+
+const defaultIcons: Record<string, string> = {
+  info: '&#x1f4a1;',
+  warning: '&#x26a0;&#xfe0f;',
+  privacy: '&#x1f512;',
+}
+
+const iconHtml = icon || defaultIcons[type]
+---
+
+<div class={`docs-callout docs-callout-${type}`}>
+  <span class="docs-callout-icon" set:html={iconHtml} />
+  <div>
+    <slot />
+  </div>
+</div>

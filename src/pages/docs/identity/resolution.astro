@@ -1,0 +1,101 @@
+---
+import DocsLayout from '../../../layouts/DocsLayout.astro'
+import CodeBlock from '../../../components/docs/CodeBlock.astro'
+import Callout from '../../../components/docs/Callout.astro'
+---
+
+<DocsLayout
+  title="DID Resolution"
+  description="How DID resolution works across methods. Universal resolver pattern, DID Document structure, and the wallet-identity-resolver package."
+  currentPath="/docs/identity/resolution/"
+>
+  <h1>DID Resolution</h1>
+  <p>
+    DID resolution is the process of taking a DID string and producing the
+    corresponding <strong>DID Document</strong> — the public record that
+    contains verification keys, authentication methods, and service endpoints.
+  </p>
+
+  <h2>Resolution Flow</h2>
+  <ol>
+    <li><strong>Parse DID</strong> — extract the method name (e.g., <code>sns</code>, <code>pki</code>, <code>web</code>, <code>key</code>)</li>
+    <li><strong>Route to handler</strong> — select the method-specific resolver</li>
+    <li><strong>Fetch DID Document</strong> — the handler queries the appropriate source (on-chain, HTTP, certificate store)</li>
+    <li><strong>Extract public key</strong> — the relying party reads verification methods from the document</li>
+  </ol>
+
+  <h2>DID Document Structure</h2>
+  <CodeBlock lang="JSON">
+    <Fragment set:html={`<span class="c-br">{</span>
+  <span class="c-attr">"@context"</span>: <span class="c-br">[</span><span class="c-str">"https://www.w3.org/ns/did/v1"</span><span class="c-br">]</span>,
+  <span class="c-attr">"id"</span>: <span class="c-str">"did:sns:attestto.sol"</span>,
+  <span class="c-attr">"verificationMethod"</span>: <span class="c-br">[</span><span class="c-br">{</span>
+    <span class="c-attr">"id"</span>: <span class="c-str">"did:sns:attestto.sol#key-1"</span>,
+    <span class="c-attr">"type"</span>: <span class="c-str">"Ed25519VerificationKey2020"</span>,
+    <span class="c-attr">"controller"</span>: <span class="c-str">"did:sns:attestto.sol"</span>,
+    <span class="c-attr">"publicKeyMultibase"</span>: <span class="c-str">"z6Mkf5rGMoatrSj1f..."</span>
+  <span class="c-br">}</span><span class="c-br">]</span>,
+  <span class="c-attr">"authentication"</span>: <span class="c-br">[</span><span class="c-str">"did:sns:attestto.sol#key-1"</span><span class="c-br">]</span>,
+  <span class="c-attr">"assertionMethod"</span>: <span class="c-br">[</span><span class="c-str">"did:sns:attestto.sol#key-1"</span><span class="c-br">]</span>
+<span class="c-br">}</span>`} />
+  </CodeBlock>
+
+  <table class="docs-table">
+    <thead>
+      <tr><th>Field</th><th>Description</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><code>id</code></td><td>The DID itself</td></tr>
+      <tr><td><code>verificationMethod</code></td><td>Array of public keys and their types</td></tr>
+      <tr><td><code>authentication</code></td><td>Keys authorized for authentication (login)</td></tr>
+      <tr><td><code>assertionMethod</code></td><td>Keys authorized for signing claims (credential issuance)</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Universal Resolver Pattern</h2>
+  <p>
+    Rather than hard-coding each DID method, a universal resolver dispatches
+    to the correct handler based on the method prefix. Attestto's resolver
+    supports <code>did:sns</code>, <code>did:pki</code>, <code>did:web</code>,
+    <code>did:key</code>, and <code>did:sol</code>.
+  </p>
+
+  <h2>The wallet-identity-resolver Package</h2>
+  <CodeBlock lang="bash">
+    <Fragment set:html={`npm install @attestto/wallet-identity-resolver`} />
+  </CodeBlock>
+
+  <h2>Code Example</h2>
+  <CodeBlock lang="TypeScript">
+    <Fragment set:html={`<span class="c-kw">import</span> { resolve } <span class="c-kw">from</span> <span class="c-str">'@attestto/wallet-identity-resolver'</span>
+
+<span class="c-cm">// Resolve a DID to its DID Document</span>
+<span class="c-kw">const</span> doc = <span class="c-kw">await</span> <span class="c-fn">resolve</span><span class="c-br">(</span><span class="c-str">'did:sns:attestto.sol'</span><span class="c-br">)</span>
+
+<span class="c-cm">// Extract the first public key</span>
+<span class="c-kw">const</span> key = doc.verificationMethod<span class="c-br">[</span><span class="c-num">0</span><span class="c-br">]</span>
+console.<span class="c-fn">log</span><span class="c-br">(</span><span class="c-str">'Key type:'</span>, key.type<span class="c-br">)</span>
+console.<span class="c-fn">log</span><span class="c-br">(</span><span class="c-str">'Public key:'</span>, key.publicKeyMultibase<span class="c-br">)</span>
+
+<span class="c-cm">// Check if a specific key is authorized for authentication</span>
+<span class="c-kw">const</span> canAuth = doc.authentication.<span class="c-fn">includes</span><span class="c-br">(</span>key.id<span class="c-br">)</span>
+console.<span class="c-fn">log</span><span class="c-br">(</span><span class="c-str">'Authorized for auth:'</span>, canAuth<span class="c-br">)</span>`} />
+  </CodeBlock>
+
+  <Callout type="info">
+    <p>
+      The resolver can run in both browser and Node.js environments. For
+      production use, point it at your own resolver endpoint to control
+      caching and availability.
+    </p>
+  </Callout>
+
+  <h2>Supported Methods</h2>
+  <ul>
+    <li><a href="/docs/identity/did-sns/"><code>did:sns</code></a> — Solana Name Service (human-readable)</li>
+    <li><a href="/docs/identity/did-pki/"><code>did:pki</code></a> — PKI bridge (X.509 certificates)</li>
+    <li><code>did:web</code> — DNS-based (hosted DID Documents)</li>
+    <li><code>did:key</code> — Self-contained (public key in the DID)</li>
+    <li><code>did:sol</code> — Solana public key</li>
+  </ul>
+</DocsLayout>

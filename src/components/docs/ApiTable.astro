@@ -1,0 +1,18 @@
+---
+interface Props {
+  headers: string[]
+}
+
+const { headers } = Astro.props
+---
+
+<table>
+  <thead>
+    <tr>
+      {headers.map((h) => <th>{h}</th>)}
+    </tr>
+  </thead>
+  <tbody>
+    <slot />
+  </tbody>
+</table>

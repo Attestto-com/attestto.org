@@ -1,6 +1,6 @@
 ---
 interface Props {
-  variant?: 'default' | 'revisor' | 'standards'
+  variant?: 'default' | 'revisor' | 'standards' | 'docs'
 }
 
 const { variant = 'default' } = Astro.props
@@ -39,6 +39,14 @@ const navConfigs: Record<string, { brandSuffix: string; brandI18n?: string; link
       { href: '/standards#resolver', label: 'Resolver' },
       { href: '/standards#usecases', label: 'Use Cases' },
       { href: '/standards#coverage', label: 'Coverage' },
+    ],
+  },
+  docs: {
+    brandSuffix: 'Docs',
+    links: [
+      { href: '/docs', label: 'Home' },
+      { href: '/for/developers', label: 'Developer Portal' },
+      { href: 'https://github.com/Attestto-com', label: 'GitHub' },
     ],
   },
 }

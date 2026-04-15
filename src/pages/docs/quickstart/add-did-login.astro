@@ -1,0 +1,167 @@
+---
+import DocsLayout from '../../../layouts/DocsLayout.astro'
+import CodeBlock from '../../../components/docs/CodeBlock.astro'
+import Callout from '../../../components/docs/Callout.astro'
+---
+
+<DocsLayout
+  title="Add DID Login"
+  description="Replace passwords with cryptographic identity. Discover wallets, request credentials, and verify presentations in 10 minutes."
+  currentPath="/docs/quickstart/add-did-login/"
+>
+  <div class="docs-hero-badge">Quickstart &middot; 10 minutes</div>
+  <h1>Add DID Login</h1>
+  <p class="docs-hero-sub">
+    Replace passwords with cryptographic identity. Users prove who they are
+    with a DID wallet — no passwords, no OAuth, no third-party tokens.
+  </p>
+
+  <h2>Install</h2>
+
+  <CodeBlock lang="Terminal">
+<Fragment set:html={`npm install <span class="c-str">@attestto/id-wallet-adapter</span>`} />
+  </CodeBlock>
+
+  <h2>Step 1 — Discover wallets</h2>
+  <p>Find credential wallet extensions installed in the user's browser:</p>
+
+  <CodeBlock lang="TypeScript">
+<Fragment set:html={`<span class="c-kw">import</span> <span class="c-br">{</span> discoverWallets <span class="c-br">}</span> <span class="c-kw">from</span> <span class="c-str">'@attestto/id-wallet-adapter'</span>
+
+<span class="c-kw">const</span> wallets = <span class="c-kw">await</span> <span class="c-fn">discoverWallets</span>()
+console.<span class="c-fn">log</span>(<span class="c-str">'Found'</span>, wallets.length, <span class="c-str">'wallets'</span>)`} />
+  </CodeBlock>
+
+  <h2>Step 2 — Show the wallet picker</h2>
+  <p>Or skip discovery and use the built-in modal — it handles everything:</p>
+
+  <CodeBlock lang="TypeScript">
+<Fragment set:html={`<span class="c-kw">import</span> <span class="c-br">{</span> pickWallet <span class="c-br">}</span> <span class="c-kw">from</span> <span class="c-str">'@attestto/id-wallet-adapter'</span>
+
+<span class="c-cm">// Shows a modal with all detected wallets</span>
+<span class="c-kw">const</span> wallet = <span class="c-kw">await</span> <span class="c-fn">pickWallet</span>()
+
+<span class="c-kw">if</span> (!wallet) <span class="c-br">{</span>
+  console.<span class="c-fn">log</span>(<span class="c-str">'User cancelled'</span>)
+  <span class="c-kw">return</span>
+<span class="c-br">}</span>
+
+console.<span class="c-fn">log</span>(<span class="c-str">'Selected:'</span>, wallet.name, wallet.did)`} />
+  </CodeBlock>
+
+  <Callout type="info">
+    <strong>Three tiers of control:</strong>
+    <strong>Tier 1</strong> — call <code>discoverWallets()</code> and build your own UI.
+    <strong>Tier 2</strong> — call <code>pickWallet()</code> for the built-in modal.
+    <strong>Tier 3</strong> — pass a custom <code>render</code> function to <code>pickWallet()</code>.
+  </Callout>
+
+  <h2>Step 3 — Request a Verifiable Presentation</h2>
+  <p>Ask the user to present credentials via the CHAPI protocol:</p>
+
+  <CodeBlock lang="TypeScript">
+<Fragment set:html={`<span class="c-cm">// Request identity proof via W3C CHAPI</span>
+<span class="c-kw">const</span> credential = <span class="c-kw">await</span> navigator.credentials.<span class="c-fn">get</span>(<span class="c-br">{</span>
+  web: <span class="c-br">{</span>
+    VerifiablePresentation: <span class="c-br">{</span>
+      query: <span class="c-br">{</span> type: <span class="c-str">'DIDAuthentication'</span> <span class="c-br">}</span>,
+      challenge: crypto.<span class="c-fn">randomUUID</span>(),
+      domain: window.location.origin,
+    <span class="c-br">}</span>,
+  <span class="c-br">}</span>,
+<span class="c-br">}</span>)`} />
+  </CodeBlock>
+
+  <h2>Step 4 — Verify the presentation</h2>
+  <p>Cryptographically validate the trust chain — DID resolution, signature check, issuer trust, revocation:</p>
+
+  <CodeBlock lang="TypeScript">
+<Fragment set:html={`<span class="c-kw">import</span> <span class="c-br">{</span> verifyPresentation <span class="c-br">}</span> <span class="c-kw">from</span> <span class="c-str">'@attestto/id-wallet-adapter'</span>
+
+<span class="c-kw">const</span> result = <span class="c-kw">await</span> <span class="c-fn">verifyPresentation</span>(credential, wallet, <span class="c-br">{</span>
+  resolverUrl: <span class="c-str">'https://your-backend.com/api/resolver'</span>,
+  trustedIssuers: [<span class="c-str">'did:web:attestto.com'</span>],
+<span class="c-br">}</span>)
+
+<span class="c-kw">if</span> (result.valid) <span class="c-br">{</span>
+  console.<span class="c-fn">log</span>(<span class="c-str">'Authenticated:'</span>, result.holderDid)
+  <span class="c-cm">// Create session, set cookie, etc.</span>
+<span class="c-br">}</span> <span class="c-kw">else</span> <span class="c-br">{</span>
+  console.<span class="c-fn">error</span>(<span class="c-str">'Failed:'</span>, result.errors)
+<span class="c-br">}</span>`} />
+  </CodeBlock>
+
+  <h2>Complete example</h2>
+  <p>Here's the full login flow in one file:</p>
+
+  <CodeBlock lang="HTML" title="login.html">
+<Fragment set:html={`<span class="c-tag">&lt;button</span> <span class="c-attr">id</span>=<span class="c-str">"login"</span><span class="c-tag">&gt;</span>Login with DID<span class="c-tag">&lt;/button&gt;</span>
+<span class="c-tag">&lt;div</span> <span class="c-attr">id</span>=<span class="c-str">"status"</span><span class="c-tag">&gt;&lt;/div&gt;</span>
+
+<span class="c-tag">&lt;script</span> <span class="c-attr">type</span>=<span class="c-str">"module"</span><span class="c-tag">&gt;</span>
+<span class="c-kw">import</span> <span class="c-br">{</span> pickWallet, verifyPresentation <span class="c-br">}</span>
+  <span class="c-kw">from</span> <span class="c-str">'https://unpkg.com/@attestto/id-wallet-adapter'</span>
+
+document.<span class="c-fn">getElementById</span>(<span class="c-str">'login'</span>).<span class="c-fn">addEventListener</span>(<span class="c-str">'click'</span>, <span class="c-kw">async</span> () <span class="c-op">=&gt;</span> <span class="c-br">{</span>
+  <span class="c-kw">const</span> wallet = <span class="c-kw">await</span> <span class="c-fn">pickWallet</span>()
+  <span class="c-kw">if</span> (!wallet) <span class="c-kw">return</span>
+
+  <span class="c-kw">const</span> vp = <span class="c-kw">await</span> navigator.credentials.<span class="c-fn">get</span>(<span class="c-br">{</span>
+    web: <span class="c-br">{</span> VerifiablePresentation: <span class="c-br">{</span>
+      query: <span class="c-br">{</span> type: <span class="c-str">'DIDAuthentication'</span> <span class="c-br">}</span>,
+      challenge: crypto.<span class="c-fn">randomUUID</span>(),
+      domain: location.origin
+    <span class="c-br">}</span> <span class="c-br">}</span>
+  <span class="c-br">}</span>)
+
+  <span class="c-kw">const</span> result = <span class="c-kw">await</span> <span class="c-fn">verifyPresentation</span>(vp, wallet, <span class="c-br">{</span>
+    resolverUrl: <span class="c-str">'/api/resolver'</span>,
+    trustedIssuers: [<span class="c-str">'did:web:attestto.com'</span>]
+  <span class="c-br">}</span>)
+
+  document.<span class="c-fn">getElementById</span>(<span class="c-str">'status'</span>).textContent =
+    result.valid
+      ? <span class="c-str">'Authenticated: '</span> + result.holderDid
+      : <span class="c-str">'Failed: '</span> + result.errors.<span class="c-fn">map</span>(e <span class="c-op">=&gt;</span> e.code).<span class="c-fn">join</span>(<span class="c-str">', '</span>)
+<span class="c-br">}</span>)
+<span class="c-tag">&lt;/script&gt;</span>`} />
+  </CodeBlock>
+
+  <h2>Verification checks</h2>
+  <p>The <code>verifyPresentation()</code> function runs a 6-step trust chain:</p>
+
+  <div class="docs-steps">
+    <div class="docs-step">
+      <div class="docs-step-num">1</div>
+      <div class="docs-step-body"><p><strong>Wallet trust</strong> — optional allowlist check</p></div>
+    </div>
+    <div class="docs-step">
+      <div class="docs-step-num">2</div>
+      <div class="docs-step-body"><p><strong>Extract holder DID</strong> from the Verifiable Presentation</p></div>
+    </div>
+    <div class="docs-step">
+      <div class="docs-step-num">3</div>
+      <div class="docs-step-body"><p><strong>Resolve DID Document</strong> — fetch the public key</p></div>
+    </div>
+    <div class="docs-step">
+      <div class="docs-step-num">4</div>
+      <div class="docs-step-body"><p><strong>Verify VP signature</strong> — cryptographic proof</p></div>
+    </div>
+    <div class="docs-step">
+      <div class="docs-step-num">5</div>
+      <div class="docs-step-body"><p><strong>Check VC issuers</strong> — all credentials from trusted issuers</p></div>
+    </div>
+    <div class="docs-step">
+      <div class="docs-step-num">6</div>
+      <div class="docs-step-body"><p><strong>Revocation check</strong> — Bitstring Status List query</p></div>
+    </div>
+  </div>
+
+  <h2>Next steps</h2>
+  <ul style="color: var(--docs-text-muted); font-size: 0.95rem; line-height: 2; padding-left: 1.5rem;">
+    <li><a href="/docs/wallets/picker/">Customize the picker</a> — themes, custom renderers, protocol filtering</li>
+    <li><a href="/docs/wallets/signing/">Request document signatures</a> — sign PDFs with DID wallets</li>
+    <li><a href="/docs/integration/javascript/">Full JS integration guide</a> — React, Vue, vanilla JS patterns</li>
+    <li><a href="/docs/integration/forms/">Form validation</a> — add credential checks to existing forms</li>
+  </ul>
+</DocsLayout>

@@ -1,0 +1,172 @@
+---
+import DocsLayout from '../../../layouts/DocsLayout.astro'
+import CodeBlock from '../../../components/docs/CodeBlock.astro'
+import Callout from '../../../components/docs/Callout.astro'
+---
+
+<DocsLayout
+  title="Composables (Headless API)"
+  description="Framework-agnostic functions for hashing, signing, and verifying documents. Build your own UI with the same engine the Web Components use."
+  currentPath="/docs/verify/composables/"
+>
+  <h1>Composables</h1>
+  <p class="docs-hero-sub">
+    Framework-agnostic functions for when you want full control over the UI.
+    These are the same functions the Web Components use internally.
+  </p>
+
+  <Callout type="info">
+    <strong>Same engine, your UI.</strong> The composables expose the verification and signing
+    pipeline as plain functions. Use them to build custom interfaces, integrate into existing
+    forms, or run verification in a Web Worker.
+  </Callout>
+
+  <h2>Installation</h2>
+
+  <CodeBlock lang="JavaScript" title="Import">
+<Fragment set:html={`<span class="c-kw">import</span> <span class="c-br">{</span> hashFile, signWithBrowserKey, signWithWallet <span class="c-br">}</span> <span class="c-kw">from</span> <span class="c-str">'@attestto/verify/composables'</span>`} />
+  </CodeBlock>
+
+  <h2>hashFile</h2>
+  <p>Compute the SHA-256 hash of a <code>File</code> or <code>Blob</code>. Returns a hex-encoded string.</p>
+
+  <CodeBlock lang="JavaScript" title="hashFile">
+<Fragment set:html={`<span class="c-kw">import</span> <span class="c-br">{</span> hashFile <span class="c-br">}</span> <span class="c-kw">from</span> <span class="c-str">'@attestto/verify/composables'</span>
+
+<span class="c-kw">const</span> input = document.<span class="c-fn">querySelector</span>(<span class="c-str">'input[type="file"]'</span>)
+
+input.<span class="c-fn">addEventListener</span>(<span class="c-str">'change'</span>, <span class="c-kw">async</span> (e) <span class="c-op">=&gt;</span> <span class="c-br">{</span>
+  <span class="c-kw">const</span> file = e.target.files[<span class="c-num">0</span>]
+  <span class="c-kw">const</span> hash = <span class="c-kw">await</span> <span class="c-fn">hashFile</span>(file)
+
+  console.<span class="c-fn">log</span>(<span class="c-str">'SHA-256:'</span>, hash)
+  <span class="c-cm">// e3b0c44298fc1c149afbf4c8996fb924...</span>
+<span class="c-br">}</span>)`} />
+  </CodeBlock>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Parameter</th>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>file</code></td>
+        <td><code>File | Blob</code></td>
+        <td>The file to hash.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p><strong>Returns:</strong> <code>Promise&lt;string&gt;</code> &mdash; hex-encoded SHA-256 hash.</p>
+
+  <h2>signWithBrowserKey</h2>
+  <p>
+    Generate an Ed25519 key pair in the browser and sign a hash with it.
+    Useful for quick proofs or anonymous attestations where a DID wallet is not available.
+  </p>
+
+  <CodeBlock lang="JavaScript" title="signWithBrowserKey">
+<Fragment set:html={`<span class="c-kw">import</span> <span class="c-br">{</span> hashFile, signWithBrowserKey <span class="c-br">}</span> <span class="c-kw">from</span> <span class="c-str">'@attestto/verify/composables'</span>
+
+<span class="c-kw">const</span> file = <span class="c-cm">/* a File from input or drop */</span>
+<span class="c-kw">const</span> hash = <span class="c-kw">await</span> <span class="c-fn">hashFile</span>(file)
+
+<span class="c-kw">const</span> result = <span class="c-kw">await</span> <span class="c-fn">signWithBrowserKey</span>(hash)
+
+console.<span class="c-fn">log</span>(result.publicKey)  <span class="c-cm">// base58-encoded Ed25519 public key</span>
+console.<span class="c-fn">log</span>(result.signature)  <span class="c-cm">// base64-encoded signature</span>
+console.<span class="c-fn">log</span>(result.algorithm)  <span class="c-cm">// "Ed25519"</span>`} />
+  </CodeBlock>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Parameter</th>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>hash</code></td>
+        <td><code>string</code></td>
+        <td>Hex-encoded SHA-256 hash to sign.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p><strong>Returns:</strong> <code>Promise&lt;{'{ publicKey: string, signature: string, algorithm: string }'}&gt;</code></p>
+
+  <Callout type="warning">
+    <strong>Ephemeral keys.</strong> Browser-generated keys are not persisted across sessions unless you
+    store them yourself. For production signing, use <code>signWithWallet</code> with a proper DID wallet.
+  </Callout>
+
+  <h2>signWithWallet</h2>
+  <p>
+    Sign a hash using a connected DID wallet via <code>@attestto/id-wallet-adapter</code>.
+    The wallet handles key management and user approval.
+  </p>
+
+  <CodeBlock lang="JavaScript" title="signWithWallet">
+<Fragment set:html={`<span class="c-kw">import</span> <span class="c-br">{</span> hashFile, signWithWallet <span class="c-br">}</span> <span class="c-kw">from</span> <span class="c-str">'@attestto/verify/composables'</span>
+<span class="c-kw">import</span> <span class="c-br">{</span> connectWallet <span class="c-br">}</span> <span class="c-kw">from</span> <span class="c-str">'@attestto/id-wallet-adapter'</span>
+
+<span class="c-cm">// Connect to a wallet</span>
+<span class="c-kw">const</span> wallet = <span class="c-kw">await</span> <span class="c-fn">connectWallet</span>()
+
+<span class="c-cm">// Hash the document</span>
+<span class="c-kw">const</span> file = <span class="c-cm">/* a File from input or drop */</span>
+<span class="c-kw">const</span> hash = <span class="c-kw">await</span> <span class="c-fn">hashFile</span>(file)
+
+<span class="c-cm">// Sign with the wallet — user sees approval prompt</span>
+<span class="c-kw">const</span> credential = <span class="c-kw">await</span> <span class="c-fn">signWithWallet</span>(wallet, hash, <span class="c-br">{</span>
+  fileName: file.name,
+  credentialType: <span class="c-str">'DocumentSignature'</span>
+<span class="c-br">}</span>)
+
+console.<span class="c-fn">log</span>(<span class="c-str">'Signer DID:'</span>, credential.issuer)
+console.<span class="c-fn">log</span>(<span class="c-str">'Credential:'</span>, credential)`} />
+  </CodeBlock>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Parameter</th>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>wallet</code></td>
+        <td><code>WalletConnection</code></td>
+        <td>Connected wallet from <code>@attestto/id-wallet-adapter</code>.</td>
+      </tr>
+      <tr>
+        <td><code>hash</code></td>
+        <td><code>string</code></td>
+        <td>Hex-encoded SHA-256 hash to sign.</td>
+      </tr>
+      <tr>
+        <td><code>options</code></td>
+        <td><code>object</code></td>
+        <td>Optional. <code>fileName</code> (string) and <code>credentialType</code> (string).</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p><strong>Returns:</strong> <code>Promise&lt;VerifiableCredential&gt;</code> &mdash; a W3C Verifiable Credential.</p>
+
+  <h2>See also</h2>
+  <ul style="color: var(--docs-text-muted); font-size: 0.95rem; line-height: 2; padding-left: 1.5rem;">
+    <li><a href="/docs/verify/verify-component/">&lt;attestto-verify&gt;</a> &mdash; pre-built UI for verification</li>
+    <li><a href="/docs/verify/sign-component/">&lt;attestto-sign&gt;</a> &mdash; pre-built UI for signing</li>
+    <li><a href="/docs/wallets/">Wallets</a> &mdash; wallet adapter documentation</li>
+    <li><a href="/docs/verify/plugins/">Plugins</a> &mdash; extend the verification pipeline</li>
+  </ul>
+</DocsLayout>

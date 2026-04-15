@@ -1,0 +1,30 @@
+---
+import Base from './Base.astro'
+import DocsSidebar from '../components/docs/DocsSidebar.astro'
+import '../styles/docs.css'
+
+interface Props {
+  title: string
+  description: string
+  currentPath: string
+  structuredData?: object
+}
+
+const { title, description, currentPath, structuredData } = Astro.props
+---
+
+<Base
+  title={`${title} — Attestto Docs`}
+  description={description}
+  canonicalPath={currentPath}
+  navVariant="docs"
+  bodyClass="docs-body"
+  structuredData={structuredData}
+>
+  <div class="docs-shell">
+    <DocsSidebar currentPath={currentPath} />
+    <article class="docs-content">
+      <slot />
+    </article>
+  </div>
+</Base>

@@ -1,0 +1,233 @@
+---
+import DocsLayout from '../../../layouts/DocsLayout.astro'
+import CodeBlock from '../../../components/docs/CodeBlock.astro'
+import Callout from '../../../components/docs/Callout.astro'
+---
+
+<DocsLayout
+  title="Theming"
+  description="Customize @attestto/verify components with CSS custom properties and ::part() selectors. Match your brand without fighting Shadow DOM."
+  currentPath="/docs/verify/theming/"
+>
+  <h1>Theming</h1>
+  <p class="docs-hero-sub">
+    CSS custom properties pierce Shadow DOM. Use them to match both components to your brand
+    without writing a single line of JavaScript.
+  </p>
+
+  <h2>CSS custom properties</h2>
+  <p>
+    Set these properties on the component element or any ancestor. They cascade into Shadow DOM automatically.
+  </p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Property</th>
+        <th>Default (light)</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>--attestto-primary</code></td>
+        <td><code>#4f8ff7</code></td>
+        <td>Primary accent color for buttons, links, and badges.</td>
+      </tr>
+      <tr>
+        <td><code>--attestto-primary-hover</code></td>
+        <td><code>#3a7ae0</code></td>
+        <td>Hover state for primary elements.</td>
+      </tr>
+      <tr>
+        <td><code>--attestto-text</code></td>
+        <td><code>#1a1a2e</code></td>
+        <td>Primary text color.</td>
+      </tr>
+      <tr>
+        <td><code>--attestto-text-muted</code></td>
+        <td><code>#6b7280</code></td>
+        <td>Secondary/muted text color.</td>
+      </tr>
+      <tr>
+        <td><code>--attestto-bg</code></td>
+        <td><code>#ffffff</code></td>
+        <td>Component background.</td>
+      </tr>
+      <tr>
+        <td><code>--attestto-bg-card</code></td>
+        <td><code>#f8f9fa</code></td>
+        <td>Card and result panel background.</td>
+      </tr>
+      <tr>
+        <td><code>--attestto-border</code></td>
+        <td><code>#e5e7eb</code></td>
+        <td>Border color for cards, drop zones, and dividers.</td>
+      </tr>
+      <tr>
+        <td><code>--attestto-success</code></td>
+        <td><code>#22c55e</code></td>
+        <td>Color for verified/trusted states.</td>
+      </tr>
+      <tr>
+        <td><code>--attestto-warning</code></td>
+        <td><code>#eab308</code></td>
+        <td>Color for warnings and qualified states.</td>
+      </tr>
+      <tr>
+        <td><code>--attestto-font</code></td>
+        <td><code>system-ui, sans-serif</code></td>
+        <td>Font family for all text inside the components.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>Example: dark brand theme</h3>
+
+  <CodeBlock lang="CSS" title="custom-theme.css">
+<Fragment set:html={`<span class="c-tag">attestto-verify</span>,
+<span class="c-tag">attestto-sign</span> <span class="c-br">{</span>
+  <span class="c-attr">--attestto-primary</span>: <span class="c-str">#8b5cf6</span>;
+  <span class="c-attr">--attestto-primary-hover</span>: <span class="c-str">#7c3aed</span>;
+  <span class="c-attr">--attestto-text</span>: <span class="c-str">#f1f5f9</span>;
+  <span class="c-attr">--attestto-text-muted</span>: <span class="c-str">#94a3b8</span>;
+  <span class="c-attr">--attestto-bg</span>: <span class="c-str">#0f172a</span>;
+  <span class="c-attr">--attestto-bg-card</span>: <span class="c-str">#1e293b</span>;
+  <span class="c-attr">--attestto-border</span>: <span class="c-str">#334155</span>;
+  <span class="c-attr">--attestto-success</span>: <span class="c-str">#34d399</span>;
+  <span class="c-attr">--attestto-warning</span>: <span class="c-str">#fbbf24</span>;
+  <span class="c-attr">--attestto-font</span>: <span class="c-str">"Inter", system-ui, sans-serif</span>;
+<span class="c-br">}</span>`} />
+  </CodeBlock>
+
+  <h2>CSS ::part() selectors</h2>
+  <p>
+    For fine-grained control, each component exposes named parts via the <code>::part()</code> pseudo-element.
+    This lets you style specific internal elements without custom properties.
+  </p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Part</th>
+        <th>Component</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>::part(drop-zone)</code></td>
+        <td>Both</td>
+        <td>The file drop area and file picker trigger.</td>
+      </tr>
+      <tr>
+        <td><code>::part(result-card)</code></td>
+        <td>Verify</td>
+        <td>The main results container shown after verification.</td>
+      </tr>
+      <tr>
+        <td><code>::part(hash-display)</code></td>
+        <td>Verify</td>
+        <td>The SHA-256 hash display element.</td>
+      </tr>
+      <tr>
+        <td><code>::part(sig-card)</code></td>
+        <td>Verify</td>
+        <td>Individual signature result card.</td>
+      </tr>
+      <tr>
+        <td><code>::part(status-badge)</code></td>
+        <td>Verify</td>
+        <td>Trust level badge (Detected, Signed, Trusted, Qualified).</td>
+      </tr>
+      <tr>
+        <td><code>::part(signer-name)</code></td>
+        <td>Verify</td>
+        <td>The signer's common name or organization.</td>
+      </tr>
+      <tr>
+        <td><code>::part(did-link)</code></td>
+        <td>Verify</td>
+        <td>Clickable DID identifier link.</td>
+      </tr>
+      <tr>
+        <td><code>::part(vlei-badge)</code></td>
+        <td>Verify</td>
+        <td>vLEI credential indicator badge.</td>
+      </tr>
+      <tr>
+        <td><code>::part(corporate-info)</code></td>
+        <td>Verify</td>
+        <td>Corporate signer information panel.</td>
+      </tr>
+      <tr>
+        <td><code>::part(trust-level)</code></td>
+        <td>Verify</td>
+        <td>Trust level indicator section.</td>
+      </tr>
+      <tr>
+        <td><code>::part(audit-section)</code></td>
+        <td>Verify</td>
+        <td>Forensic audit results section.</td>
+      </tr>
+      <tr>
+        <td><code>::part(button)</code></td>
+        <td>Both</td>
+        <td>All buttons inside the component.</td>
+      </tr>
+      <tr>
+        <td><code>::part(wallet-card)</code></td>
+        <td>Sign</td>
+        <td>Individual wallet option in the picker.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>Example: custom part styling</h3>
+
+  <CodeBlock lang="CSS" title="parts.css">
+<Fragment set:html={`<span class="c-cm">/* Round the drop zone corners */</span>
+<span class="c-tag">attestto-verify</span><span class="c-op">::</span><span class="c-fn">part</span>(<span class="c-attr">drop-zone</span>) <span class="c-br">{</span>
+  <span class="c-attr">border-radius</span>: <span class="c-num">1rem</span>;
+  <span class="c-attr">border-style</span>: solid;
+<span class="c-br">}</span>
+
+<span class="c-cm">/* Make the hash monospace and larger */</span>
+<span class="c-tag">attestto-verify</span><span class="c-op">::</span><span class="c-fn">part</span>(<span class="c-attr">hash-display</span>) <span class="c-br">{</span>
+  <span class="c-attr">font-family</span>: <span class="c-str">"JetBrains Mono"</span>, monospace;
+  <span class="c-attr">font-size</span>: <span class="c-num">0.9rem</span>;
+<span class="c-br">}</span>
+
+<span class="c-cm">/* Style the trust badge */</span>
+<span class="c-tag">attestto-verify</span><span class="c-op">::</span><span class="c-fn">part</span>(<span class="c-attr">status-badge</span>) <span class="c-br">{</span>
+  <span class="c-attr">font-weight</span>: <span class="c-num">700</span>;
+  <span class="c-attr">text-transform</span>: uppercase;
+  <span class="c-attr">letter-spacing</span>: <span class="c-num">0.05em</span>;
+<span class="c-br">}</span>
+
+<span class="c-cm">/* Brand the buttons */</span>
+<span class="c-tag">attestto-sign</span><span class="c-op">::</span><span class="c-fn">part</span>(<span class="c-attr">button</span>) <span class="c-br">{</span>
+  <span class="c-attr">background</span>: <span class="c-str">#8b5cf6</span>;
+  <span class="c-attr">border-radius</span>: <span class="c-num">9999px</span>;
+<span class="c-br">}</span>
+
+<span class="c-cm">/* Highlight wallet cards on hover */</span>
+<span class="c-tag">attestto-sign</span><span class="c-op">::</span><span class="c-fn">part</span>(<span class="c-attr">wallet-card</span>)<span class="c-op">:</span><span class="c-kw">hover</span> <span class="c-br">{</span>
+  <span class="c-attr">transform</span>: <span class="c-fn">translateY</span>(<span class="c-num">-2px</span>);
+  <span class="c-attr">box-shadow</span>: <span class="c-num">0</span> <span class="c-num">4px</span> <span class="c-num">12px</span> <span class="c-fn">rgba</span>(<span class="c-num">0</span>, <span class="c-num">0</span>, <span class="c-num">0</span>, <span class="c-num">0.1</span>);
+<span class="c-br">}</span>`} />
+  </CodeBlock>
+
+  <Callout type="info">
+    <strong>Custom properties vs. parts:</strong> Use CSS custom properties for global theming (colors, fonts).
+    Use <code>::part()</code> selectors when you need to style specific elements (borders, shadows, transforms).
+  </Callout>
+
+  <h2>See also</h2>
+  <ul style="color: var(--docs-text-muted); font-size: 0.95rem; line-height: 2; padding-left: 1.5rem;">
+    <li><a href="/docs/verify/verify-component/">&lt;attestto-verify&gt; API</a> &mdash; full attribute and event reference</li>
+    <li><a href="/docs/verify/sign-component/">&lt;attestto-sign&gt; API</a> &mdash; sign component reference</li>
+    <li><a href="/docs/verify/playground/">Playground</a> &mdash; see theming changes live</li>
+    <li><a href="/docs/verify/installation/">Installation</a> &mdash; setup instructions</li>
+  </ul>
+</DocsLayout>

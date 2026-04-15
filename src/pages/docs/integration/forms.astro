@@ -1,0 +1,126 @@
+---
+import DocsLayout from '../../../layouts/DocsLayout.astro'
+import CodeBlock from '../../../components/docs/CodeBlock.astro'
+import Callout from '../../../components/docs/Callout.astro'
+---
+
+<DocsLayout
+  title="Form Validation"
+  description="Add credential and signature checks to web forms. KYC before submit, professional credential checks, document signature validation, and selective disclosure."
+  currentPath="/docs/integration/forms/"
+>
+  <h1>Form Validation</h1>
+  <p>
+    Add credential verification and signature checks to your existing form
+    workflows. Verify identity, professional credentials, or document signatures
+    before allowing a form submission.
+  </p>
+
+  <h2>Use Cases</h2>
+  <ul>
+    <li><strong>KYC before submit</strong> — require a verified identity credential before accepting a registration form</li>
+    <li><strong>Professional credential check</strong> — confirm the user holds a valid professional license (e.g., licensed lawyer, certified engineer)</li>
+    <li><strong>Document signature validation</strong> — verify a signed document attached to the form</li>
+    <li><strong>Age/residency verification</strong> — request selective disclosure of specific claims without revealing the full credential</li>
+  </ul>
+
+  <h2>Form Validation Hook</h2>
+  <CodeBlock lang="TypeScript">
+    <Fragment set:html={`<span class="c-kw">import</span> { pickWallet, verifyPresentation } <span class="c-kw">from</span> <span class="c-str">'@attestto/id-wallet-adapter'</span>
+
+<span class="c-kw">async function</span> <span class="c-fn">validateWithCredential</span><span class="c-br">(</span><span class="c-attr">form</span>: <span class="c-typ">HTMLFormElement</span><span class="c-br">)</span> <span class="c-br">{</span>
+  <span class="c-cm">// 1. Pick a wallet and request a presentation</span>
+  <span class="c-kw">const</span> wallet = <span class="c-kw">await</span> <span class="c-fn">pickWallet</span><span class="c-br">(</span><span class="c-br">{</span> <span class="c-attr">render</span>: <span class="c-str">'modal'</span> <span class="c-br">}</span><span class="c-br">)</span>
+  <span class="c-kw">const</span> vp = <span class="c-kw">await</span> wallet.<span class="c-fn">requestPresentation</span><span class="c-br">(</span><span class="c-br">{</span>
+    <span class="c-attr">challenge</span>: crypto.<span class="c-fn">randomUUID</span><span class="c-br">(</span><span class="c-br">)</span>,
+    <span class="c-attr">credentialType</span>: <span class="c-str">'ProfessionalLicense'</span>,
+  <span class="c-br">}</span><span class="c-br">)</span>
+
+  <span class="c-cm">// 2. Attach VP to form data</span>
+  <span class="c-kw">const</span> vpField = document.<span class="c-fn">createElement</span><span class="c-br">(</span><span class="c-str">'input'</span><span class="c-br">)</span>
+  vpField.type = <span class="c-str">'hidden'</span>
+  vpField.name = <span class="c-str">'verifiable_presentation'</span>
+  vpField.value = JSON.<span class="c-fn">stringify</span><span class="c-br">(</span>vp<span class="c-br">)</span>
+  form.<span class="c-fn">appendChild</span><span class="c-br">(</span>vpField<span class="c-br">)</span>
+
+  <span class="c-kw">return true</span>
+<span class="c-br">}</span>
+
+<span class="c-cm">// Attach to form submit</span>
+document.<span class="c-fn">querySelector</span><span class="c-br">(</span><span class="c-str">'form'</span><span class="c-br">)</span>.<span class="c-fn">addEventListener</span><span class="c-br">(</span><span class="c-str">'submit'</span>, <span class="c-kw">async</span> <span class="c-br">(</span><span class="c-attr">e</span><span class="c-br">)</span> <span class="c-kw">=&gt;</span> <span class="c-br">{</span>
+  e.<span class="c-fn">preventDefault</span><span class="c-br">(</span><span class="c-br">)</span>
+  <span class="c-kw">const</span> valid = <span class="c-kw">await</span> <span class="c-fn">validateWithCredential</span><span class="c-br">(</span>e.target<span class="c-br">)</span>
+  <span class="c-kw">if</span> <span class="c-br">(</span>valid<span class="c-br">)</span> e.target.<span class="c-fn">submit</span><span class="c-br">(</span><span class="c-br">)</span>
+<span class="c-br">}</span><span class="c-br">)</span>`} />
+  </CodeBlock>
+
+  <h2>Server-side Middleware</h2>
+  <CodeBlock lang="TypeScript" title="middleware/form-verify.ts">
+    <Fragment set:html={`<span class="c-kw">import</span> { verifyPresentation } <span class="c-kw">from</span> <span class="c-str">'@attestto/id-wallet-adapter'</span>
+
+<span class="c-kw">export async function</span> <span class="c-fn">verifyFormCredential</span><span class="c-br">(</span>req, res, next<span class="c-br">)</span> <span class="c-br">{</span>
+  <span class="c-kw">const</span> vpJson = req.body.verifiable_presentation
+  <span class="c-kw">if</span> <span class="c-br">(</span><span class="c-op">!</span>vpJson<span class="c-br">)</span> <span class="c-kw">return</span> res.<span class="c-fn">status</span><span class="c-br">(</span><span class="c-num">400</span><span class="c-br">)</span>.<span class="c-fn">json</span><span class="c-br">(</span><span class="c-br">{</span> <span class="c-attr">error</span>: <span class="c-str">'Credential required'</span> <span class="c-br">}</span><span class="c-br">)</span>
+
+  <span class="c-kw">const</span> vp = JSON.<span class="c-fn">parse</span><span class="c-br">(</span>vpJson<span class="c-br">)</span>
+  <span class="c-kw">const</span> result = <span class="c-kw">await</span> <span class="c-fn">verifyPresentation</span><span class="c-br">(</span>vp, <span class="c-br">{</span>
+    <span class="c-attr">trustedIssuers</span>: <span class="c-br">[</span><span class="c-str">'did:web:colegio-abogados.cr'</span><span class="c-br">]</span>,
+    <span class="c-attr">checkRevocation</span>: <span class="c-kw">true</span>,
+  <span class="c-br">}</span><span class="c-br">)</span>
+
+  <span class="c-kw">if</span> <span class="c-br">(</span><span class="c-op">!</span>result.valid<span class="c-br">)</span> <span class="c-br">{</span>
+    <span class="c-kw">return</span> res.<span class="c-fn">status</span><span class="c-br">(</span><span class="c-num">403</span><span class="c-br">)</span>.<span class="c-fn">json</span><span class="c-br">(</span><span class="c-br">{</span> <span class="c-attr">errors</span>: result.errors <span class="c-br">}</span><span class="c-br">)</span>
+  <span class="c-br">}</span>
+
+  req.verifiedDid = result.holderDid
+  <span class="c-fn">next</span><span class="c-br">(</span><span class="c-br">)</span>
+<span class="c-br">}</span>`} />
+  </CodeBlock>
+
+  <h2>Selective Disclosure Request</h2>
+  <p>
+    For age or residency verification, request only the claims you need.
+    The wallet shows the user exactly which fields will be shared.
+  </p>
+  <CodeBlock lang="TypeScript">
+    <Fragment set:html={`<span class="c-kw">const</span> vp = <span class="c-kw">await</span> wallet.<span class="c-fn">requestPresentation</span><span class="c-br">(</span><span class="c-br">{</span>
+  <span class="c-attr">challenge</span>: crypto.<span class="c-fn">randomUUID</span><span class="c-br">(</span><span class="c-br">)</span>,
+  <span class="c-attr">selectiveDisclosure</span>: <span class="c-br">{</span>
+    <span class="c-attr">credentialType</span>: <span class="c-str">'NationalID'</span>,
+    <span class="c-attr">requestedFields</span>: <span class="c-br">[</span><span class="c-str">'ageOver18'</span>, <span class="c-str">'countryOfResidence'</span><span class="c-br">]</span>,
+  <span class="c-br">}</span>,
+<span class="c-br">}</span><span class="c-br">)</span>
+
+<span class="c-cm">// Only ageOver18 and countryOfResidence are disclosed</span>
+<span class="c-cm">// Full name, ID number, etc. remain private</span>`} />
+  </CodeBlock>
+
+  <h2>Error Handling</h2>
+  <table class="docs-table">
+    <thead>
+      <tr><th>Error</th><th>Meaning</th><th>Action</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><code>CREDENTIAL_REVOKED</code></td><td>The credential has been revoked by the issuer</td><td>Reject the form. Inform the user their credential is no longer valid.</td></tr>
+      <tr><td><code>ISSUER_UNTRUSTED</code></td><td>The credential issuer is not in your trusted list</td><td>Reject or flag for manual review.</td></tr>
+      <tr><td><code>SIGNATURE_INVALID</code></td><td>The presentation signature does not verify</td><td>Reject. Possible tampering.</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Embed Verify Widget</h2>
+  <p>
+    For a visual verification indicator inside your form, embed the
+    <code>&lt;attestto-verify&gt;</code> Web Component. It shows a verification
+    badge once the credential is confirmed.
+  </p>
+  <CodeBlock lang="HTML">
+    <Fragment set:html={`<span class="c-kw">&lt;form&gt;</span>
+  <span class="c-cm">&lt;!-- Your form fields --&gt;</span>
+  <span class="c-kw">&lt;attestto-verify</span>
+    <span class="c-attr">credential-type</span>=<span class="c-str">"ProfessionalLicense"</span>
+    <span class="c-attr">trusted-issuers</span>=<span class="c-str">"did:web:colegio-abogados.cr"</span>
+  <span class="c-kw">&gt;&lt;/attestto-verify&gt;</span>
+  <span class="c-kw">&lt;button</span> <span class="c-attr">type</span>=<span class="c-str">"submit"</span><span class="c-kw">&gt;</span>Submit<span class="c-kw">&lt;/button&gt;</span>
+<span class="c-kw">&lt;/form&gt;</span>`} />
+  </CodeBlock>
+</DocsLayout>

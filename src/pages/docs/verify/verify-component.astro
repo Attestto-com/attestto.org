@@ -1,0 +1,172 @@
+---
+import DocsLayout from '../../../layouts/DocsLayout.astro'
+import CodeBlock from '../../../components/docs/CodeBlock.astro'
+import Callout from '../../../components/docs/Callout.astro'
+---
+
+<DocsLayout
+  title="<attestto-verify> Component"
+  description="Full API reference for the attestto-verify Web Component. Attributes, events, CSS parts, and usage examples."
+  currentPath="/docs/verify/verify-component/"
+>
+  <h1>&lt;attestto-verify&gt;</h1>
+  <p class="docs-hero-sub">
+    Client-side document verification. Drop a PDF and get hash, signatures,
+    forensic audit results, and a trust level &mdash; all without leaving the browser.
+  </p>
+
+  <h2>Basic usage</h2>
+
+  <CodeBlock lang="HTML">
+<Fragment set:html={`<span class="c-tag">&lt;attestto-verify&gt;&lt;/attestto-verify&gt;</span>`} />
+  </CodeBlock>
+
+  <p>That is a fully functional verifier. Every attribute below is optional.</p>
+
+  <h2>Attributes</h2>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Attribute</th>
+        <th>Type</th>
+        <th>Default</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>hash</code></td>
+        <td><code>string</code></td>
+        <td>&mdash;</td>
+        <td>Pre-computed SHA-256 hash to verify against. If provided, the component compares the file hash to this value.</td>
+      </tr>
+      <tr>
+        <td><code>allow-plugins</code></td>
+        <td><code>boolean</code></td>
+        <td><code>true</code></td>
+        <td>Enable or disable the plugin system. Set to <code>false</code> to use only the built-in verification pipeline.</td>
+      </tr>
+      <tr>
+        <td><code>theme</code></td>
+        <td><code>"light" | "dark"</code></td>
+        <td><code>"light"</code></td>
+        <td>Color scheme for the component. Can also be controlled with CSS custom properties.</td>
+      </tr>
+      <tr>
+        <td><code>root-ca</code></td>
+        <td><code>string</code></td>
+        <td>&mdash;</td>
+        <td>URL to a custom root CA certificate bundle (PEM). Used to validate signer certificates against your own trust store.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <CodeBlock lang="HTML" title="All attributes">
+<Fragment set:html={`<span class="c-tag">&lt;attestto-verify</span>
+  <span class="c-attr">hash</span>=<span class="c-str">"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"</span>
+  <span class="c-attr">allow-plugins</span>=<span class="c-str">"true"</span>
+  <span class="c-attr">theme</span>=<span class="c-str">"dark"</span>
+  <span class="c-attr">root-ca</span>=<span class="c-str">"https://example.com/ca-bundle.pem"</span>
+<span class="c-tag">&gt;&lt;/attestto-verify&gt;</span>`} />
+  </CodeBlock>
+
+  <h2>What it does</h2>
+  <p>When a user drops a PDF onto the component, the verification pipeline runs four stages:</p>
+
+  <div class="docs-steps">
+    <div class="docs-step">
+      <div class="docs-step-num">1</div>
+      <div class="docs-step-body">
+        <p><strong>Hash</strong> &mdash; Computes a SHA-256 hash of the entire file. If a <code>hash</code> attribute is set, compares the result and reports match/mismatch.</p>
+      </div>
+    </div>
+    <div class="docs-step">
+      <div class="docs-step-num">2</div>
+      <div class="docs-step-body">
+        <p><strong>Signatures</strong> &mdash; Detects and verifies PAdES and PKCS#7 digital signatures. Extracts signer names, certificates, timestamps, and chain validity.</p>
+      </div>
+    </div>
+    <div class="docs-step">
+      <div class="docs-step-num">3</div>
+      <div class="docs-step-body">
+        <p><strong>Forensic audit</strong> &mdash; Scans for JavaScript injection, OpenAction scripts, embedded executables, form actions pointing to external URLs, and encryption flags.</p>
+      </div>
+    </div>
+    <div class="docs-step">
+      <div class="docs-step-num">4</div>
+      <div class="docs-step-body">
+        <p><strong>Plugins</strong> &mdash; If enabled, passes results through registered plugins (DID resolution, trust registries, blockchain anchors) to elevate the trust level.</p>
+      </div>
+    </div>
+  </div>
+
+  <h2>Events</h2>
+  <p>The component dispatches Custom Events that bubble and cross Shadow DOM boundaries:</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Event</th>
+        <th>Detail</th>
+        <th>When</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>verification-started</code></td>
+        <td><code>&#123; fileName: string, fileSize: number &#125;</code></td>
+        <td>A file is dropped or selected and processing begins.</td>
+      </tr>
+      <tr>
+        <td><code>verification-complete</code></td>
+        <td><code>&#123; hash: string, signatures: Signature[], plugins: PluginResult[] &#125;</code></td>
+        <td>All verification stages have finished.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>Listening for events</h3>
+
+  <CodeBlock lang="JavaScript">
+<Fragment set:html={`<span class="c-kw">const</span> verifier = document.<span class="c-fn">querySelector</span>(<span class="c-str">'attestto-verify'</span>)
+
+verifier.<span class="c-fn">addEventListener</span>(<span class="c-str">'verification-started'</span>, (e) <span class="c-op">=&gt;</span> <span class="c-br">{</span>
+  console.<span class="c-fn">log</span>(<span class="c-str">'Processing:'</span>, e.detail.fileName)
+  console.<span class="c-fn">log</span>(<span class="c-str">'Size:'</span>, e.detail.fileSize, <span class="c-str">'bytes'</span>)
+<span class="c-br">}</span>)
+
+verifier.<span class="c-fn">addEventListener</span>(<span class="c-str">'verification-complete'</span>, (e) <span class="c-op">=&gt;</span> <span class="c-br">{</span>
+  <span class="c-kw">const</span> <span class="c-br">{</span> hash, signatures, plugins <span class="c-br">}</span> = e.detail
+
+  console.<span class="c-fn">log</span>(<span class="c-str">'SHA-256:'</span>, hash)
+  console.<span class="c-fn">log</span>(<span class="c-str">'Signatures found:'</span>, signatures.length)
+
+  <span class="c-cm">// Check trust level</span>
+  <span class="c-kw">const</span> trusted = signatures.<span class="c-fn">some</span>(s <span class="c-op">=&gt;</span> s.trustLevel <span class="c-op">===</span> <span class="c-str">'trusted'</span>)
+  <span class="c-kw">if</span> (trusted) <span class="c-br">{</span>
+    console.<span class="c-fn">log</span>(<span class="c-str">'Document is trusted'</span>)
+  <span class="c-br">}</span>
+
+  <span class="c-cm">// Send hash to your backend for recording</span>
+  <span class="c-fn">fetch</span>(<span class="c-str">'/api/verify'</span>, <span class="c-br">{</span>
+    method: <span class="c-str">'POST'</span>,
+    body: JSON.<span class="c-fn">stringify</span>(<span class="c-br">{</span> hash, signatureCount: signatures.length <span class="c-br">}</span>)
+  <span class="c-br">}</span>)
+<span class="c-br">}</span>)`} />
+  </CodeBlock>
+
+  <Callout type="privacy">
+    <strong>Privacy note:</strong> Only the hash leaves the browser in the example above &mdash; and only because your code
+    explicitly sends it. The component itself makes zero network requests.
+  </Callout>
+
+  <h2>See also</h2>
+  <ul style="color: var(--docs-text-muted); font-size: 0.95rem; line-height: 2; padding-left: 1.5rem;">
+    <li><a href="/docs/verify/sign-component/">&lt;attestto-sign&gt;</a> &mdash; sign documents with a DID wallet</li>
+    <li><a href="/docs/verify/theming/">Theming</a> &mdash; customize every visual element</li>
+    <li><a href="/docs/verify/plugins/">Plugins</a> &mdash; extend the verification pipeline</li>
+    <li><a href="/docs/verify/composables/">Composables</a> &mdash; headless API for full control</li>
+    <li><a href="/docs/verify/playground/">Playground</a> &mdash; try it live</li>
+  </ul>
+</DocsLayout>

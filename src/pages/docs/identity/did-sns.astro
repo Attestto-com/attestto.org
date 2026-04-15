@@ -1,0 +1,81 @@
+---
+import DocsLayout from '../../../layouts/DocsLayout.astro'
+import CodeBlock from '../../../components/docs/CodeBlock.astro'
+import Callout from '../../../components/docs/Callout.astro'
+---
+
+<DocsLayout
+  title="did:sns — Solana Name Service"
+  description="Human-readable decentralized identifiers on Solana. did:sns maps .sol domain names to W3C-compliant DID Documents."
+  currentPath="/docs/identity/did-sns/"
+>
+  <h1>did:sns — Solana Name Service</h1>
+  <p>
+    <code>did:sns</code> provides <strong>human-readable DIDs</strong> backed by
+    the Solana Name Service (SNS). Instead of opaque hashes, identifiers look
+    like <code>did:sns:attestto.sol</code>.
+  </p>
+
+  <h2>Format</h2>
+  <CodeBlock lang="DID">
+    <Fragment set:html={`did:sns:&lt;name&gt;.sol`} />
+  </CodeBlock>
+  <p>
+    The <code>&lt;name&gt;</code> is any registered SNS domain. Resolution
+    fetches the on-chain record to produce a DID Document.
+  </p>
+
+  <h2>Resolution</h2>
+  <ol>
+    <li>Parse the DID to extract the <code>.sol</code> domain name</li>
+    <li>Look up the SNS on-chain record on Solana</li>
+    <li>Read the verification methods stored in the record's data</li>
+    <li>Construct and return a W3C DID Document</li>
+  </ol>
+
+  <h2>DID Document Structure</h2>
+  <CodeBlock lang="JSON">
+    <Fragment set:html={`<span class="c-br">{</span>
+  <span class="c-attr">"@context"</span>: <span class="c-br">[</span><span class="c-str">"https://www.w3.org/ns/did/v1"</span><span class="c-br">]</span>,
+  <span class="c-attr">"id"</span>: <span class="c-str">"did:sns:attestto.sol"</span>,
+  <span class="c-attr">"verificationMethod"</span>: <span class="c-br">[</span><span class="c-br">{</span>
+    <span class="c-attr">"id"</span>: <span class="c-str">"did:sns:attestto.sol#key-1"</span>,
+    <span class="c-attr">"type"</span>: <span class="c-str">"Ed25519VerificationKey2020"</span>,
+    <span class="c-attr">"controller"</span>: <span class="c-str">"did:sns:attestto.sol"</span>,
+    <span class="c-attr">"publicKeyMultibase"</span>: <span class="c-str">"z6Mkf5rGMoatrSj1f..."</span>
+  <span class="c-br">}</span><span class="c-br">]</span>,
+  <span class="c-attr">"authentication"</span>: <span class="c-br">[</span><span class="c-str">"did:sns:attestto.sol#key-1"</span><span class="c-br">]</span>,
+  <span class="c-attr">"assertionMethod"</span>: <span class="c-br">[</span><span class="c-str">"did:sns:attestto.sol#key-1"</span><span class="c-br">]</span>
+<span class="c-br">}</span>`} />
+  </CodeBlock>
+
+  <h2>W3C Compliance</h2>
+  <p>
+    <code>did:sns</code> is fully W3C DID Core compliant. The method
+    specification has been submitted to the
+    <a href="https://www.w3.org/TR/did-spec-registries/" target="_blank" rel="noopener">W3C DID Specification Registries</a>.
+  </p>
+
+  <h2>Use Cases</h2>
+  <ul>
+    <li><strong>Organizational identity</strong> — a company registers <code>company.sol</code> and uses <code>did:sns:company.sol</code> as its verifiable organizational DID</li>
+    <li><strong>Domain-based verification</strong> — relying parties can verify that a credential was issued by the entity controlling a known <code>.sol</code> name</li>
+    <li><strong>Human-readable references</strong> — users see <code>attestto.sol</code> rather than a raw public key hash</li>
+  </ul>
+
+  <Callout type="info">
+    <p>
+      The SNS domain owner wallet is <strong>not</strong> the verification key.
+      The platform owns the <code>.sol</code> name; the verification key is a
+      separate keypair stored in the on-chain record. See the full spec for
+      the security model.
+    </p>
+  </Callout>
+
+  <h2>Further Reading</h2>
+  <ul>
+    <li><a href="https://spec.attestto.com/did-sns" target="_blank" rel="noopener">Full did:sns Specification</a></li>
+    <li><a href="https://www.w3.org/TR/did-spec-registries/" target="_blank" rel="noopener">W3C DID Specification Registries</a></li>
+    <li><a href="/docs/identity/resolution/">DID Resolution</a></li>
+  </ul>
+</DocsLayout>

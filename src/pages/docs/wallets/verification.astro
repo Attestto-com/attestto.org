@@ -1,0 +1,107 @@
+---
+import DocsLayout from '../../../layouts/DocsLayout.astro'
+import CodeBlock from '../../../components/docs/CodeBlock.astro'
+import Callout from '../../../components/docs/Callout.astro'
+---
+
+<DocsLayout
+  title="Presentation Verification"
+  description="verifyPresentation() runs a 6-step trust chain to validate holder DIDs, issuer trust, revocation status, and wallet integrity."
+  currentPath="/docs/wallets/verification/"
+>
+  <h1>Presentation Verification</h1>
+  <p>
+    <code>verifyPresentation()</code> runs a <strong>6-step trust chain</strong>
+    to validate a Verifiable Presentation received from a wallet.
+  </p>
+
+  <h2>The 6-Step Trust Chain</h2>
+  <ol>
+    <li><strong>Extract holder DID</strong> — parse the presentation and identify the holder</li>
+    <li><strong>Resolve DID Document</strong> — fetch the holder's DID Document from the appropriate method handler</li>
+    <li><strong>Verify signature</strong> — check the presentation proof against the holder's public key</li>
+    <li><strong>Validate issuer trust</strong> — confirm each credential's issuer is in the trusted set</li>
+    <li><strong>Check revocation</strong> — query revocation registries for each credential</li>
+    <li><strong>Verify wallet trust</strong> — optionally confirm the wallet extension itself is trusted</li>
+  </ol>
+
+  <h2>VerifyResult</h2>
+  <CodeBlock lang="TypeScript">
+    <Fragment set:html={`<span class="c-kw">interface</span> <span class="c-typ">VerifyResult</span> <span class="c-br">{</span>
+  <span class="c-attr">valid</span>: <span class="c-typ">boolean</span>              <span class="c-cm">// Overall pass/fail</span>
+  <span class="c-attr">holderDid</span>: <span class="c-typ">string</span>          <span class="c-cm">// Extracted holder DID</span>
+  <span class="c-attr">errors</span>: <span class="c-typ">VerifyError</span><span class="c-br">[]</span>      <span class="c-cm">// Array of error objects</span>
+  <span class="c-attr">didDocument</span>: <span class="c-typ">DIDDocument</span>   <span class="c-cm">// Resolved DID Document</span>
+<span class="c-br">}</span>`} />
+  </CodeBlock>
+
+  <h2>Error Codes</h2>
+  <table class="docs-table">
+    <thead>
+      <tr><th>Code</th><th>Step</th><th>Description</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><code>NO_HOLDER</code></td><td>1</td><td>Presentation does not contain a holder DID</td></tr>
+      <tr><td><code>RESOLUTION_FAILED</code></td><td>2</td><td>Could not resolve the holder's DID Document</td></tr>
+      <tr><td><code>SIGNATURE_INVALID</code></td><td>3</td><td>Presentation signature does not match holder's public key</td></tr>
+      <tr><td><code>ISSUER_UNTRUSTED</code></td><td>4</td><td>Credential issuer is not in the trusted issuers list</td></tr>
+      <tr><td><code>CREDENTIAL_REVOKED</code></td><td>5</td><td>One or more credentials have been revoked</td></tr>
+      <tr><td><code>WALLET_UNTRUSTED</code></td><td>6</td><td>Wallet extension is not in the trusted wallets list</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Options</h2>
+  <table class="docs-table">
+    <thead>
+      <tr><th>Property</th><th>Type</th><th>Description</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><code>resolverUrl</code></td><td><code>string</code></td><td>DID resolver endpoint (default: <code>https://resolver.attestto.com</code>)</td></tr>
+      <tr><td><code>trustedIssuers</code></td><td><code>string[]</code></td><td>Array of trusted issuer DIDs</td></tr>
+      <tr><td><code>trustedWallets</code></td><td><code>string[]</code></td><td>Array of trusted wallet DIDs (optional)</td></tr>
+      <tr><td><code>checkRevocation</code></td><td><code>boolean</code></td><td>Whether to check revocation registries (default: <code>true</code>)</td></tr>
+      <tr><td><code>signal</code></td><td><code>AbortSignal</code></td><td>Abort signal for cancellation</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Full Example</h2>
+  <CodeBlock lang="TypeScript">
+    <Fragment set:html={`<span class="c-kw">import</span> { pickWallet, verifyPresentation } <span class="c-kw">from</span> <span class="c-str">'@attestto/id-wallet-adapter'</span>
+
+<span class="c-cm">// 1. Pick a wallet and request a Verifiable Presentation</span>
+<span class="c-kw">const</span> wallet = <span class="c-kw">await</span> <span class="c-fn">pickWallet</span><span class="c-br">(</span><span class="c-br">{</span> <span class="c-attr">render</span>: <span class="c-str">'modal'</span> <span class="c-br">}</span><span class="c-br">)</span>
+<span class="c-kw">const</span> vp = <span class="c-kw">await</span> wallet.<span class="c-fn">requestPresentation</span><span class="c-br">(</span><span class="c-br">{</span>
+  <span class="c-attr">challenge</span>: crypto.<span class="c-fn">randomUUID</span><span class="c-br">(</span><span class="c-br">)</span>,
+<span class="c-br">}</span><span class="c-br">)</span>
+
+<span class="c-cm">// 2. Verify the presentation</span>
+<span class="c-kw">const</span> result = <span class="c-kw">await</span> <span class="c-fn">verifyPresentation</span><span class="c-br">(</span>vp, <span class="c-br">{</span>
+  <span class="c-attr">trustedIssuers</span>: <span class="c-br">[</span>
+    <span class="c-str">'did:web:gov.example.com'</span>,
+    <span class="c-str">'did:sns:attestto.sol'</span>,
+  <span class="c-br">]</span>,
+  <span class="c-attr">checkRevocation</span>: <span class="c-kw">true</span>,
+<span class="c-br">}</span><span class="c-br">)</span>
+
+<span class="c-kw">if</span> <span class="c-br">(</span>result.valid<span class="c-br">)</span> <span class="c-br">{</span>
+  console.<span class="c-fn">log</span><span class="c-br">(</span><span class="c-str">'Verified holder:'</span>, result.holderDid<span class="c-br">)</span>
+<span class="c-br">}</span> <span class="c-kw">else</span> <span class="c-br">{</span>
+  console.<span class="c-fn">error</span><span class="c-br">(</span><span class="c-str">'Verification failed:'</span>, result.errors<span class="c-br">)</span>
+<span class="c-br">}</span>`} />
+  </CodeBlock>
+
+  <h2>Backend Resolver Pattern</h2>
+  <Callout type="warning">
+    <p>
+      <strong>Always verify on the backend.</strong> Client-side verification
+      is useful for instant feedback, but the authoritative check must happen
+      server-side where the resolver endpoint and trusted issuer list cannot
+      be tampered with.
+    </p>
+  </Callout>
+  <p>
+    Send the raw VP to your backend and call <code>verifyPresentation()</code>
+    there. The same API works in Node.js — the adapter has zero browser-only
+    dependencies.
+  </p>
+</DocsLayout>

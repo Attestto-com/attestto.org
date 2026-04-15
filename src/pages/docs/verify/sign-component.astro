@@ -1,0 +1,175 @@
+---
+import DocsLayout from '../../../layouts/DocsLayout.astro'
+import CodeBlock from '../../../components/docs/CodeBlock.astro'
+import Callout from '../../../components/docs/Callout.astro'
+---
+
+<DocsLayout
+  title="<attestto-sign> Component"
+  description="Sign documents with any DID wallet using the attestto-sign Web Component. Produces W3C Verifiable Credentials."
+  currentPath="/docs/verify/sign-component/"
+>
+  <h1>&lt;attestto-sign&gt;</h1>
+  <p class="docs-hero-sub">
+    Sign documents with any DID wallet. The output is a Verifiable Credential,
+    not a modified file &mdash; the original document is never altered.
+  </p>
+
+  <h2>Basic usage</h2>
+
+  <CodeBlock lang="HTML">
+<Fragment set:html={`<span class="c-tag">&lt;script</span> <span class="c-attr">type</span>=<span class="c-str">"module"</span>
+  <span class="c-attr">src</span>=<span class="c-str">"https://unpkg.com/@attestto/verify"</span>
+<span class="c-tag">&gt;&lt;/script&gt;</span>
+
+<span class="c-tag">&lt;attestto-sign&gt;&lt;/attestto-sign&gt;</span>`} />
+  </CodeBlock>
+
+  <h2>How it works</h2>
+  <p>
+    The sign component uses <a href="/docs/wallets/">@attestto/id-wallet-adapter</a> under the hood to
+    discover and connect to DID wallets. The signing flow follows five steps:
+  </p>
+
+  <div class="docs-steps">
+    <div class="docs-step">
+      <div class="docs-step-num">1</div>
+      <div class="docs-step-body">
+        <p><strong>Discover wallets</strong> &mdash; Scans for available DID wallets using the wallet adapter's discovery protocol (browser extensions, mobile deep links, CHAPI).</p>
+      </div>
+    </div>
+    <div class="docs-step">
+      <div class="docs-step-num">2</div>
+      <div class="docs-step-body">
+        <p><strong>Select wallet</strong> &mdash; The user picks their wallet from the built-in picker. The component connects and retrieves the user's DID.</p>
+      </div>
+    </div>
+    <div class="docs-step">
+      <div class="docs-step-num">3</div>
+      <div class="docs-step-body">
+        <p><strong>Drop PDF</strong> &mdash; The user drops or selects a document. The component computes its SHA-256 hash locally.</p>
+      </div>
+    </div>
+    <div class="docs-step">
+      <div class="docs-step-num">4</div>
+      <div class="docs-step-body">
+        <p><strong>Sign</strong> &mdash; The hash (not the document) is sent to the wallet for signing. The wallet prompts the user for approval and returns a cryptographic signature.</p>
+      </div>
+    </div>
+    <div class="docs-step">
+      <div class="docs-step-num">5</div>
+      <div class="docs-step-body">
+        <p><strong>Store</strong> &mdash; The signed Verifiable Credential is stored in the user's wallet. It can be presented to any verifier later.</p>
+      </div>
+    </div>
+  </div>
+
+  <Callout type="info">
+    <strong>Output is a Verifiable Credential.</strong> The component does not modify the original PDF
+    or produce a signed file download. Instead, it creates a W3C Verifiable Credential that binds the
+    signer's DID to the document hash. The VC is stored in the user's identity wallet.
+  </Callout>
+
+  <h2>Attributes</h2>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Attribute</th>
+        <th>Type</th>
+        <th>Default</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>theme</code></td>
+        <td><code>"light" | "dark"</code></td>
+        <td><code>"light"</code></td>
+        <td>Color scheme for the component.</td>
+      </tr>
+      <tr>
+        <td><code>wallet-filter</code></td>
+        <td><code>string</code></td>
+        <td>&mdash;</td>
+        <td>Comma-separated list of wallet IDs to show. Omit to show all discovered wallets.</td>
+      </tr>
+      <tr>
+        <td><code>credential-type</code></td>
+        <td><code>string</code></td>
+        <td><code>"DocumentSignature"</code></td>
+        <td>The Verifiable Credential type to issue.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>Events</h2>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Event</th>
+        <th>Detail</th>
+        <th>When</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>wallet-connected</code></td>
+        <td><code>&#123; did: string, walletId: string &#125;</code></td>
+        <td>A wallet has been selected and connected.</td>
+      </tr>
+      <tr>
+        <td><code>sign-started</code></td>
+        <td><code>&#123; fileName: string, hash: string, did: string &#125;</code></td>
+        <td>The user has approved signing and the operation has begun.</td>
+      </tr>
+      <tr>
+        <td><code>sign-complete</code></td>
+        <td><code>&#123; credential: object, hash: string, did: string &#125;</code></td>
+        <td>Signing succeeded. The credential is a full W3C Verifiable Credential.</td>
+      </tr>
+      <tr>
+        <td><code>sign-error</code></td>
+        <td><code>&#123; error: string, code: string &#125;</code></td>
+        <td>Signing failed (wallet rejected, timeout, etc.).</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>Event handling</h3>
+
+  <CodeBlock lang="JavaScript">
+<Fragment set:html={`<span class="c-kw">const</span> signer = document.<span class="c-fn">querySelector</span>(<span class="c-str">'attestto-sign'</span>)
+
+signer.<span class="c-fn">addEventListener</span>(<span class="c-str">'wallet-connected'</span>, (e) <span class="c-op">=&gt;</span> <span class="c-br">{</span>
+  console.<span class="c-fn">log</span>(<span class="c-str">'Connected DID:'</span>, e.detail.did)
+<span class="c-br">}</span>)
+
+signer.<span class="c-fn">addEventListener</span>(<span class="c-str">'sign-complete'</span>, (e) <span class="c-op">=&gt;</span> <span class="c-br">{</span>
+  console.<span class="c-fn">log</span>(<span class="c-str">'Signed by:'</span>, e.detail.did)
+  console.<span class="c-fn">log</span>(<span class="c-str">'Document hash:'</span>, e.detail.hash)
+  console.<span class="c-fn">log</span>(<span class="c-str">'Credential:'</span>, e.detail.credential)
+
+  <span class="c-cm">// The VC is already stored in the wallet.</span>
+  <span class="c-cm">// You can also record it on your backend:</span>
+  <span class="c-fn">fetch</span>(<span class="c-str">'/api/signatures'</span>, <span class="c-br">{</span>
+    method: <span class="c-str">'POST'</span>,
+    body: JSON.<span class="c-fn">stringify</span>(e.detail)
+  <span class="c-br">}</span>)
+<span class="c-br">}</span>)
+
+signer.<span class="c-fn">addEventListener</span>(<span class="c-str">'sign-error'</span>, (e) <span class="c-op">=&gt;</span> <span class="c-br">{</span>
+  console.<span class="c-fn">error</span>(<span class="c-str">'Sign failed:'</span>, e.detail.error)
+<span class="c-br">}</span>)`} />
+  </CodeBlock>
+
+  <h2>See also</h2>
+  <ul style="color: var(--docs-text-muted); font-size: 0.95rem; line-height: 2; padding-left: 1.5rem;">
+    <li><a href="/docs/verify/verify-component/">&lt;attestto-verify&gt;</a> &mdash; verify documents without signing</li>
+    <li><a href="/docs/wallets/">Wallets documentation</a> &mdash; wallet adapter, picker, and discovery protocol</li>
+    <li><a href="/docs/verify/composables/">Composables</a> &mdash; headless signing API for custom UIs</li>
+    <li><a href="/docs/verify/theming/">Theming</a> &mdash; customize the sign component appearance</li>
+    <li><a href="/docs/credentials/">Credentials</a> &mdash; deeper VC issuance and verification</li>
+  </ul>
+</DocsLayout>

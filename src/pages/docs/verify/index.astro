@@ -1,0 +1,114 @@
+---
+import DocsLayout from '../../../layouts/DocsLayout.astro'
+import Callout from '../../../components/docs/Callout.astro'
+---
+
+<DocsLayout
+  title="Verify & Sign — Overview"
+  description="Web Components for client-side document verification and DID signing. Privacy-first: documents never leave the device."
+  currentPath="/docs/verify/"
+>
+  <div class="docs-hero-badge">@attestto/verify v0.1.0 &middot; Apache 2.0</div>
+  <h1>Verify &amp; Sign</h1>
+  <p class="docs-hero-sub">
+    Web Components for document verification and DID signing.
+    Drop them into any page &mdash; no framework, no backend, no API keys.
+  </p>
+
+  <h2>What is @attestto/verify?</h2>
+  <p>
+    <code>@attestto/verify</code> is a library of Web Components that give any web page the ability to
+    verify PDF documents and sign them with decentralized identity wallets. The entire verification
+    pipeline runs in the browser. Your documents are never uploaded, never transmitted, never logged.
+  </p>
+
+  <Callout type="privacy">
+    <strong>Privacy guarantee:</strong> All verification and signing runs 100% client-side.
+    No analytics, no tracking, no network requests. Your documents never leave the device.
+  </Callout>
+
+  <h2>Two components, one import</h2>
+  <p>The library ships two Web Components:</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Component</th>
+        <th>Purpose</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>&lt;attestto-verify&gt;</code></td>
+        <td>Drop a PDF &rarr; get hash, signatures, forensic audit, and trust level</td>
+      </tr>
+      <tr>
+        <td><code>&lt;attestto-sign&gt;</code></td>
+        <td>Sign a document with any DID wallet &rarr; produces a Verifiable Credential</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p>
+    Both are standard Custom Elements. They work in plain HTML, React, Vue, Svelte, Angular,
+    Astro &mdash; anywhere that renders HTML. Shadow DOM encapsulation means they will never
+    conflict with your existing styles.
+  </p>
+
+  <h2>Trust levels</h2>
+  <p>
+    Every verified document is assigned a trust level based on what the component can confirm:
+  </p>
+
+  <div class="docs-levels">
+    <div class="docs-level-row">
+      <div class="docs-level-badge" style="background: var(--docs-text-dim, #666);">Detected</div>
+      <div class="docs-level-desc">
+        The file was hashed and parsed. No digital signatures found. Integrity can be tracked by hash alone.
+      </div>
+    </div>
+    <div class="docs-level-row">
+      <div class="docs-level-badge" style="background: var(--docs-accent, #4f8ff7);">Signed</div>
+      <div class="docs-level-desc">
+        At least one digital signature (PAdES or PKCS#7) was detected and its cryptographic integrity verified.
+      </div>
+    </div>
+    <div class="docs-level-row">
+      <div class="docs-level-badge" style="background: var(--docs-success, #22c55e);">Trusted</div>
+      <div class="docs-level-desc">
+        The signer's certificate chains to a recognized root CA, or the signer's DID resolves to a known trust registry.
+      </div>
+    </div>
+    <div class="docs-level-row">
+      <div class="docs-level-badge" style="background: var(--docs-warning, #eab308);">Qualified</div>
+      <div class="docs-level-desc">
+        The signature meets a legal framework's requirements (e.g., Costa Rica Firma Digital, eIDAS QES). Requires a trust plugin.
+      </div>
+    </div>
+  </div>
+
+  <h2>Architecture at a glance</h2>
+  <p>
+    The verification pipeline processes documents in four stages. Each stage can be extended with plugins.
+  </p>
+
+  <div class="docs-arch-flow">
+    <div class="docs-arch-box">Parser<br /><small>Extract data from PDF</small></div>
+    <div class="docs-arch-arrow">&rarr;</div>
+    <div class="docs-arch-box">Crypto<br /><small>Verify signatures</small></div>
+    <div class="docs-arch-arrow">&rarr;</div>
+    <div class="docs-arch-box">Trust<br /><small>Resolve anchors &amp; CAs</small></div>
+    <div class="docs-arch-arrow">&rarr;</div>
+    <div class="docs-arch-box">Verifier<br /><small>Identity &amp; trust level</small></div>
+  </div>
+
+  <h2>Next steps</h2>
+  <ul style="color: var(--docs-text-muted); font-size: 0.95rem; line-height: 2; padding-left: 1.5rem;">
+    <li><a href="/docs/verify/installation/">Installation</a> &mdash; CDN, npm, or individual imports</li>
+    <li><a href="/docs/verify/verify-component/">&lt;attestto-verify&gt; API</a> &mdash; attributes, events, CSS parts</li>
+    <li><a href="/docs/verify/sign-component/">&lt;attestto-sign&gt; API</a> &mdash; wallet-based document signing</li>
+    <li><a href="/docs/verify/theming/">Theming</a> &mdash; CSS custom properties and ::part() selectors</li>
+    <li><a href="/docs/verify/plugins/">Plugins</a> &mdash; extend verification with custom stages</li>
+    <li><a href="/docs/verify/playground/">Playground</a> &mdash; try it live in the browser</li>
+  </ul>
+</DocsLayout>

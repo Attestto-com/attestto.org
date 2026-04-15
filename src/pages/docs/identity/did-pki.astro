@@ -1,0 +1,80 @@
+---
+import DocsLayout from '../../../layouts/DocsLayout.astro'
+import CodeBlock from '../../../components/docs/CodeBlock.astro'
+import Callout from '../../../components/docs/Callout.astro'
+---
+
+<DocsLayout
+  title="did:pki — PKI Bridge"
+  description="Bridge traditional X.509 PKI certificates to decentralized identifiers. did:pki derives DIDs from certificate fingerprints."
+  currentPath="/docs/identity/did-pki/"
+>
+  <h1>did:pki — PKI Bridge</h1>
+  <p>
+    <code>did:pki</code> bridges <strong>traditional PKI infrastructure</strong>
+    (X.509 certificates) into the DID ecosystem. Organizations and governments
+    that already have PKI can participate in decentralized identity without
+    replacing their existing certificate infrastructure.
+  </p>
+
+  <h2>Format</h2>
+  <CodeBlock lang="DID">
+    <Fragment set:html={`did:pki:&lt;fingerprint&gt;`} />
+  </CodeBlock>
+  <p>
+    The <code>&lt;fingerprint&gt;</code> is derived from the X.509 certificate's
+    SHA-256 fingerprint, hex-encoded and lowercased.
+  </p>
+
+  <h2>How It Works</h2>
+  <ol>
+    <li>Take an existing X.509 certificate (e.g., a Firma Digital certificate from Costa Rica's SINPE-FD)</li>
+    <li>Compute the SHA-256 fingerprint of the DER-encoded certificate</li>
+    <li>The DID becomes <code>did:pki:&lt;hex-fingerprint&gt;</code></li>
+    <li>Resolution discovers the certificate and extracts the public key into a DID Document</li>
+  </ol>
+
+  <h2>DID Document Structure</h2>
+  <CodeBlock lang="JSON">
+    <Fragment set:html={`<span class="c-br">{</span>
+  <span class="c-attr">"@context"</span>: <span class="c-br">[</span><span class="c-str">"https://www.w3.org/ns/did/v1"</span><span class="c-br">]</span>,
+  <span class="c-attr">"id"</span>: <span class="c-str">"did:pki:a1b2c3d4e5f6..."</span>,
+  <span class="c-attr">"verificationMethod"</span>: <span class="c-br">[</span><span class="c-br">{</span>
+    <span class="c-attr">"id"</span>: <span class="c-str">"did:pki:a1b2c3d4e5f6...#key-1"</span>,
+    <span class="c-attr">"type"</span>: <span class="c-str">"JsonWebKey2020"</span>,
+    <span class="c-attr">"controller"</span>: <span class="c-str">"did:pki:a1b2c3d4e5f6..."</span>,
+    <span class="c-attr">"publicKeyJwk"</span>: <span class="c-br">{</span>
+      <span class="c-attr">"kty"</span>: <span class="c-str">"EC"</span>,
+      <span class="c-attr">"crv"</span>: <span class="c-str">"P-256"</span>,
+      <span class="c-attr">"x"</span>: <span class="c-str">"..."</span>,
+      <span class="c-attr">"y"</span>: <span class="c-str">"..."</span>
+    <span class="c-br">}</span>
+  <span class="c-br">}</span><span class="c-br">]</span>,
+  <span class="c-attr">"authentication"</span>: <span class="c-br">[</span><span class="c-str">"did:pki:a1b2c3d4e5f6...#key-1"</span><span class="c-br">]</span>,
+  <span class="c-attr">"assertionMethod"</span>: <span class="c-br">[</span><span class="c-str">"did:pki:a1b2c3d4e5f6...#key-1"</span><span class="c-br">]</span>
+<span class="c-br">}</span>`} />
+  </CodeBlock>
+
+  <h2>Use Cases</h2>
+  <ul>
+    <li><strong>Government PKI</strong> — Costa Rica's Firma Digital, SINPE-FD certificates, and other national PKI systems can participate as DID-based issuers and verifiers</li>
+    <li><strong>Enterprise certificates</strong> — organizations with existing TLS or code-signing certificates can derive DIDs without new key generation</li>
+    <li><strong>Certificate transparency</strong> — bridge CT logs into the DID ecosystem for auditable identity</li>
+  </ul>
+
+  <Callout type="info">
+    <p>
+      <code>did:pki</code> does not replace or compete with PKI. It
+      <strong>bridges</strong> existing PKI trust into the DID world, letting
+      the same certificate that signs a government document also anchor a
+      Verifiable Credential.
+    </p>
+  </Callout>
+
+  <h2>Further Reading</h2>
+  <ul>
+    <li><a href="https://spec.attestto.com/did-pki" target="_blank" rel="noopener">Full did:pki Specification</a></li>
+    <li><a href="/docs/identity/did-sns/">did:sns — Solana Name Service</a></li>
+    <li><a href="/docs/identity/resolution/">DID Resolution</a></li>
+  </ul>
+</DocsLayout>

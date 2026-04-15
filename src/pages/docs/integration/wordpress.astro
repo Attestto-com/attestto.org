@@ -1,0 +1,71 @@
+---
+import DocsLayout from '../../../layouts/DocsLayout.astro'
+import CodeBlock from '../../../components/docs/CodeBlock.astro'
+import Callout from '../../../components/docs/Callout.astro'
+---
+
+<DocsLayout
+  title="WordPress"
+  description="WordPress plugin for DID-based login and credential verification. Under development (ATT-486)."
+  currentPath="/docs/integration/wordpress/"
+>
+  <h1>WordPress</h1>
+
+  <Callout type="warning">
+    <p>
+      <strong>This plugin is under development</strong> (ATT-486). The
+      information below describes planned functionality. For immediate
+      integration, use the
+      <a href="/docs/integration/javascript/">JavaScript guide</a> to add
+      DID login manually.
+    </p>
+  </Callout>
+
+  <h2>What the Plugin Will Do</h2>
+  <ul>
+    <li><strong>DID-based login</strong> — replace or supplement WordPress username/password authentication with cryptographic identity</li>
+    <li><strong>Admin settings panel</strong> — configure trusted issuers, resolver endpoint, and login behavior from the WordPress admin dashboard</li>
+    <li><strong>Shortcode</strong> — drop <code>[attestto-login]</code> into any page or post to render a DID login button</li>
+    <li><strong>WooCommerce compatible</strong> — use DID-based identity for checkout, age verification, and professional credential checks</li>
+  </ul>
+
+  <h2>Planned Shortcode Usage</h2>
+  <CodeBlock lang="WordPress">
+    <Fragment set:html={`<span class="c-cm">&lt;!-- Basic login button --&gt;</span>
+<span class="c-br">[</span><span class="c-fn">attestto-login</span><span class="c-br">]</span>
+
+<span class="c-cm">&lt;!-- With redirect after login --&gt;</span>
+<span class="c-br">[</span><span class="c-fn">attestto-login</span> <span class="c-attr">redirect</span>=<span class="c-str">"/my-account"</span><span class="c-br">]</span>
+
+<span class="c-cm">&lt;!-- Require a specific credential type --&gt;</span>
+<span class="c-br">[</span><span class="c-fn">attestto-login</span> <span class="c-attr">credential</span>=<span class="c-str">"ProfessionalLicense"</span> <span class="c-attr">issuer</span>=<span class="c-str">"did:web:colegio-abogados.cr"</span><span class="c-br">]</span>`} />
+  </CodeBlock>
+
+  <h2>Planned Admin Settings</h2>
+  <ul>
+    <li><strong>Trusted Issuers</strong> — list of DIDs whose credentials are accepted</li>
+    <li><strong>Resolver URL</strong> — DID resolution endpoint (defaults to <code>https://resolver.attestto.com</code>)</li>
+    <li><strong>Login mode</strong> — DID-only, DID + password fallback, or DID as secondary factor</li>
+    <li><strong>Auto-register</strong> — create WordPress accounts automatically for new DIDs</li>
+  </ul>
+
+  <h2>Manual Approach (Available Now)</h2>
+  <p>
+    Until the plugin ships, you can add DID login to WordPress using the
+    <a href="/docs/integration/javascript/">vanilla JavaScript approach</a>.
+    Add a custom script to your theme's <code>functions.php</code> or use a
+    code-snippets plugin:
+  </p>
+  <CodeBlock lang="PHP">
+    <Fragment set:html={`<span class="c-kw">function</span> <span class="c-fn">attestto_enqueue_scripts</span><span class="c-br">(</span><span class="c-br">)</span> <span class="c-br">{</span>
+  <span class="c-fn">wp_enqueue_script</span><span class="c-br">(</span>
+    <span class="c-str">'attestto-adapter'</span>,
+    <span class="c-str">'https://cdn.attestto.com/id-wallet-adapter/0.4.1/index.mjs'</span>,
+    <span class="c-fn">array</span><span class="c-br">(</span><span class="c-br">)</span>,
+    <span class="c-str">'0.4.1'</span>,
+    <span class="c-kw">true</span>
+  <span class="c-br">)</span>;
+<span class="c-br">}</span>
+<span class="c-fn">add_action</span><span class="c-br">(</span><span class="c-str">'wp_enqueue_scripts'</span>, <span class="c-str">'attestto_enqueue_scripts'</span><span class="c-br">)</span>;`} />
+  </CodeBlock>
+</DocsLayout>

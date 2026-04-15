@@ -1,0 +1,72 @@
+---
+import DocsLayout from '../../../layouts/DocsLayout.astro'
+import CodeBlock from '../../../components/docs/CodeBlock.astro'
+import Callout from '../../../components/docs/Callout.astro'
+---
+
+<DocsLayout
+  title="Wallets — Overview"
+  description="Universal credential wallet discovery layer. Solves the NASCAR problem with CustomEvent-based discovery, zero runtime dependencies, and 4 wire protocols."
+  currentPath="/docs/wallets/"
+>
+  <h1>Wallets</h1>
+  <p class="docs-hero-sub">
+    <code>@attestto/id-wallet-adapter</code> v0.4.1
+  </p>
+
+  <p>
+    Universal discovery layer for credential wallet browser extensions. Instead
+    of hard-coding support for each wallet, your application announces what it
+    needs and wallets respond if they can fulfill the request.
+  </p>
+
+  <h2>The NASCAR Problem</h2>
+  <p>
+    Every relying party shouldn't need a grid of wallet logos. The adapter uses a
+    <strong>CustomEvent-based discovery protocol</strong> — no server required.
+    Wallets announce themselves; your app picks the best match.
+  </p>
+
+  <h2>Key Features</h2>
+  <ul>
+    <li><strong>Zero runtime dependencies</strong> — ships as a single ESM module</li>
+    <li><strong>CustomEvent discovery</strong> — wallets announce via <code>wallet-announce</code> events, no polling</li>
+    <li><strong>4 wire protocols</strong> — CHAPI, OID4VP, DIDComm v2, WACI-DIDComm</li>
+    <li><strong>Built-in picker modal</strong> — or bring your own UI</li>
+    <li><strong>QR fallback</strong> — reaches mobile wallets when no extension is installed</li>
+  </ul>
+
+  <h2>Quick Install</h2>
+  <CodeBlock lang="bash">
+    <Fragment set:html={`npm install @attestto/id-wallet-adapter`} />
+  </CodeBlock>
+
+  <CodeBlock lang="TypeScript">
+    <Fragment set:html={`<span class="c-kw">import</span> { pickWallet } <span class="c-kw">from</span> <span class="c-str">'@attestto/id-wallet-adapter'</span>
+
+<span class="c-kw">const</span> wallet = <span class="c-kw">await</span> <span class="c-fn">pickWallet</span><span class="c-br">(</span><span class="c-br">{</span>
+  <span class="c-attr">requiredProtocols</span>: <span class="c-br">[</span><span class="c-str">'oid4vp'</span><span class="c-br">]</span>,
+  <span class="c-attr">requiredGoals</span>: <span class="c-br">[</span><span class="c-str">'authentication'</span><span class="c-br">]</span>,
+<span class="c-br">}</span><span class="c-br">)</span>`} />
+  </CodeBlock>
+
+  <h2>Explore</h2>
+  <div class="docs-domains">
+    <a href="/docs/wallets/picker/" class="docs-domain-card">
+      <h3>Wallet Picker</h3>
+      <p>The <code>pickWallet()</code> API — headless, built-in modal, or custom renderer.</p>
+    </a>
+    <a href="/docs/wallets/verification/" class="docs-domain-card">
+      <h3>Presentation Verification</h3>
+      <p>6-step trust chain verification with <code>verifyPresentation()</code>.</p>
+    </a>
+    <a href="/docs/wallets/signing/" class="docs-domain-card">
+      <h3>Document Signing</h3>
+      <p>Request cryptographic signatures from wallets with <code>requestSignature()</code>.</p>
+    </a>
+    <a href="/docs/wallets/credential-offers/" class="docs-domain-card">
+      <h3>Credential Offers</h3>
+      <p>Open Credential Handoff (O4CH) protocol for sharing credentials via URL.</p>
+    </a>
+  </div>
+</DocsLayout>

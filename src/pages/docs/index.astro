@@ -1,0 +1,88 @@
+---
+import DocsLayout from '../../layouts/DocsLayout.astro'
+---
+
+<DocsLayout
+  title="Documentation"
+  description="Developer documentation for Attestto's identity infrastructure. Verify documents, issue credentials, connect wallets, and integrate DID-based authentication."
+  currentPath="/docs"
+>
+  <div class="docs-hero-badge">Open Source &middot; Apache 2.0</div>
+  <h1>Attestto Docs</h1>
+  <p class="docs-hero-sub">
+    Everything you need to verify documents, issue credentials, and add
+    decentralized identity to your applications.
+  </p>
+
+  <h2>Quickstart</h2>
+  <p>Pick your use case and get running in minutes.</p>
+
+  <div class="docs-tiers">
+    <a href="/docs/quickstart/verify-a-document/" class="docs-tier">
+      <div class="docs-tier-time">2 minutes</div>
+      <h3>Verify a Document</h3>
+      <p>Add document verification to any page with one script tag and one HTML element.</p>
+      <span class="docs-tier-link">Get started &rarr;</span>
+    </a>
+    <a href="/docs/quickstart/issue-a-credential/" class="docs-tier">
+      <div class="docs-tier-time">5 minutes</div>
+      <h3>Issue a Credential</h3>
+      <p>Generate keys, issue a W3C Verifiable Credential, and verify it programmatically.</p>
+      <span class="docs-tier-link">Get started &rarr;</span>
+    </a>
+    <a href="/docs/quickstart/add-did-login/" class="docs-tier">
+      <div class="docs-tier-time">10 minutes</div>
+      <h3>Add DID Login</h3>
+      <p>Replace passwords with cryptographic identity. Discover wallets, request credentials, verify presentations.</p>
+      <span class="docs-tier-link">Get started &rarr;</span>
+    </a>
+  </div>
+
+  <h2>By Domain</h2>
+  <p>Deep documentation organized by what you're building.</p>
+
+  <div class="docs-domains">
+    <a href="/docs/verify/" class="docs-domain-card">
+      <h3>Verify & Sign</h3>
+      <p>Web Components for document verification and DID signing. Drop into any site — no framework, no backend.</p>
+      <div class="docs-domain-pkg">@attestto/verify</div>
+    </a>
+    <a href="/docs/credentials/" class="docs-domain-card">
+      <h3>Credentials</h3>
+      <p>Issue and verify W3C Verifiable Credentials. Ed25519 and ES256 cryptography, pluggable schema system.</p>
+      <div class="docs-domain-pkg">@attestto-com/vc-sdk</div>
+    </a>
+    <a href="/docs/wallets/" class="docs-domain-card">
+      <h3>Wallets</h3>
+      <p>Universal wallet discovery and DID-based authentication. Built-in picker modal, 4 wire protocols.</p>
+      <div class="docs-domain-pkg">@attestto/id-wallet-adapter</div>
+    </a>
+    <a href="/docs/identity/" class="docs-domain-card">
+      <h3>Identity</h3>
+      <p>DID methods for human-readable and PKI-bridged decentralized identifiers.</p>
+      <div class="docs-domain-pkg">did:sns &middot; did:pki</div>
+    </a>
+  </div>
+
+  <h2>Integration Guides</h2>
+  <p>Step-by-step guides for common integration patterns.</p>
+
+  <div class="docs-domains">
+    <a href="/docs/integration/javascript/" class="docs-domain-card">
+      <h3>JavaScript</h3>
+      <p>Add DID login to any website — vanilla JS, React, Vue, or Web Components.</p>
+    </a>
+    <a href="/docs/integration/forms/" class="docs-domain-card">
+      <h3>Form Validation</h3>
+      <p>Add credential and signature checks to your existing form workflows.</p>
+    </a>
+    <a href="/docs/integration/wordpress/" class="docs-domain-card">
+      <h3>WordPress</h3>
+      <p>DID-based login plugin for WordPress sites. Zero code required.</p>
+    </a>
+    <a href="/docs/integration/joomla/" class="docs-domain-card">
+      <h3>Joomla</h3>
+      <p>Authentication plugin for Joomla 4.x and 5.x.</p>
+    </a>
+  </div>
+</DocsLayout>

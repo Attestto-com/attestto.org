@@ -1,0 +1,19 @@
+---
+interface Props {
+  lang?: string
+  title?: string
+}
+
+const { lang = '', title } = Astro.props
+const label = title || lang
+---
+
+<div class="docs-code-block">
+  {label && (
+    <div class="docs-code-header">
+      <span>{label}</span>
+      <button class="docs-code-copy" onclick="this.closest('.docs-code-block').querySelector('pre')?.textContent && navigator.clipboard.writeText(this.closest('.docs-code-block').querySelector('pre').textContent).then(() => { this.textContent = 'Copied!'; setTimeout(() => this.textContent = 'Copy', 1500) })">Copy</button>
+    </div>
+  )}
+  <pre><slot /></pre>
+</div>

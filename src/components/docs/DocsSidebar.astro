@@ -1,0 +1,36 @@
+---
+import { docsNav } from '../../data/docsNav'
+
+interface Props {
+  currentPath: string
+}
+
+const { currentPath } = Astro.props
+
+// Determine which section is active
+const activeSection = docsNav.find(s =>
+  currentPath.startsWith(s.basePath)
+) || docsNav[0]
+---
+
+<aside class="docs-sidebar">
+  {docsNav.map((section) => (
+    <div class="docs-sidebar-section">
+      <div class="docs-sidebar-label">{section.label}</div>
+      {section.items.map((item) => {
+        const isActive = currentPath === item.href ||
+          currentPath === item.href.replace(/\/$/, '') ||
+          currentPath + '/' === item.href
+        return (
+          <a href={item.href} class={isActive ? 'active' : ''}>
+            <Fragment set:html={item.label} />
+            {item.badge && <span class="docs-sidebar-badge">{item.badge}</span>}
+          </a>
+        )
+      })}
+    </div>
+  ))}
+  <div style="padding: 1rem 1.25rem; margin-top: 2rem;">
+    <a href="https://github.com/Attestto-com" target="_blank" style="border: none; color: var(--docs-text-dim); font-size: 0.78rem;">GitHub &rarr;</a>
+  </div>
+</aside>
