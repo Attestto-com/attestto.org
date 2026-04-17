@@ -1,0 +1,106 @@
+---
+import Base from '../../../layouts/Base.astro'
+
+const structuredData = [
+  {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "Módulos Attestto",
+    "url": "https://attestto.org/es/modules",
+    "inLanguage": "es",
+    "description": "Módulos de credenciales para la plataforma de identidad soberana Attestto. Cada módulo agrega capacidades específicas por dominio."
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Attestto", "item": "https://attestto.org/es" },
+      { "@type": "ListItem", "position": 2, "name": "Módulos", "item": "https://attestto.org/es/modules" }
+    ]
+  }
+]
+---
+
+<Base
+  structuredData={structuredData}
+  title="Módulos — Attestto"
+  description="Explorá los módulos de credenciales de Attestto: identidad digital, licencias de conducir, firma inteligente de documentos y más."
+  canonicalPath="/es/modules"
+  ogTitle="Módulos Attestto — Apps de Credenciales Soberanas"
+  ogDescription="Cada módulo agrega una capacidad específica a tu wallet Attestto. Escaneá documentos, firmá, gestioná licencias — todo en tu dispositivo."
+  navVariant="default"
+>
+
+  <section class="hero hero-single">
+    <div class="container">
+      <p class="section-label" data-i18n="modules.label">Módulos de credenciales</p>
+      <h1 data-i18n="modules.hero_title">Infraestructura de credenciales por dominio</h1>
+      <p class="lead" data-i18n="modules.hero_lead">
+        Cada módulo implementa un ciclo completo de credenciales para un dominio específico — documentos de identidad,
+        licenciamiento profesional, firma de documentos. Compatible con estándares W3C. Código abierto. Listo para pilotos institucionales.
+      </p>
+    </div>
+  </section>
+
+  <section class="section-light">
+    <div class="container">
+      <div class="grid-3">
+
+        <a href="/es/modules/identity" class="card card-link">
+          <div class="card-icon"><span class="icon-badge">&#x1F4CB;</span></div>
+          <h3 data-i18n="modules.identity_title">Identidad Ciudadana</h3>
+          <p data-i18n="modules.identity_desc">
+            Escaneo de documentos y emisión de credenciales verificables para cédulas, licencias de conducir y pasaportes. OCR en el dispositivo — ningún dato sale del teléfono del ciudadano.
+          </p>
+          <span class="tag tag-live">Disponible</span>
+          <span class="tag tag-cr">Costa Rica</span>
+        </a>
+
+        <a href="/es/modules/driving" class="card card-link">
+          <div class="card-icon"><span class="icon-badge">&#x1F697;</span></div>
+          <h3 data-i18n="modules.driving_title">Licenciamiento Profesional</h3>
+          <p data-i18n="modules.driving_desc">
+            Examen teórico, seguimiento de competencia continua y emisión de credenciales verificables alineado con requisitos de COSEVI y DGEV.
+          </p>
+          <span class="tag tag-live">Disponible</span>
+          <span class="tag tag-cr">Costa Rica</span>
+        </a>
+
+        <a href="/es/modules/signing" class="card card-link">
+          <div class="card-icon"><span class="icon-badge">&#x270D;</span></div>
+          <h3 data-i18n="modules.signing_title">Firma de Documentos</h3>
+          <p data-i18n="modules.signing_desc">
+            Análisis de documentos asistido por IA con evaluación de riesgo, seguido de firma criptográfica. Modelo de lenguaje en el dispositivo — los documentos nunca salen del dispositivo del firmante.
+          </p>
+          <span class="tag tag-live">Disponible</span>
+          <span class="tag tag-global">Global</span>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="section-dark">
+    <div class="container" style="text-align: center;">
+      <h2 data-i18n="modules.build_title">Construí un módulo para tu dominio</h2>
+      <p class="section-desc" data-i18n="modules.build_desc">
+        El SDK de módulos es código abierto (Apache 2.0). Instituciones, integradores y desarrolladores pueden crear módulos de credenciales para cualquier dominio profesional. El constructor retiene el 60% de los ingresos por transacción.
+      </p>
+      <a href="/for/developers" class="btn-primary" data-i18n="modules.build_cta">Documentación para desarrolladores</a>
+      <p style="margin-top: var(--space-sm); font-size: 0.85rem; opacity: 0.7;">
+        ¿Interesado en un piloto? Contactá <a href="mailto:open@attestto.com" style="color: var(--color-accent-light);">open@attestto.com</a>
+      </p>
+    </div>
+  </section>
+
+</Base>
+
+<style>
+  .card-link { text-decoration: none; color: inherit; transition: transform 0.15s, box-shadow 0.15s; display: block; }
+  .card-link:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12); }
+  .icon-badge { font-size: 2rem; }
+  .tag { display: inline-block; padding: 2px 8px; border-radius: 12px; font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; margin-right: 4px; }
+  .tag-live { background: #bbf7d0; color: #15803d; }
+  .tag-cr { background: #dbeafe; color: #1e40af; }
+  .tag-global { background: #e0e7ff; color: #4338ca; }
+</style>

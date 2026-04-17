@@ -1,0 +1,251 @@
+---
+import Base from '../../../layouts/Base.astro'
+
+const structuredData = [
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Attestto — Módulo de Identidad Digital",
+    "url": "https://attestto.org/es/modules/identity",
+    "inLanguage": "es",
+    "applicationCategory": "SecurityApplication",
+    "operatingSystem": "Web (PWA)",
+    "license": "https://www.apache.org/licenses/LICENSE-2.0",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+    "featureList": [
+      "Escanear cédula de Costa Rica vía OCR (TD1 MRZ)",
+      "Escanear licencia de conducir vía OCR",
+      "Escanear pasaporte vía OCR (TD3 MRZ / ICAO 9303)",
+      "Crear credenciales verificables auto-atestadas",
+      "Firmas digitales Ed25519",
+      "Procesamiento en el dispositivo — sin subir a servidor",
+      "Soporte de divulgación selectiva SD-JWT"
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "inLanguage": "es",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "¿Cómo funciona el escaneo de identidad?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "El módulo usa la cámara de tu teléfono para capturar el frente y reverso de tu documento de identidad. Tesseract.js OCR corre completamente en tu dispositivo para extraer datos de la MRZ (Zona Legible por Máquina). Ninguna imagen se sube a ningún servidor."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Qué es una credencial auto-atestada?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Una credencial auto-atestada es una Credencial Verificable W3C donde vos sos tanto el emisor como el portador. Prueba que escaneaste un documento y firmaste los datos con tu llave privada. Tiene menor confianza que una credencial atestada notarialmente, pero es útil para verificación básica de identidad."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Qué documentos se soportan?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Actualmente: cédula de identidad de Costa Rica, licencia de conducir de Costa Rica, y cualquier pasaporte compatible con ICAO 9303 (formato MRZ TD3). El soporte para DIMEX y otras cédulas nacionales está planificado."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Se envían mis datos a un servidor?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. Todo el procesamiento OCR ocurre en tu dispositivo usando Tesseract.js WebAssembly. Tus fotos, datos extraídos y llaves privadas nunca salen de tu teléfono. Las credenciales se almacenan en un vault cifrado en tu navegador."
+        }
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Attestto", "item": "https://attestto.org/es" },
+      { "@type": "ListItem", "position": 2, "name": "Módulos", "item": "https://attestto.org/es/modules" },
+      { "@type": "ListItem", "position": 3, "name": "Identidad Digital", "item": "https://attestto.org/es/modules/identity" }
+    ]
+  }
+]
+---
+
+<Base
+  structuredData={structuredData}
+  title="Identidad Digital — Módulos Attestto"
+  description="Escaneá tu cédula, licencia de conducir o pasaporte con la cámara de tu teléfono. Creá credenciales verificables firmadas con tu propia llave Ed25519. Todo el procesamiento en el dispositivo."
+  canonicalPath="/es/modules/identity"
+  ogTitle="Attestto — Módulo de Identidad Digital"
+  ogDescription="Escaneá tus documentos de identidad con OCR. Creá credenciales verificables auto-atestadas. Todo el procesamiento en tu dispositivo — sin servidor, sin intermediario."
+  navVariant="default"
+>
+
+  <section class="hero hero-single">
+    <div class="container">
+      <p class="section-label" data-i18n="mod_identity.label">Módulo de Identidad Ciudadana</p>
+      <h1 data-i18n="mod_identity.hero_title">Del escaneo de documentos a credenciales verificables — completamente en el dispositivo.</h1>
+      <p class="lead" data-i18n="mod_identity.hero_lead">
+        Los ciudadanos escanean su cédula, licencia de conducir o pasaporte con la cámara del teléfono. La extracción OCR
+        se ejecuta localmente vía WebAssembly — ninguna imagen se sube a un servidor. Los datos extraídos se firman con
+        la llave Ed25519 del ciudadano y se almacenan como una Credencial Verificable W3C.
+      </p>
+      <a href="https://app.attestto.com" class="btn-primary" data-i18n="mod_identity.hero_cta">Probar el demo</a>
+      <a href="mailto:open@attestto.com" class="btn-secondary" style="margin-left: 12px;" data-i18n="mod_identity.hero_contact">Solicitar un piloto</a>
+    </div>
+  </section>
+
+  <section class="section-light">
+    <div class="container">
+      <p class="section-label" data-i18n="mod_identity.how_label">Cómo funciona</p>
+      <h2 class="section-title" data-i18n="mod_identity.how_title">Tres pasos para una credencial digital</h2>
+
+      <div class="grid-3">
+        <div class="step-card">
+          <div class="step-num">1</div>
+          <h3 data-i18n="mod_identity.step1_title">Escanear</h3>
+          <p data-i18n="mod_identity.step1_desc">
+            Usá la cámara de tu teléfono para capturar el frente y reverso de tu documento.
+            La MRZ (zona legible por máquina) se extrae vía OCR en el dispositivo.
+          </p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">2</div>
+          <h3 data-i18n="mod_identity.step2_title">Revisar</h3>
+          <p data-i18n="mod_identity.step2_desc">
+            Verificá los datos extraídos. Corregí errores de OCR. El puntaje de confianza
+            te dice qué tan confiable fue la extracción.
+          </p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">3</div>
+          <h3 data-i18n="mod_identity.step3_title">Firmar y guardar</h3>
+          <p data-i18n="mod_identity.step3_desc">
+            Tu llave Ed25519 firma la credencial con confirmación biométrica.
+            La credencial verificable se guarda en tu vault cifrado.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-dark">
+    <div class="container">
+      <p class="section-label" data-i18n="mod_identity.docs_label">Documentos soportados</p>
+      <h2 class="section-title" data-i18n="mod_identity.docs_title">Qué podés escanear</h2>
+
+      <div class="grid-3">
+        <div class="card">
+          <h3 data-i18n="mod_identity.cedula_title">Cédula de identidad</h3>
+          <p data-i18n="mod_identity.cedula_desc">
+            Cédula nacional de Costa Rica. MRZ TD1 en el reverso. Extrae número de cédula,
+            nombre completo, fecha de nacimiento, vencimiento, nacionalidad y sexo.
+          </p>
+          <p class="schema-ref">Schema: <code>CedulaIdentidadCR</code> &middot; <a href="https://github.com/Attestto-com/cr-vc-schemas">cr-vc-schemas</a></p>
+        </div>
+        <div class="card">
+          <h3 data-i18n="mod_identity.license_title">Licencia de conducir</h3>
+          <p data-i18n="mod_identity.license_desc">
+            Licencia de conducir de Costa Rica. MRZ TD1 en el reverso + tabla de categorías al frente.
+            Extrae categorías (A1-E3), fechas de vigencia, puntos y restricciones.
+          </p>
+          <p class="schema-ref">Schema: <code>DrivingLicenseCR</code> &middot; <a href="https://github.com/Attestto-com/cr-vc-schemas">cr-vc-schemas</a></p>
+        </div>
+        <div class="card">
+          <h3 data-i18n="mod_identity.passport_title">Pasaporte</h3>
+          <p data-i18n="mod_identity.passport_desc">
+            Cualquier pasaporte compatible con ICAO 9303 (MRZ TD3). Extrae número de documento,
+            nombres, fecha de nacimiento, vencimiento, nacionalidad y país emisor.
+          </p>
+          <p class="schema-ref">Schema: <code>PassportCR</code> &middot; <a href="https://github.com/Attestto-com/cr-vc-schemas">cr-vc-schemas</a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-light">
+    <div class="container">
+      <p class="section-label" data-i18n="mod_identity.privacy_label">Privacidad y cumplimiento</p>
+      <h2 class="section-title" data-i18n="mod_identity.privacy_title">Privacidad por arquitectura, no por política</h2>
+      <div class="grid-2">
+        <div>
+          <ul class="check-list">
+            <li data-i18n="mod_identity.priv1">OCR corre en el navegador vía Tesseract.js WebAssembly</li>
+            <li data-i18n="mod_identity.priv2">Las fotos se procesan localmente y nunca se suben</li>
+            <li data-i18n="mod_identity.priv3">Llave privada almacenada en IndexedDB, protegida por biometría WebAuthn</li>
+            <li data-i18n="mod_identity.priv4">Credenciales cifradas en reposo en el vault del dispositivo</li>
+            <li data-i18n="mod_identity.priv5">Divulgación selectiva SD-JWT — compartí solo los campos que elijás</li>
+          </ul>
+        </div>
+        <div>
+          <ul class="check-list">
+            <li data-i18n="mod_identity.priv6">No requiere crear cuenta</li>
+            <li data-i18n="mod_identity.priv7">No hay analítica sobre el contenido de credenciales</li>
+            <li data-i18n="mod_identity.priv8">Código abierto — auditá el código vos mismo</li>
+            <li data-i18n="mod_identity.priv9">Estándar W3C Verifiable Credentials</li>
+            <li data-i18n="mod_identity.priv10">Funciona sin internet después de la primera carga</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-dark" style="text-align: center;">
+    <div class="container">
+      <h2 data-i18n="mod_identity.cta_title">Velo en acción</h2>
+      <p class="section-desc" data-i18n="mod_identity.cta_desc">
+        Código abierto (Apache 2.0). Probá el flujo ciudadano en app.attestto.com, o contactanos para discutir un piloto institucional.
+      </p>
+      <a href="https://app.attestto.com" class="btn-primary" data-i18n="mod_identity.cta_btn">Probar el demo</a>
+      <a href="mailto:open@attestto.com" class="btn-secondary" style="margin-left: 12px;">Solicitar un piloto</a>
+    </div>
+  </section>
+
+</Base>
+
+<style>
+  .step-card {
+    text-align: center;
+    padding: var(--space-md);
+  }
+  .step-num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: var(--color-accent);
+    color: white;
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: var(--space-sm);
+  }
+  .check-list {
+    list-style: none;
+    padding: 0;
+  }
+  .check-list li {
+    padding: 0.5rem 0 0.5rem 1.75rem;
+    position: relative;
+    line-height: 1.5;
+  }
+  .check-list li::before {
+    content: "\2713";
+    position: absolute;
+    left: 0;
+    color: var(--color-accent);
+    font-weight: 700;
+  }
+  .schema-ref {
+    font-size: 0.75rem;
+    opacity: 0.6;
+    margin-top: 0.5rem;
+  }
+  .schema-ref a {
+    color: inherit;
+    text-decoration: underline;
+  }
+</style>

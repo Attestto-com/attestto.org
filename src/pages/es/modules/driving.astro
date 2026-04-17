@@ -1,0 +1,159 @@
+---
+import Base from '../../../layouts/Base.astro'
+
+const structuredData = [
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Attestto — Módulo de Licencia Digital",
+    "url": "https://attestto.org/es/modules/driving",
+    "inLanguage": "es",
+    "applicationCategory": "EducationalApplication",
+    "operatingSystem": "Web (PWA)",
+    "license": "https://www.apache.org/licenses/LICENSE-2.0",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+    "featureList": [
+      "Preparación para examen teórico de conducción",
+      "Motor de aprendizaje con repetición espaciada",
+      "Seguimiento de maestría con modelo de decaimiento",
+      "Sesiones de examen supervisadas con integridad de cadena de hash",
+      "Emisión de credenciales verificables para resultados de examen",
+      "Alineado con estándares COSEVI/DGEV de Costa Rica",
+      "Funciona sin internet — capacidad offline"
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "inLanguage": "es",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "¿Es este un examen oficial del COSEVI?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. Esta es una herramienta de preparación que te ayuda a estudiar para el examen teórico oficial de COSEVI/DGEV. El banco de preguntas cubre los mismos temas (señales de tránsito, regulaciones, conducción defensiva) pero la credencial emitida es un registro de competencia auto-atestado, no un certificado oficial de la DGEV."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Cómo funciona el sistema de maestría?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "El modelo de maestría rastrea tu nivel de competencia en áreas temáticas usando repetición espaciada. Tu puntaje de maestría decae con el tiempo (más rápido para principiantes, más lento para expertos), fomentando la revisión continua. Cuando aprobás una sesión de examen supervisada, se emite una credencial verificable DrivingCompetencyCR."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Qué es la integridad de sesión de examen?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Cada sesión de examen usa una cadena de hash SHA-256: cada respuesta está criptográficamente enlazada a la anterior, creando un registro a prueba de manipulación. La sesión se sella con tu firma Ed25519, probando que completaste el examen sin modificaciones."
+        }
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Attestto", "item": "https://attestto.org/es" },
+      { "@type": "ListItem", "position": 2, "name": "Módulos", "item": "https://attestto.org/es/modules" },
+      { "@type": "ListItem", "position": 3, "name": "Licencia Digital", "item": "https://attestto.org/es/modules/driving" }
+    ]
+  }
+]
+---
+
+<Base
+  structuredData={structuredData}
+  title="Licencia Digital — Módulos Attestto"
+  description="Preparate para el examen teórico de conducción COSEVI con repetición espaciada, sesiones supervisadas y credenciales verificables. Seguimiento de maestría con integridad criptográfica."
+  canonicalPath="/es/modules/driving"
+  ogTitle="Attestto — Módulo de Licencia Digital"
+  ogDescription="Preparación para examen teórico de conducción con repetición espaciada, seguimiento de maestría y credenciales verificables. Alineado con COSEVI/DGEV Costa Rica."
+  navVariant="default"
+>
+
+  <section class="hero hero-single">
+    <div class="container">
+      <p class="section-label" data-i18n="mod_driving.label">Módulo de Licenciamiento Profesional</p>
+      <h1 data-i18n="mod_driving.hero_title">Verificación de competencia continua con integridad criptográfica.</h1>
+      <p class="lead" data-i18n="mod_driving.hero_lead">
+        Examen teórico alineado con estándares COSEVI/DGEV. Repetición espaciada para retención a largo plazo.
+        Cada sesión de examen produce una cadena de hash a prueba de manipulación sellada con la firma digital del candidato.
+      </p>
+      <a href="https://app.attestto.com" class="btn-primary" data-i18n="mod_driving.hero_cta">Probar el demo</a>
+      <a href="mailto:open@attestto.com" class="btn-secondary" style="margin-left: 12px;">Solicitar un piloto</a>
+    </div>
+  </section>
+
+  <section class="section-light">
+    <div class="container">
+      <p class="section-label" data-i18n="mod_driving.features_label">Características</p>
+      <h2 class="section-title" data-i18n="mod_driving.features_title">Más que un banco de preguntas</h2>
+
+      <div class="grid-3">
+        <div class="card">
+          <h3 data-i18n="mod_driving.feat1_title">Repetición espaciada</h3>
+          <p data-i18n="mod_driving.feat1_desc">
+            Las preguntas se adaptan a tu rendimiento. Los temas que te cuestan más aparecen con mayor frecuencia.
+            El algoritmo optimiza retención a largo plazo, no estudio de último momento.
+          </p>
+        </div>
+        <div class="card">
+          <h3 data-i18n="mod_driving.feat2_title">Decaimiento de maestría</h3>
+          <p data-i18n="mod_driving.feat2_desc">
+            Tu puntaje de competencia decae con el tiempo — más rápido a nivel novato, más lento a nivel experto.
+            Esto refleja la pérdida real de conocimiento y fomenta la revisión continua.
+          </p>
+        </div>
+        <div class="card">
+          <h3 data-i18n="mod_driving.feat3_title">Exámenes supervisados</h3>
+          <p data-i18n="mod_driving.feat3_desc">
+            Sesiones completas de examen con integridad de cadena de hash SHA-256. Cada respuesta está
+            criptográficamente enlazada. La sesión sellada se convierte en una credencial verificable.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-dark">
+    <div class="container">
+      <p class="section-label" data-i18n="mod_driving.creds_label">Credenciales emitidas</p>
+      <h2 class="section-title" data-i18n="mod_driving.creds_title">Resultados de examen verificables</h2>
+
+      <div class="grid-2">
+        <div class="card">
+          <h3 data-i18n="mod_driving.cred1_title">Resultado de examen teórico</h3>
+          <p data-i18n="mod_driving.cred1_desc">
+            Emitido al completar una sesión de examen supervisado. Incluye puntaje, categoría,
+            número de preguntas, ID de sesión y la cadena de hash de integridad.
+          </p>
+          <code>DrivingTheoryExamCR</code>
+        </div>
+        <div class="card">
+          <h3 data-i18n="mod_driving.cred2_title">Competencia de conducción</h3>
+          <p data-i18n="mod_driving.cred2_desc">
+            Credencial de maestría que prueba competencia sostenida. Incluye nivel de competencia,
+            exámenes aprobados, puntaje de maestría y fecha de renovación basada en tasa de decaimiento.
+          </p>
+          <code>DrivingCompetencyCR</code>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-light" style="text-align: center;">
+    <div class="container">
+      <h2 data-i18n="mod_driving.cta_title">Velo en acción</h2>
+      <p class="section-desc" data-i18n="mod_driving.cta_desc">
+        Código abierto (Apache 2.0). Probá el flujo de examen en app.attestto.com, o contactanos para discutir integración con tu autoridad de licenciamiento.
+      </p>
+      <a href="https://app.attestto.com" class="btn-primary" data-i18n="mod_driving.cta_btn">Probar el demo</a>
+      <a href="mailto:open@attestto.com" class="btn-secondary" style="margin-left: 12px;">Solicitar un piloto</a>
+    </div>
+  </section>
+
+</Base>

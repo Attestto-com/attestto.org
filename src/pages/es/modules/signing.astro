@@ -1,0 +1,197 @@
+---
+import Base from '../../../layouts/Base.astro'
+
+const structuredData = [
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Attestto — Módulo de Firma Inteligente",
+    "url": "https://attestto.org/es/modules/signing",
+    "inLanguage": "es",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "Web (PWA)",
+    "license": "https://www.apache.org/licenses/LICENSE-2.0",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+    "featureList": [
+      "Análisis de documentos con IA en el dispositivo (Gemma 2B)",
+      "Cláusulas señaladas y evaluación de riesgo",
+      "Preguntas y respuestas guiadas antes de firmar",
+      "Firmas digitales Ed25519",
+      "Firma de PDF con sello visible",
+      "Generación de PDF de pista de auditoría",
+      "Credencial verificable por cada firma",
+      "Sin servidor — la IA corre en tu navegador"
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "inLanguage": "es",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "¿Cómo funciona el análisis de IA sin un servidor?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "El módulo usa el modelo de lenguaje Gemma 2B de Google corriendo directamente en tu navegador vía WebGPU/WebAssembly (MediaPipe). El modelo se descarga una vez (~1.3GB) y corre completamente en tu dispositivo. Tus documentos nunca se envían a ningún servidor."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Es esta una firma legalmente válida?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "El módulo produce una firma digital Nivel B (auto-atestada) usando Ed25519. Es una firma criptográficamente válida que prueba que firmaste el documento, pero no tiene la presunción legal de una Firma Digital Certificada (Nivel A+, que requiere tarjeta inteligente del BCCR). Para muchos casos — acuerdos internos, contratos informales, registros personales — el Nivel B es suficiente."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Qué señala la IA?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "La IA analiza tu documento buscando cláusulas riesgosas (penalidades, renovaciones automáticas, limitaciones de responsabilidad, cambios de jurisdicción), categoriza el tipo de documento (contrato, NDA, arrendamiento, etc.) y genera preguntas en lenguaje sencillo para asegurar que entendés lo que estás firmando. Recomienda si firmar directamente, buscar revisión u obtener asesoría legal."
+        }
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Attestto", "item": "https://attestto.org/es" },
+      { "@type": "ListItem", "position": 2, "name": "Módulos", "item": "https://attestto.org/es/modules" },
+      { "@type": "ListItem", "position": 3, "name": "Firma Inteligente", "item": "https://attestto.org/es/modules/signing" }
+    ]
+  }
+]
+---
+
+<Base
+  structuredData={structuredData}
+  title="Firma Inteligente — Módulos Attestto"
+  description="Análisis de documentos con IA antes de firmar. Cláusulas señaladas, evaluación de riesgo, preguntas guiadas — luego firma digital Ed25519. La IA corre en tu dispositivo."
+  canonicalPath="/es/modules/signing"
+  ogTitle="Attestto — Módulo de Firma Inteligente"
+  ogDescription="Subí un documento. La IA señala cláusulas riesgosas y te hace preguntas. Luego firmá con tu llave Ed25519. La IA corre en tu dispositivo — sin nube."
+  navVariant="default"
+>
+
+  <section class="hero hero-single">
+    <div class="container">
+      <p class="section-label" data-i18n="mod_signing.label">Módulo de Firma de Documentos</p>
+      <h1 data-i18n="mod_signing.hero_title">Revisión de documentos asistida por IA y firma criptográfica — completamente en el dispositivo.</h1>
+      <p class="lead" data-i18n="mod_signing.hero_lead">
+        Un modelo de lenguaje en el dispositivo analiza documentos por riesgo, señala cláusulas problemáticas y guía al firmante
+        a través de una revisión estructurada. La firma usa Ed25519 con confirmación biométrica y produce una
+        pista de auditoría verificable.
+      </p>
+      <a href="https://app.attestto.com" class="btn-primary" data-i18n="mod_signing.hero_cta">Probar el demo</a>
+      <a href="mailto:open@attestto.com" class="btn-secondary" style="margin-left: 12px;">Solicitar un piloto</a>
+    </div>
+  </section>
+
+  <section class="section-light">
+    <div class="container">
+      <p class="section-label" data-i18n="mod_signing.how_label">Cómo funciona</p>
+      <h2 class="section-title" data-i18n="mod_signing.how_title">Cuatro pasos para una firma informada</h2>
+
+      <div class="grid-4">
+        <div class="step-card">
+          <div class="step-num">1</div>
+          <h3 data-i18n="mod_signing.step1_title">Subir</h3>
+          <p data-i18n="mod_signing.step1_desc">Subí un PDF. El documento se queda en tu dispositivo.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">2</div>
+          <h3 data-i18n="mod_signing.step2_title">Análisis de IA</h3>
+          <p data-i18n="mod_signing.step2_desc">Gemma 2B analiza cláusulas, categoriza el documento y señala riesgos.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">3</div>
+          <h3 data-i18n="mod_signing.step3_title">Preguntas y respuestas</h3>
+          <p data-i18n="mod_signing.step3_desc">Respondé preguntas guiadas sobre las secciones señaladas. La IA recomienda una acción.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">4</div>
+          <h3 data-i18n="mod_signing.step4_title">Firmar</h3>
+          <p data-i18n="mod_signing.step4_desc">Firma Ed25519 con confirmación biométrica. PDF de pista de auditoría generado.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-dark">
+    <div class="container">
+      <p class="section-label" data-i18n="mod_signing.output_label">Lo que obtenés</p>
+      <h2 class="section-title" data-i18n="mod_signing.output_title">Dos productos por firma</h2>
+
+      <div class="grid-2">
+        <div class="card">
+          <h3 data-i18n="mod_signing.out1_title">PDF firmado</h3>
+          <p data-i18n="mod_signing.out1_desc">
+            El PDF original con una firma Attestto embebida en los metadatos y un sello visible
+            en la última página. Verificable en verify.attestto.com.
+          </p>
+          <code>AttesttoPdfSignature</code>
+        </div>
+        <div class="card">
+          <h3 data-i18n="mod_signing.out2_title">Credencial de firma</h3>
+          <p data-i18n="mod_signing.out2_desc">
+            Una credencial verificable en tu wallet que registra qué firmaste, el hash del documento,
+            la evaluación de riesgo y tus respuestas. Prueba de consentimiento informado.
+          </p>
+          <code>DocumentSignatureVC</code>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-light">
+    <div class="container">
+      <p class="section-label" data-i18n="mod_signing.ai_label">IA en el dispositivo</p>
+      <h2 class="section-title" data-i18n="mod_signing.ai_title">Sin nube. Sin recolección de datos. Sin compromisos.</h2>
+      <p class="section-desc" data-i18n="mod_signing.ai_desc">
+        El modelo de IA (Google Gemma 2B) corre completamente en tu navegador usando WebGPU.
+        Se descarga una vez, se cachea localmente. Tus documentos nunca salen de tu dispositivo.
+        Incluso el análisis de la IA se queda en tu teléfono.
+      </p>
+    </div>
+  </section>
+
+  <section class="section-dark" style="text-align: center;">
+    <div class="container">
+      <h2 data-i18n="mod_signing.cta_title">Velo en acción</h2>
+      <p class="section-desc" data-i18n="mod_signing.cta_desc">
+        Código abierto (Apache 2.0). Probá el flujo de firma en app.attestto.com, o contactanos para discutir integración para tu organización.
+      </p>
+      <a href="https://app.attestto.com" class="btn-primary" data-i18n="mod_signing.cta_btn">Probar el demo</a>
+      <a href="mailto:open@attestto.com" class="btn-secondary" style="margin-left: 12px;">Solicitar un piloto</a>
+    </div>
+  </section>
+
+</Base>
+
+<style>
+  .grid-4 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--space-md);
+  }
+  .step-card {
+    text-align: center;
+    padding: var(--space-md);
+  }
+  .step-num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: var(--color-accent);
+    color: white;
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: var(--space-sm);
+  }
+</style>
