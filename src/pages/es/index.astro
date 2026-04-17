@@ -7,12 +7,52 @@ const structuredData = [
     "@type": "Organization",
     "name": "Attestto",
     "url": "https://attestto.org",
+    "logo": "https://attestto.org/logo.svg",
     "description": "Infraestructura de identidad soberana de código abierto. Credenciales verificables, identificadores descentralizados y verificación criptográfica para gobiernos, profesionales y ciudadanos.",
     "license": "https://www.apache.org/licenses/LICENSE-2.0",
+    "foundingDate": "2025",
     "sameAs": [
       "https://github.com/Attestto-com",
-      "https://attestto.com"
+      "https://attestto.com",
+      "https://www.npmjs.com/org/attestto",
+      "https://resolver.attestto.com",
+      "https://spec.attestto.com"
     ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Attestto",
+    "url": "https://attestto.org"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "Cómo verificar un documento firmado digitalmente",
+    "description": "Verifica la firma digital, la cadena de certificados y la integridad de cualquier PDF firmado — completamente en tu navegador.",
+    "step": [
+      {
+        "@type": "HowToStep",
+        "name": "Abre el verificador",
+        "text": "Ve a verify.attestto.com en cualquier navegador moderno. Sin cuenta ni instalación.",
+        "url": "https://verify.attestto.com"
+      },
+      {
+        "@type": "HowToStep",
+        "name": "Arrastra tu PDF",
+        "text": "Arrastra y suelta un PDF firmado digitalmente en la página. El archivo se queda en tu navegador — no se sube nada."
+      },
+      {
+        "@type": "HowToStep",
+        "name": "Revisa los resultados",
+        "text": "El verificador comprueba la firma criptográfica, valida la cadena de certificados contra las anclas de confianza PKI nacionales y confirma la integridad del documento. Los resultados aparecen en segundos."
+      }
+    ],
+    "totalTime": "PT30S",
+    "tool": {
+      "@type": "HowToTool",
+      "name": "Cualquier navegador web moderno"
+    }
   },
   {
     "@context": "https://schema.org",

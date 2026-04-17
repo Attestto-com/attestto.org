@@ -1,0 +1,21 @@
+{
+  "name": "Attestto",
+  "short_name": "Attestto",
+  "description": "Open infrastructure for sovereign digital identity",
+  "start_url": "/",
+  "display": "browser",
+  "background_color": "#0a1628",
+  "theme_color": "#0a1628",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "type": "image/svg+xml",
+      "sizes": "any"
+    },
+    {
+      "src": "/favicon.jpg",
+      "type": "image/jpeg",
+      "sizes": "512x512"
+    }
+  ]
+}
