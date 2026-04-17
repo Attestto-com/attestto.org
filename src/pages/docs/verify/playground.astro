@@ -1,12 +1,40 @@
 ---
 import DocsLayout from '../../../layouts/DocsLayout.astro'
 import Callout from '../../../components/docs/Callout.astro'
+
+const structuredData = [
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Attestto Verify Playground",
+    "headline": "Playground",
+    "description": "Try @attestto/verify live in the browser. Drop a PDF to verify or sign it — nothing leaves your device.",
+    "url": "https://attestto.org/docs/verify/playground/",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "Web",
+    "author": { "@type": "Organization", "name": "Attestto", "url": "https://attestto.org" },
+    "publisher": { "@type": "Organization", "name": "Attestto", "url": "https://attestto.org" },
+    "inLanguage": "en",
+    "isPartOf": { "@type": "WebSite", "name": "Attestto", "url": "https://attestto.org" }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://attestto.org/" },
+      { "@type": "ListItem", "position": 2, "name": "Docs", "item": "https://attestto.org/docs/" },
+      { "@type": "ListItem", "position": 3, "name": "Verify & Sign", "item": "https://attestto.org/docs/verify/" },
+      { "@type": "ListItem", "position": 4, "name": "Playground", "item": "https://attestto.org/docs/verify/playground/" }
+    ]
+  }
+]
 ---
 
 <DocsLayout
   title="Playground"
   description="Try @attestto/verify live in the browser. Drop a PDF to verify or sign it — nothing leaves your device."
   currentPath="/docs/verify/playground/"
+  structuredData={structuredData}
 >
   <h1>Playground</h1>
   <p class="docs-hero-sub">

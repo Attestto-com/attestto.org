@@ -2,12 +2,37 @@
 import DocsLayout from '../../../layouts/DocsLayout.astro'
 import CodeBlock from '../../../components/docs/CodeBlock.astro'
 import Callout from '../../../components/docs/Callout.astro'
+
+const structuredData = [
+  {
+    "@context": "https://schema.org",
+    "@type": "TechArticle",
+    "headline": "Form Validation",
+    "description": "Add credential and signature checks to web forms. KYC before submit, professional credential checks, document signature validation, and selective disclosure.",
+    "url": "https://attestto.org/docs/integration/forms/",
+    "author": { "@type": "Organization", "name": "Attestto", "url": "https://attestto.org" },
+    "publisher": { "@type": "Organization", "name": "Attestto", "url": "https://attestto.org" },
+    "inLanguage": "en",
+    "isPartOf": { "@type": "WebSite", "name": "Attestto", "url": "https://attestto.org" }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://attestto.org/" },
+      { "@type": "ListItem", "position": 2, "name": "Docs", "item": "https://attestto.org/docs/" },
+      { "@type": "ListItem", "position": 3, "name": "Integration", "item": "https://attestto.org/docs/integration/" },
+      { "@type": "ListItem", "position": 4, "name": "Form Validation", "item": "https://attestto.org/docs/integration/forms/" }
+    ]
+  }
+]
 ---
 
 <DocsLayout
   title="Form Validation"
   description="Add credential and signature checks to web forms. KYC before submit, professional credential checks, document signature validation, and selective disclosure."
   currentPath="/docs/integration/forms/"
+  structuredData={structuredData}
 >
   <h1>Form Validation</h1>
   <p>

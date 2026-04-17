@@ -1,11 +1,34 @@
 ---
 import DocsLayout from '../../layouts/DocsLayout.astro'
+
+const structuredData = [
+  {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "headline": "Documentation",
+    "description": "Developer documentation for Attestto's identity infrastructure. Verify documents, issue credentials, connect wallets, and integrate DID-based authentication.",
+    "url": "https://attestto.org/docs/",
+    "author": { "@type": "Organization", "name": "Attestto", "url": "https://attestto.org" },
+    "publisher": { "@type": "Organization", "name": "Attestto", "url": "https://attestto.org" },
+    "inLanguage": "en",
+    "isPartOf": { "@type": "WebSite", "name": "Attestto", "url": "https://attestto.org" }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://attestto.org/" },
+      { "@type": "ListItem", "position": 2, "name": "Docs", "item": "https://attestto.org/docs/" }
+    ]
+  }
+]
 ---
 
 <DocsLayout
   title="Documentation"
   description="Developer documentation for Attestto's identity infrastructure. Verify documents, issue credentials, connect wallets, and integrate DID-based authentication."
   currentPath="/docs"
+  structuredData={structuredData}
 >
   <div class="docs-hero-badge">Open Source &middot; Apache 2.0</div>
   <h1>Attestto Docs</h1>

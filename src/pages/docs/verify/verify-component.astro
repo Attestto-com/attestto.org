@@ -2,12 +2,37 @@
 import DocsLayout from '../../../layouts/DocsLayout.astro'
 import CodeBlock from '../../../components/docs/CodeBlock.astro'
 import Callout from '../../../components/docs/Callout.astro'
+
+const structuredData = [
+  {
+    "@context": "https://schema.org",
+    "@type": "TechArticle",
+    "headline": "<attestto-verify> Component",
+    "description": "Full API reference for the attestto-verify Web Component. Attributes, events, CSS parts, and usage examples.",
+    "url": "https://attestto.org/docs/verify/verify-component/",
+    "author": { "@type": "Organization", "name": "Attestto", "url": "https://attestto.org" },
+    "publisher": { "@type": "Organization", "name": "Attestto", "url": "https://attestto.org" },
+    "inLanguage": "en",
+    "isPartOf": { "@type": "WebSite", "name": "Attestto", "url": "https://attestto.org" }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://attestto.org/" },
+      { "@type": "ListItem", "position": 2, "name": "Docs", "item": "https://attestto.org/docs/" },
+      { "@type": "ListItem", "position": 3, "name": "Verify & Sign", "item": "https://attestto.org/docs/verify/" },
+      { "@type": "ListItem", "position": 4, "name": "Verify Component", "item": "https://attestto.org/docs/verify/verify-component/" }
+    ]
+  }
+]
 ---
 
 <DocsLayout
   title="<attestto-verify> Component"
   description="Full API reference for the attestto-verify Web Component. Attributes, events, CSS parts, and usage examples."
   currentPath="/docs/verify/verify-component/"
+  structuredData={structuredData}
 >
   <h1>&lt;attestto-verify&gt;</h1>
   <p class="docs-hero-sub">

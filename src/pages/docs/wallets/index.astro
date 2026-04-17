@@ -2,12 +2,36 @@
 import DocsLayout from '../../../layouts/DocsLayout.astro'
 import CodeBlock from '../../../components/docs/CodeBlock.astro'
 import Callout from '../../../components/docs/Callout.astro'
+
+const structuredData = [
+  {
+    "@context": "https://schema.org",
+    "@type": "TechArticle",
+    "headline": "Wallets — Overview",
+    "description": "Universal credential wallet discovery layer. Solves the NASCAR problem with CustomEvent-based discovery, zero runtime dependencies, and 4 wire protocols.",
+    "url": "https://attestto.org/docs/wallets/",
+    "author": { "@type": "Organization", "name": "Attestto", "url": "https://attestto.org" },
+    "publisher": { "@type": "Organization", "name": "Attestto", "url": "https://attestto.org" },
+    "inLanguage": "en",
+    "isPartOf": { "@type": "WebSite", "name": "Attestto", "url": "https://attestto.org" }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://attestto.org/" },
+      { "@type": "ListItem", "position": 2, "name": "Docs", "item": "https://attestto.org/docs/" },
+      { "@type": "ListItem", "position": 3, "name": "Wallets", "item": "https://attestto.org/docs/wallets/" }
+    ]
+  }
+]
 ---
 
 <DocsLayout
   title="Wallets — Overview"
   description="Universal credential wallet discovery layer. Solves the NASCAR problem with CustomEvent-based discovery, zero runtime dependencies, and 4 wire protocols."
   currentPath="/docs/wallets/"
+  structuredData={structuredData}
 >
   <h1>Wallets</h1>
   <p class="docs-hero-sub">

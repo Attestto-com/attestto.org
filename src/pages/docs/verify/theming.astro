@@ -2,12 +2,37 @@
 import DocsLayout from '../../../layouts/DocsLayout.astro'
 import CodeBlock from '../../../components/docs/CodeBlock.astro'
 import Callout from '../../../components/docs/Callout.astro'
+
+const structuredData = [
+  {
+    "@context": "https://schema.org",
+    "@type": "TechArticle",
+    "headline": "Theming",
+    "description": "Customize @attestto/verify components with CSS custom properties and ::part() selectors. Match your brand without fighting Shadow DOM.",
+    "url": "https://attestto.org/docs/verify/theming/",
+    "author": { "@type": "Organization", "name": "Attestto", "url": "https://attestto.org" },
+    "publisher": { "@type": "Organization", "name": "Attestto", "url": "https://attestto.org" },
+    "inLanguage": "en",
+    "isPartOf": { "@type": "WebSite", "name": "Attestto", "url": "https://attestto.org" }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://attestto.org/" },
+      { "@type": "ListItem", "position": 2, "name": "Docs", "item": "https://attestto.org/docs/" },
+      { "@type": "ListItem", "position": 3, "name": "Verify & Sign", "item": "https://attestto.org/docs/verify/" },
+      { "@type": "ListItem", "position": 4, "name": "Theming", "item": "https://attestto.org/docs/verify/theming/" }
+    ]
+  }
+]
 ---
 
 <DocsLayout
   title="Theming"
   description="Customize @attestto/verify components with CSS custom properties and ::part() selectors. Match your brand without fighting Shadow DOM."
   currentPath="/docs/verify/theming/"
+  structuredData={structuredData}
 >
   <h1>Theming</h1>
   <p class="docs-hero-sub">
