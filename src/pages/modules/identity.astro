@@ -83,13 +83,15 @@ const structuredData = [
 
   <section class="hero hero-single">
     <div class="container">
-      <p class="section-label" data-i18n="mod_identity.label">Identity Module</p>
-      <h1 data-i18n="mod_identity.hero_title">Your identity, your device, your keys.</h1>
+      <p class="section-label" data-i18n="mod_identity.label">Citizen Identity Module</p>
+      <h1 data-i18n="mod_identity.hero_title">Document scanning to verifiable credentials — entirely on-device.</h1>
       <p class="lead" data-i18n="mod_identity.hero_lead">
-        Scan your cedula, driver's license, or passport. The OCR runs on your phone — no images are uploaded.
-        Sign the extracted data with your Ed25519 key to create a verifiable credential.
+        Citizens scan their national ID, driver's license, or passport using their phone camera. OCR extraction
+        runs locally via WebAssembly — no images are uploaded to any server. The extracted data is signed with
+        the citizen's Ed25519 key and stored as a W3C Verifiable Credential.
       </p>
-      <a href="https://app.attestto.com" class="btn-primary" data-i18n="mod_identity.hero_cta">Open Attestto App</a>
+      <a href="https://app.attestto.com" class="btn-primary" data-i18n="mod_identity.hero_cta">Try the demo</a>
+      <a href="mailto:open@attestto.com" class="btn-secondary" style="margin-left: 12px;" data-i18n="mod_identity.hero_contact">Request a pilot</a>
     </div>
   </section>
 
@@ -139,7 +141,7 @@ const structuredData = [
             Costa Rica national ID card. TD1 MRZ on the back. Extracts cedula number,
             full name, date of birth, expiry, nationality, and sex.
           </p>
-          <code>CedulaIdentidadCR</code>
+          <p class="schema-ref">Schema: <code>CedulaIdentidadCR</code> &middot; <a href="https://github.com/Attestto-com/cr-vc-schemas">cr-vc-schemas</a></p>
         </div>
         <div class="card">
           <h3 data-i18n="mod_identity.license_title">Driving license</h3>
@@ -147,15 +149,15 @@ const structuredData = [
             Costa Rica driver's license. TD1 MRZ on the back + category table on the front.
             Extracts categories (A1-E3), validity dates, points, and restrictions.
           </p>
-          <code>DrivingLicenseCR</code>
+          <p class="schema-ref">Schema: <code>DrivingLicenseCR</code> &middot; <a href="https://github.com/Attestto-com/cr-vc-schemas">cr-vc-schemas</a></p>
         </div>
         <div class="card">
           <h3 data-i18n="mod_identity.passport_title">Passport</h3>
           <p data-i18n="mod_identity.passport_desc">
-            Any ICAO 9303-compliant passport (TD3 MRZ). Extracts document number,
+            Any ICAO 9303-compliant passport with TD3 MRZ (ICAO Doc 9303 compliant). Extracts document number,
             names, date of birth, expiry, nationality, and issuing country.
           </p>
-          <code>PassportCR</code>
+          <p class="schema-ref">Schema: <code>PassportCR</code> &middot; <a href="https://github.com/Attestto-com/cr-vc-schemas">cr-vc-schemas</a></p>
         </div>
       </div>
     </div>
@@ -163,15 +165,15 @@ const structuredData = [
 
   <section class="section-light">
     <div class="container">
-      <p class="section-label" data-i18n="mod_identity.privacy_label">Privacy</p>
-      <h2 class="section-title" data-i18n="mod_identity.privacy_title">Nothing leaves your device</h2>
+      <p class="section-label" data-i18n="mod_identity.privacy_label">Privacy &amp; Compliance</p>
+      <h2 class="section-title" data-i18n="mod_identity.privacy_title">Privacy by architecture, not by policy</h2>
       <div class="grid-2">
         <div>
           <ul class="check-list">
             <li data-i18n="mod_identity.priv1">OCR runs in-browser via Tesseract.js WebAssembly</li>
             <li data-i18n="mod_identity.priv2">Photos are processed locally and never uploaded</li>
             <li data-i18n="mod_identity.priv3">Private key stored in IndexedDB, gated behind WebAuthn biometrics</li>
-            <li data-i18n="mod_identity.priv4">Credentials encrypted at rest with AES-256-GCM</li>
+            <li data-i18n="mod_identity.priv4">Credentials encrypted at rest in the device vault</li>
             <li data-i18n="mod_identity.priv5">SD-JWT selective disclosure — share only the fields you choose</li>
           </ul>
         </div>
@@ -190,11 +192,12 @@ const structuredData = [
 
   <section class="section-dark" style="text-align: center;">
     <div class="container">
-      <h2 data-i18n="mod_identity.cta_title">Start building your digital identity</h2>
+      <h2 data-i18n="mod_identity.cta_title">See it in action</h2>
       <p class="section-desc" data-i18n="mod_identity.cta_desc">
-        Free, open source, no sign-up. Open the app on your phone and scan your first document.
+        Open source (Apache 2.0). Try the citizen flow at app.attestto.com, or contact us to discuss an institutional pilot.
       </p>
-      <a href="https://app.attestto.com" class="btn-primary" data-i18n="mod_identity.cta_btn">Open Attestto App</a>
+      <a href="https://app.attestto.com" class="btn-primary" data-i18n="mod_identity.cta_btn">Try the demo</a>
+      <a href="mailto:open@attestto.com" class="btn-secondary" style="margin-left: 12px;">Request a pilot</a>
     </div>
   </section>
 
@@ -233,5 +236,14 @@ const structuredData = [
     left: 0;
     color: var(--color-accent);
     font-weight: 700;
+  }
+  .schema-ref {
+    font-size: 0.75rem;
+    opacity: 0.6;
+    margin-top: 0.5rem;
+  }
+  .schema-ref a {
+    color: inherit;
+    text-decoration: underline;
   }
 </style>

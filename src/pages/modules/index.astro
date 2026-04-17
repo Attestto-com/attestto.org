@@ -32,11 +32,11 @@ const structuredData = [
 
   <section class="hero hero-single">
     <div class="container">
-      <p class="section-label" data-i18n="modules.label">Modules</p>
-      <h1 data-i18n="modules.hero_title">Install what you need. Nothing more.</h1>
+      <p class="section-label" data-i18n="modules.label">Credential Modules</p>
+      <h1 data-i18n="modules.hero_title">Domain-specific credential infrastructure</h1>
       <p class="lead" data-i18n="modules.hero_lead">
-        Each module adds a specific credential capability to your Attestto wallet.
-        Self-sovereign, on-device, open source.
+        Each module implements a complete credential lifecycle for a specific domain — identity documents,
+        professional licensing, document signing. W3C standards compliant. Open source. Ready for institutional pilots.
       </p>
     </div>
   </section>
@@ -48,33 +48,33 @@ const structuredData = [
         <!-- Identity -->
         <a href="/modules/identity" class="card card-link">
           <div class="card-icon"><span class="icon-badge">&#x1F4CB;</span></div>
-          <h3 data-i18n="modules.identity_title">Digital Identity</h3>
+          <h3 data-i18n="modules.identity_title">Citizen Identity</h3>
           <p data-i18n="modules.identity_desc">
-            Scan your cedula, driver's license, or passport. Create verifiable credentials signed with your own key.
+            Document scanning and verifiable credential issuance for national IDs, driver's licenses, and passports. On-device OCR — no data leaves the citizen's phone.
           </p>
-          <span class="tag tag-live">Live</span>
+          <span class="tag tag-live">Available</span>
           <span class="tag tag-cr">Costa Rica</span>
         </a>
 
         <!-- Driving -->
         <a href="/modules/driving" class="card card-link">
           <div class="card-icon"><span class="icon-badge">&#x1F697;</span></div>
-          <h3 data-i18n="modules.driving_title">Digital License</h3>
+          <h3 data-i18n="modules.driving_title">Professional Licensing</h3>
           <p data-i18n="modules.driving_desc">
-            Theory exam prep, mastery tracking, and digital driving license credentials aligned with COSEVI/DGEV.
+            Theory examination, continuous competency tracking, and verifiable credential issuance aligned with COSEVI and DGEV requirements.
           </p>
-          <span class="tag tag-live">Live</span>
+          <span class="tag tag-live">Available</span>
           <span class="tag tag-cr">Costa Rica</span>
         </a>
 
         <!-- Signing -->
         <a href="/modules/signing" class="card card-link">
           <div class="card-icon"><span class="icon-badge">&#x270D;</span></div>
-          <h3 data-i18n="modules.signing_title">Intelligent Signing</h3>
+          <h3 data-i18n="modules.signing_title">Document Signing</h3>
           <p data-i18n="modules.signing_desc">
-            AI-powered document analysis, flagged clauses, guided Q&A — then sign with your Ed25519 key.
+            AI-assisted document analysis with risk assessment, followed by cryptographic signing. On-device language model — documents never leave the signer's device.
           </p>
-          <span class="tag tag-live">Live</span>
+          <span class="tag tag-live">Available</span>
           <span class="tag tag-global">Global</span>
         </a>
 
@@ -84,12 +84,14 @@ const structuredData = [
 
   <section class="section-dark">
     <div class="container" style="text-align: center;">
-      <h2 data-i18n="modules.build_title">Build your own module</h2>
+      <h2 data-i18n="modules.build_title">Build a module for your domain</h2>
       <p class="section-desc" data-i18n="modules.build_desc">
-        The module SDK is open source. Anyone can create a module that issues, verifies, or manages credentials.
-        60% of revenue goes to the builder.
+        The module SDK is open source (Apache 2.0). Institutions, integrators, and developers can create credential modules for any professional domain. The builder retains 60% of transaction revenue.
       </p>
-      <a href="/for/developers" class="btn-primary" data-i18n="modules.build_cta">Developer Portal</a>
+      <a href="/for/developers" class="btn-primary" data-i18n="modules.build_cta">Developer Documentation</a>
+      <p style="margin-top: var(--space-sm); font-size: 0.85rem; opacity: 0.7;">
+        Interested in a pilot? Contact <a href="mailto:open@attestto.com" style="color: var(--color-accent-light);">open@attestto.com</a>
+      </p>
     </div>
   </section>
 
