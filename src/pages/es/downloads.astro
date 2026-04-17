@@ -1,13 +1,67 @@
 ---
 import Base from '../../layouts/Base.astro'
+
+const structuredData = [
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Attestto",
+    "url": "https://attestto.org/es/downloads",
+    "applicationCategory": "SecurityApplication",
+    "operatingSystem": "Cross-platform",
+    "license": "https://www.apache.org/licenses/LICENSE-2.0",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+    "inLanguage": "es"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "inLanguage": "es",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "¿Qué aplicaciones de Attestto están disponibles?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Attestto ofrece cuatro superficies: verify.attestto.com (verificación en el navegador sin instalación), Attestto App (PWA en app.attestto.com para gestión de credenciales), Station (escritorio Electron para bóveda, firma y mesh), y una extensión de navegador para verificación de certificados web."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Attestto es código abierto?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Sí. Todos los componentes de Attestto son código abierto bajo licencia Apache 2.0. El código fuente está disponible en GitHub en github.com/Attestto-com. Los SDKs incluyen @attestto/verify, cr-vc-sdk, cr-vc-schemas, id-wallet-adapter y attestto-mesh."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Qué plataformas soporta Attestto Station?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Attestto Station está construido con Electron y soporta macOS, Windows y Linux. Incluye tu bóveda de identidad, firmador de documentos, verificador, nodo mesh y motor de proctoring en una sola aplicación de escritorio."
+        }
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Attestto", "item": "https://attestto.org/es" },
+      { "@type": "ListItem", "position": 2, "name": "Descargas", "item": "https://attestto.org/es/downloads" }
+    ]
+  }
+]
 ---
 
 <Base
-  title="Downloads — Attestto"
-  description="Download the desktop app, install the browser extension, open the web apps, or integrate Attestto SDKs."
+  structuredData={structuredData}
+  title="Descargas — Attestto"
+  description="Descarga la app de escritorio, instala la extensión de navegador, abre las apps web o integra los SDKs de Attestto."
   canonicalPath="/es/downloads"
-  ogTitle="Downloads — Attestto"
-  ogDescription="All Attestto apps and tools in one place. Desktop, mobile, extension, verification, signing, and SDKs."
+  ogTitle="Descargas — Attestto"
+  ogDescription="Todas las apps y herramientas de Attestto en un solo lugar. Escritorio, móvil, extensión, verificación, firma y SDKs."
   navVariant="default"
   footerVariant="default"
   lang="es"
@@ -16,8 +70,8 @@ import Base from '../../layouts/Base.astro'
   <!-- Hero (dark) -->
   <section class="hero hero-single">
     <div class="container">
-      <h1 data-i18n="downloads.hero_title">Downloads</h1>
-      <p class="lead" data-i18n="downloads.hero_lead">All Attestto apps and tools in one place. Desktop, mobile, browser extension, web apps, and SDKs for developers.</p>
+      <h1 data-i18n="downloads.hero_title">Descargas</h1>
+      <p class="lead" data-i18n="downloads.hero_lead">Todas las apps y herramientas de Attestto en un solo lugar. Escritorio, móvil, extensión de navegador, apps web y SDKs para desarrolladores.</p>
     </div>
   </section>
 
@@ -25,26 +79,26 @@ import Base from '../../layouts/Base.astro'
   <section id="apps" class="section-light">
     <div class="container">
       <div class="section-label" data-i18n="downloads.apps_label">Apps</div>
-      <h2 class="section-title" data-i18n="downloads.apps_title">Applications</h2>
-      <p class="section-desc" data-i18n="downloads.apps_desc">Install Station on your desktop for verification, signing, and mesh networking. Open the App on your phone for credentials and exams. Every surface connects to the same identity.</p>
+      <h2 class="section-title" data-i18n="downloads.apps_title">Aplicaciones</h2>
+      <p class="section-desc" data-i18n="downloads.apps_desc">Instala Station en tu escritorio para verificación, firma y red mesh. Abrí la App en tu teléfono para credenciales y exámenes. Cada superficie se conecta a la misma identidad.</p>
       <div class="grid-2">
         <!-- App (PWA) -->
         <div class="card">
           <span class="tag tag-mobile">PWA</span>
           <h3>Attestto App</h3>
-          <p>Sovereign citizen wallet. Identity, credentials, proctored exams, on-device AI, and perpetual competency — all offline-first. 9 macro-categories, dual-mode COSEVI/Attestto, Gemma 2B on-device. Installs from the browser.</p>
+          <p>Billetera soberana ciudadana. Identidad, credenciales, exámenes supervisados, IA en dispositivo y competencia perpetua — todo offline-first. 9 macro-categorías, modo dual COSEVI/Attestto, Gemma 2B en dispositivo. Se instala desde el navegador.</p>
           <div class="dl-links">
-            <a href="https://app.attestto.com" class="dl-btn">Open app.attestto.com</a>
-            <a href="https://app.attestto.com/demo.html" class="dl-btn">Live Demo</a>
+            <a href="https://app.attestto.com" class="dl-btn">Abrir app.attestto.com</a>
+            <a href="https://app.attestto.com/demo.html" class="dl-btn">Demo en vivo</a>
           </div>
-          <p class="note">PWA — installs on Android, iOS, and desktop browsers. <a href="https://github.com/Attestto-com/attestto-app">Source on GitHub</a> (Apache 2.0)</p>
+          <p class="note">PWA — se instala en Android, iOS y navegadores de escritorio. <a href="https://github.com/Attestto-com/attestto-app">Código en GitHub</a> (Apache 2.0)</p>
         </div>
 
         <!-- Station -->
         <div class="card">
-          <span class="tag tag-desktop">Desktop</span>
+          <span class="tag tag-desktop">Escritorio</span>
           <h3>Station</h3>
-          <p data-i18n="downloads.station_desc">Your verification station. Encrypted vault, document OCR, Firma Digital (BCCR PKI), centralized trust store. Required for mesh network nodes and professional modules (notarial, medical, legal). macOS, Windows, and Linux.</p>
+          <p data-i18n="downloads.station_desc">Tu estación de verificación. Bóveda cifrada, OCR de documentos, Firma Digital (BCCR PKI), almacén de confianza centralizado. Requerido para nodos de red mesh y módulos profesionales (notarial, médico, legal). macOS, Windows y Linux.</p>
           <div class="dl-links">
             <a href="https://github.com/Attestto-com/attestto-desktop/releases/latest" class="dl-btn">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:1rem;height:1rem"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.604-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.463-1.11-1.463-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.831.092-.646.35-1.086.636-1.336-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836c.85.004 1.705.114 2.504.336 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
@@ -56,19 +110,19 @@ import Base from '../../layouts/Base.astro'
             <a href="https://github.com/Attestto-com/attestto-desktop/releases/latest" class="dl-btn">Windows</a>
             <a href="https://github.com/Attestto-com/attestto-desktop/releases/latest" class="dl-btn">Linux</a>
           </div>
-          <p class="note" data-i18n-html="downloads.station_note">v0.1.0 — <a href="https://github.com/Attestto-com/attestto-desktop/releases">Changelog</a> · Requires macOS 12+, Windows 10+, or Ubuntu 20.04+</p>
+          <p class="note" data-i18n-html="downloads.station_note">v0.1.0 — <a href="https://github.com/Attestto-com/attestto-desktop/releases">Changelog</a> · Requiere macOS 12+, Windows 10+ o Ubuntu 20.04+</p>
         </div>
 
         <!-- Extension -->
         <div class="card" style="opacity: 0.7;">
-          <span class="tag tag-extension">Extension</span>
-          <h3>Attestto ID <span style="font-size: 0.75rem; font-weight: 400; color: var(--color-ink-subtle);">— Coming soon</span></h3>
-          <p data-i18n="downloads.extension_desc">Browser extension to verify TLS certificates issued by Attestto CA and manage your decentralized identity on the web.</p>
+          <span class="tag tag-extension">Extensión</span>
+          <h3>Attestto ID <span style="font-size: 0.75rem; font-weight: 400; color: var(--color-ink-subtle);">— Próximamente</span></h3>
+          <p data-i18n="downloads.extension_desc">Extensión de navegador para verificar certificados TLS emitidos por Attestto CA y gestionar tu identidad descentralizada en la web.</p>
           <div class="dl-links">
             <span class="dl-btn" style="opacity: 0.5; pointer-events: none;">Chrome</span>
             <span class="dl-btn" style="opacity: 0.5; pointer-events: none;">Firefox</span>
           </div>
-          <p class="note" data-i18n-html="downloads.extension_note">Coming soon to Chrome Web Store and Firefox Add-ons. Available from <a href="https://github.com/Attestto-com/attestto-creds-extension">source code</a>.</p>
+          <p class="note" data-i18n-html="downloads.extension_note">Próximamente en Chrome Web Store y Firefox Add-ons. Disponible desde el <a href="https://github.com/Attestto-com/attestto-creds-extension">código fuente</a>.</p>
         </div>
       </div>
     </div>
@@ -78,31 +132,31 @@ import Base from '../../layouts/Base.astro'
   <section id="web" class="section-dark">
     <div class="container">
       <div class="section-label" data-i18n="downloads.web_label">Web</div>
-      <h2 class="section-title" data-i18n="downloads.web_title">Web applications</h2>
-      <p class="section-desc" data-i18n="downloads.web_desc">Verify and sign documents directly from your browser. No installation, no registration.</p>
+      <h2 class="section-title" data-i18n="downloads.web_title">Aplicaciones web</h2>
+      <p class="section-desc" data-i18n="downloads.web_desc">Verifica y firma documentos directamente desde tu navegador. Sin instalación, sin registro.</p>
       <div class="grid-3">
         <div class="card">
           <div class="card-icon">&#10003;</div>
-          <h3 data-i18n="downloads.verify_title">Verify</h3>
-          <p data-i18n="downloads.verify_desc">Verify signed documents. Drop a PDF and check the cryptographic signature, chain of trust (BCCR Persona Fisica + Juridica), and document integrity. Zero-config for Costa Rica.</p>
+          <h3 data-i18n="downloads.verify_title">Verificar</h3>
+          <p data-i18n="downloads.verify_desc">Verifica documentos firmados. Arrastra un PDF y comprueba la firma criptográfica, la cadena de confianza (BCCR Persona Física + Jurídica) y la integridad del documento. Cero configuración para Costa Rica.</p>
           <div class="dl-links">
-            <a href="https://verify.attestto.com" class="dl-btn" data-i18n="downloads.verify_btn">Open verify.attestto.com</a>
+            <a href="https://verify.attestto.com" class="dl-btn" data-i18n="downloads.verify_btn">Abrir verify.attestto.com</a>
           </div>
         </div>
         <div class="card">
           <div class="card-icon">&#9998;</div>
-          <h3 data-i18n="downloads.sign_title">Sign</h3>
-          <p data-i18n="downloads.sign_desc">Sign documents with your verified identity. Simple electronic signature, advanced signature with Attestto CA, or Costa Rican Digital Signature.</p>
+          <h3 data-i18n="downloads.sign_title">Firmar</h3>
+          <p data-i18n="downloads.sign_desc">Firma documentos con tu identidad verificada. Firma electrónica simple, firma avanzada con Attestto CA, o Firma Digital costarricense.</p>
           <div class="dl-links">
-            <a href="https://verify.attestto.com/sign/" class="dl-btn" data-i18n="downloads.sign_btn">Open verify.attestto.com/sign</a>
+            <a href="https://verify.attestto.com/sign/" class="dl-btn" data-i18n="downloads.sign_btn">Abrir verify.attestto.com/sign</a>
           </div>
         </div>
         <div class="card">
           <div class="card-icon">&#9830;</div>
-          <h3 data-i18n="downloads.platform_title">Platform</h3>
-          <p data-i18n="downloads.platform_desc">Complete dashboard for organizations. KYC/KYB, credentials, treasury, data vault, and more.</p>
+          <h3 data-i18n="downloads.platform_title">Plataforma</h3>
+          <p data-i18n="downloads.platform_desc">Panel completo para organizaciones. KYC/KYB, credenciales, tesorería, bóveda de datos y más.</p>
           <div class="dl-links">
-            <a href="https://attestto.com" class="dl-btn" data-i18n="downloads.platform_btn">Open attestto.com</a>
+            <a href="https://attestto.com" class="dl-btn" data-i18n="downloads.platform_btn">Abrir attestto.com</a>
           </div>
         </div>
       </div>
@@ -112,70 +166,70 @@ import Base from '../../layouts/Base.astro'
   <!-- Developers (light) -->
   <section id="developers" class="section-light">
     <div class="container">
-      <div class="section-label" data-i18n="downloads.dev_label">Developers</div>
-      <h2 class="section-title" data-i18n="downloads.dev_title">SDKs and open source</h2>
-      <p class="section-desc" data-i18n="downloads.dev_desc">Integrate credential verification, decentralized identity, and verifiable schemas in your application. Everything is open source on GitHub.</p>
+      <div class="section-label" data-i18n="downloads.dev_label">Desarrolladores</div>
+      <h2 class="section-title" data-i18n="downloads.dev_title">SDKs y código abierto</h2>
+      <p class="section-desc" data-i18n="downloads.dev_desc">Integra verificación de credenciales, identidad descentralizada y esquemas verificables en tu aplicación. Todo es código abierto en GitHub.</p>
       <div class="grid-3">
         <div class="card">
           <span class="tag tag-sdk">SDK</span>
           <h3>cr-vc-schemas</h3>
-          <p>JSON-LD schemas for 11 Costa Rica credential types. W3C VDL + ISO 18013-5.</p>
+          <p>Esquemas JSON-LD para 11 tipos de credenciales de Costa Rica. W3C VDL + ISO 18013-5.</p>
           <div class="code-block">npm install cr-vc-schemas</div>
           <div class="dl-links"><a href="https://github.com/Attestto-com/cr-vc-schemas" class="dl-btn">GitHub</a></div>
         </div>
         <div class="card">
           <span class="tag tag-sdk">SDK</span>
           <h3>cr-vc-sdk</h3>
-          <p>Typed SDK for issuing and verifying Costa Rica credentials.</p>
+          <p>SDK tipado para emitir y verificar credenciales de Costa Rica.</p>
           <div class="code-block">npm install cr-vc-sdk</div>
           <div class="dl-links"><a href="https://github.com/Attestto-com/cr-vc-sdk" class="dl-btn">GitHub</a></div>
         </div>
         <div class="card">
           <span class="tag tag-sdk">Spec</span>
           <h3>did-sns-spec</h3>
-          <p>DID method specification for Solana Name Service domains.</p>
+          <p>Especificación del método DID para dominios de Solana Name Service.</p>
           <div class="dl-links"><a href="https://github.com/Attestto-com/did-sns-spec" class="dl-btn">GitHub</a></div>
         </div>
         <div class="card">
           <span class="tag tag-sdk">Bridge</span>
           <h3>vLEI-Solana-Bridge</h3>
-          <p>On-chain vLEI attestations with Groth16 zero-knowledge proofs.</p>
+          <p>Atestaciones vLEI on-chain con pruebas de conocimiento cero Groth16.</p>
           <div class="dl-links"><a href="https://github.com/Attestto-com/vLei-Solana-Bridge" class="dl-btn">GitHub</a></div>
         </div>
         <div class="card">
-          <span class="tag tag-sdk">Network</span>
+          <span class="tag tag-sdk">Red</span>
           <h3>attestto-mesh</h3>
-          <p>P2P data mesh over libp2p — encrypted state-sync for sovereign identity.</p>
+          <p>Mesh de datos P2P sobre libp2p — sincronización de estado cifrada para identidad soberana.</p>
           <div class="dl-links"><a href="https://github.com/Attestto-com/attestto-mesh" class="dl-btn">GitHub</a></div>
         </div>
         <div class="card">
-          <span class="tag tag-sdk">Wallet</span>
+          <span class="tag tag-sdk">Billetera</span>
           <h3>credential-wallet-connector</h3>
-          <p>CHAPI-based wallet discovery and credential exchange protocol.</p>
+          <p>Descubrimiento de billeteras basado en CHAPI y protocolo de intercambio de credenciales.</p>
           <div class="dl-links"><a href="https://github.com/Attestto-com/credential-wallet-connector" class="dl-btn">GitHub</a></div>
         </div>
         <div class="card">
-          <span class="tag tag-sdk">Trust</span>
+          <span class="tag tag-sdk">Confianza</span>
           <h3>@attestto/trust</h3>
-          <p>Centralized trust store — hash-pinned X.509 CA certificates for national PKIs. Currently: Costa Rica (BCCR/SINPE). ESM exports.</p>
+          <p>Almacén de confianza centralizado — certificados X.509 de CA con hash-pin para PKIs nacionales. Actualmente: Costa Rica (BCCR/SINPE). Exportaciones ESM.</p>
           <div class="dl-links"><a href="https://github.com/Attestto-com/attestto-trust" class="dl-btn">GitHub</a></div>
         </div>
         <div class="card">
-          <span class="tag tag-sdk">Component</span>
+          <span class="tag tag-sdk">Componente</span>
           <h3>@attestto/verify</h3>
-          <p>Web Components for PDF signature verification and signing. Drop-in &lt;attestto-verify&gt; element. Browser-only, no backend.</p>
+          <p>Web Components para verificación y firma de PDF. Elemento &lt;attestto-verify&gt; listo para usar. Solo navegador, sin backend.</p>
           <div class="code-block">npm install @attestto/verify</div>
           <div class="dl-links"><a href="https://github.com/Attestto-com/attestto-verify" class="dl-btn">GitHub</a></div>
         </div>
         <div class="card">
           <span class="tag tag-sdk">App</span>
           <h3>attestto-app</h3>
-          <p>Sovereign citizen wallet (PWA). Modular, credential-gated, on-device AI. Monorepo with module SDK.</p>
+          <p>Billetera soberana ciudadana (PWA). Modular, con acceso por credenciales, IA en dispositivo. Monorepo con SDK de módulos.</p>
           <div class="dl-links"><a href="https://github.com/Attestto-com/attestto-app" class="dl-btn">GitHub</a></div>
         </div>
       </div>
       <div style="margin-top: var(--space-lg); text-align: center;">
-        <a href="https://github.com/Attestto-com" class="btn btn-primary" data-i18n="downloads.dev_btn_all">View all on GitHub</a>
+        <a href="https://github.com/Attestto-com" class="btn btn-primary" data-i18n="downloads.dev_btn_all">Ver todo en GitHub</a>
       </div>
     </div>
   </section>
@@ -183,22 +237,22 @@ import Base from '../../layouts/Base.astro'
   <!-- Community (dark) -->
   <section class="section-dark">
     <div class="container">
-      <div class="section-label" data-i18n="downloads.community_label">Community</div>
-      <h2 class="section-title" data-i18n="downloads.community_title">Build with us</h2>
-      <p class="section-desc" data-i18n="downloads.community_desc">Attestto is open source. Report bugs, propose features, contribute code, or just follow along.</p>
+      <div class="section-label" data-i18n="downloads.community_label">Comunidad</div>
+      <h2 class="section-title" data-i18n="downloads.community_title">Construí con nosotros</h2>
+      <p class="section-desc" data-i18n="downloads.community_desc">Attestto es código abierto. Reporta errores, proponé funcionalidades, contribuí código o simplemente seguí el progreso.</p>
       <div class="grid-3">
         <div class="card">
           <div class="card-icon">
             <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.604-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.463-1.11-1.463-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.831.092-.646.35-1.086.636-1.336-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836c.85.004 1.705.114 2.504.336 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
           </div>
           <h3 data-i18n="downloads.community_github_title">GitHub</h3>
-          <p data-i18n="downloads.community_github_desc">Source code, issues, pull requests, and releases from all repositories.</p>
+          <p data-i18n="downloads.community_github_desc">Código fuente, issues, pull requests y releases de todos los repositorios.</p>
           <div class="dl-links"><a href="https://github.com/Attestto-com" class="dl-btn">github.com/Attestto-com</a></div>
         </div>
         <div class="card">
           <div class="card-icon">&#9993;</div>
-          <h3 data-i18n="downloads.community_contact_title">Contact</h3>
-          <p data-i18n="downloads.community_contact_desc">For institutions, governments, and partners who want to board the Ark.</p>
+          <h3 data-i18n="downloads.community_contact_title">Contacto</h3>
+          <p data-i18n="downloads.community_contact_desc">Para instituciones, gobiernos y socios que quieran abordar el Ark.</p>
           <div class="dl-links">
             <a href="mailto:ark@attestto.com" class="dl-btn">ark@attestto.com</a>
             <a href="mailto:open@attestto.com" class="dl-btn">open@attestto.com</a>
@@ -206,9 +260,9 @@ import Base from '../../layouts/Base.astro'
         </div>
         <div class="card">
           <div class="card-icon">&#9741;</div>
-          <h3 data-i18n="downloads.community_arch_title">Architecture</h3>
-          <p data-i18n="downloads.community_arch_desc">Learn the full architecture: Station, Wallet, Mesh, Ceremony, and Trust.</p>
-          <div class="dl-links"><a href="/ark" class="dl-btn">Attestto Ark</a></div>
+          <h3 data-i18n="downloads.community_arch_title">Arquitectura</h3>
+          <p data-i18n="downloads.community_arch_desc">Conoce la arquitectura completa: Station, Wallet, Mesh, Ceremony y Trust.</p>
+          <div class="dl-links"><a href="/es/ark" class="dl-btn">Attestto Ark</a></div>
         </div>
       </div>
     </div>

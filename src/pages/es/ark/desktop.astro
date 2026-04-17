@@ -1,18 +1,72 @@
 ---
 import Base from '../../../layouts/Base.astro'
+
+const structuredData = [
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Attestto Station",
+    "url": "https://attestto.org/es/ark/desktop",
+    "applicationCategory": "SecurityApplication",
+    "operatingSystem": "macOS, Windows, Linux",
+    "inLanguage": "es",
+    "description": "Escritorio modular Electron para identidad soberana. Bóveda, firmador, verificador, nodo mesh y supervisor — cada función en su propia máquina."
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "inLanguage": "es",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "¿Qué es Attestto Station?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Attestto Station es una aplicación de escritorio modular en Electron que integra su bóveda de identidad, firmador de documentos, verificador, nodo mesh y motor de supervisión en una sola capa auditable. Cada operación sensible se ejecuta en su propio hardware, con código que cualquiera puede leer."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Cuáles son los cinco módulos de Station?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Los cinco módulos son: Bóveda (almacenamiento cifrado de identidad con xsalsa20-poly1305), Firmador (firma de PDFs y credenciales), Verificador (validación criptográfica de firmas y cadenas), Mesh (nodo P2P para verificación offline de credenciales) y Supervisor (supervisión de exámenes con detección de vivacidad)."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Por qué Attestto usa Electron en lugar de una app web?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "La identidad soberana requiere que las llaves privadas nunca salgan del dispositivo. Una app web no puede garantizar esto — el sandbox del navegador limita el acceso a módulos de seguridad del hardware y el almacenamiento local no está cifrado. Electron da acceso al llavero del sistema operativo, tokens de hardware y almacenamiento local cifrado."
+        }
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Attestto", "item": "https://attestto.org/es" },
+      { "@type": "ListItem", "position": 2, "name": "Arquitectura", "item": "https://attestto.org/es/ark" },
+      { "@type": "ListItem", "position": 3, "name": "Escritorio", "item": "https://attestto.org/es/ark/desktop" }
+    ]
+  }
+]
 ---
 
 <Base
-  title="Attestto Ark · Station — Modular Desktop for Sovereign Identity"
-  description="The Attestto Ark Station is a modular Electron desktop. Vault, signer, verifier, mesh node, and proctor — every function is an auditable module on your own machine, never a stranger in a cloud."
+  structuredData={structuredData}
+  title="Attestto Ark · Station — Escritorio Modular para Identidad Soberana"
+  description="Attestto Ark Station es un escritorio modular en Electron. Bóveda, firmador, verificador, nodo mesh y supervisor — cada función es un módulo auditable en su propia máquina, nunca un extraño en la nube."
   canonicalPath="/es/ark/desktop"
-  ogTitle="Attestto Ark · Station — Modular Desktop for Sovereign Identity"
-  ogDescription="Vault, signer, verifier, mesh node, and proctor — every function is an auditable module on your own machine."
+  ogTitle="Attestto Ark · Station — Escritorio Modular para Identidad Soberana"
+  ogDescription="Bóveda, firmador, verificador, nodo mesh y supervisor — cada función es un módulo auditable en su propia máquina."
   ogImage="https://attestto.org/assets/og-image-station.png"
   navVariant="default"
   footerVariant="default"
   lang="es"
-  footerTagline="Live infrastructure for sovereign digital identity. Free for citizens, always — commerce funds the network."
+  footerTagline="Infraestructura viva para identidad digital soberana. Gratis para ciudadanos, siempre — el comercio financia la red."
 >
 
   <!-- Hero (dark) -->
@@ -20,10 +74,10 @@ import Base from '../../../layouts/Base.astro'
     <div class="container">
       <div class="hero-text">
         <p class="eyebrow" data-i18n="desktop.eyebrow">Ark · Station</p>
-        <h1 data-i18n="desktop.hero_title">One desktop. Five modules. Zero strangers.</h1>
-        <p class="lead" data-i18n="desktop.hero_lead">The Station is an Electron desktop application that bundles your identity vault, document signer, verifier, mesh node, and proctoring engine into a single auditable shell. Every sensitive operation — from biometric liveness to PDF signing — runs on your own hardware, on code anyone can read.</p>
+        <h1 data-i18n="desktop.hero_title">Un escritorio. Cinco módulos. Cero extraños.</h1>
+        <p class="lead" data-i18n="desktop.hero_lead">Station es una aplicación de escritorio en Electron que integra su bóveda de identidad, firmador de documentos, verificador, nodo mesh y motor de supervisión de exámenes en una sola capa auditable. Cada operación sensible — desde vivacidad biométrica hasta firma de PDFs — se ejecuta en su propio hardware, con código que cualquiera puede leer.</p>
         <div class="hero-actions">
-          <a href="#modules" class="btn btn-primary" data-i18n="desktop.hero_cta_primary">Explore the modules</a>
+          <a href="#modules" class="btn btn-primary" data-i18n="desktop.hero_cta_primary">Explorar los módulos</a>
         </div>
       </div>
     </div>
@@ -32,84 +86,84 @@ import Base from '../../../layouts/Base.astro'
   <!-- What runs where -->
   <section id="modules" class="section-light">
     <div class="container">
-      <div class="section-label" data-i18n="desktop.modules_label">Modules</div>
-      <h2 class="section-title" data-i18n="desktop.modules_title">Five capabilities, one shell</h2>
-      <p class="section-desc" data-i18n="desktop.modules_desc">The Station is a composition of independent modules that share a single encrypted vault. Each module is opt-in. You can run the Station purely as a vault, purely as a verifier, or activate every module for a full sovereign-identity workstation.</p>
+      <div class="section-label" data-i18n="desktop.modules_label">Módulos</div>
+      <h2 class="section-title" data-i18n="desktop.modules_title">Cinco capacidades, una sola capa</h2>
+      <p class="section-desc" data-i18n="desktop.modules_desc">Station es una composición de módulos independientes que comparten una sola bóveda cifrada. Cada módulo es opcional. Puede usar Station solo como bóveda, solo como verificador, o activar todos los módulos para una estación de trabajo completa de identidad soberana.</p>
       <div class="grid-3" style="grid-template-columns: repeat(3, 1fr);">
 
         <div class="card">
           <div class="card-icon">&#128274;</div>
-          <h3 data-i18n="desktop.vault_title">Vault</h3>
-          <p data-i18n="desktop.vault_desc">Encrypted local key store. Ed25519 signing key + xsalsa20-poly1305 + scrypt key derivation. The private key never leaves the device — not even to the Attestto company.</p>
+          <h3 data-i18n="desktop.vault_title">Bóveda</h3>
+          <p data-i18n="desktop.vault_desc">Almacén de llaves local cifrado. Llave de firma Ed25519 + xsalsa20-poly1305 + derivación de llave scrypt. La llave privada nunca sale del dispositivo — ni siquiera hacia Attestto.</p>
           <ul>
             <li data-i18n="desktop.vault_l1">xsalsa20-poly1305 + scrypt</li>
-            <li data-i18n="desktop.vault_l2">Shamir 2-of-3 backup (planned)</li>
-            <li data-i18n="desktop.vault_l3">Zero-knowledge to Attestto</li>
-            <li data-i18n="desktop.vault_l4">Open source — auditable</li>
+            <li data-i18n="desktop.vault_l2">Respaldo Shamir 2-de-3 (planeado)</li>
+            <li data-i18n="desktop.vault_l3">Conocimiento cero hacia Attestto</li>
+            <li data-i18n="desktop.vault_l4">Código abierto — auditable</li>
           </ul>
         </div>
 
         <div class="card">
           <div class="card-icon">&#9999;</div>
-          <h3 data-i18n="desktop.signer_title">Signer</h3>
-          <p data-i18n="desktop.signer_desc">Sign PDFs with your vault key. Produces W3C Verifiable Credentials embedded directly into the document metadata. Recognized natively by verify.attestto.com — no plugin, no Adobe, no cloud.</p>
+          <h3 data-i18n="desktop.signer_title">Firmador</h3>
+          <p data-i18n="desktop.signer_desc">Firme PDFs con la llave de su bóveda. Produce Credenciales Verificables W3C embebidas directamente en los metadatos del documento. Reconocido nativamente por verify.attestto.com — sin plugin, sin Adobe, sin nube.</p>
           <ul>
-            <li data-i18n="desktop.signer_l1">Attestto self-attested signatures (Ed25519)</li>
-            <li data-i18n="desktop.signer_l2">Counter-signs Firma Digital PAdES files</li>
-            <li data-i18n="desktop.signer_l3">Smart-card PKCS#11 (planned)</li>
-            <li data-i18n="desktop.signer_l4">Byte-frozen output for forensic integrity</li>
+            <li data-i18n="desktop.signer_l1">Firmas autoatestadas Attestto (Ed25519)</li>
+            <li data-i18n="desktop.signer_l2">Contrafirma archivos PAdES de Firma Digital</li>
+            <li data-i18n="desktop.signer_l3">Tarjeta inteligente PKCS#11 (planeado)</li>
+            <li data-i18n="desktop.signer_l4">Salida congelada a nivel de bytes para integridad forense</li>
           </ul>
         </div>
 
         <div class="card">
           <div class="card-icon">&#10003;</div>
-          <h3 data-i18n="desktop.verifier_title">Verifier</h3>
-          <p data-i18n="desktop.verifier_desc">Drop a PDF onto the Station, get a forensic report: signature integrity, certificate chain, document hash, tamper detection. Same engine that runs at verify.attestto.com — but offline.</p>
+          <h3 data-i18n="desktop.verifier_title">Verificador</h3>
+          <p data-i18n="desktop.verifier_desc">Arrastre un PDF a Station y obtenga un informe forense: integridad de firma, cadena de certificados, hash del documento, detección de manipulación. El mismo motor que corre en verify.attestto.com — pero sin conexión.</p>
           <ul>
-            <li data-i18n="desktop.verifier_l1">PAdES + Attestto self-attested</li>
-            <li data-i18n="desktop.verifier_l2">National PKI roots (CR PJ, PF, MICITT)</li>
-            <li data-i18n="desktop.verifier_l3">Tamper-evident byte-range checks</li>
-            <li data-i18n="desktop.verifier_l4">Works without internet</li>
+            <li data-i18n="desktop.verifier_l1">PAdES + autoatestadas Attestto</li>
+            <li data-i18n="desktop.verifier_l2">Raíces PKI nacionales (CR PJ, PF, MICITT)</li>
+            <li data-i18n="desktop.verifier_l3">Verificaciones de rango de bytes a prueba de manipulación</li>
+            <li data-i18n="desktop.verifier_l4">Funciona sin internet</li>
           </ul>
         </div>
 
         <div class="card">
           <div class="card-icon">&#9881;</div>
-          <h3 data-i18n="desktop.mesh_title">Mesh Node</h3>
-          <p data-i18n="desktop.mesh_desc">Every Station can become a peer in the Attestto Mesh — an encrypted libp2p network for credential anchoring, trust mirroring, and redundant verification. Blind-courier: nodes can't read what they carry.</p>
+          <h3 data-i18n="desktop.mesh_title">Nodo Mesh</h3>
+          <p data-i18n="desktop.mesh_desc">Cada Station puede convertirse en un par dentro de Attestto Mesh — una red cifrada libp2p para anclaje de credenciales, réplica de confianza y verificación redundante. Mensajero ciego: los nodos no pueden leer lo que transportan.</p>
           <ul>
-            <li data-i18n="desktop.mesh_l1">libp2p over Bluetooth, WiFi, internet</li>
-            <li data-i18n="desktop.mesh_l2">Blind courier — encrypted payloads</li>
-            <li data-i18n="desktop.mesh_l3">Solana anchoring (deployment-time)</li>
-            <li data-i18n="desktop.mesh_l4">Opt-in, never required</li>
+            <li data-i18n="desktop.mesh_l1">libp2p sobre Bluetooth, WiFi, internet</li>
+            <li data-i18n="desktop.mesh_l2">Mensajero ciego — cargas cifradas</li>
+            <li data-i18n="desktop.mesh_l3">Anclaje en Solana (al momento del despliegue)</li>
+            <li data-i18n="desktop.mesh_l4">Opcional, nunca obligatorio</li>
           </ul>
         </div>
 
         <div class="card">
           <div class="card-icon">&#128065;</div>
-          <h3 data-i18n="desktop.proctor_title">Proctor</h3>
-          <p data-i18n="desktop.proctor_desc">White-box exam proctoring that runs entirely on the candidate's machine. Camera, screen, and process monitoring with zero cloud video upload. The "proctor" is auditable code, not a stranger watching a feed.</p>
+          <h3 data-i18n="desktop.proctor_title">Supervisor</h3>
+          <p data-i18n="desktop.proctor_desc">Supervisión de exámenes de caja blanca que corre completamente en la máquina del candidato. Monitoreo de cámara, pantalla y procesos sin subir video a la nube. El "supervisor" es código auditable, no un extraño viendo una transmisión.</p>
           <ul>
-            <li data-i18n="desktop.proctor_l1">Local face + liveness detection</li>
-            <li data-i18n="desktop.proctor_l2">desktopCapturer screen monitoring</li>
-            <li data-i18n="desktop.proctor_l3">Process-level lockdown via Node</li>
-            <li data-i18n="desktop.proctor_l4">SHA-256 session hash + Ed25519 signing</li>
+            <li data-i18n="desktop.proctor_l1">Detección local de rostro + vivacidad</li>
+            <li data-i18n="desktop.proctor_l2">Monitoreo de pantalla vía desktopCapturer</li>
+            <li data-i18n="desktop.proctor_l3">Bloqueo a nivel de procesos vía Node</li>
+            <li data-i18n="desktop.proctor_l4">Hash de sesión SHA-256 + firma Ed25519</li>
           </ul>
         </div>
 
         <div class="card">
           <div class="card-icon">&#127760;</div>
-          <h3 data-i18n="desktop.bridge_title">Bridge to Browser</h3>
+          <h3 data-i18n="desktop.bridge_title">Puente al Navegador</h3>
           <p data-i18n="desktop.bridge_desc">
-            The Station pairs with the Attestto ID extension via the open <code>@attestto/id-wallet-adapter</code>
-            protocol. Web pages discover the wallet, request signatures, and receive credentials — without the
-            Station ever exposing your private key to the page.
+            Station se vincula con la extensión Attestto ID mediante el protocolo abierto <code>@attestto/id-wallet-adapter</code>.
+            Las páginas web descubren la billetera, solicitan firmas y reciben credenciales — sin que Station
+            exponga su llave privada a la página.
           </p>
           <ul>
-            <li data-i18n="desktop.bridge_l1">postMessage protocol, no servers</li>
-            <li data-i18n="desktop.bridge_l2">DID login, document signing, credential push</li>
-            <li data-i18n="desktop.bridge_l3">Works with any compliant wallet</li>
-            <li data-i18n="desktop.bridge_l4">Cross-platform (desktop, browser, mobile PWA)</li>
+            <li data-i18n="desktop.bridge_l1">Protocolo postMessage, sin servidores</li>
+            <li data-i18n="desktop.bridge_l2">Login DID, firma de documentos, envío de credenciales</li>
+            <li data-i18n="desktop.bridge_l3">Funciona con cualquier billetera compatible</li>
+            <li data-i18n="desktop.bridge_l4">Multiplataforma (escritorio, navegador, PWA móvil)</li>
           </ul>
         </div>
 
@@ -120,27 +174,27 @@ import Base from '../../../layouts/Base.astro'
   <!-- Why Electron -->
   <section class="section-dark">
     <div class="container">
-      <div class="section-label" data-i18n="desktop.electron_label">Why Electron</div>
-      <h2 class="section-title" data-i18n="desktop.electron_title">A browser engine with hardware access</h2>
+      <div class="section-label" data-i18n="desktop.electron_label">Por qué Electron</div>
+      <h2 class="section-title" data-i18n="desktop.electron_title">Un motor de navegador con acceso al hardware</h2>
       <p class="section-desc" data-i18n="desktop.electron_desc">
-        Sovereign identity needs deep access to the device — camera, screen, processes, file system, smart cards —
-        which a sandboxed web page cannot provide. Electron gives the Station the Chromium rendering engine for a
-        modern UI <em>and</em> Node.js for direct hardware access. The result is a modular desktop that ships as a
-        single installer and runs everywhere your team already works.
+        La identidad soberana necesita acceso profundo al dispositivo — cámara, pantalla, procesos, sistema de archivos, tarjetas inteligentes —
+        que una página web sandboxeada no puede proveer. Electron le da a Station el motor de renderizado Chromium para una
+        interfaz moderna <em>y</em> Node.js para acceso directo al hardware. El resultado es un escritorio modular que se instala
+        con un solo instalador y corre donde su equipo ya trabaja.
       </p>
 
       <div class="grid-3">
         <div class="card">
-          <h3 data-i18n="desktop.electron_card1_title">Chromium engine</h3>
-          <p data-i18n="desktop.electron_card1_desc">The same rendering pipeline that powers verify.attestto.com runs the Station's UI. PDF preview, OCR, biometric overlays, signature stamps — all rendered with web technology you can inspect.</p>
+          <h3 data-i18n="desktop.electron_card1_title">Motor Chromium</h3>
+          <p data-i18n="desktop.electron_card1_desc">El mismo pipeline de renderizado que impulsa verify.attestto.com corre la interfaz de Station. Vista previa de PDFs, OCR, superposiciones biométricas, sellos de firma — todo renderizado con tecnología web que usted puede inspeccionar.</p>
         </div>
         <div class="card">
-          <h3 data-i18n="desktop.electron_card2_title">Node.js system access</h3>
-          <p data-i18n="desktop.electron_card2_desc">Direct file system, process inspection, smart card interfaces, mesh networking, and OS-level keychain integration — capabilities a normal browser refuses to grant.</p>
+          <h3 data-i18n="desktop.electron_card2_title">Acceso al sistema vía Node.js</h3>
+          <p data-i18n="desktop.electron_card2_desc">Acceso directo al sistema de archivos, inspección de procesos, interfaces de tarjetas inteligentes, red mesh e integración con el llavero del sistema operativo — capacidades que un navegador normal se niega a otorgar.</p>
         </div>
         <div class="card">
-          <h3 data-i18n="desktop.electron_card3_title">Auditable distribution</h3>
-          <p data-i18n="desktop.electron_card3_desc">The Station ships as a notarized DMG, MSI, and AppImage. Source code is open. Reproducible builds are on the roadmap so anyone can verify the binary matches the published commit.</p>
+          <h3 data-i18n="desktop.electron_card3_title">Distribución auditable</h3>
+          <p data-i18n="desktop.electron_card3_desc">Station se distribuye como DMG notarizado, MSI y AppImage. El código fuente es abierto. Los builds reproducibles están en la hoja de ruta para que cualquiera pueda verificar que el binario coincide con el commit publicado.</p>
         </div>
       </div>
     </div>
@@ -149,34 +203,34 @@ import Base from '../../../layouts/Base.astro'
   <!-- Trust ladder -->
   <section class="section-light">
     <div class="container">
-      <div class="section-label" data-i18n="desktop.trust_label">Trust ladder</div>
-      <h2 class="section-title" data-i18n="desktop.trust_title">Five honest tiers</h2>
+      <div class="section-label" data-i18n="desktop.trust_label">Escalera de confianza</div>
+      <h2 class="section-title" data-i18n="desktop.trust_title">Cinco niveles honestos</h2>
       <p class="section-desc" data-i18n="desktop.trust_desc">
-        A signature is only as trustworthy as the identity verification behind it. The Station surfaces an explicit
-        trust tier on every credential it issues, so verifiers and counterparties know exactly what evidence the
-        signer presented.
+        Una firma es tan confiable como la verificación de identidad detrás de ella. Station muestra un nivel de
+        confianza explícito en cada credencial que emite, para que verificadores y contrapartes sepan exactamente
+        qué evidencia presentó el firmante.
       </p>
 
       <div class="grid-3">
         <div class="card">
-          <h3>A+ &nbsp;<small style="color: #16a34a;">Smart card</small></h3>
-          <p data-i18n="desktop.trust_aplus_desc">Costa Rica Firma Digital smart card (PKCS#11). Qualified electronic signature recognized under Ley 8454.</p>
+          <h3>A+ &nbsp;<small style="color: #16a34a;">Tarjeta inteligente</small></h3>
+          <p data-i18n="desktop.trust_aplus_desc">Tarjeta inteligente de Firma Digital de Costa Rica (PKCS#11). Firma electrónica cualificada reconocida bajo la Ley 8454.</p>
         </div>
         <div class="card">
-          <h3>A &nbsp;<small style="color: #16a34a;">Full KYC</small></h3>
-          <p data-i18n="desktop.trust_a_desc">Cedula scan + Padron Electoral + facial recognition + liveness proof + Firma Digital seal.</p>
+          <h3>A &nbsp;<small style="color: #16a34a;">KYC completo</small></h3>
+          <p data-i18n="desktop.trust_a_desc">Escaneo de cédula + Padrón Electoral + reconocimiento facial + prueba de vivacidad + sello de Firma Digital.</p>
         </div>
         <div class="card">
-          <h3>B &nbsp;<small style="color: #2563eb;">Padron verified</small></h3>
-          <p data-i18n="desktop.trust_b_desc">Cedula scan + Padron Electoral cross-check + facial recognition + liveness proof. The default for citizen-issued credentials.</p>
+          <h3>B &nbsp;<small style="color: #2563eb;">Verificado por Padrón</small></h3>
+          <p data-i18n="desktop.trust_b_desc">Escaneo de cédula + cruce con Padrón Electoral + reconocimiento facial + prueba de vivacidad. El nivel por defecto para credenciales emitidas por ciudadanos.</p>
         </div>
         <div class="card">
-          <h3>C &nbsp;<small style="color: #d97706;">Document only</small></h3>
-          <p data-i18n="desktop.trust_c_desc">Cedula scanned and OCR'd, no Padron cross-check, no biometrics. Useful for non-binding workflows.</p>
+          <h3>C &nbsp;<small style="color: #d97706;">Solo documento</small></h3>
+          <p data-i18n="desktop.trust_c_desc">Cédula escaneada y procesada por OCR, sin cruce con Padrón, sin biometría. Útil para flujos no vinculantes.</p>
         </div>
         <div class="card">
-          <h3>D &nbsp;<small style="color: #94a3b8;">Self-declared</small></h3>
-          <p data-i18n="desktop.trust_d_desc">Holder-asserted data with no external verification. Always labeled, never silently upgraded.</p>
+          <h3>D &nbsp;<small style="color: #94a3b8;">Autodeclarado</small></h3>
+          <p data-i18n="desktop.trust_d_desc">Datos afirmados por el titular sin verificación externa. Siempre etiquetado, nunca elevado silenciosamente.</p>
         </div>
       </div>
     </div>
@@ -185,42 +239,42 @@ import Base from '../../../layouts/Base.astro'
   <!-- For auditors -->
   <section id="auditors" class="section-dark">
     <div class="container">
-      <div class="section-label" data-i18n="desktop.auditors_label">For auditors</div>
-      <h2 class="section-title" data-i18n="desktop.auditors_title">Read the code. Run the binary. File issues.</h2>
+      <div class="section-label" data-i18n="desktop.auditors_label">Para auditores</div>
+      <h2 class="section-title" data-i18n="desktop.auditors_title">Lea el código. Ejecute el binario. Abra issues.</h2>
       <p class="section-desc" data-i18n="desktop.auditors_desc">
-        Every claim on this page is backed by a public repository. If anything looks wrong, the right move is to
-        open the source — not to take our word for it.
+        Cada afirmación en esta página está respaldada por un repositorio público. Si algo le parece incorrecto, lo
+        correcto es abrir el código fuente — no confiar en nuestra palabra.
       </p>
 
       <div class="grid-3">
         <div class="card">
           <h3>attestto-desktop</h3>
-          <p>The Station itself. Vault, signer, verifier, proctor, mesh node — all in one Electron app.</p>
+          <p>Station en sí. Bóveda, firmador, verificador, supervisor, nodo mesh — todo en una sola app Electron.</p>
           <p><a href="https://github.com/Attestto-com/attestto-desktop" style="color: var(--color-accent, #22d3a8); font-weight: 600;">github.com/Attestto-com/attestto-desktop →</a></p>
         </div>
         <div class="card">
           <h3>attestto-verify</h3>
-          <p>The browser-side verification engine. Same code runs at verify.attestto.com and inside the Station.</p>
+          <p>El motor de verificación del navegador. El mismo código corre en verify.attestto.com y dentro de Station.</p>
           <p><a href="https://github.com/Attestto-com/attestto-verify" style="color: var(--color-accent, #22d3a8); font-weight: 600;">github.com/Attestto-com/attestto-verify →</a></p>
         </div>
         <div class="card">
           <h3>id-wallet-adapter</h3>
-          <p>The open wallet handoff protocol that bridges browser pages, the extension, and the Station.</p>
+          <p>El protocolo abierto de handoff de billetera que conecta páginas del navegador, la extensión y Station.</p>
           <p><a href="https://github.com/Attestto-com/id-wallet-adapter" style="color: var(--color-accent, #22d3a8); font-weight: 600;">github.com/Attestto-com/id-wallet-adapter →</a></p>
         </div>
         <div class="card">
           <h3>attestto-mesh</h3>
-          <p>The libp2p mesh node. Blind-courier transport, Solana anchoring, peer discovery.</p>
+          <p>El nodo mesh libp2p. Transporte de mensajero ciego, anclaje en Solana, descubrimiento de pares.</p>
           <p><a href="https://github.com/Attestto-com/attestto-mesh" style="color: var(--color-accent, #22d3a8); font-weight: 600;">github.com/Attestto-com/attestto-mesh →</a></p>
         </div>
         <div class="card">
           <h3>attestto-trust</h3>
-          <p>Independent public mirror of national CA roots — a reference, never a replacement for the issuing authority.</p>
+          <p>Espejo público independiente de raíces CA nacionales — una referencia, nunca un reemplazo de la autoridad emisora.</p>
           <p><a href="https://github.com/Attestto-com/attestto-trust" style="color: var(--color-accent, #22d3a8); font-weight: 600;">github.com/Attestto-com/attestto-trust →</a></p>
         </div>
         <div class="card">
           <h3>SECURITY.md</h3>
-          <p>Coordinated disclosure for any vulnerability you find. We acknowledge every report, in writing, with a tracking ID.</p>
+          <p>Divulgación coordinada para cualquier vulnerabilidad que encuentre. Acusamos recibo de cada reporte, por escrito, con un ID de rastreo.</p>
           <p><a href="mailto:security@attestto.com" style="color: var(--color-accent, #22d3a8); font-weight: 600;">security@attestto.com →</a></p>
         </div>
       </div>
@@ -230,16 +284,16 @@ import Base from '../../../layouts/Base.astro'
   <!-- CTA -->
   <section id="contact" class="section-light cta-center">
     <div class="container">
-      <div class="section-label" data-i18n="desktop.cta_label">Get the Station</div>
-      <h2 class="section-title" data-i18n="desktop.cta_title">Run sovereign identity on your own desktop</h2>
+      <div class="section-label" data-i18n="desktop.cta_label">Obtenga Station</div>
+      <h2 class="section-title" data-i18n="desktop.cta_title">Ejecute identidad soberana en su propio escritorio</h2>
       <p class="section-desc" data-i18n="desktop.cta_desc">
-        The Station is in early access for professionals, institutions, and auditors. Tell us who you are and what
-        you would use it for, and we will get you a build that fits your jurisdiction.
+        Station está en acceso anticipado para profesionales, instituciones y auditores. Cuéntenos quién es usted y
+        para qué lo usaría, y le enviaremos un build que se ajuste a su jurisdicción.
       </p>
-      <a href="mailto:open@attestto.com?subject=Ark%20Station%20%E2%80%94%20early%20access" class="btn btn-primary" data-i18n="desktop.cta_btn">Request early access</a>
+      <a href="mailto:open@attestto.com?subject=Ark%20Station%20%E2%80%94%20acceso%20anticipado" class="btn btn-primary" data-i18n="desktop.cta_btn">Solicitar acceso anticipado</a>
       <div class="cta-links">
-        <a href="/ark">Back to Ark overview</a>
-        <a href="https://github.com/Attestto-com/attestto-desktop">Source code</a>
+        <a href="/es/ark">Volver al resumen de Ark</a>
+        <a href="https://github.com/Attestto-com/attestto-desktop">Código fuente</a>
       </div>
     </div>
   </section>

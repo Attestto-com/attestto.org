@@ -1,331 +1,381 @@
 ---
 import Base from '../../../layouts/Base.astro'
+
+const structuredData = [
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Arquitectura Attestto — Infraestructura Soberana de Identidad Digital",
+    "url": "https://attestto.org/es/ark",
+    "description": "La arquitectura completa para identidad digital soberana. Station, Web Extension, Mesh, Ceremony, Trust.",
+    "inLanguage": "es"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Que es la arquitectura de Attestto?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "La arquitectura de Attestto tiene cinco pilares: Station (app de escritorio con vault, firmador, verificador, nodo mesh), Web Extension (verificacion de certificados a nivel de navegador), Mesh (red peer-to-peer de verificacion de credenciales), Ceremony (gobernanza de llaves CA con Shamir secret sharing) y Trust (almacen de confianza PKI multi-pais)."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Attestto requiere un servidor central?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. Attestto usa una red mesh peer-to-peer donde cada nodo puede verificar credenciales de forma independiente, incluso sin conexion. No hay un servidor central que almacene tus datos o controle el acceso. Los timestamps criptograficos se anclan en un ledger publico para auditabilidad."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Que es la escalera de confianza de Attestto?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "La escalera de confianza define cuatro niveles de verificacion de identidad: C (auto-declarado), B (verificado con documento de identidad gubernamental), A+ (credencial profesional verificada) y A (atestacion institucional). Cada nivel desbloquea diferentes capacidades y tipos de credenciales."
+        }
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Attestto", "item": "https://attestto.org/es" },
+      { "@type": "ListItem", "position": 2, "name": "Arquitectura", "item": "https://attestto.org/es/ark" }
+    ]
+  }
+]
 ---
 
 <Base
-  title="Attestto Open · Ark — Sovereign Digital Identity Infrastructure"
-  description="The complete architecture for sovereign digital identity. Station, Web Extension, Mesh, Ceremony, Trust — everything an institution needs to issue, verify, and govern verifiable credentials."
+  structuredData={structuredData}
+  title="Attestto Open · Ark — Infraestructura Soberana de Identidad Digital"
+  description="La arquitectura completa para identidad digital soberana. Station, Web Extension, Mesh, Ceremony, Trust — todo lo que una institucion necesita para emitir, verificar y gobernar credenciales verificables."
   canonicalPath="/es/ark"
-  ogTitle="Attestto Open · Ark — Sovereign Digital Identity Infrastructure"
-  ogDescription="The complete architecture for sovereign digital identity. Desktop verification, mobile credentials, P2P mesh, CA key ceremonies, and trust governance."
+  ogTitle="Attestto Open · Ark — Infraestructura Soberana de Identidad Digital"
+  ogDescription="La arquitectura completa para identidad digital soberana. Verificacion de escritorio, credenciales moviles, mesh P2P, ceremonias de llaves CA y gobernanza de confianza."
   navVariant="default"
   footerVariant="default"
   lang="es"
   footerNotes={[
-    'PKI trust data sourced from <a href="https://trust.attestto.com">trust.attestto.com</a> — independent public mirror, not an official government publication.',
-    'Domain names listed are held by Attestto as governance anchors; institution-specific domains will transfer to respective bodies upon formal agreements.',
+    'Datos de confianza PKI provienen de <a href="https://trust.attestto.com">trust.attestto.com</a> — espejo publico independiente, no una publicacion oficial del gobierno.',
+    'Los nombres de dominio listados son retenidos por Attestto como anclas de gobernanza; los dominios especificos de cada institucion se transferiran a los entes respectivos al formalizarse los acuerdos.',
   ]}
 >
   <Fragment slot="head">
     <meta property="og:locale:alternate" content="en_US" />
-    <meta name="keywords" content="arquitectura de identidad, identidad soberana, verificación de escritorio, mesh P2P, ceremonia de claves CA, gobernanza de confianza, credenciales verificables, DID, código abierto, Attestto Ark" />
+    <meta name="keywords" content="arquitectura de identidad, identidad soberana, verificacion de escritorio, mesh P2P, ceremonia de llaves CA, gobernanza de confianza, credenciales verificables, DID, codigo abierto, Attestto Ark" />
   </Fragment>
 
   <!-- Hero (dark) -->
   <section class="hero">
     <div class="container">
       <div class="hero-text">
-        <h1><span data-i18n="ark.hero_title_1">Sovereign digital identity</span> <span data-i18n="ark.hero_title_3"></span> <em data-i18n="ark.hero_title_2">infrastructure</em></h1>
-        <p class="lead" data-i18n="ark.lead">The infrastructure for issuing, verifying, and governing verifiable credentials — open source, sovereign by design, and built so any institution can participate in the trust root. No single point of failure, no single point of control.</p>
+        <h1><span data-i18n="ark.hero_title_1">Infraestructura soberana</span> <span data-i18n="ark.hero_title_3"></span> <em data-i18n="ark.hero_title_2">de identidad digital</em></h1>
+        <p class="lead" data-i18n="ark.lead">La infraestructura para emitir, verificar y gobernar credenciales verificables — codigo abierto, soberana por diseno, y construida para que cualquier institucion participe en la raiz de confianza. Sin punto unico de falla. Sin punto unico de control.</p>
         <div class="hero-actions">
-          <a href="#contact" class="btn btn-primary" data-i18n="ark.btn_board">Get in touch</a>
-          <a href="#components" class="btn btn-secondary" data-i18n="ark.btn_explore">Explore the architecture</a>
+          <a href="#contact" class="btn btn-primary" data-i18n="ark.btn_board">Contactanos</a>
+          <a href="#components" class="btn btn-secondary" data-i18n="ark.btn_explore">Explorar la arquitectura</a>
         </div>
       </div>
       <div class="hero-layers">
         <div class="hero-layer">
           <span class="hero-layer-num">01</span>
           <span class="hero-layer-label" data-i18n="ark.station_title">Station</span>
-          <span class="hero-layer-desc" data-i18n="ark.hero_station_desc">Verify, sign, and safeguard your documents — all on your own computer. Nothing leaves your device unless you decide.</span>
+          <span class="hero-layer-desc" data-i18n="ark.hero_station_desc">Verifica, firma y resguarda tus documentos — todo en tu propia computadora. Nada sale de tu equipo a menos que vos lo decidas.</span>
         </div>
         <div class="hero-layer">
           <span class="hero-layer-num">02</span>
           <span class="hero-layer-label" data-i18n="ark.ext_title">Web Extension</span>
-          <span class="hero-layer-desc" data-i18n="ark.hero_ext_desc">Log in to any website with no username and no password, and sign documents with one click — your data stays private, your accounts stay yours.</span>
+          <span class="hero-layer-desc" data-i18n="ark.hero_ext_desc">Inicia sesion en cualquier sitio web sin usuario ni contrasena y firma documentos con un clic — tus datos privados, tus cuentas tuyas.</span>
         </div>
         <div class="hero-layer">
           <span class="hero-layer-num">03</span>
           <span class="hero-layer-label" data-i18n="ark.mesh_title">Mesh</span>
-          <span class="hero-layer-desc" data-i18n="ark.hero_mesh_desc">Stations, extensions, and mobile apps can join a shared, encrypted network — your data lives across the community, not on a single server.</span>
+          <span class="hero-layer-desc" data-i18n="ark.hero_mesh_desc">Stations, extensiones y apps moviles pueden unirse a una red compartida y cifrada — tus datos viven en la comunidad, no en un solo servidor.</span>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Citizen Rights Principle (manifesto callout) -->
+  <!-- Principio de Derechos Ciudadanos (callout manifiesto) -->
   <section class="section-light rights-callout">
     <div class="container">
       <div class="rights-callout-badge">
         <span class="rights-callout-dot"></span>
-        <span data-i18n="ark.rights_label">A founding principle</span>
+        <span data-i18n="ark.rights_label">Un principio fundacional</span>
       </div>
-      <h2 data-i18n="ark.rights_title">Free for citizens. Always.</h2>
-      <p data-i18n="ark.rights_desc">Identity, signing, anchoring, recovery, and verification are citizen rights — not services. They are free forever for every Costa Rican, and for every human Ark reaches. Commerce pays for the network so citizens never have to. No premium tiers. No paywalls. No exceptions.</p>
+      <h2 data-i18n="ark.rights_title">Gratis para los ciudadanos. Siempre.</h2>
+      <p data-i18n="ark.rights_desc">Identidad, firma, anclaje, recuperacion y verificacion son derechos ciudadanos — no servicios. Son gratis para siempre, para cada persona a la que Ark llegue, en cada pais donde opere. El comercio financia la red para que los ciudadanos nunca tengan que pagar. Sin niveles premium. Sin barreras. Sin excepciones.</p>
     </div>
   </section>
 
   <!-- Personas (dark) -->
   <section id="who" class="section-dark">
     <div class="container">
-      <div class="section-label" data-i18n="ark.who_label">Who is this for</div>
-      <h2 class="section-title" data-i18n="ark.who_title">Who this is for</h2>
-      <p class="section-desc" data-i18n="ark.who_desc">Ark is open infrastructure offered to the institutions, professionals, and developers who have to make sovereign digital identity real. Find the role that fits you.</p>
+      <div class="section-label" data-i18n="ark.who_label">Para quien es esto</div>
+      <h2 class="section-title" data-i18n="ark.who_title">Para quien es esto</h2>
+      <p class="section-desc" data-i18n="ark.who_desc">Ark es infraestructura viva ofrecida a las instituciones, profesionales y desarrolladores que tienen que hacer realidad la identidad digital soberana. Encuentra el rol que te corresponde.</p>
       <div class="persona-grid">
         <div class="persona-card">
-          <span class="persona-tag" data-i18n="ark.persona1_tag">Government</span>
-          <h3 data-i18n="ark.persona1_title">Regulator or public institution</h3>
-          <p data-i18n="ark.persona1_desc">National regulators and public institutions. Evaluate the architecture, request a briefing, and explore institutional participation.</p>
-          <a class="persona-cta" href="mailto:open@attestto.com?subject=Ark%20%E2%80%94%20Institutional%20briefing" data-i18n="ark.persona1_cta">Request institutional briefing &rarr;</a>
+          <span class="persona-tag" data-i18n="ark.persona1_tag">Gobierno</span>
+          <h3 data-i18n="ark.persona1_title">Regulador o institucion publica</h3>
+          <p data-i18n="ark.persona1_desc">Reguladores nacionales e instituciones publicas. Evalua la arquitectura, solicita un briefing y explora la participacion institucional.</p>
+          <a class="persona-cta" href="mailto:open@attestto.com?subject=Ark%20%E2%80%94%20Briefing%20institucional" data-i18n="ark.persona1_cta">Solicitar briefing institucional &rarr;</a>
         </div>
         <div class="persona-card">
-          <span class="persona-tag" data-i18n="ark.persona2_tag">Notary &middot; Lawyer &middot; Accountant</span>
-          <h3 data-i18n="ark.persona2_title">Daily Firma Digital user</h3>
-          <p data-i18n="ark.persona2_desc">If you live with the "signature validity unknown" red banner every day, Station is built for you. Verify CR-signed PDFs natively.</p>
-          <a class="persona-cta" href="mailto:open@attestto.com?subject=Ark%20%E2%80%94%20Station%20for%20professionals" data-i18n="ark.persona2_cta">Get early access to Station &rarr;</a>
+          <span class="persona-tag" data-i18n="ark.persona2_tag">Notario &middot; Abogado &middot; Contador</span>
+          <h3 data-i18n="ark.persona2_title">Usuario diario de Firma Digital</h3>
+          <p data-i18n="ark.persona2_desc">Si convivis todos los dias con el banner rojo "validez de firma desconocida", Station esta hecho para vos. Verifica PDFs firmados con CR Firma Digital de forma nativa.</p>
+          <a class="persona-cta" href="mailto:open@attestto.com?subject=Ark%20%E2%80%94%20Station%20para%20profesionales" data-i18n="ark.persona2_cta">Acceso anticipado a Station &rarr;</a>
         </div>
         <div class="persona-card">
-          <span class="persona-tag" data-i18n="ark.persona3_tag">Institution</span>
-          <h3 data-i18n="ark.persona3_title">Bank, insurer, university, KYC operator</h3>
-          <p data-i18n="ark.persona3_desc">Run a pilot on a real onboarding or signing flow. Issue verifiable credentials your counterparties can verify offline.</p>
-          <a class="persona-cta" href="mailto:open@attestto.com?subject=Ark%20%E2%80%94%20Institutional%20pilot" data-i18n="ark.persona3_cta">Propose a pilot &rarr;</a>
+          <span class="persona-tag" data-i18n="ark.persona3_tag">Institucion</span>
+          <h3 data-i18n="ark.persona3_title">Banco, aseguradora, universidad, operador KYC</h3>
+          <p data-i18n="ark.persona3_desc">Corré un piloto sobre un flujo real de onboarding o firma. Emiti credenciales verificables que tus contrapartes puedan validar offline.</p>
+          <a class="persona-cta" href="mailto:open@attestto.com?subject=Ark%20%E2%80%94%20Piloto%20institucional" data-i18n="ark.persona3_cta">Proponer un piloto &rarr;</a>
         </div>
         <div class="persona-card">
-          <span class="persona-tag" data-i18n="ark.persona4_tag">Developer</span>
-          <h3 data-i18n="ark.persona4_title">Open source contributor</h3>
-          <p data-i18n="ark.persona4_desc">Every component is open source. Read the code, file issues, ship a module, fork a country deployment.</p>
-          <a class="persona-cta" href="https://github.com/Attestto-com" data-i18n="ark.persona4_cta">Browse the repos on GitHub &rarr;</a>
+          <span class="persona-tag" data-i18n="ark.persona4_tag">Desarrollador</span>
+          <h3 data-i18n="ark.persona4_title">Contribuidor open source</h3>
+          <p data-i18n="ark.persona4_desc">Cada componente es codigo abierto. Leé el codigo, abrí issues, manda un modulo, forkeá un despliegue de pais.</p>
+          <a class="persona-cta" href="https://github.com/Attestto-com" data-i18n="ark.persona4_cta">Ver los repos en GitHub &rarr;</a>
         </div>
         <div class="persona-card">
-          <span class="persona-tag" data-i18n="ark.persona5_tag">LATAM partner</span>
-          <h3 data-i18n="ark.persona5_title">Operator outside Costa Rica</h3>
-          <p data-i18n="ark.persona5_desc">Stand up a sovereign CA in your jurisdiction with your own shareholders and your own ceremony. The architecture is one-per-country by design.</p>
-          <a class="persona-cta" href="mailto:open@attestto.com?subject=Ark%20%E2%80%94%20Country%20deployment" data-i18n="ark.persona5_cta">Deploy in your country &rarr;</a>
+          <span class="persona-tag" data-i18n="ark.persona5_tag">Aliado LATAM</span>
+          <h3 data-i18n="ark.persona5_title">Operador fuera de Costa Rica</h3>
+          <p data-i18n="ark.persona5_desc">Levanta una CA soberana en tu jurisdiccion con tus propios accionistas y tu propia ceremonia. La arquitectura es uno-por-pais por diseno.</p>
+          <a class="persona-cta" href="mailto:open@attestto.com?subject=Ark%20%E2%80%94%20Despliegue%20por%20pa%C3%ADs" data-i18n="ark.persona5_cta">Desplegá en tu pais &rarr;</a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Components (light) -->
+  <!-- Componentes (light) -->
   <section id="components" class="section-light">
     <div class="container">
-      <div class="section-label" data-i18n="ark.comp_label">Components</div>
-      <h2 class="section-title" data-i18n="ark.comp_title">Five pillars, one architecture</h2>
-      <p class="section-desc" data-i18n="ark.comp_desc">Start with one component and grow into the full architecture. Onboard progressively — deploy Station today, add the Web Extension tomorrow, join the Mesh when ready. Every step adds value, and the full architecture is greater than the sum of its parts.</p>
+      <div class="section-label" data-i18n="ark.comp_label">Componentes</div>
+      <h2 class="section-title" data-i18n="ark.comp_title">Cinco pilares, una arquitectura</h2>
+      <p class="section-desc" data-i18n="ark.comp_desc">Empieza con un componente y crece hacia la infraestructura completa. Incorporacion progresiva — desplega Station hoy, agrega la Web Extension manana, unite al Mesh cuando estes listo. Cada paso suma, y el todo es mas que la suma de sus partes.</p>
       <div class="grid-3">
         <div class="card">
           <div class="card-icon">&#9633;</div>
           <h3 data-i18n="ark.station_title">Station</h3>
-          <p data-i18n="ark.station_desc">Electron desktop application. Your verification station, credential vault, and mesh network node.</p>
+          <p data-i18n="ark.station_desc">Aplicacion de escritorio Electron. Tu estacion de verificacion, boveda de credenciales y nodo de la red mesh.</p>
           <ul>
-            <li data-i18n="ark.station_l1">Document verification with OCR and census</li>
-            <li data-i18n="ark.station_l2">Encrypted local vault with xsalsa20-poly1305 + scrypt</li>
-            <li data-i18n="ark.station_l3">Electronic signature today; smartcard Digital Signature (PKCS#11) planned</li>
-            <li data-i18n="ark.station_l4">Every installation can join the mesh as a node</li>
+            <li data-i18n="ark.station_l1">Verificacion de documentos con OCR y padron</li>
+            <li data-i18n="ark.station_l2">Boveda cifrada local con xsalsa20-poly1305 + scrypt</li>
+            <li data-i18n="ark.station_l3">Firma electronica hoy; Firma Digital con tarjeta inteligente (PKCS#11) planeado</li>
+            <li data-i18n="ark.station_l4">Cada instalacion puede unirse a la red como nodo</li>
           </ul>
         </div>
         <div class="card">
           <div class="card-icon">&#9671;</div>
           <h3 data-i18n="ark.ext_title">Web Extension</h3>
-          <p data-i18n="ark.ext_desc">Browser extension that validates document signatures and CA trust in the page, surfaces a trust score, and connects to the Station for verification flows.</p>
+          <p data-i18n="ark.ext_desc">Extension de navegador que valida firmas de documentos y confianza CA en la pagina, muestra un puntaje de confianza y se conecta a Station para flujos de verificacion.</p>
           <ul>
-            <li data-i18n="ark.ext_l1">Client-side certificate validation</li>
-            <li data-i18n="ark.ext_l2">Trust score surfaced in the browser</li>
-            <li data-i18n="ark.ext_l3">Wallet adapter discovery for signing</li>
-            <li data-i18n="ark.ext_l4">Bridges browser pages to the Station</li>
+            <li data-i18n="ark.ext_l1">Validacion de certificados del lado del cliente</li>
+            <li data-i18n="ark.ext_l2">Puntaje de confianza visible en el navegador</li>
+            <li data-i18n="ark.ext_l3">Descubrimiento de wallet adapter para firma</li>
+            <li data-i18n="ark.ext_l4">Conecta paginas del navegador con Station</li>
           </ul>
         </div>
         <div class="card">
           <div class="card-icon">&#8857;</div>
           <h3 data-i18n="ark.mesh_title">Mesh</h3>
-          <p data-i18n="ark.mesh_desc">Encrypted P2P network over libp2p. State synchronization between local devices and national nodes without a central server.</p>
+          <p data-i18n="ark.mesh_desc">Red P2P cifrada sobre libp2p. Sincronizacion de estado entre dispositivos locales y nodos nacionales sin servidor central.</p>
           <ul>
-            <li data-i18n="ark.mesh_l1">Blind Courier principle — nodes can't read the data they carry</li>
-            <li data-i18n="ark.mesh_l2">Compact per-citizen footprint</li>
-            <li data-i18n="ark.mesh_l3">Works offline, syncs when connected</li>
-            <li data-i18n="ark.mesh_l4">Cryptographic anchoring on a public ledger</li>
+            <li data-i18n="ark.mesh_l1">Principio del Courier Ciego — los nodos no pueden leer los datos que transportan</li>
+            <li data-i18n="ark.mesh_l2">Huella compacta por ciudadano</li>
+            <li data-i18n="ark.mesh_l3">Funciona offline, sincroniza cuando conecta</li>
+            <li data-i18n="ark.mesh_l4">Anclaje criptografico en ledger publico</li>
           </ul>
         </div>
         <div class="card">
           <div class="card-icon">&#9881;</div>
           <h3 data-i18n="ark.ceremony_title">Ceremony</h3>
-          <p data-i18n="ark.ceremony_desc">Sovereign appliance for CA key ceremonies. Air-gapped Linux laptop, Shamir share distribution via local mesh.</p>
+          <p data-i18n="ark.ceremony_desc">Appliance soberano para ceremonias de llaves CA. Laptop air-gapped con Linux, distribucion de fragmentos Shamir por mesh local.</p>
           <ul>
-            <li data-i18n="ark.ceremony_l1">Clean Linux laptop (live USB)</li>
-            <li data-i18n="ark.ceremony_l2">Key is split, original is destroyed</li>
-            <li data-i18n="ark.ceremony_l3">vLEI verification of shareholders (planned)</li>
-            <li data-i18n="ark.ceremony_l4">PKCS#11 support per jurisdiction (planned)</li>
+            <li data-i18n="ark.ceremony_l1">Laptop Linux limpio (live USB)</li>
+            <li data-i18n="ark.ceremony_l2">La llave se divide, la original se destruye</li>
+            <li data-i18n="ark.ceremony_l3">Verificacion vLEI de accionistas (planeado)</li>
+            <li data-i18n="ark.ceremony_l4">Soporte PKCS#11 por jurisdiccion (planeado)</li>
           </ul>
         </div>
         <div class="card">
           <div class="card-icon">&#9741;</div>
           <h3 data-i18n="ark.trust_title">Trust</h3>
-          <p data-i18n="ark.trust_desc">CA trust framework with Shamir shareholders, public on-chain transparency, and governance distributed across institutions.</p>
+          <p data-i18n="ark.trust_desc">Marco de confianza CA con accionistas Shamir, transparencia on-chain y gobernanza distribuida entre instituciones.</p>
           <ul>
-            <li data-i18n="ark.trust_l1">CA key split: 2-of-3 today, extensible to 3-of-5 with institutional partners</li>
-            <li data-i18n="ark.trust_l2">Trust root at vault.attestto.sol</li>
-            <li data-i18n="ark.trust_l3">Auditable blockchain transparency</li>
-            <li data-i18n="ark.trust_l4">No actor has unilateral control</li>
+            <li data-i18n="ark.trust_l1">Llave CA dividida: 2-de-3 hoy, extensible a 3-de-5 con socios institucionales</li>
+            <li data-i18n="ark.trust_l2">Raiz de confianza en vault.attestto.sol</li>
+            <li data-i18n="ark.trust_l3">Transparencia auditable en blockchain</li>
+            <li data-i18n="ark.trust_l4">Ningun actor tiene control unilateral</li>
           </ul>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- How it works (dark) -->
+  <!-- Como funciona (dark) -->
   <section id="how" class="section-dark">
     <div class="container">
-      <div class="section-label" data-i18n="ark.how_label">How it works</div>
-      <h2 class="section-title" data-i18n="ark.how_title">Desktop to mobile verification</h2>
-      <p class="section-desc" data-i18n="ark.how_desc">Desktop and phone work together over local WiFi. Images and biometric data never leave your network — the connection is direct, no servers or cloud.</p>
+      <div class="section-label" data-i18n="ark.how_label">Como funciona</div>
+      <h2 class="section-title" data-i18n="ark.how_title">Verificacion de escritorio a movil</h2>
+      <p class="section-desc" data-i18n="ark.how_desc">El escritorio y el telefono trabajan juntos sobre WiFi local. Las imagenes y datos biometricos nunca salen de tu red — la conexion es directa, sin servidores ni nube.</p>
       <div class="grid-3">
         <div class="card">
           <div class="card-icon">1</div>
-          <h3 data-i18n="ark.step1_title">Open Station on your desktop</h3>
-          <p data-i18n="ark.step1_desc">Select the document type to verify. Station generates a unique session QR code.</p>
+          <h3 data-i18n="ark.step1_title">Abrí Station en tu escritorio</h3>
+          <p data-i18n="ark.step1_desc">Selecciona el tipo de documento a verificar. Station genera un codigo QR unico para la sesion.</p>
         </div>
         <div class="card">
           <div class="card-icon">2</div>
-          <h3 data-i18n="ark.step2_title">Scan the QR with your phone</h3>
-          <p data-i18n="ark.step2_desc">The QR opens the mobile app with the WebSocket connection preconfigured. Your phone connects directly to your desktop.</p>
+          <h3 data-i18n="ark.step2_title">Escaneá el QR con tu telefono</h3>
+          <p data-i18n="ark.step2_desc">El QR abre la app movil con la conexion WebSocket preconfigurada. Tu telefono se conecta directamente a tu escritorio.</p>
         </div>
         <div class="card">
           <div class="card-icon">3</div>
-          <h3 data-i18n="ark.step3_title">Capture document and selfie</h3>
-          <p data-i18n="ark.step3_desc">Front, back of document, and selfie with liveness proof (blink detection). Everything transmits in real-time to the desktop.</p>
+          <h3 data-i18n="ark.step3_title">Captura documento y selfie</h3>
+          <p data-i18n="ark.step3_desc">Frente, reverso del documento y selfie con prueba de vida (deteccion de parpadeo). Todo se transmite en tiempo real al escritorio.</p>
         </div>
         <div class="card">
           <div class="card-icon">4</div>
-          <h3 data-i18n="ark.step4_title">Automatic processing</h3>
-          <p data-i18n="ark.step4_desc">Station runs OCR, extracts MRZ data, validates the document, and generates the verifiable credential.</p>
+          <h3 data-i18n="ark.step4_title">Procesamiento automatico</h3>
+          <p data-i18n="ark.step4_desc">Station ejecuta OCR, extrae datos del MRZ, valida el documento y genera la credencial verificable.</p>
         </div>
         <div class="card">
           <div class="card-icon">5</div>
-          <h3 data-i18n="ark.step5_title">Credential in your vault</h3>
-          <p data-i18n="ark.step5_desc">The credential is stored encrypted in the local vault. Sign it with Digital Signature, anchor it on a public ledger, or share it via verifiable presentation.</p>
+          <h3 data-i18n="ark.step5_title">Credencial en tu boveda</h3>
+          <p data-i18n="ark.step5_desc">La credencial se almacena cifrada en la boveda local. Firmala con Firma Digital, anclala en un ledger publico o compartela via presentacion verificable.</p>
         </div>
       </div>
 
       <div class="arch-subsection">
         <div>
-          <h3 class="arch-subsection-title" data-i18n="ark.arch_title">Local network architecture</h3>
-          <p class="arch-subsection-desc" data-i18n="ark.arch_desc">The connection between desktop and mobile is direct over local WiFi. No intermediary servers, no cloud, no internet dependency.</p>
-          <p class="arch-note" data-i18n="ark.arch_note">Privacy is not a policy — it is a mathematical guarantee.</p>
+          <h3 class="arch-subsection-title" data-i18n="ark.arch_title">Arquitectura de red local</h3>
+          <p class="arch-subsection-desc" data-i18n="ark.arch_desc">La conexion entre escritorio y movil es directa por WiFi local. No hay servidores intermedios, no hay nube, no hay dependencia de internet.</p>
+          <p class="arch-note" data-i18n="ark.arch_note">Privacidad no es una politica — es una garantia matematica.</p>
         </div>
         <div class="arch-layers">
           <div class="arch-layer">
             <span class="arch-layer-num">&#9633;</span>
             <span class="arch-layer-name">Station</span>
-            <span class="arch-layer-desc">WebSocket + OCR + Census + Vault</span>
+            <span class="arch-layer-desc">WebSocket + OCR + Padron + Boveda</span>
           </div>
           <div class="arch-layer">
             <span class="arch-layer-num">&#8597;</span>
-            <span class="arch-layer-name">Local WiFi</span>
-            <span class="arch-layer-desc">No internet, direct connection</span>
+            <span class="arch-layer-name">WiFi local</span>
+            <span class="arch-layer-desc">Sin internet, conexion directa</span>
           </div>
           <div class="arch-layer">
             <span class="arch-layer-num">&#9671;</span>
             <span class="arch-layer-name">Web Extension</span>
-            <span class="arch-layer-desc">Camera + Liveness + VCs</span>
+            <span class="arch-layer-desc">Camara + Prueba de vida + VCs</span>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- CA Governance (light) -->
+  <!-- Gobernanza CA (light) -->
   <section id="governance" class="section-light">
     <div class="container">
-      <div class="section-label" data-i18n="ark.gov_label">CA Governance</div>
-      <h2 class="section-title" data-i18n="ark.gov_title">Distributed trust by design</h2>
-      <p class="section-desc" data-i18n="ark.gov_desc">The Certificate Authority private key is split using Shamir's Secret Sharing. No individual actor — including Attestto — can sign unilaterally.</p>
+      <div class="section-label" data-i18n="ark.gov_label">Gobernanza CA</div>
+      <h2 class="section-title" data-i18n="ark.gov_title">Confianza distribuida por diseno</h2>
+      <p class="section-desc" data-i18n="ark.gov_desc">La llave privada de la Autoridad Certificadora se divide usando Shamir's Secret Sharing. Ningun actor individual — incluyendo Attestto — puede firmar unilateralmente.</p>
       <div class="grid-3">
         <div class="card">
           <div class="card-icon">&#8902;</div>
           <h3 data-i18n="ark.sss_title">Shamir's Secret Sharing</h3>
-          <p data-i18n="ark.sss_desc">The CA Ed25519 key is generated in an air-gapped ceremony and split into N shares. A threshold K is required to reconstruct it. The original key is destroyed.</p>
+          <p data-i18n="ark.sss_desc">La llave CA Ed25519 se genera en una ceremonia air-gapped y se divide en N fragmentos. Se requiere un umbral K para reconstruirla. La llave original se destruye.</p>
           <div class="detail-box">
-            <div><span class="hl">Phase 1A (current):</span> 2-of-3 founder-only</div>
-            <div><span class="hl">Phase 1B:</span> reshare to 3-of-5 as institutional partners join</div>
-            <div><span class="hl">Phase 2+:</span> threshold grows with the shareholder set</div>
+            <div><span class="hl">Fase 1A (actual):</span> 2-de-3 solo fundadores</div>
+            <div><span class="hl">Fase 1B:</span> redistribucion a 3-de-5 al incorporar socios institucionales</div>
+            <div><span class="hl">Fase 2+:</span> el umbral crece con el conjunto de accionistas</div>
           </div>
         </div>
         <div class="card">
           <div class="card-icon">&#9878;</div>
-          <h3 data-i18n="ark.shareholders_title">Institutional shareholders</h3>
-          <p data-i18n="ark.shareholders_desc">Phase 1A is founder-only with all shares held by Attestto. Institutional shareholder positions are reserved for Phase 1B once formal partners join. Each share alone is useless — only when the threshold gathers can the key be temporarily reconstructed.</p>
+          <h3 data-i18n="ark.shareholders_title">Accionistas institucionales</h3>
+          <p data-i18n="ark.shareholders_desc">La Fase 1A es solo para fundadores con todos los fragmentos en poder de Attestto. Las posiciones de accionistas institucionales estan reservadas para la Fase 1B cuando se incorporen socios formales. Cada fragmento solo es inutil — solo cuando el umbral se reune, la llave se reconstruye temporalmente.</p>
           <div class="detail-box">
-            <div><span class="hl">Attestto</span> — Technical operator (Phase 1A — current)</div>
-            <div><span class="hl">Reserved</span> — Institutional partner positions (Phase 1B)</div>
-            <div><span class="hl">Reserved</span> — Independent auditor position (Phase 1B)</div>
+            <div><span class="hl">Attestto</span> — Operador tecnico (Fase 1A — actual)</div>
+            <div><span class="hl">Reservado</span> — Posiciones de socios institucionales (Fase 1B)</div>
+            <div><span class="hl">Reservado</span> — Posicion de auditor independiente (Fase 1B)</div>
           </div>
         </div>
         <div class="card">
           <div class="card-icon">&#9830;</div>
-          <h3 data-i18n="ark.onchain_title">Public attestation log</h3>
-          <p data-i18n="ark.onchain_desc">Ark is chain-agnostic by design. The W3C VC, W3C DID, GLEIF vLEI, and eIDAS standards do not depend on any single ledger. CA events are recorded as public on-chain attestations — providing sovereign naming, sub-second public commitment, and a per-event cost compatible with institutional rollout. Each jurisdiction can choose its anchoring layer as institutional partners require; credentials issued under one anchor remain verifiable under another.</p>
+          <h3 data-i18n="ark.onchain_title">Registro publico de atestaciones</h3>
+          <p data-i18n="ark.onchain_desc">Ark es agnostico de cadena por diseno. Los estandares W3C VC, W3C DID, GLEIF vLEI y eIDAS no dependen de ningun ledger en particular. Los eventos CA se registran como atestaciones publicas on-chain — brindando nombramiento soberano, compromiso publico sub-segundo y un costo por evento compatible con despliegues institucionales. Cada jurisdiccion puede elegir su capa de anclaje segun lo requieran sus socios institucionales; las credenciales emitidas bajo un ancla siguen siendo verificables bajo otra.</p>
           <div class="detail-box">
-            <div><span class="hl">Root:</span> vault.attestto.sol</div>
-            <div><span class="hl">Record:</span> Each CA event → on-chain attestation (planned)</div>
-            <div><span class="hl">Verification:</span> Public and open</div>
+            <div><span class="hl">Raiz:</span> vault.attestto.sol</div>
+            <div><span class="hl">Registro:</span> Cada evento CA &rarr; atestacion on-chain (planeado)</div>
+            <div><span class="hl">Verificacion:</span> Publica y abierta</div>
           </div>
         </div>
       </div>
 
       <div class="arch-subsection">
         <div>
-          <h3 class="arch-subsection-title" data-i18n="ark.vlei_title">vLEI Verification</h3>
-          <p class="arch-subsection-desc" data-i18n-html="ark.vlei_desc">The framework requires each shareholder to hold a verified LEI (Legal Entity Identifier) and a vLEI issued by <a href="https://www.gleif.org/en/vlei/introducing-the-vlei" target="_blank" rel="noopener">GLEIF</a> before joining a ceremony, so they legitimately represent their institution. On-chain verification path is planned.</p>
+          <h3 class="arch-subsection-title" data-i18n="ark.vlei_title">Verificacion vLEI</h3>
+          <p class="arch-subsection-desc" data-i18n-html="ark.vlei_desc">El marco requiere que cada accionista posea un LEI (Legal Entity Identifier) verificado y un vLEI emitido por <a href="https://www.gleif.org/en/vlei/introducing-the-vlei" target="_blank" rel="noopener">GLEIF</a> antes de participar en una ceremonia, para que representen legitimamente a su institucion. La via de verificacion on-chain esta planeada.</p>
         </div>
         <div>
           <div class="detail-box">
-            <div><span class="hl">Pre-requisite:</span> Active LEI + issued vLEI</div>
-            <div><span class="hl">Verification:</span> On-chain attestation (planned)</div>
-            <div><span class="hl">Standard:</span> GLEIF + ISO 17442</div>
+            <div><span class="hl">Pre-requisito:</span> LEI activo + vLEI emitido</div>
+            <div><span class="hl">Verificacion:</span> Atestacion on-chain (planeado)</div>
+            <div><span class="hl">Estandar:</span> GLEIF + ISO 17442</div>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Ceremony (dark) -->
+  <!-- Ceremonia (dark) -->
   <section id="ceremony" class="section-dark">
     <div class="container">
-      <div class="section-label" data-i18n="ark.cer_label">Key Ceremony</div>
-      <h2 class="section-title" data-i18n="ark.cer_title">Sovereign, air-gapped, verifiable</h2>
-      <p class="section-desc" data-i18n="ark.cer_desc">The CA key generation ceremony occurs in a completely isolated environment. No internet connection. The only network is an encrypted local mesh between shareholder devices.</p>
+      <div class="section-label" data-i18n="ark.cer_label">Ceremonia de llaves</div>
+      <h2 class="section-title" data-i18n="ark.cer_title">Soberano, air-gapped, verificable</h2>
+      <p class="section-desc" data-i18n="ark.cer_desc">La ceremonia de generacion de llaves CA ocurre en un ambiente completamente aislado. No hay conexion a internet. La unica red es un mesh local cifrado entre los dispositivos de los accionistas.</p>
       <div class="grid-3">
         <div class="card">
           <div class="card-icon">&#9875;</div>
-          <h3 data-i18n="ark.appliance_title">The sovereign appliance</h3>
-          <p data-i18n="ark.appliance_desc">A clean Linux laptop boots from live USB. No hard drive, no history, no external network. The ceremony software creates a private WiFi mesh to distribute Shamir shares to shareholder devices.</p>
+          <h3 data-i18n="ark.appliance_title">El appliance soberano</h3>
+          <p data-i18n="ark.appliance_desc">Un laptop Linux limpio arranca desde USB live. Sin disco duro, sin historial, sin red externa. El software de la ceremonia crea un mesh WiFi privado para distribuir los fragmentos Shamir a los dispositivos de los accionistas.</p>
           <ul>
-            <li>Linux live USB — no hard drive</li>
-            <li>Local WiFi mesh — no internet</li>
-            <li>Generate Ed25519 key pair</li>
-            <li>Split into Shamir shares</li>
-            <li>Destroy original key</li>
-            <li>Auditable, filmed ceremony</li>
+            <li>Linux live USB — sin disco duro</li>
+            <li>Mesh WiFi local — sin internet</li>
+            <li>Genera par de llaves Ed25519</li>
+            <li>Divide en fragmentos Shamir</li>
+            <li>Destruye la llave original</li>
+            <li>Ceremonia auditable y filmada</li>
           </ul>
         </div>
         <div class="card">
           <div class="card-icon">&#8634;</div>
-          <h3 data-i18n="ark.types_title">Ceremony types</h3>
-          <p data-i18n="ark.types_desc">The system supports different ceremonies according to the CA lifecycle.</p>
+          <h3 data-i18n="ark.types_title">Tipos de ceremonia</h3>
+          <p data-i18n="ark.types_desc">El sistema soporta diferentes ceremonias segun el ciclo de vida de la CA.</p>
           <div class="detail-box">
-            <div><span class="hl">Genesis:</span> First CA key generation</div>
-            <div><span class="hl">Rotation:</span> Re-split with new shareholders</div>
-            <div><span class="hl">Signing:</span> Reconstruct to sign certificates</div>
-            <div><span class="hl">Revocation:</span> Revoke compromised key</div>
+            <div><span class="hl">Genesis:</span> Primera generacion de llave CA</div>
+            <div><span class="hl">Rotacion:</span> Redistribucion con nuevos accionistas</div>
+            <div><span class="hl">Firma:</span> Reconstruccion para firmar certificados</div>
+            <div><span class="hl">Revocacion:</span> Revocar llave comprometida</div>
           </div>
         </div>
         <div class="card">
           <div class="card-icon">&#9789;</div>
-          <h3 data-i18n="ark.multi_title">Multi-jurisdiction</h3>
-          <p data-i18n="ark.multi_desc">Each country has its own electronic signature scheme. The appliance supports PKCS#11 to integrate with local signing hardware.</p>
+          <h3 data-i18n="ark.multi_title">Multi-jurisdiccion</h3>
+          <p data-i18n="ark.multi_desc">Cada pais tiene su propio esquema de firma electronica. El appliance soporta PKCS#11 para integrarse con hardware de firma local.</p>
           <div class="detail-box">
-            <div><span class="hl">Costa Rica:</span> National digital signature framework (planned)</div>
-            <div><span class="hl">Brazil:</span> National PKI infrastructure (planned)</div>
-            <div><span class="hl">Mexico:</span> Federal electronic signature (planned)</div>
+            <div><span class="hl">Costa Rica:</span> Marco nacional de firma digital (planeado)</div>
+            <div><span class="hl">Brasil:</span> Infraestructura nacional de PKI (planeado)</div>
+            <div><span class="hl">Mexico:</span> Firma electronica federal (planeado)</div>
           </div>
         </div>
       </div>
@@ -335,46 +385,46 @@ import Base from '../../../layouts/Base.astro'
   <!-- TLS (light) -->
   <section id="tls" class="section-light">
     <div class="container">
-      <div class="section-label" data-i18n="ark.tls_label">Decentralized TLS</div>
-      <h2 class="section-title" data-i18n="ark.tls_title">Four paths to the sovereign web</h2>
-      <p class="section-desc" data-i18n="ark.tls_desc">The ultimate goal: TLS certificates issued by Attestto CA recognized natively by browsers. Four parallel paths, each with a different time horizon.</p>
+      <div class="section-label" data-i18n="ark.tls_label">TLS descentralizado</div>
+      <h2 class="section-title" data-i18n="ark.tls_title">Cuatro caminos hacia la web soberana</h2>
+      <p class="section-desc" data-i18n="ark.tls_desc">El objetivo final: que los certificados TLS emitidos por Attestto CA sean reconocidos nativamente por los navegadores. Hay cuatro caminos paralelos, cada uno con diferente horizonte temporal.</p>
       <div class="timeline-item">
-        <div class="timeline-when" data-i18n="ark.tls1_when">Now</div>
+        <div class="timeline-when" data-i18n="ark.tls1_when">Ahora</div>
         <div class="timeline-content">
-          <h3 data-i18n="ark.tls1_title">Browser extension</h3>
-          <p data-i18n="ark.tls1_desc">The Attestto ID extension validates certificates client-side against vault.attestto.sol and surfaces a sovereignty trust score in the browser. Day-1 deployment, no DNS infrastructure changes.</p>
+          <h3 data-i18n="ark.tls1_title">Extension de navegador</h3>
+          <p data-i18n="ark.tls1_desc">La extension Attestto ID valida certificados del lado del cliente contra vault.attestto.sol y muestra un puntaje de confianza soberana en el navegador. Despliegue desde el dia uno, sin cambios en infraestructura DNS.</p>
         </div>
       </div>
       <div class="timeline-item">
-        <div class="timeline-when" data-i18n="ark.tls2_when">6 months</div>
+        <div class="timeline-when" data-i18n="ark.tls2_when">6 meses</div>
         <div class="timeline-content">
           <h3 data-i18n="ark.tls2_title">DANE / TLSA</h3>
-          <p data-i18n="ark.tls2_desc">Publish TLSA records in DNS pointing to Attestto CA certificates. Requires the domain to use DNSSEC. DANE validators already exist in some browsers.</p>
+          <p data-i18n="ark.tls2_desc">Publicar registros TLSA en DNS que apunten a certificados Attestto CA. Requiere que el dominio use DNSSEC. Los validadores DANE ya existen en algunos navegadores.</p>
         </div>
       </div>
       <div class="timeline-item">
-        <div class="timeline-when" data-i18n="ark.tls3_when">12 months</div>
+        <div class="timeline-when" data-i18n="ark.tls3_when">12 meses</div>
         <div class="timeline-content">
-          <h3 data-i18n="ark.tls3_title">Verification proxy</h3>
-          <p data-i18n="ark.tls3_desc">A bridging service that lets sites cross-publish their Attestto-issued certificate alongside a globally-trusted certificate, so browsers without DANE or the extension still see a valid chain while the sovereign certificate is recognized by participating clients.</p>
+          <h3 data-i18n="ark.tls3_title">Proxy de verificacion</h3>
+          <p data-i18n="ark.tls3_desc">Un servicio puente que permite a los sitios publicar su certificado emitido por Attestto junto a un certificado de confianza global, para que los navegadores sin DANE ni la extension sigan viendo una cadena valida mientras el certificado soberano es reconocido por los clientes participantes.</p>
         </div>
       </div>
       <div class="timeline-item">
-        <div class="timeline-when" data-i18n="ark.tls4_when">2-5 years</div>
+        <div class="timeline-when" data-i18n="ark.tls4_when">2-5 anos</div>
         <div class="timeline-content">
-          <h3 data-i18n="ark.tls4_title">W3C / IETF Standards</h3>
-          <p data-i18n="ark.tls4_desc">Participate in standards working groups so browsers natively recognize CA roots anchored in decentralized registries (blockchain, IPNS, decentralized naming).</p>
+          <h3 data-i18n="ark.tls4_title">Estandares W3C / IETF</h3>
+          <p data-i18n="ark.tls4_desc">Participar en grupos de trabajo para que los navegadores reconozcan nativamente raices CA ancladas en registros descentralizados (blockchain, IPNS, nombramiento descentralizado).</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Countries (dark) -->
+  <!-- Paises (dark) -->
   <section id="countries" class="section-dark">
     <div class="container">
-      <div class="section-label" data-i18n="ark.countries_label">Per country</div>
-      <h2 class="section-title" data-i18n="ark.countries_title">One CA per jurisdiction</h2>
-      <p class="section-desc" data-i18n="ark.countries_desc">Each jurisdiction operates an independent Certificate Authority, key ceremony, and governance scheme. Each is anchored as a sovereign root on a public ledger.</p>
+      <div class="section-label" data-i18n="ark.countries_label">Por pais</div>
+      <h2 class="section-title" data-i18n="ark.countries_title">Una CA por jurisdiccion</h2>
+      <p class="section-desc" data-i18n="ark.countries_desc">Cada jurisdiccion opera una Autoridad Certificadora independiente, ceremonia de llaves y esquema de gobernanza propios. Cada una se ancla como raiz soberana en un ledger publico.</p>
       <div class="grid-4">
         <div class="card country-card">
           <span class="tag country-status country-status-live" data-i18n="ark.cr_status">Beta</span>
@@ -383,44 +433,44 @@ import Base from '../../../layouts/Base.astro'
             <h3 data-i18n="ark.cr_name">Costa Rica</h3>
           </div>
           <p class="sns-tld">fi-cr<span class="tld">.sol</span> · go-cr<span class="tld">.sol</span> · sa-cr<span class="tld">.sol</span> · ed-cr<span class="tld">.sol</span> · or-cr<span class="tld">.sol</span></p>
-          <p class="country-desc" data-i18n="ark.cr_desc">A namespace per sector — finance, government, health, education, organizations — and one for each province and municipality. Designed to integrate with national census, payment infrastructure, and digital signature frameworks.</p>
+          <p class="country-desc" data-i18n="ark.cr_desc">Un namespace por sector — finanzas, gobierno, salud, educacion, organizaciones — y uno por provincia y municipio. Disenado para integrarse con padron nacional, infraestructura de pagos y marcos de firma digital.</p>
           <div class="country-meta">
             <a class="persona-cta" href="/cr" data-i18n="ark.cr_cta">Costa Rica &rarr;</a>
           </div>
         </div>
         <div class="card country-card">
-          <span class="tag country-status country-status-proposed" data-i18n="ark.br_status">Proposed</span>
+          <span class="tag country-status country-status-proposed" data-i18n="ark.br_status">Planificado</span>
           <div class="country-head">
             <span class="country-flag">&#x1F1E7;&#x1F1F7;</span>
-            <h3 data-i18n="ark.br_name">Brazil</h3>
+            <h3 data-i18n="ark.br_name">Brasil</h3>
           </div>
           <p class="sns-tld">fi-br<span class="tld">.sol</span> · go-br<span class="tld">.sol</span> · sa-br<span class="tld">.sol</span> · ed-br<span class="tld">.sol</span></p>
-          <p class="country-desc" data-i18n="ark.br_desc">A namespace per sector. CPF, CNH, digital RG. Integration with ICP-Brasil and gov.br.</p>
+          <p class="country-desc" data-i18n="ark.br_desc">Un namespace por sector. CPF, CNH, RG digital. Integracion con ICP-Brasil y gov.br.</p>
           <div class="country-meta">
-            <a class="persona-cta" href="mailto:open@attestto.com?subject=Ark%20%E2%80%94%20Brazil" data-i18n="ark.br_cta">Lead the BR deployment &rarr;</a>
+            <a class="persona-cta" href="mailto:open@attestto.com?subject=Ark%20%E2%80%94%20Brasil" data-i18n="ark.br_cta">Liderar el despliegue BR &rarr;</a>
           </div>
         </div>
         <div class="card country-card">
-          <span class="tag country-status country-status-proposed" data-i18n="ark.mx_status">Proposed</span>
+          <span class="tag country-status country-status-proposed" data-i18n="ark.mx_status">Planificado</span>
           <div class="country-head">
             <span class="country-flag">&#x1F1F2;&#x1F1FD;</span>
             <h3 data-i18n="ark.mx_name">Mexico</h3>
           </div>
           <p class="sns-tld">fi-mx<span class="tld">.sol</span> · go-mx<span class="tld">.sol</span> · sa-mx<span class="tld">.sol</span> · ed-mx<span class="tld">.sol</span></p>
-          <p class="country-desc" data-i18n="ark.mx_desc">A namespace per sector. INE, CURP, federal license. Integration with e.firma SAT.</p>
+          <p class="country-desc" data-i18n="ark.mx_desc">Un namespace por sector. INE, CURP, licencia federal. Integracion con e.firma SAT.</p>
           <div class="country-meta">
-            <a class="persona-cta" href="mailto:open@attestto.com?subject=Ark%20%E2%80%94%20Mexico" data-i18n="ark.mx_cta">Lead the MX deployment &rarr;</a>
+            <a class="persona-cta" href="mailto:open@attestto.com?subject=Ark%20%E2%80%94%20Mexico" data-i18n="ark.mx_cta">Liderar el despliegue MX &rarr;</a>
           </div>
         </div>
         <div class="card country-card country-card-placeholder">
           <div class="country-head">
             <span class="country-flag">&#x1F30E;</span>
-            <h3 data-i18n="ark.xx_name">Your country</h3>
+            <h3 data-i18n="ark.xx_name">Tu pais</h3>
           </div>
           <p class="sns-tld">fi-xx<span class="tld">.sol</span> · go-xx<span class="tld">.sol</span> · sa-xx<span class="tld">.sol</span> · ed-xx<span class="tld">.sol</span></p>
-          <p class="country-desc" data-i18n="ark.xx_desc">Each jurisdiction deploys its own sovereign CA — one namespace per sector, one per province — with its own governance and institutional shareholders.</p>
+          <p class="country-desc" data-i18n="ark.xx_desc">Cada jurisdiccion despliega su propia CA soberana — un namespace por sector, uno por provincia — con su propia gobernanza y accionistas institucionales.</p>
           <div class="country-meta">
-            <a class="persona-cta" href="mailto:open@attestto.com?subject=Ark%20%E2%80%94%20Country%20deployment" data-i18n="ark.xx_cta">Start a country deployment &rarr;</a>
+            <a class="persona-cta" href="mailto:open@attestto.com?subject=Ark%20%E2%80%94%20Despliegue%20por%20pa%C3%ADs" data-i18n="ark.xx_cta">Iniciar un despliegue por pais &rarr;</a>
           </div>
         </div>
       </div>
@@ -430,10 +480,10 @@ import Base from '../../../layouts/Base.astro'
   <!-- CTA (light) -->
   <section id="contact" class="section-light cta-center">
     <div class="container">
-      <div class="section-label" data-i18n="ark.cta_label">Participate</div>
-      <h2 class="section-title" data-i18n="ark.cta_title">Get involved</h2>
-      <p class="section-desc" data-i18n="ark.cta_desc">If any of the roles above fits you, write to us. We are looking for the institutions, professionals, and developers who want to help build sovereign digital identity in the open.</p>
-      <a href="mailto:open@attestto.com" class="btn btn-primary" data-i18n="ark.cta_btn">Contact the team</a>
+      <div class="section-label" data-i18n="ark.cta_label">Participar</div>
+      <h2 class="section-title" data-i18n="ark.cta_title">Construyamos juntos</h2>
+      <p class="section-desc" data-i18n="ark.cta_desc">Si alguno de los roles de arriba te corresponde, escribinos. Estamos buscando a las instituciones, profesionales y desarrolladores que quieran ayudar a construir identidad digital soberana de forma abierta.</p>
+      <a href="mailto:open@attestto.com" class="btn btn-primary" data-i18n="ark.cta_btn">Contactar al equipo</a>
       <div class="cta-links">
         <a href="mailto:open@attestto.com">open@attestto.com</a>
         <a href="https://attestto.com">attestto.com</a>

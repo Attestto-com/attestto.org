@@ -1,13 +1,56 @@
 ---
 import Base from '../../../layouts/Base.astro'
+
+const structuredData = [
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Programa de Mecenazgo de Attestto",
+    "url": "https://attestto.org/es/ark/patrons",
+    "inLanguage": "es",
+    "description": "Niveles de mecenazgo institucional para el despliegue de identidad digital soberana de Attestto Ark."
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "¿Qué es el Programa de Mecenazgo de Attestto?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "El Programa de Mecenazgo ofrece patrocinio institucional del despliegue de identidad digital soberana de Attestto, en la tradición de financiamiento de museos y expediciones científicas. Cuatro niveles: Mecenas Fundador, Mecenas de Sostenimiento, Mecenas de Apoyo y Socio Institucional."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿En qué se diferencia el mecenazgo de una inversión?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "El mecenazgo financia infraestructura pública sin expectativa de participación accionaria ni tokens. Los mecenas reciben reconocimiento y acceso anticipado, no retornos financieros. Esto mantiene intacto el principio de gratuidad para ciudadanos de Attestto."
+        }
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Attestto", "item": "https://attestto.org/es" },
+      { "@type": "ListItem", "position": 2, "name": "Arquitectura", "item": "https://attestto.org/es/ark" },
+      { "@type": "ListItem", "position": 3, "name": "Mecenazgo", "item": "https://attestto.org/es/ark/patrons" }
+    ]
+  }
+]
 ---
 
 <Base
-  title="Attestto Ark — Patron Program"
-  description="Institutional patronage tiers for the Attestto Ark sovereign digital identity deployment. Founding Patron, Sustaining Patron, Supporting Patron, Institutional Partner."
+  structuredData={structuredData}
+  title="Attestto Ark — Programa de Mecenazgo"
+  description="Niveles de mecenazgo institucional para el despliegue de identidad digital soberana de Attestto Ark. Mecenas Fundador, Mecenas de Sostenimiento, Mecenas de Apoyo, Socio Institucional."
   canonicalPath="/es/ark/patrons"
-  ogTitle="Attestto Ark — Patron Program"
-  ogDescription="Institutional patronage tiers for the Ark sovereign digital identity deployment."
+  ogTitle="Attestto Ark — Programa de Mecenazgo"
+  ogDescription="Niveles de mecenazgo institucional para el despliegue de identidad digital soberana de Ark."
   navVariant="default"
   footerVariant="default"
   lang="es"
@@ -16,61 +59,61 @@ import Base from '../../../layouts/Base.astro'
   <section class="hero hero-single">
     <div class="container">
       <div class="hero-text" style="max-width: 65ch;">
-        <h1>Patron Program</h1>
-        <p class="lead">Institutional patronage of the Ark sovereign digital identity deployment, in the museum and scientific-expedition tradition. Discretion is the value. Scarcity is the value.</p>
+        <h1>Programa de Mecenazgo</h1>
+        <p class="lead">Mecenazgo institucional del despliegue de identidad digital soberana de Ark, en la tradicion de museos y expediciones cientificas. La discrecion es el valor. La escasez es el valor.</p>
       </div>
     </div>
   </section>
 
   <section class="section-light">
     <div class="container">
-      <div class="section-label">Tiers</div>
-      <h2 class="section-title">Four levels of recognition</h2>
-      <p class="section-desc">Each tier carries a fixed contribution and a fixed form of recognition. There is no editorial control, no governance seat, no architectural influence, and no negotiation on price. Recognition is permanent or annual, depending on tier.</p>
+      <div class="section-label">Niveles</div>
+      <h2 class="section-title">Cuatro niveles de reconocimiento</h2>
+      <p class="section-desc">Cada nivel tiene una contribucion fija y una forma fija de reconocimiento. No hay control editorial, no hay asiento de gobernanza, no hay influencia arquitectonica y no hay negociacion de precio. El reconocimiento es permanente o anual, segun el nivel.</p>
 
       <div class="grid-3">
         <div class="card">
           <div class="card-icon">&#9733;</div>
-          <h3>Founding Patron</h3>
+          <h3>Mecenas Fundador</h3>
           <p style="font-family: var(--font-mono); font-size: 1rem; color: var(--color-accent); margin: 0.5rem 0;">USD 1,000,000</p>
-          <p>Permanent recognition. Genesis ceremony recording title card credit, Ark architecture page footer credit, technical whitepaper preface acknowledgment, and permanent credit in every annual report.</p>
+          <p>Reconocimiento permanente. Credito en la tarjeta de titulo de la grabacion de la ceremonia genesis, credito en el pie de pagina de la arquitectura de Ark, reconocimiento en el prefacio del whitepaper tecnico y credito permanente en cada informe anual.</p>
           <div class="detail-box">
-            <div><span class="hl">Slots:</span> Two to three, total, for the lifetime of the project</div>
-            <div><span class="hl">Lifetime:</span> Permanent</div>
-            <div><span class="hl">Retroactive:</span> Not available after the genesis ceremony is filmed</div>
+            <div><span class="hl">Cupos:</span> Dos a tres, en total, para toda la vida del proyecto</div>
+            <div><span class="hl">Duracion:</span> Permanente</div>
+            <div><span class="hl">Retroactivo:</span> No disponible despues de que se filme la ceremonia genesis</div>
           </div>
         </div>
 
         <div class="card">
           <div class="card-icon">&#9711;</div>
-          <h3>Sustaining Patron</h3>
+          <h3>Mecenas de Sostenimiento</h3>
           <p style="font-family: var(--font-mono); font-size: 1rem; color: var(--color-accent); margin: 0.5rem 0;">USD 500,000</p>
-          <p>Annual recognition. Architecture page footer credit for the current year, plus acknowledgment in the technical whitepaper preface.</p>
+          <p>Reconocimiento anual. Credito en el pie de pagina de la arquitectura para el anno en curso, mas reconocimiento en el prefacio del whitepaper tecnico.</p>
           <div class="detail-box">
-            <div><span class="hl">Slots:</span> Five per year, refreshed annually</div>
-            <div><span class="hl">Lifetime:</span> Twelve months, renewable</div>
+            <div><span class="hl">Cupos:</span> Cinco por anno, renovados anualmente</div>
+            <div><span class="hl">Duracion:</span> Doce meses, renovable</div>
           </div>
         </div>
 
         <div class="card">
           <div class="card-icon">&#9678;</div>
-          <h3>Supporting Patron</h3>
+          <h3>Mecenas de Apoyo</h3>
           <p style="font-family: var(--font-mono); font-size: 1rem; color: var(--color-accent); margin: 0.5rem 0;">USD 250,000</p>
-          <p>Annual recognition. Acknowledgment in the technical whitepaper preface and the annual report.</p>
+          <p>Reconocimiento anual. Reconocimiento en el prefacio del whitepaper tecnico y en el informe anual.</p>
           <div class="detail-box">
-            <div><span class="hl">Slots:</span> No fixed cap. Each contribution is reviewed individually for institutional alignment.</div>
-            <div><span class="hl">Lifetime:</span> Twelve months</div>
+            <div><span class="hl">Cupos:</span> Sin limite fijo. Cada contribucion se revisa individualmente por alineamiento institucional.</div>
+            <div><span class="hl">Duracion:</span> Doce meses</div>
           </div>
         </div>
 
         <div class="card">
           <div class="card-icon">&#9675;</div>
-          <h3>Institutional Partner</h3>
-          <p style="font-family: var(--font-mono); font-size: 1rem; color: var(--color-accent); margin: 0.5rem 0;">USD 100,000 / year</p>
-          <p>Annual recurring recognition. Acknowledgment in the annual report.</p>
+          <h3>Socio Institucional</h3>
+          <p style="font-family: var(--font-mono); font-size: 1rem; color: var(--color-accent); margin: 0.5rem 0;">USD 100,000 / anno</p>
+          <p>Reconocimiento anual recurrente. Reconocimiento en el informe anual.</p>
           <div class="detail-box">
-            <div><span class="hl">Slots:</span> No fixed cap</div>
-            <div><span class="hl">Lifetime:</span> Annual, recurring</div>
+            <div><span class="hl">Cupos:</span> Sin limite fijo</div>
+            <div><span class="hl">Duracion:</span> Anual, recurrente</div>
           </div>
         </div>
       </div>
@@ -79,21 +122,21 @@ import Base from '../../../layouts/Base.astro'
 
   <section class="section-dark">
     <div class="container">
-      <div class="section-label">Principles</div>
-      <h2 class="section-title">What patronage means here</h2>
+      <div class="section-label">Principios</div>
+      <h2 class="section-title">Que significa mecenazgo aqui</h2>
 
       <div class="grid-3">
         <div class="card">
-          <h3>Discretion is enforced</h3>
-          <p>Patron credit appears in the footer, the title card, the preface, and the annual report. There are no large logos, no badge walls, no homepage carousels, and no "powered by" headers. Readers who care about credit will find it. Readers who do not care will not be distracted by it.</p>
+          <h3>La discrecion es obligatoria</h3>
+          <p>El credito del mecenas aparece en el pie de pagina, la tarjeta de titulo, el prefacio y el informe anual. No hay logos grandes, no hay muros de insignias, no hay carruseles en la pagina principal ni encabezados de "powered by". Los lectores que se interesen por el credito lo encontraran. Los que no, no se distraeran con el.</p>
         </div>
         <div class="card">
-          <h3>No control, ever</h3>
-          <p>The Patron is acquiring the right to say "we supported this", not the right to shape it. There is no editorial control on the case study or the ceremony recording. There is no governance seat. There is no architectural influence. There is no veto. This is the same firewall a museum maintains between donors and curators.</p>
+          <h3>Sin control, nunca</h3>
+          <p>El mecenas adquiere el derecho a decir "apoyamos esto", no el derecho a darle forma. No hay control editorial sobre el caso de estudio ni sobre la grabacion de la ceremonia. No hay asiento de gobernanza. No hay influencia arquitectonica. No hay veto. Es la misma separacion que un museo mantiene entre donantes y curadores.</p>
         </div>
         <div class="card">
-          <h3>No retroactive credit</h3>
-          <p>The genesis ceremony is a one-time event with one-time credits. A Founding Patron position for the Costa Rica genesis ceremony is available only until the ceremony is filmed. After that, the position is no longer available at any price.</p>
+          <h3>Sin credito retroactivo</h3>
+          <p>La ceremonia genesis es un evento unico con creditos unicos. Una posicion de Mecenas Fundador para la ceremonia genesis de Costa Rica esta disponible solo hasta que se filme la ceremonia. Despues de eso, la posicion ya no esta disponible a ningun precio.</p>
         </div>
       </div>
     </div>
@@ -101,10 +144,10 @@ import Base from '../../../layouts/Base.astro'
 
   <section class="section-light cta-center">
     <div class="container">
-      <div class="section-label">Inquire</div>
-      <h2 class="section-title">Contact the program</h2>
-      <p class="section-desc">Patron contributions are arranged directly. There is no application form. Inquiries are answered within seven days.</p>
-      <a href="mailto:open@attestto.com?subject=Ark%20Patron%20Program%20%E2%80%94%20Inquiry" class="btn btn-primary">open@attestto.com</a>
+      <div class="section-label">Consultas</div>
+      <h2 class="section-title">Contacte al programa</h2>
+      <p class="section-desc">Las contribuciones de mecenazgo se coordinan directamente. No hay formulario de solicitud. Las consultas se responden en un plazo de siete dias.</p>
+      <a href="mailto:open@attestto.com?subject=Programa%20de%20Mecenazgo%20Ark%20%E2%80%94%20Consulta" class="btn btn-primary">open@attestto.com</a>
     </div>
   </section>
 
