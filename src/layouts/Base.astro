@@ -12,6 +12,7 @@ interface Props {
   ogTitle?: string
   ogDescription?: string
   ogImage?: string
+  ogType?: string
   themeColor?: string
   lang?: string
   navVariant?: 'default' | 'revisor' | 'standards' | 'docs'
@@ -30,6 +31,7 @@ const {
   ogTitle,
   ogDescription,
   ogImage = 'https://attestto.org/og-image.png',
+  ogType = 'website',
   themeColor = '#0a1628',
   lang = 'en',
   navVariant = 'default',
@@ -152,7 +154,7 @@ const esUrl = `https://attestto.org/es${canonicalPath}`
   <!-- Open Graph -->
   <meta property="og:title" content={ogTitle || title} />
   <meta property="og:description" content={ogDescription || description} />
-  <meta property="og:type" content="website" />
+  <meta property="og:type" content={ogType} />
   <meta property="og:url" content={canonicalUrl} />
   <meta property="og:site_name" content="Attestto" />
   <meta property="og:image" content={ogImage} />
