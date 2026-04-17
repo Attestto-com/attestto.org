@@ -1,0 +1,192 @@
+---
+import Base from '../../layouts/Base.astro'
+
+const structuredData = [
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Attestto — Intelligent Signing Module",
+    "url": "https://attestto.org/modules/signing",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "Web (PWA)",
+    "license": "https://www.apache.org/licenses/LICENSE-2.0",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+    "featureList": [
+      "On-device AI document analysis (Gemma 2B)",
+      "Flagged clauses and risk assessment",
+      "Guided Q&A before signing",
+      "Ed25519 digital signatures",
+      "PDF signing with visible stamp",
+      "Audit trail PDF generation",
+      "Verifiable credential for each signature",
+      "No server — AI runs in your browser"
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How does the AI analysis work without a server?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The module uses Google's Gemma 2B language model running directly in your browser via WebGPU/WebAssembly (MediaPipe). The model is downloaded once (~1.3GB) and runs entirely on your device. Your documents are never sent to any server."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is this a legally valid signature?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The module produces a Nivel B (self-attested) digital signature using Ed25519. This is a cryptographically valid signature that proves you signed the document, but it does not carry the legal presumption of a Firma Digital Certificada (Nivel A+, which requires a BCCR smart card). For many use cases — internal agreements, informal contracts, personal records — Nivel B is sufficient."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What does the AI flag?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The AI analyzes your document for risky clauses (penalties, automatic renewals, liability limitations, jurisdiction changes), categorizes the document type (contract, NDA, lease, etc.), and generates plain-language questions to ensure you understand what you're signing. It recommends whether to sign directly, seek review, or get legal advice."
+        }
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Attestto", "item": "https://attestto.org" },
+      { "@type": "ListItem", "position": 2, "name": "Modules", "item": "https://attestto.org/modules" },
+      { "@type": "ListItem", "position": 3, "name": "Intelligent Signing", "item": "https://attestto.org/modules/signing" }
+    ]
+  }
+]
+---
+
+<Base
+  structuredData={structuredData}
+  title="Intelligent Signing — Attestto Modules"
+  description="AI-powered document analysis before you sign. Flagged clauses, risk assessment, guided Q&A — then Ed25519 digital signature. AI runs on your device."
+  canonicalPath="/modules/signing"
+  ogTitle="Attestto — Intelligent Signing Module"
+  ogDescription="Upload a document. AI flags risky clauses and asks you questions. Then sign with your Ed25519 key. The AI runs on your device — no cloud."
+  navVariant="default"
+>
+
+  <section class="hero hero-single">
+    <div class="container">
+      <p class="section-label" data-i18n="mod_signing.label">Signing Module</p>
+      <h1 data-i18n="mod_signing.hero_title">Understand before you sign.</h1>
+      <p class="lead" data-i18n="mod_signing.hero_lead">
+        Upload a document. On-device AI analyzes it, flags risky clauses, and asks you the right questions.
+        When you're ready, sign with your Ed25519 key.
+      </p>
+      <a href="https://app.attestto.com" class="btn-primary" data-i18n="mod_signing.hero_cta">Open Attestto App</a>
+    </div>
+  </section>
+
+  <section class="section-light">
+    <div class="container">
+      <p class="section-label" data-i18n="mod_signing.how_label">How it works</p>
+      <h2 class="section-title" data-i18n="mod_signing.how_title">Four steps to an informed signature</h2>
+
+      <div class="grid-4">
+        <div class="step-card">
+          <div class="step-num">1</div>
+          <h3 data-i18n="mod_signing.step1_title">Upload</h3>
+          <p data-i18n="mod_signing.step1_desc">Upload a PDF. The document stays on your device.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">2</div>
+          <h3 data-i18n="mod_signing.step2_title">AI Analysis</h3>
+          <p data-i18n="mod_signing.step2_desc">Gemma 2B analyzes clauses, categorizes the document, and flags risks.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">3</div>
+          <h3 data-i18n="mod_signing.step3_title">Q&A</h3>
+          <p data-i18n="mod_signing.step3_desc">Answer guided questions about the flagged sections. The AI recommends an action.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">4</div>
+          <h3 data-i18n="mod_signing.step4_title">Sign</h3>
+          <p data-i18n="mod_signing.step4_desc">Ed25519 signature with biometric confirmation. Audit trail PDF generated.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-dark">
+    <div class="container">
+      <p class="section-label" data-i18n="mod_signing.output_label">What you get</p>
+      <h2 class="section-title" data-i18n="mod_signing.output_title">Two outputs per signature</h2>
+
+      <div class="grid-2">
+        <div class="card">
+          <h3 data-i18n="mod_signing.out1_title">Signed PDF</h3>
+          <p data-i18n="mod_signing.out1_desc">
+            The original PDF with an Attestto signature embedded in the metadata and a visible
+            stamp on the last page. Verifiable at verify.attestto.com.
+          </p>
+          <code>AttesttoPdfSignature</code>
+        </div>
+        <div class="card">
+          <h3 data-i18n="mod_signing.out2_title">Signature Credential</h3>
+          <p data-i18n="mod_signing.out2_desc">
+            A verifiable credential in your wallet recording what you signed, the document hash,
+            risk assessment, and your answers. Proves informed consent.
+          </p>
+          <code>DocumentSignatureVC</code>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-light">
+    <div class="container">
+      <p class="section-label" data-i18n="mod_signing.ai_label">On-device AI</p>
+      <h2 class="section-title" data-i18n="mod_signing.ai_title">No cloud. No data collection. No compromise.</h2>
+      <p class="section-desc" data-i18n="mod_signing.ai_desc">
+        The AI model (Google Gemma 2B) runs entirely in your browser using WebGPU.
+        Downloaded once, cached locally. Your documents never leave your device.
+        Even the AI's analysis stays on your phone.
+      </p>
+    </div>
+  </section>
+
+  <section class="section-dark" style="text-align: center;">
+    <div class="container">
+      <h2 data-i18n="mod_signing.cta_title">Sign your first document</h2>
+      <p class="section-desc" data-i18n="mod_signing.cta_desc">
+        Free, open source, no sign-up. Open the app, upload a PDF, and let the AI help you understand it.
+      </p>
+      <a href="https://app.attestto.com" class="btn-primary" data-i18n="mod_signing.cta_btn">Open Attestto App</a>
+    </div>
+  </section>
+
+</Base>
+
+<style>
+  .grid-4 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--space-md);
+  }
+  .step-card {
+    text-align: center;
+    padding: var(--space-md);
+  }
+  .step-num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: var(--color-accent);
+    color: white;
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: var(--space-sm);
+  }
+</style>

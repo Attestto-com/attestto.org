@@ -1,0 +1,155 @@
+---
+import Base from '../../layouts/Base.astro'
+
+const structuredData = [
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Attestto — Digital License Module",
+    "url": "https://attestto.org/modules/driving",
+    "applicationCategory": "EducationalApplication",
+    "operatingSystem": "Web (PWA)",
+    "license": "https://www.apache.org/licenses/LICENSE-2.0",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+    "featureList": [
+      "Driving theory exam preparation",
+      "Spaced repetition learning engine",
+      "Mastery tracking with decay model",
+      "Proctored exam sessions with hash-chain integrity",
+      "Verifiable credential issuance for exam results",
+      "Aligned with COSEVI/DGEV Costa Rica standards",
+      "Offline-capable — works without internet"
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Is this an official COSEVI exam?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. This is a preparation tool that helps you study for the official COSEVI/DGEV driving theory exam. The question bank covers the same topics (traffic signs, regulations, defensive driving) but the credential issued is a self-attested competency record, not an official DGEV certificate."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How does the mastery system work?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The mastery model tracks your competency level across topic areas using spaced repetition. Your mastery score decays over time (faster for beginners, slower for experts), encouraging continuous review. When you pass a proctored exam session, a DrivingCompetencyCR verifiable credential is issued."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is exam session integrity?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Each exam session uses a SHA-256 hash chain: every answer is cryptographically linked to the previous one, creating a tamper-evident record. The session is sealed with your Ed25519 signature, proving you completed the exam without modification."
+        }
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Attestto", "item": "https://attestto.org" },
+      { "@type": "ListItem", "position": 2, "name": "Modules", "item": "https://attestto.org/modules" },
+      { "@type": "ListItem", "position": 3, "name": "Digital License", "item": "https://attestto.org/modules/driving" }
+    ]
+  }
+]
+---
+
+<Base
+  structuredData={structuredData}
+  title="Digital License — Attestto Modules"
+  description="Prepare for the COSEVI driving theory exam with spaced repetition, proctored sessions, and verifiable credentials. Mastery tracking with cryptographic integrity."
+  canonicalPath="/modules/driving"
+  ogTitle="Attestto — Digital License Module"
+  ogDescription="Driving theory exam prep with spaced repetition, mastery tracking, and verifiable credentials. Aligned with COSEVI/DGEV Costa Rica."
+  navVariant="default"
+>
+
+  <section class="hero hero-single">
+    <div class="container">
+      <p class="section-label" data-i18n="mod_driving.label">Driving Module</p>
+      <h1 data-i18n="mod_driving.hero_title">Prove your competency, not just your score.</h1>
+      <p class="lead" data-i18n="mod_driving.hero_lead">
+        Study for the COSEVI theory exam with spaced repetition. Track your mastery over time.
+        Every exam session is cryptographically sealed and signed with your key.
+      </p>
+      <a href="https://app.attestto.com" class="btn-primary" data-i18n="mod_driving.hero_cta">Open Attestto App</a>
+    </div>
+  </section>
+
+  <section class="section-light">
+    <div class="container">
+      <p class="section-label" data-i18n="mod_driving.features_label">Features</p>
+      <h2 class="section-title" data-i18n="mod_driving.features_title">More than a question bank</h2>
+
+      <div class="grid-3">
+        <div class="card">
+          <h3 data-i18n="mod_driving.feat1_title">Spaced repetition</h3>
+          <p data-i18n="mod_driving.feat1_desc">
+            Questions adapt to your performance. Topics you struggle with appear more often.
+            The algorithm optimizes long-term retention, not cramming.
+          </p>
+        </div>
+        <div class="card">
+          <h3 data-i18n="mod_driving.feat2_title">Mastery decay</h3>
+          <p data-i18n="mod_driving.feat2_desc">
+            Your competency score decays over time — faster at novice level, slower at expert.
+            This reflects real-world knowledge loss and encourages continuous review.
+          </p>
+        </div>
+        <div class="card">
+          <h3 data-i18n="mod_driving.feat3_title">Proctored exams</h3>
+          <p data-i18n="mod_driving.feat3_desc">
+            Full exam sessions with SHA-256 hash chain integrity. Every answer is
+            cryptographically linked. The sealed session becomes a verifiable credential.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-dark">
+    <div class="container">
+      <p class="section-label" data-i18n="mod_driving.creds_label">Credentials issued</p>
+      <h2 class="section-title" data-i18n="mod_driving.creds_title">Verifiable exam results</h2>
+
+      <div class="grid-2">
+        <div class="card">
+          <h3 data-i18n="mod_driving.cred1_title">Theory Exam Result</h3>
+          <p data-i18n="mod_driving.cred1_desc">
+            Issued after completing a proctored exam session. Includes score, category,
+            number of questions, exam session ID, and the integrity hash chain.
+          </p>
+          <code>DrivingTheoryExamCR</code>
+        </div>
+        <div class="card">
+          <h3 data-i18n="mod_driving.cred2_title">Driving Competency</h3>
+          <p data-i18n="mod_driving.cred2_desc">
+            Mastery credential proving sustained competency. Includes competency level,
+            exams passed, mastery score, and renewal date based on decay rate.
+          </p>
+          <code>DrivingCompetencyCR</code>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-light" style="text-align: center;">
+    <div class="container">
+      <h2 data-i18n="mod_driving.cta_title">Start preparing today</h2>
+      <p class="section-desc" data-i18n="mod_driving.cta_desc">
+        Free, open source, works offline. Install the app as a PWA and start your first practice session.
+      </p>
+      <a href="https://app.attestto.com" class="btn-primary" data-i18n="mod_driving.cta_btn">Open Attestto App</a>
+    </div>
+  </section>
+
+</Base>

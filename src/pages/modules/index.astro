@@ -1,0 +1,125 @@
+---
+import Base from '../../layouts/Base.astro'
+
+const structuredData = [
+  {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "Attestto Modules",
+    "url": "https://attestto.org/modules",
+    "description": "Credential modules for the Attestto sovereign identity platform. Each module adds domain-specific capabilities: identity scanning, driving licenses, document signing, and more."
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Attestto", "item": "https://attestto.org" },
+      { "@type": "ListItem", "position": 2, "name": "Modules", "item": "https://attestto.org/modules" }
+    ]
+  }
+]
+---
+
+<Base
+  structuredData={structuredData}
+  title="Modules — Attestto"
+  description="Explore Attestto credential modules: digital identity, driving licenses, intelligent document signing, and more. Install only what you need."
+  canonicalPath="/modules"
+  ogTitle="Attestto Modules — Sovereign Credential Apps"
+  ogDescription="Each module adds a specific capability to your Attestto wallet. Scan IDs, sign documents, manage licenses — all on your device."
+  navVariant="default"
+>
+
+  <section class="hero hero-single">
+    <div class="container">
+      <p class="section-label" data-i18n="modules.label">Modules</p>
+      <h1 data-i18n="modules.hero_title">Install what you need. Nothing more.</h1>
+      <p class="lead" data-i18n="modules.hero_lead">
+        Each module adds a specific credential capability to your Attestto wallet.
+        Self-sovereign, on-device, open source.
+      </p>
+    </div>
+  </section>
+
+  <section class="section-light">
+    <div class="container">
+      <div class="grid-3">
+
+        <!-- Identity -->
+        <a href="/modules/identity" class="card card-link">
+          <div class="card-icon"><span class="icon-badge">&#x1F4CB;</span></div>
+          <h3 data-i18n="modules.identity_title">Digital Identity</h3>
+          <p data-i18n="modules.identity_desc">
+            Scan your cedula, driver's license, or passport. Create verifiable credentials signed with your own key.
+          </p>
+          <span class="tag tag-live">Live</span>
+          <span class="tag tag-cr">Costa Rica</span>
+        </a>
+
+        <!-- Driving -->
+        <a href="/modules/driving" class="card card-link">
+          <div class="card-icon"><span class="icon-badge">&#x1F697;</span></div>
+          <h3 data-i18n="modules.driving_title">Digital License</h3>
+          <p data-i18n="modules.driving_desc">
+            Theory exam prep, mastery tracking, and digital driving license credentials aligned with COSEVI/DGEV.
+          </p>
+          <span class="tag tag-live">Live</span>
+          <span class="tag tag-cr">Costa Rica</span>
+        </a>
+
+        <!-- Signing -->
+        <a href="/modules/signing" class="card card-link">
+          <div class="card-icon"><span class="icon-badge">&#x270D;</span></div>
+          <h3 data-i18n="modules.signing_title">Intelligent Signing</h3>
+          <p data-i18n="modules.signing_desc">
+            AI-powered document analysis, flagged clauses, guided Q&A — then sign with your Ed25519 key.
+          </p>
+          <span class="tag tag-live">Live</span>
+          <span class="tag tag-global">Global</span>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="section-dark">
+    <div class="container" style="text-align: center;">
+      <h2 data-i18n="modules.build_title">Build your own module</h2>
+      <p class="section-desc" data-i18n="modules.build_desc">
+        The module SDK is open source. Anyone can create a module that issues, verifies, or manages credentials.
+        60% of revenue goes to the builder.
+      </p>
+      <a href="/for/developers" class="btn-primary" data-i18n="modules.build_cta">Developer Portal</a>
+    </div>
+  </section>
+
+</Base>
+
+<style>
+  .card-link {
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.15s, box-shadow 0.15s;
+    display: block;
+  }
+  .card-link:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  }
+  .icon-badge {
+    font-size: 2rem;
+  }
+  .tag {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-right: 4px;
+  }
+  .tag-live { background: #bbf7d0; color: #15803d; }
+  .tag-cr { background: #dbeafe; color: #1e40af; }
+  .tag-global { background: #e0e7ff; color: #4338ca; }
+</style>

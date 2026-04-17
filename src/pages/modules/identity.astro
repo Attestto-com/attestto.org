@@ -1,0 +1,237 @@
+---
+import Base from '../../layouts/Base.astro'
+
+const structuredData = [
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Attestto — Digital Identity Module",
+    "url": "https://attestto.org/modules/identity",
+    "applicationCategory": "SecurityApplication",
+    "operatingSystem": "Web (PWA)",
+    "license": "https://www.apache.org/licenses/LICENSE-2.0",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+    "featureList": [
+      "Scan Costa Rica cedula via OCR (TD1 MRZ)",
+      "Scan driving license via OCR",
+      "Scan passport via OCR (TD3 MRZ / ICAO 9303)",
+      "Create self-attested verifiable credentials",
+      "Ed25519 digital signatures",
+      "On-device processing — no server upload",
+      "SD-JWT selective disclosure support"
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How does the identity scan work?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The module uses your phone camera to capture the front and back of your ID document. Tesseract.js OCR runs entirely on your device to extract data from the MRZ (Machine Readable Zone). No images are uploaded to any server."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is a self-attested credential?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A self-attested credential is a W3C Verifiable Credential where you are both the issuer and the holder. It proves you scanned a document and signed the data with your private key. It has lower trust than a notarially-attested credential, but is useful for basic identity verification."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What documents are supported?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Currently: Costa Rica cedula de identidad, Costa Rica driving license, and any ICAO 9303-compliant passport (TD3 MRZ format). Support for DIMEX and other national IDs is planned."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is my data sent to a server?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. All OCR processing happens on your device using Tesseract.js WebAssembly. Your photos, extracted data, and private keys never leave your phone. Credentials are stored in an encrypted vault in your browser."
+        }
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Attestto", "item": "https://attestto.org" },
+      { "@type": "ListItem", "position": 2, "name": "Modules", "item": "https://attestto.org/modules" },
+      { "@type": "ListItem", "position": 3, "name": "Digital Identity", "item": "https://attestto.org/modules/identity" }
+    ]
+  }
+]
+---
+
+<Base
+  structuredData={structuredData}
+  title="Digital Identity — Attestto Modules"
+  description="Scan your cedula, driver's license, or passport with your phone camera. Create verifiable credentials signed with your own Ed25519 key. All processing on-device."
+  canonicalPath="/modules/identity"
+  ogTitle="Attestto — Digital Identity Module"
+  ogDescription="Scan your ID documents with OCR. Create self-attested verifiable credentials. All processing on your device — no server, no intermediary."
+  navVariant="default"
+>
+
+  <section class="hero hero-single">
+    <div class="container">
+      <p class="section-label" data-i18n="mod_identity.label">Identity Module</p>
+      <h1 data-i18n="mod_identity.hero_title">Your identity, your device, your keys.</h1>
+      <p class="lead" data-i18n="mod_identity.hero_lead">
+        Scan your cedula, driver's license, or passport. The OCR runs on your phone — no images are uploaded.
+        Sign the extracted data with your Ed25519 key to create a verifiable credential.
+      </p>
+      <a href="https://app.attestto.com" class="btn-primary" data-i18n="mod_identity.hero_cta">Open Attestto App</a>
+    </div>
+  </section>
+
+  <section class="section-light">
+    <div class="container">
+      <p class="section-label" data-i18n="mod_identity.how_label">How it works</p>
+      <h2 class="section-title" data-i18n="mod_identity.how_title">Three steps to a digital credential</h2>
+
+      <div class="grid-3">
+        <div class="step-card">
+          <div class="step-num">1</div>
+          <h3 data-i18n="mod_identity.step1_title">Scan</h3>
+          <p data-i18n="mod_identity.step1_desc">
+            Use your phone camera to capture the front and back of your document.
+            The MRZ (machine-readable zone) is extracted via on-device OCR.
+          </p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">2</div>
+          <h3 data-i18n="mod_identity.step2_title">Review</h3>
+          <p data-i18n="mod_identity.step2_desc">
+            Verify the extracted data. Correct any OCR errors. The confidence score
+            tells you how reliable the extraction was.
+          </p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">3</div>
+          <h3 data-i18n="mod_identity.step3_title">Sign & Store</h3>
+          <p data-i18n="mod_identity.step3_desc">
+            Your Ed25519 key signs the credential with biometric confirmation.
+            The verifiable credential is stored in your encrypted vault.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-dark">
+    <div class="container">
+      <p class="section-label" data-i18n="mod_identity.docs_label">Supported documents</p>
+      <h2 class="section-title" data-i18n="mod_identity.docs_title">What you can scan</h2>
+
+      <div class="grid-3">
+        <div class="card">
+          <h3 data-i18n="mod_identity.cedula_title">Cedula de identidad</h3>
+          <p data-i18n="mod_identity.cedula_desc">
+            Costa Rica national ID card. TD1 MRZ on the back. Extracts cedula number,
+            full name, date of birth, expiry, nationality, and sex.
+          </p>
+          <code>CedulaIdentidadCR</code>
+        </div>
+        <div class="card">
+          <h3 data-i18n="mod_identity.license_title">Driving license</h3>
+          <p data-i18n="mod_identity.license_desc">
+            Costa Rica driver's license. TD1 MRZ on the back + category table on the front.
+            Extracts categories (A1-E3), validity dates, points, and restrictions.
+          </p>
+          <code>DrivingLicenseCR</code>
+        </div>
+        <div class="card">
+          <h3 data-i18n="mod_identity.passport_title">Passport</h3>
+          <p data-i18n="mod_identity.passport_desc">
+            Any ICAO 9303-compliant passport (TD3 MRZ). Extracts document number,
+            names, date of birth, expiry, nationality, and issuing country.
+          </p>
+          <code>PassportCR</code>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-light">
+    <div class="container">
+      <p class="section-label" data-i18n="mod_identity.privacy_label">Privacy</p>
+      <h2 class="section-title" data-i18n="mod_identity.privacy_title">Nothing leaves your device</h2>
+      <div class="grid-2">
+        <div>
+          <ul class="check-list">
+            <li data-i18n="mod_identity.priv1">OCR runs in-browser via Tesseract.js WebAssembly</li>
+            <li data-i18n="mod_identity.priv2">Photos are processed locally and never uploaded</li>
+            <li data-i18n="mod_identity.priv3">Private key stored in IndexedDB, gated behind WebAuthn biometrics</li>
+            <li data-i18n="mod_identity.priv4">Credentials encrypted at rest with AES-256-GCM</li>
+            <li data-i18n="mod_identity.priv5">SD-JWT selective disclosure — share only the fields you choose</li>
+          </ul>
+        </div>
+        <div>
+          <ul class="check-list">
+            <li data-i18n="mod_identity.priv6">No account creation required</li>
+            <li data-i18n="mod_identity.priv7">No analytics on credential content</li>
+            <li data-i18n="mod_identity.priv8">Open source — audit the code yourself</li>
+            <li data-i18n="mod_identity.priv9">W3C Verifiable Credentials standard</li>
+            <li data-i18n="mod_identity.priv10">Works offline after first load</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-dark" style="text-align: center;">
+    <div class="container">
+      <h2 data-i18n="mod_identity.cta_title">Start building your digital identity</h2>
+      <p class="section-desc" data-i18n="mod_identity.cta_desc">
+        Free, open source, no sign-up. Open the app on your phone and scan your first document.
+      </p>
+      <a href="https://app.attestto.com" class="btn-primary" data-i18n="mod_identity.cta_btn">Open Attestto App</a>
+    </div>
+  </section>
+
+</Base>
+
+<style>
+  .step-card {
+    text-align: center;
+    padding: var(--space-md);
+  }
+  .step-num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: var(--color-accent);
+    color: white;
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: var(--space-sm);
+  }
+  .check-list {
+    list-style: none;
+    padding: 0;
+  }
+  .check-list li {
+    padding: 0.5rem 0 0.5rem 1.75rem;
+    position: relative;
+    line-height: 1.5;
+  }
+  .check-list li::before {
+    content: "\2713";
+    position: absolute;
+    left: 0;
+    color: var(--color-accent);
+    font-weight: 700;
+  }
+</style>
