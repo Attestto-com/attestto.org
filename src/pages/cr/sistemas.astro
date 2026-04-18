@@ -1,0 +1,184 @@
+---
+import Base from '../../layouts/Base.astro'
+
+const structuredData = [
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Mapa de Interconectividad — Sistemas del Estado de Costa Rica",
+    "url": "https://attestto.org/cr/sistemas",
+    "inLanguage": "es",
+    "description": "Mapa interactivo de los 19 sistemas del Estado costarricense, sus conexiones, brechas de integración, y cómo las Credenciales Verificables eliminan la necesidad de APIs bilaterales.",
+    "about": {
+      "@type": "GovernmentService",
+      "serviceArea": {
+        "@type": "Country",
+        "name": "Costa Rica"
+      }
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Attestto", "item": "https://attestto.org" },
+      { "@type": "ListItem", "position": 2, "name": "Costa Rica", "item": "https://attestto.org/cr" },
+      { "@type": "ListItem", "position": 3, "name": "Sistemas", "item": "https://attestto.org/cr/sistemas" }
+    ]
+  }
+]
+---
+
+<Base
+  title="Sistemas del Estado CR — Mapa de Interconectividad"
+  description="Mapa interactivo de 19 sistemas del Estado de Costa Rica: conexiones activas, brechas críticas, y cómo las Credenciales Verificables + Attestto Mesh resuelven la fragmentación sin APIs bilaterales."
+  canonicalPath="/cr/sistemas"
+  ogTitle="Mapa de Interconectividad — Sistemas del Estado de Costa Rica"
+  ogDescription="19 sistemas, 6 brechas críticas, 1 solución: Credenciales Verificables sobre una red descentralizada de ciudadanos."
+  lang="es"
+  structuredData={structuredData}
+  bodyClass="sistemas-page"
+>
+  <section class="sistemas-intro">
+    <div class="container">
+      <h1>Interconectividad de Sistemas del Estado</h1>
+      <p class="lead">
+        Costa Rica opera 19 sistemas institucionales que intercambian datos de ciudadanos, impuestos, propiedades, permisos y profesionales.
+        Este mapa interactivo muestra las conexiones que existen hoy — y las que faltan.
+      </p>
+      <p class="lead-secondary">
+        Use el botón <strong>"Con Credenciales Verificables"</strong> para ver cómo un modelo descentralizado — donde cada ciudadano porta sus credenciales en una red mesh P2P —
+        elimina la necesidad de integraciones bilaterales y conecta a los 19 sistemas sin servidor central.
+      </p>
+    </div>
+  </section>
+
+  <section class="sistemas-map">
+    <iframe
+      src="/interconectividad-estado-cr.html"
+      title="Mapa de Interconectividad — Sistemas del Estado de Costa Rica"
+      width="100%"
+      height="800"
+      style="border: 1px solid #1e293b; border-radius: 8px;"
+      loading="lazy"
+    ></iframe>
+  </section>
+
+  <section class="sistemas-context">
+    <div class="container">
+      <div class="context-grid">
+        <div class="context-card">
+          <h3>El problema</h3>
+          <p>
+            Cada conexión entre sistemas es una integración bilateral: API custom, autenticación custom, formato de datos custom.
+            Para que 19 sistemas se interconecten completamente se necesitan <strong>171 integraciones</strong>.
+            Hoy existen 25 — una cobertura del 14.6%.
+          </p>
+        </div>
+        <div class="context-card">
+          <h3>La solución</h3>
+          <p>
+            Con <strong>Credenciales Verificables</strong> (W3C), cada sistema solo necesita hacer dos cosas: emitir credenciales sobre lo que sabe,
+            y verificar las de otros. El ciudadano porta sus credenciales y las presenta donde se necesiten.
+            <strong>Cero APIs bilaterales. Cobertura 100%.</strong>
+          </p>
+        </div>
+        <div class="context-card">
+          <h3>La red</h3>
+          <p>
+            El <strong>Attestto Mesh</strong> es una red P2P donde cada ciudadano es un nodo. No hay servidor central.
+            Las credenciales se replican, verifican y funcionan offline. La red ES los ciudadanos.
+          </p>
+        </div>
+      </div>
+
+      <div class="standards-bar">
+        <span>Estándares:</span>
+        <a href="https://www.w3.org/TR/vc-data-model-2.0/" target="_blank" rel="noopener">W3C Verifiable Credentials</a>
+        <a href="https://www.w3.org/TR/did-1.0/" target="_blank" rel="noopener">W3C Decentralized Identifiers</a>
+        <a href="https://libp2p.io/" target="_blank" rel="noopener">libp2p (Mesh P2P)</a>
+        <a href="https://www.iso.org/standard/69084.html" target="_blank" rel="noopener">ISO 18013-5 (mDL)</a>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .sistemas-intro {
+    padding: 3rem 1.5rem 1.5rem;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  .sistemas-intro h1 {
+    font-size: 1.8rem;
+    color: var(--text-primary, #e6edf3);
+    margin-bottom: 1rem;
+  }
+  .lead {
+    font-size: 1.05rem;
+    color: var(--text-secondary, #8b949e);
+    line-height: 1.65;
+    margin-bottom: 0.75rem;
+  }
+  .lead-secondary {
+    font-size: 0.95rem;
+    color: var(--text-tertiary, #6b7280);
+    line-height: 1.6;
+  }
+  .sistemas-map {
+    padding: 0 1.5rem 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+  .sistemas-map iframe {
+    width: 100%;
+    min-height: 700px;
+    background: #0d1117;
+  }
+  .sistemas-context {
+    padding: 2rem 1.5rem 4rem;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+  .context-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+  }
+  .context-card {
+    background: var(--surface-secondary, #161b22);
+    border: 1px solid var(--border-primary, #30363d);
+    border-radius: 8px;
+    padding: 1.5rem;
+  }
+  .context-card h3 {
+    font-size: 1rem;
+    color: var(--text-primary, #e6edf3);
+    margin-bottom: 0.5rem;
+  }
+  .context-card p {
+    font-size: 0.9rem;
+    color: var(--text-secondary, #8b949e);
+    line-height: 1.6;
+  }
+  .standards-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    align-items: center;
+    font-size: 0.8rem;
+    color: var(--text-tertiary, #6b7280);
+  }
+  .standards-bar a {
+    color: var(--accent-blue, #58a6ff);
+    text-decoration: none;
+    padding: 4px 10px;
+    border: 1px solid var(--border-primary, #30363d);
+    border-radius: 4px;
+    transition: border-color 0.2s;
+  }
+  .standards-bar a:hover {
+    border-color: var(--accent-blue, #58a6ff);
+  }
+</style>
