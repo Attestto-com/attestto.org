@@ -1,0 +1,76 @@
+# attestto.org
+
+> Public marketing and open-source ecosystem site for Attestto, built with Astro.
+
+Part of the [Attestto Open](https://attestto.org) ecosystem.
+
+## What it is
+
+The public-facing website at [attestto.org](https://attestto.org). Presents Attestto Open as public digital infrastructure for verifiable data -- open schemas, decentralized identifiers, and cryptographic verification. Bilingual (English + Spanish). Deployed to GitHub Pages.
+
+This is a private Astro site, not a published npm package.
+
+## Key pages
+
+- `/` -- Home page: mission, principles, architecture overview
+- `/why` -- Why Attestto exists
+- `/standards` -- DID methods and open standards
+- `/downloads` -- Desktop app downloads
+- `/modules/` -- Module catalog
+- `/docs/` -- Documentation section
+- `/ark/` -- Ark identity pages
+- `/cr/` -- Costa Rica country-specific pages
+- `/for/` -- Audience-specific pages (governments, developers, etc.)
+- `/es/` -- Spanish translations
+- `/.well-known/did.json` -- W3C DID document for `did:web:attestto.org`
+- `/.well-known/governance.json` -- Governance manifest (Squads v4 multisig)
+
+## Source layout
+
+```
+src/
+  pages/          -- Astro pages (.astro files)
+    index.astro   -- Home page
+    why.astro     -- Why page
+    standards.astro
+    downloads.astro
+    ark/          -- Ark identity pages
+    cr/           -- Costa Rica pages
+    docs/         -- Documentation pages
+    es/           -- Spanish translations
+    for/          -- Audience pages
+    modules/      -- Module catalog pages
+  components/     -- Reusable Astro components
+  layouts/        -- Page layouts
+  styles/         -- CSS (design tokens)
+  data/           -- Static data files
+```
+
+## Build
+
+```bash
+pnpm build    # Astro static build
+pnpm test     # Vitest (includes i18n parity test)
+```
+
+## Design principles
+
+- Bilingual EN/ES with i18n parity testing
+- SSR-safe (no unguarded browser APIs)
+- Design tokens via CSS custom properties (no hardcoded colors)
+- SEO-hardened with sitemap generation (@astrojs/sitemap)
+
+## DID identity
+
+The site hosts `did:web:attestto.org` at `/.well-known/did.json`, governed by a Squads v4 multisig (2-of-3) on Solana mainnet-beta.
+
+## Related repos
+
+- [`attestto-app`](https://github.com/Attestto-com/attestto-app) -- Authenticated app at app.attestto.com
+- [`vc-sdk`](https://github.com/Attestto-com/vc-sdk) -- Verifiable credentials SDK
+- [`cr-vc-schemas`](https://github.com/Attestto-com/cr-vc-schemas) -- JSON-LD credential schemas
+- [`did-method-checklist`](https://github.com/Attestto-com/did-method-checklist) -- DID method evaluation tool
+
+## License
+
+Apache-2.0
