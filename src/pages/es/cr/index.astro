@@ -1,0 +1,415 @@
+---
+import Base from '../../../layouts/Base.astro'
+
+const structuredData = [
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Attestto · Costa Rica",
+    "url": "https://attestto.org/es/cr",
+    "inLanguage": "es",
+    "about": {
+      "@type": "GovernmentService",
+      "name": "Firma Digital Costa Rica",
+      "description": "Sistema Nacional de Certificación Digital regulado por Ley 8454, administrado por el BCCR",
+      "serviceArea": {
+        "@type": "Country",
+        "name": "Costa Rica"
+      }
+    },
+    "mentions": [
+      {
+        "@type": "Organization",
+        "name": "Banco Central de Costa Rica",
+        "alternateName": "BCCR"
+      },
+      {
+        "@type": "Organization",
+        "name": "Dirección de Gobernanza Digital",
+        "alternateName": "MICITT"
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "¿Qué es Firma Digital en Costa Rica?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Firma Digital es el sistema nacional de certificación digital de Costa Rica, regulado por la Ley 8454. El Banco Central (BCCR) administra la jerarquía PKI, y la Dirección de Gobernanza Digital (MICITT) supervisa. Attestto implementa did:pki para hacer verificables estos certificados en cualquier país."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Cómo se alinea Attestto con la legislación costarricense?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Attestto implementa los principios de neutralidad tecnológica (Ley 8642), certificación digital (Ley 8454), protección de datos personales (Ley 8968), simplificación de trámites (Ley 9986), y el Código Nacional de Tecnologías Digitales — sin reemplazar ni competir con la infraestructura existente."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Puedo verificar documentos firmados con Firma Digital de Costa Rica?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Sí. En verify.attestto.com puede verificar documentos PDF firmados con Firma Digital directamente en su navegador. La verificación es criptográfica, sin subir archivos a ningún servidor, y valida la cadena de certificados contra las CAs del BCCR."
+        }
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Attestto", "item": "https://attestto.org" },
+      { "@type": "ListItem", "position": 2, "name": "Costa Rica", "item": "https://attestto.org/es/cr" }
+    ]
+  }
+]
+---
+
+<Base
+  structuredData={structuredData}
+  title="Attestto · Costa Rica — Infraestructura de Identidad Digital Soberana"
+  description="Cómo Attestto implementa los principios de neutralidad tecnológica, protección de datos y estándares abiertos mandados por el marco legal costarricense."
+  canonicalPath="/cr"
+  ogTitle="Attestto · Costa Rica"
+  ogDescription="Infraestructura de identidad digital soberana alineada con Ley 8642, Ley 8454, Ley 9986, Ley 8968 y el Código Nacional de Tecnologías Digitales."
+  navVariant="default"
+  footerVariant="default"
+  lang="es"
+  footerNotes={[
+    'Las referencias legales citadas en esta página provienen de fuentes oficiales publicadas en La Gaceta. Este documento no constituye asesoría legal.',
+    'PKI trust data sourced from <a href="https://trust.attestto.com">trust.attestto.com</a> — independent public mirror, not an official government publication.',
+  ]}
+>
+
+  <!-- Hero -->
+  <section class="hero hero-single">
+    <div class="container">
+      <div class="hero-text">
+        <p class="eyebrow">Attestto · Costa Rica</p>
+        <h1>Identidad digital soberana para Costa Rica</h1>
+        <p class="lead">
+          Infraestructura abierta que implementa los principios de neutralidad tecnológica,
+          protección de datos y estándares abiertos que el marco legal costarricense ya exige.
+        </p>
+        <div class="hero-actions">
+          <a href="#marco-legal" class="btn btn-primary">Marco legal</a>
+          <a href="#credenciales" class="btn btn-secondary">Credenciales CR</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Marco Legal -->
+  <section id="marco-legal" class="section-light">
+    <div class="container">
+      <div class="section-label">Marco legal</div>
+      <h2 class="section-title">Lo que la ley ya exige</h2>
+      <p class="section-desc">
+        Costa Rica tiene uno de los marcos más desarrollados de América Latina en materia de
+        neutralidad tecnológica. Estos instrumentos no son aspiracionales — son norma vigente.
+        Attestto los implementa por arquitectura.
+      </p>
+      <div class="law-rows">
+
+        <div class="law-row">
+          <div class="law-left">
+            <h3>Ley 8642 · Art. 3(h)</h3>
+            <p><strong>Neutralidad tecnológica.</strong> Estándares comunes y garantizados. Ninguna tecnología favorecida sobre otra. Los operadores eligen su stack — el Estado no impone.</p>
+          </div>
+          <div class="law-right">
+            <p>W3C Verifiable Credentials + Decentralized Identifiers. Estándares internacionales, chain-agnostic, auditable por cualquier parte.</p>
+          </div>
+        </div>
+
+        <div class="law-row">
+          <div class="law-left">
+            <h3>Ley 8454 · Art. 2(d)</h3>
+            <p><strong>Igualdad de tratamiento para las tecnologías</strong> de generación, proceso o almacenamiento. La firma digital tiene la misma validez que la manuscrita, sin importar la tecnología usada.</p>
+          </div>
+          <div class="law-right">
+            <p>Firma electrónica Ed25519 + compatibilidad con PKCS#11. El ciudadano elige el mecanismo — smartcard, biometría, o clave criptográfica en dispositivo.</p>
+          </div>
+        </div>
+
+        <div class="law-row">
+          <div class="law-left">
+            <h3>Ley 9986 · Art. 19</h3>
+            <p><strong>Formatos abiertos y neutralidad</strong> en el sistema de compras públicas. La información se almacena en formatos accesibles sin costo. Sin condicionantes que favorezcan unas tecnologías sobre otras.</p>
+          </div>
+          <div class="law-right">
+            <p>JSON-LD, W3C VC Data Model, código abierto Apache 2.0. Cualquier proveedor puede leer, verificar y emitir credenciales compatibles.</p>
+          </div>
+        </div>
+
+        <div class="law-row">
+          <div class="law-left">
+            <h3>Ley 8968 · Protección de datos</h3>
+            <p><strong>Consentimiento, minimización, finalidad.</strong> Los datos personales del ciudadano requieren consentimiento informado. Se recopila solo lo estrictamente necesario.</p>
+          </div>
+          <div class="law-right">
+            <p>Divulgación selectiva criptográfica. El ciudadano revela solo lo que el verificador necesita. Sin servidor central que almacene datos. Privacidad por arquitectura, no por política.</p>
+          </div>
+        </div>
+
+        <div class="law-row">
+          <div class="law-left">
+            <h3>CNTD · D.E. 44507-MICITT</h3>
+            <p><strong>Código Nacional de Tecnologías Digitales (2024).</strong> Siete capítulos de aplicación obligatoria para todo el sector público. El Capítulo 6 está dedicado íntegramente a neutralidad tecnológica.</p>
+          </div>
+          <div class="law-right">
+            <p>Cumple los 7 capítulos: accesibilidad (PWA), identificación (DID + WebAuthn), seguridad (local-first, post-Conti), interoperabilidad (W3C), neutralidad (chain-agnostic), IA (on-device, explicable).</p>
+          </div>
+        </div>
+
+        <div class="law-row">
+          <div class="law-left">
+            <h3>Art. 24 · Constitución Política</h3>
+            <p><strong>Derecho a la intimidad</strong> y autodeterminación informativa. Ningún sistema puede obligar al ciudadano a entregar datos personales más allá de lo estrictamente necesario.</p>
+          </div>
+          <div class="law-right">
+            <p>El ciudadano porta sus propias credenciales. Nadie más almacena su información. La verificación es criptográfica — no requiere consultar bases de datos de terceros.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Por qué importa -->
+  <section class="section-dark">
+    <div class="container">
+      <div class="section-label">Contexto</div>
+      <h2 class="section-title">Por qué Costa Rica necesita esto ahora</h2>
+      <p class="section-desc">
+        En abril de 2022, el grupo Conti exfiltró 672 GB de datos gubernamentales. El Ministerio de Hacienda,
+        la CCSS y múltiples instituciones quedaron paralizadas durante meses. Los registros de salud de 5 millones
+        de ciudadanos estuvieron inaccesibles por 5 meses. El costo estimado superó los $125 millones.
+      </p>
+      <div class="grid-3">
+        <div class="card">
+          <h3>El problema</h3>
+          <p>Datos centralizados sin integridad criptográfica. Un servidor comprometido = todo perdido. No existe forma de verificar si un documento fue alterado después del ataque.</p>
+        </div>
+        <div class="card">
+          <h3>La lección</h3>
+          <p>El próximo ataque es inevitable. La pregunta no es si ocurrirá, sino si los datos del ciudadano sobreviven intactos. La integridad criptográfica convierte un ataque catastrófico en una interrupción de servicio recuperable.</p>
+        </div>
+        <div class="card">
+          <h3>La solución arquitectónica</h3>
+          <p>Credenciales verificables firmadas criptográficamente, ancladas en registros públicos inmutables. Si el servidor cae, las firmas sobreviven. El ciudadano porta su propia prueba verificable.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Credenciales CR -->
+  <section id="credenciales" class="section-light">
+    <div class="container">
+      <div class="section-label">Credenciales</div>
+      <h2 class="section-title">Tipos de credenciales para Costa Rica</h2>
+      <p class="section-desc">
+        Esquemas abiertos basados en W3C Verifiable Credentials y alineados con ISO 18013-5 (licencia de conducir digital).
+        Cada esquema define los campos, las reglas de validación y la cadena de confianza.
+      </p>
+      <div class="grid-3">
+        <div class="card">
+          <h3>Cédula de identidad</h3>
+          <p>Credencial verificable vinculada al número de cédula. Verificación facial con prueba de vida. Emitida por profesionales autorizados como Autoridades de Registro.</p>
+        </div>
+        <div class="card">
+          <h3>Licencia de conducir (mDL)</h3>
+          <p>Licencia digital conforme a ISO 18013-5. Incluye categorías, restricciones y vigencia. Verificable offline por cualquier autoridad con un lector compatible.</p>
+        </div>
+        <div class="card">
+          <h3>Dictamen médico</h3>
+          <p>Credencial emitida por profesional médico colegiado. Incluye tipo de examen, vigencia y firma del emisor. Verificación automática de vigencia antes del examen de conducir.</p>
+        </div>
+        <div class="card">
+          <h3>Título profesional</h3>
+          <p>Credencial emitida por el Colegio Profesional correspondiente. Verifica que el profesional está habilitado, activo y al día con sus obligaciones.</p>
+        </div>
+        <div class="card">
+          <h3>Certificado de competencias</h3>
+          <p>Resultado de evaluaciones verificable criptográficamente. Incluye cadena de hashes de la sesión de examen, firmas del evaluado y la estación, y anclaje en registro público.</p>
+        </div>
+        <div class="card">
+          <h3>Registro de vehículos</h3>
+          <p>Título vehicular como credencial verificable. Historial de marcas (limpio, salvamento, reconstruido) inmutable. Elimina el title washing entre jurisdicciones.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Namespaces -->
+  <section class="section-dark">
+    <div class="container">
+      <div class="section-label">Identificadores</div>
+      <h2 class="section-title">Namespaces soberanos por sector</h2>
+      <p class="section-desc">
+        Cada sector opera su propio namespace como dominio soberano. Estos nombres son anclas de gobernanza
+        — la infraestructura es neutral y permite que cada institución gestione su propio espacio.
+      </p>
+      <div class="grid-3">
+        <div class="card">
+          <p class="sns-tld" style="font-size: 1.2rem; margin-bottom: var(--space-sm);">fi-cr<span class="tld">.sol</span></p>
+          <h3>Finanzas</h3>
+          <p>Bancos, aseguradoras, cooperativas, SUGEF. Credenciales financieras, KYC verificable, cumplimiento AML.</p>
+        </div>
+        <div class="card">
+          <p class="sns-tld" style="font-size: 1.2rem; margin-bottom: var(--space-sm);">go-cr<span class="tld">.sol</span></p>
+          <h3>Gobierno</h3>
+          <p>Ministerios, municipalidades, instituciones autónomas. Documentos oficiales verificables, trámites digitales.</p>
+        </div>
+        <div class="card">
+          <p class="sns-tld" style="font-size: 1.2rem; margin-bottom: var(--space-sm);">sa-cr<span class="tld">.sol</span></p>
+          <h3>Salud</h3>
+          <p>Hospitales, clínicas, laboratorios. Expedientes clínicos verificables, dictámenes médicos, recetas.</p>
+        </div>
+        <div class="card">
+          <p class="sns-tld" style="font-size: 1.2rem; margin-bottom: var(--space-sm);">ed-cr<span class="tld">.sol</span></p>
+          <h3>Educación</h3>
+          <p>Universidades, colegios técnicos, INA. Títulos, certificaciones, evaluaciones verificables.</p>
+        </div>
+        <div class="card">
+          <p class="sns-tld" style="font-size: 1.2rem; margin-bottom: var(--space-sm);">or-cr<span class="tld">.sol</span></p>
+          <h3>Organizaciones</h3>
+          <p>Colegios profesionales, cámaras, asociaciones. Habilitaciones profesionales, membresías activas.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Profesionales como RAs -->
+  <section class="section-light">
+    <div class="container">
+      <div class="section-label">Modelo profesional</div>
+      <h2 class="section-title">Profesionales como Autoridades de Registro</h2>
+      <p class="section-desc">
+        Los notarios, abogados y otros profesionales con fe pública ya tienen la autoridad legal para
+        dar fe de la identidad de un ciudadano. Attestto convierte ese acto presencial en una credencial
+        digital verificable criptográficamente.
+      </p>
+      <div class="grid-3">
+        <div class="card">
+          <h3>El profesional verifica</h3>
+          <p>El notario o abogado verifica la identidad del ciudadano presencialmente — documento, biometría, firma. Exactamente lo que ya hace con fe pública.</p>
+        </div>
+        <div class="card">
+          <h3>Attestto firma y ancla</h3>
+          <p>La verificación se empaqueta como una Credencial Verificable firmada con la llave del profesional y anclada en un registro público. La fe pública se convierte en prueba criptográfica.</p>
+        </div>
+        <div class="card">
+          <h3>El profesional gana</h3>
+          <p>Cada verificación genera una comisión para el profesional que la emitió. Un ingreso de por vida vinculado a la credencial activa — mientras el ciudadano la use, el profesional recibe.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Herramientas -->
+  <section class="section-dark">
+    <div class="container">
+      <div class="section-label">Herramientas</div>
+      <h2 class="section-title">Herramientas disponibles hoy</h2>
+      <div class="grid-3">
+        <div class="card">
+          <h3>Verificador de documentos</h3>
+          <p>Verifique cualquier PDF firmado con Firma Digital costarricense. Validación criptográfica nativa, sin depender de Adobe.</p>
+          <a class="persona-cta" href="https://verify.attestto.com">verify.attestto.com &rarr;</a>
+        </div>
+        <div class="card">
+          <h3>Espejo de confianza PKI</h3>
+          <p>Espejo público independiente de las raíces PKI nacionales. Consulte el estado de las Autoridades Certificadoras de Costa Rica.</p>
+          <a class="persona-cta" href="https://trust.attestto.com">trust.attestto.com &rarr;</a>
+        </div>
+        <div class="card">
+          <h3>Revisor de pliegos</h3>
+          <p>Herramienta gratuita para funcionarios públicos. Suba un pliego de licitación y reciba un análisis de neutralidad tecnológica, privacidad y estándares abiertos.</p>
+          <span class="persona-cta" style="opacity: 0.5; cursor: default;">Próximamente</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section id="contact" class="section-light cta-center">
+    <div class="container">
+      <div class="section-label">Contacto</div>
+      <h2 class="section-title">Construyamos la infraestructura de Costa Rica juntos</h2>
+      <p class="section-desc">
+        Buscamos instituciones, profesionales y desarrolladores que quieran implementar
+        identidad digital soberana en Costa Rica. La infraestructura es abierta.
+        El código es público. La conversación empieza aquí.
+      </p>
+      <a href="mailto:open@attestto.com?subject=Attestto%20Costa%20Rica" class="btn btn-primary">Contactar al equipo</a>
+      <div class="cta-links">
+        <a href="mailto:open@attestto.com">open@attestto.com</a>
+        <a href="/es/ark">Arquitectura global</a>
+        <a href="https://github.com/Attestto-com">GitHub</a>
+      </div>
+    </div>
+  </section>
+
+<style>
+.law-rows {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md, 16px);
+}
+.law-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-lg, 24px);
+  background: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 12px;
+  padding: 24px;
+  align-items: start;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+}
+.law-left h3 {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: #1a1a2e;
+}
+.law-left p {
+  font-size: 0.875rem;
+  line-height: 1.7;
+  color: #374151;
+}
+.law-left p strong {
+  color: #1a1a2e;
+}
+.law-right {
+  border-left: 3px solid #22d3a8;
+  padding-left: 20px;
+  display: flex;
+  align-items: center;
+}
+.law-right p {
+  font-size: 0.875rem;
+  line-height: 1.7;
+  color: #4b5563;
+  margin: 0;
+}
+@media (max-width: 640px) {
+  .law-row {
+    grid-template-columns: 1fr;
+  }
+  .law-right {
+    border-left: none;
+    border-top: 2px solid #22d3a8;
+    padding-left: 0;
+    padding-top: 16px;
+  }
+}
+</style>
+
+</Base>

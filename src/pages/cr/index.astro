@@ -7,11 +7,11 @@ const structuredData = [
     "@type": "WebPage",
     "name": "Attestto · Costa Rica",
     "url": "https://attestto.org/cr",
-    "inLanguage": "es",
+    "inLanguage": "en",
     "about": {
       "@type": "GovernmentService",
       "name": "Firma Digital Costa Rica",
-      "description": "Sistema Nacional de Certificación Digital regulado por Ley 8454, administrado por el BCCR",
+      "description": "National Digital Certification System regulated by Law 8454, administered by the BCCR (Central Bank of Costa Rica)",
       "serviceArea": {
         "@type": "Country",
         "name": "Costa Rica"
@@ -36,26 +36,26 @@ const structuredData = [
     "mainEntity": [
       {
         "@type": "Question",
-        "name": "¿Qué es Firma Digital en Costa Rica?",
+        "name": "What is Firma Digital in Costa Rica?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Firma Digital es el sistema nacional de certificación digital de Costa Rica, regulado por la Ley 8454. El Banco Central (BCCR) administra la jerarquía PKI, y la Dirección de Gobernanza Digital (MICITT) supervisa. Attestto implementa did:pki para hacer verificables estos certificados en cualquier país."
+          "text": "Firma Digital is Costa Rica's national digital certification system, regulated by Law 8454. The Central Bank (BCCR) administers the PKI hierarchy, and the Digital Governance Office (MICITT) oversees it. Attestto implements did:pki to make these certificates verifiable across borders."
         }
       },
       {
         "@type": "Question",
-        "name": "¿Cómo se alinea Attestto con la legislación costarricense?",
+        "name": "How does Attestto align with Costa Rican law?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Attestto implementa los principios de neutralidad tecnológica (Ley 8642), certificación digital (Ley 8454), protección de datos personales (Ley 8968), simplificación de trámites (Ley 9986), y el Código Nacional de Tecnologías Digitales — sin reemplazar ni competir con la infraestructura existente."
+          "text": "Attestto implements the principles of technological neutrality (Law 8642), digital certification (Law 8454), personal data protection (Law 8968), administrative simplification (Law 9986), and the National Code of Digital Technologies — without replacing or competing with existing infrastructure."
         }
       },
       {
         "@type": "Question",
-        "name": "¿Puedo verificar documentos firmados con Firma Digital de Costa Rica?",
+        "name": "Can I verify documents signed with Costa Rica's Firma Digital?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Sí. En verify.attestto.com puede verificar documentos PDF firmados con Firma Digital directamente en su navegador. La verificación es criptográfica, sin subir archivos a ningún servidor, y valida la cadena de certificados contra las CAs del BCCR."
+          "text": "Yes. At verify.attestto.com you can verify PDF documents signed with Firma Digital directly in your browser. Verification is cryptographic, without uploading files to any server, and validates the certificate chain against BCCR's CAs."
         }
       }
     ]
@@ -73,16 +73,15 @@ const structuredData = [
 
 <Base
   structuredData={structuredData}
-  title="Attestto · Costa Rica — Infraestructura de Identidad Digital Soberana"
-  description="Cómo Attestto implementa los principios de neutralidad tecnológica, protección de datos y estándares abiertos mandados por el marco legal costarricense."
+  title="Attestto · Costa Rica — Sovereign Digital Identity Infrastructure"
+  description="How Attestto implements the principles of technological neutrality, data protection, and open standards mandated by Costa Rica's legal framework."
   canonicalPath="/cr"
   ogTitle="Attestto · Costa Rica"
-  ogDescription="Infraestructura de identidad digital soberana alineada con Ley 8642, Ley 8454, Ley 9986, Ley 8968 y el Código Nacional de Tecnologías Digitales."
+  ogDescription="Sovereign digital identity infrastructure aligned with Law 8642, Law 8454, Law 9986, Law 8968, and the National Code of Digital Technologies."
   navVariant="default"
   footerVariant="default"
-  lang="es"
   footerNotes={[
-    'Las referencias legales citadas en esta página provienen de fuentes oficiales publicadas en La Gaceta. Este documento no constituye asesoría legal.',
+    'Legal references cited on this page come from official sources published in La Gaceta. This document does not constitute legal advice.',
     'PKI trust data sourced from <a href="https://trust.attestto.com">trust.attestto.com</a> — independent public mirror, not an official government publication.',
   ]}
 >
@@ -92,88 +91,88 @@ const structuredData = [
     <div class="container">
       <div class="hero-text">
         <p class="eyebrow">Attestto · Costa Rica</p>
-        <h1>Identidad digital soberana para Costa Rica</h1>
+        <h1>Sovereign digital identity for Costa Rica</h1>
         <p class="lead">
-          Infraestructura abierta que implementa los principios de neutralidad tecnológica,
-          protección de datos y estándares abiertos que el marco legal costarricense ya exige.
+          Open infrastructure that implements the principles of technological neutrality,
+          data protection, and open standards that Costa Rica's legal framework already mandates.
         </p>
         <div class="hero-actions">
-          <a href="#marco-legal" class="btn btn-primary">Marco legal</a>
-          <a href="#credenciales" class="btn btn-secondary">Credenciales CR</a>
+          <a href="#legal-framework" class="btn btn-primary">Legal framework</a>
+          <a href="#credentials" class="btn btn-secondary">CR Credentials</a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Marco Legal -->
-  <section id="marco-legal" class="section-light">
+  <!-- Legal Framework -->
+  <section id="legal-framework" class="section-light">
     <div class="container">
-      <div class="section-label">Marco legal</div>
-      <h2 class="section-title">Lo que la ley ya exige</h2>
+      <div class="section-label">Legal framework</div>
+      <h2 class="section-title">What the law already requires</h2>
       <p class="section-desc">
-        Costa Rica tiene uno de los marcos más desarrollados de América Latina en materia de
-        neutralidad tecnológica. Estos instrumentos no son aspiracionales — son norma vigente.
-        Attestto los implementa por arquitectura.
+        Costa Rica has one of the most developed frameworks in Latin America for technological
+        neutrality. These instruments are not aspirational — they are current, binding law.
+        Attestto implements them by architecture.
       </p>
       <div class="law-rows">
 
         <div class="law-row">
           <div class="law-left">
-            <h3>Ley 8642 · Art. 3(h)</h3>
-            <p><strong>Neutralidad tecnológica.</strong> Estándares comunes y garantizados. Ninguna tecnología favorecida sobre otra. Los operadores eligen su stack — el Estado no impone.</p>
+            <h3>Law 8642 · Art. 3(h)</h3>
+            <p><strong>Technological neutrality.</strong> Common, guaranteed standards. No technology favored over another. Operators choose their stack — the State does not impose.</p>
           </div>
           <div class="law-right">
-            <p>W3C Verifiable Credentials + Decentralized Identifiers. Estándares internacionales, chain-agnostic, auditable por cualquier parte.</p>
+            <p>W3C Verifiable Credentials + Decentralized Identifiers. International standards, chain-agnostic, auditable by any party.</p>
           </div>
         </div>
 
         <div class="law-row">
           <div class="law-left">
-            <h3>Ley 8454 · Art. 2(d)</h3>
-            <p><strong>Igualdad de tratamiento para las tecnologías</strong> de generación, proceso o almacenamiento. La firma digital tiene la misma validez que la manuscrita, sin importar la tecnología usada.</p>
+            <h3>Law 8454 · Art. 2(d)</h3>
+            <p><strong>Equal treatment for technologies</strong> of generation, processing, or storage. Digital signatures have the same validity as handwritten ones, regardless of the technology used.</p>
           </div>
           <div class="law-right">
-            <p>Firma electrónica Ed25519 + compatibilidad con PKCS#11. El ciudadano elige el mecanismo — smartcard, biometría, o clave criptográfica en dispositivo.</p>
+            <p>Ed25519 electronic signature + PKCS#11 compatibility. The citizen chooses the mechanism — smartcard, biometrics, or on-device cryptographic key.</p>
           </div>
         </div>
 
         <div class="law-row">
           <div class="law-left">
-            <h3>Ley 9986 · Art. 19</h3>
-            <p><strong>Formatos abiertos y neutralidad</strong> en el sistema de compras públicas. La información se almacena en formatos accesibles sin costo. Sin condicionantes que favorezcan unas tecnologías sobre otras.</p>
+            <h3>Law 9986 · Art. 19</h3>
+            <p><strong>Open formats and neutrality</strong> in the public procurement system. Information is stored in formats accessible at no cost. No conditions favoring one technology over another.</p>
           </div>
           <div class="law-right">
-            <p>JSON-LD, W3C VC Data Model, código abierto Apache 2.0. Cualquier proveedor puede leer, verificar y emitir credenciales compatibles.</p>
+            <p>JSON-LD, W3C VC Data Model, open source Apache 2.0. Any vendor can read, verify, and issue compatible credentials.</p>
           </div>
         </div>
 
         <div class="law-row">
           <div class="law-left">
-            <h3>Ley 8968 · Protección de datos</h3>
-            <p><strong>Consentimiento, minimización, finalidad.</strong> Los datos personales del ciudadano requieren consentimiento informado. Se recopila solo lo estrictamente necesario.</p>
+            <h3>Law 8968 · Data protection</h3>
+            <p><strong>Consent, minimization, purpose limitation.</strong> Citizens' personal data requires informed consent. Only what is strictly necessary may be collected.</p>
           </div>
           <div class="law-right">
-            <p>Divulgación selectiva criptográfica. El ciudadano revela solo lo que el verificador necesita. Sin servidor central que almacene datos. Privacidad por arquitectura, no por política.</p>
+            <p>Cryptographic selective disclosure. The citizen reveals only what the verifier needs. No central server stores data. Privacy by architecture, not by policy.</p>
           </div>
         </div>
 
         <div class="law-row">
           <div class="law-left">
             <h3>CNTD · D.E. 44507-MICITT</h3>
-            <p><strong>Código Nacional de Tecnologías Digitales (2024).</strong> Siete capítulos de aplicación obligatoria para todo el sector público. El Capítulo 6 está dedicado íntegramente a neutralidad tecnológica.</p>
+            <p><strong>National Code of Digital Technologies (2024).</strong> Seven chapters of mandatory application for the entire public sector. Chapter 6 is dedicated entirely to technological neutrality.</p>
           </div>
           <div class="law-right">
-            <p>Cumple los 7 capítulos: accesibilidad (PWA), identificación (DID + WebAuthn), seguridad (local-first, post-Conti), interoperabilidad (W3C), neutralidad (chain-agnostic), IA (on-device, explicable).</p>
+            <p>Complies with all 7 chapters: accessibility (PWA), identification (DID + WebAuthn), security (local-first, post-Conti), interoperability (W3C), neutrality (chain-agnostic), AI (on-device, explainable).</p>
           </div>
         </div>
 
         <div class="law-row">
           <div class="law-left">
-            <h3>Art. 24 · Constitución Política</h3>
-            <p><strong>Derecho a la intimidad</strong> y autodeterminación informativa. Ningún sistema puede obligar al ciudadano a entregar datos personales más allá de lo estrictamente necesario.</p>
+            <h3>Art. 24 · Political Constitution</h3>
+            <p><strong>Right to privacy</strong> and informational self-determination. No system may compel a citizen to surrender personal data beyond what is strictly necessary.</p>
           </div>
           <div class="law-right">
-            <p>El ciudadano porta sus propias credenciales. Nadie más almacena su información. La verificación es criptográfica — no requiere consultar bases de datos de terceros.</p>
+            <p>The citizen carries their own credentials. No one else stores their information. Verification is cryptographic — no third-party database lookups required.</p>
           </div>
         </div>
 
@@ -181,66 +180,66 @@ const structuredData = [
     </div>
   </section>
 
-  <!-- Por qué importa -->
+  <!-- Why it matters -->
   <section class="section-dark">
     <div class="container">
-      <div class="section-label">Contexto</div>
-      <h2 class="section-title">Por qué Costa Rica necesita esto ahora</h2>
+      <div class="section-label">Context</div>
+      <h2 class="section-title">Why Costa Rica needs this now</h2>
       <p class="section-desc">
-        En abril de 2022, el grupo Conti exfiltró 672 GB de datos gubernamentales. El Ministerio de Hacienda,
-        la CCSS y múltiples instituciones quedaron paralizadas durante meses. Los registros de salud de 5 millones
-        de ciudadanos estuvieron inaccesibles por 5 meses. El costo estimado superó los $125 millones.
+        In April 2022, the Conti group exfiltrated 672 GB of government data. The Ministry of Finance,
+        the CCSS (social security), and multiple institutions were paralyzed for months. Health records for
+        5 million citizens were inaccessible for 5 months. The estimated cost exceeded $125 million.
       </p>
       <div class="grid-3">
         <div class="card">
-          <h3>El problema</h3>
-          <p>Datos centralizados sin integridad criptográfica. Un servidor comprometido = todo perdido. No existe forma de verificar si un documento fue alterado después del ataque.</p>
+          <h3>The problem</h3>
+          <p>Centralized data without cryptographic integrity. One compromised server = everything lost. No way to verify if a document was altered after the attack.</p>
         </div>
         <div class="card">
-          <h3>La lección</h3>
-          <p>El próximo ataque es inevitable. La pregunta no es si ocurrirá, sino si los datos del ciudadano sobreviven intactos. La integridad criptográfica convierte un ataque catastrófico en una interrupción de servicio recuperable.</p>
+          <h3>The lesson</h3>
+          <p>The next attack is inevitable. The question is not whether it will happen, but whether citizen data survives intact. Cryptographic integrity turns a catastrophic attack into a recoverable service interruption.</p>
         </div>
         <div class="card">
-          <h3>La solución arquitectónica</h3>
-          <p>Credenciales verificables firmadas criptográficamente, ancladas en registros públicos inmutables. Si el servidor cae, las firmas sobreviven. El ciudadano porta su propia prueba verificable.</p>
+          <h3>The architectural solution</h3>
+          <p>Cryptographically signed verifiable credentials anchored in immutable public records. If the server falls, signatures survive. The citizen carries their own verifiable proof.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Credenciales CR -->
-  <section id="credenciales" class="section-light">
+  <!-- CR Credentials -->
+  <section id="credentials" class="section-light">
     <div class="container">
-      <div class="section-label">Credenciales</div>
-      <h2 class="section-title">Tipos de credenciales para Costa Rica</h2>
+      <div class="section-label">Credentials</div>
+      <h2 class="section-title">Credential types for Costa Rica</h2>
       <p class="section-desc">
-        Esquemas abiertos basados en W3C Verifiable Credentials y alineados con ISO 18013-5 (licencia de conducir digital).
-        Cada esquema define los campos, las reglas de validación y la cadena de confianza.
+        Open schemas based on W3C Verifiable Credentials and aligned with ISO 18013-5 (mobile driving license).
+        Each schema defines the fields, validation rules, and trust chain.
       </p>
       <div class="grid-3">
         <div class="card">
-          <h3>Cédula de identidad</h3>
-          <p>Credencial verificable vinculada al número de cédula. Verificación facial con prueba de vida. Emitida por profesionales autorizados como Autoridades de Registro.</p>
+          <h3>National ID (Cedula)</h3>
+          <p>Verifiable credential linked to the national ID number. Facial verification with liveness proof. Issued by authorized professionals as Registration Authorities.</p>
         </div>
         <div class="card">
-          <h3>Licencia de conducir (mDL)</h3>
-          <p>Licencia digital conforme a ISO 18013-5. Incluye categorías, restricciones y vigencia. Verificable offline por cualquier autoridad con un lector compatible.</p>
+          <h3>Driving license (mDL)</h3>
+          <p>Digital license conforming to ISO 18013-5. Includes categories, restrictions, and validity. Verifiable offline by any authority with a compatible reader.</p>
         </div>
         <div class="card">
-          <h3>Dictamen médico</h3>
-          <p>Credencial emitida por profesional médico colegiado. Incluye tipo de examen, vigencia y firma del emisor. Verificación automática de vigencia antes del examen de conducir.</p>
+          <h3>Medical certificate</h3>
+          <p>Credential issued by a licensed medical professional. Includes exam type, validity, and issuer signature. Automatic validity check before the driving exam.</p>
         </div>
         <div class="card">
-          <h3>Título profesional</h3>
-          <p>Credencial emitida por el Colegio Profesional correspondiente. Verifica que el profesional está habilitado, activo y al día con sus obligaciones.</p>
+          <h3>Professional title</h3>
+          <p>Credential issued by the corresponding Professional College. Verifies the professional is licensed, active, and current with their obligations.</p>
         </div>
         <div class="card">
-          <h3>Certificado de competencias</h3>
-          <p>Resultado de evaluaciones verificable criptográficamente. Incluye cadena de hashes de la sesión de examen, firmas del evaluado y la estación, y anclaje en registro público.</p>
+          <h3>Competency certificate</h3>
+          <p>Cryptographically verifiable exam results. Includes hash chain of the exam session, signatures from the examinee and the station, and public record anchoring.</p>
         </div>
         <div class="card">
-          <h3>Registro de vehículos</h3>
-          <p>Título vehicular como credencial verificable. Historial de marcas (limpio, salvamento, reconstruido) inmutable. Elimina el title washing entre jurisdicciones.</p>
+          <h3>Vehicle registration</h3>
+          <p>Vehicle title as a verifiable credential. Immutable brand history (clean, salvage, rebuilt). Eliminates title washing across jurisdictions.</p>
         </div>
       </div>
     </div>
@@ -249,89 +248,89 @@ const structuredData = [
   <!-- Namespaces -->
   <section class="section-dark">
     <div class="container">
-      <div class="section-label">Identificadores</div>
-      <h2 class="section-title">Namespaces soberanos por sector</h2>
+      <div class="section-label">Identifiers</div>
+      <h2 class="section-title">Sovereign namespaces by sector</h2>
       <p class="section-desc">
-        Cada sector opera su propio namespace como dominio soberano. Estos nombres son anclas de gobernanza
-        — la infraestructura es neutral y permite que cada institución gestione su propio espacio.
+        Each sector operates its own namespace as a sovereign domain. These names are governance anchors
+        — the infrastructure is neutral and allows each institution to manage its own space.
       </p>
       <div class="grid-3">
         <div class="card">
           <p class="sns-tld" style="font-size: 1.2rem; margin-bottom: var(--space-sm);">fi-cr<span class="tld">.sol</span></p>
-          <h3>Finanzas</h3>
-          <p>Bancos, aseguradoras, cooperativas, SUGEF. Credenciales financieras, KYC verificable, cumplimiento AML.</p>
+          <h3>Finance</h3>
+          <p>Banks, insurers, cooperatives, SUGEF. Financial credentials, verifiable KYC, AML compliance.</p>
         </div>
         <div class="card">
           <p class="sns-tld" style="font-size: 1.2rem; margin-bottom: var(--space-sm);">go-cr<span class="tld">.sol</span></p>
-          <h3>Gobierno</h3>
-          <p>Ministerios, municipalidades, instituciones autónomas. Documentos oficiales verificables, trámites digitales.</p>
+          <h3>Government</h3>
+          <p>Ministries, municipalities, autonomous institutions. Verifiable official documents, digital services.</p>
         </div>
         <div class="card">
           <p class="sns-tld" style="font-size: 1.2rem; margin-bottom: var(--space-sm);">sa-cr<span class="tld">.sol</span></p>
-          <h3>Salud</h3>
-          <p>Hospitales, clínicas, laboratorios. Expedientes clínicos verificables, dictámenes médicos, recetas.</p>
+          <h3>Health</h3>
+          <p>Hospitals, clinics, laboratories. Verifiable clinical records, medical certificates, prescriptions.</p>
         </div>
         <div class="card">
           <p class="sns-tld" style="font-size: 1.2rem; margin-bottom: var(--space-sm);">ed-cr<span class="tld">.sol</span></p>
-          <h3>Educación</h3>
-          <p>Universidades, colegios técnicos, INA. Títulos, certificaciones, evaluaciones verificables.</p>
+          <h3>Education</h3>
+          <p>Universities, technical colleges, INA. Degrees, certifications, verifiable assessments.</p>
         </div>
         <div class="card">
           <p class="sns-tld" style="font-size: 1.2rem; margin-bottom: var(--space-sm);">or-cr<span class="tld">.sol</span></p>
-          <h3>Organizaciones</h3>
-          <p>Colegios profesionales, cámaras, asociaciones. Habilitaciones profesionales, membresías activas.</p>
+          <h3>Organizations</h3>
+          <p>Professional colleges, chambers, associations. Professional licenses, active memberships.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Profesionales como RAs -->
+  <!-- Professionals as RAs -->
   <section class="section-light">
     <div class="container">
-      <div class="section-label">Modelo profesional</div>
-      <h2 class="section-title">Profesionales como Autoridades de Registro</h2>
+      <div class="section-label">Professional model</div>
+      <h2 class="section-title">Professionals as Registration Authorities</h2>
       <p class="section-desc">
-        Los notarios, abogados y otros profesionales con fe pública ya tienen la autoridad legal para
-        dar fe de la identidad de un ciudadano. Attestto convierte ese acto presencial en una credencial
-        digital verificable criptográficamente.
+        Notaries, lawyers, and other professionals with public faith already have the legal authority to
+        attest to a citizen's identity. Attestto turns that in-person act into a cryptographically
+        verifiable digital credential.
       </p>
       <div class="grid-3">
         <div class="card">
-          <h3>El profesional verifica</h3>
-          <p>El notario o abogado verifica la identidad del ciudadano presencialmente — documento, biometría, firma. Exactamente lo que ya hace con fe pública.</p>
+          <h3>The professional verifies</h3>
+          <p>The notary or lawyer verifies the citizen's identity in person — document, biometrics, signature. Exactly what they already do under public faith.</p>
         </div>
         <div class="card">
-          <h3>Attestto firma y ancla</h3>
-          <p>La verificación se empaqueta como una Credencial Verificable firmada con la llave del profesional y anclada en un registro público. La fe pública se convierte en prueba criptográfica.</p>
+          <h3>Attestto signs and anchors</h3>
+          <p>The verification is packaged as a Verifiable Credential signed with the professional's key and anchored in a public record. Public faith becomes cryptographic proof.</p>
         </div>
         <div class="card">
-          <h3>El profesional gana</h3>
-          <p>Cada verificación genera una comisión para el profesional que la emitió. Un ingreso de por vida vinculado a la credencial activa — mientras el ciudadano la use, el profesional recibe.</p>
+          <h3>The professional earns</h3>
+          <p>Each verification generates a commission for the professional who issued it. A lifetime income tied to the active credential — as long as the citizen uses it, the professional earns.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Herramientas -->
+  <!-- Tools -->
   <section class="section-dark">
     <div class="container">
-      <div class="section-label">Herramientas</div>
-      <h2 class="section-title">Herramientas disponibles hoy</h2>
+      <div class="section-label">Tools</div>
+      <h2 class="section-title">Tools available today</h2>
       <div class="grid-3">
         <div class="card">
-          <h3>Verificador de documentos</h3>
-          <p>Verifique cualquier PDF firmado con Firma Digital costarricense. Validación criptográfica nativa, sin depender de Adobe.</p>
+          <h3>Document verifier</h3>
+          <p>Verify any PDF signed with Costa Rica's Firma Digital. Native cryptographic validation, no Adobe dependency.</p>
           <a class="persona-cta" href="https://verify.attestto.com">verify.attestto.com &rarr;</a>
         </div>
         <div class="card">
-          <h3>Espejo de confianza PKI</h3>
-          <p>Espejo público independiente de las raíces PKI nacionales. Consulte el estado de las Autoridades Certificadoras de Costa Rica.</p>
+          <h3>PKI trust mirror</h3>
+          <p>Independent public mirror of national PKI roots. Check the status of Costa Rica's Certificate Authorities.</p>
           <a class="persona-cta" href="https://trust.attestto.com">trust.attestto.com &rarr;</a>
         </div>
         <div class="card">
-          <h3>Revisor de pliegos</h3>
-          <p>Herramienta gratuita para funcionarios públicos. Suba un pliego de licitación y reciba un análisis de neutralidad tecnológica, privacidad y estándares abiertos.</p>
-          <span class="persona-cta" style="opacity: 0.5; cursor: default;">Próximamente</span>
+          <h3>Procurement reviewer</h3>
+          <p>Free tool for public officials. Upload a procurement specification and receive an analysis of technological neutrality, privacy, and open standards compliance.</p>
+          <span class="persona-cta" style="opacity: 0.5; cursor: default;">Coming soon</span>
         </div>
       </div>
     </div>
@@ -340,17 +339,17 @@ const structuredData = [
   <!-- CTA -->
   <section id="contact" class="section-light cta-center">
     <div class="container">
-      <div class="section-label">Contacto</div>
-      <h2 class="section-title">Construyamos la infraestructura de Costa Rica juntos</h2>
+      <div class="section-label">Contact</div>
+      <h2 class="section-title">Let's build Costa Rica's infrastructure together</h2>
       <p class="section-desc">
-        Buscamos instituciones, profesionales y desarrolladores que quieran implementar
-        identidad digital soberana en Costa Rica. La infraestructura es abierta.
-        El código es público. La conversación empieza aquí.
+        We're looking for institutions, professionals, and developers who want to implement
+        sovereign digital identity in Costa Rica. The infrastructure is open.
+        The code is public. The conversation starts here.
       </p>
-      <a href="mailto:open@attestto.com?subject=Attestto%20Costa%20Rica" class="btn btn-primary">Contactar al equipo</a>
+      <a href="mailto:open@attestto.com?subject=Attestto%20Costa%20Rica" class="btn btn-primary">Contact the team</a>
       <div class="cta-links">
         <a href="mailto:open@attestto.com">open@attestto.com</a>
-        <a href="/ark">Arquitectura global</a>
+        <a href="/ark">Global architecture</a>
         <a href="https://github.com/Attestto-com">GitHub</a>
       </div>
     </div>
