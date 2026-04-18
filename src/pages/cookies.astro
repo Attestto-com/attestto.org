@@ -1,0 +1,200 @@
+---
+import Base from '../layouts/Base.astro'
+---
+
+<Base
+  title="Cookie Policy — Attestto"
+  description="Cookie policy for Attestto's open-source identity tools. We use minimal cookies — analytics only with consent."
+  canonicalPath="/cookies"
+  ogTitle="Cookie Policy — Attestto"
+  ogDescription="How Attestto uses cookies across its open-source identity tools."
+  footerVariant="default"
+>
+  <section class="story-highlight" style="padding: var(--space-xl) 0 var(--space-lg);">
+    <div class="container">
+      <div class="story-content">
+        <div class="story-label">Legal</div>
+        <h1 class="story-title">Cookie Policy</h1>
+        <p class="legal-meta">Effective: April 18, 2026 &middot; Attestto Inc. (Delaware C-Corp)</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="legal-section">
+    <div class="container">
+      <div class="legal-content">
+
+        <p>This policy explains how Attestto's open-source tools use cookies and similar technologies.</p>
+
+        <h2>Essential storage (no consent required)</h2>
+        <p>These are stored in your browser's localStorage and are necessary for basic functionality:</p>
+        <div class="cookie-table-wrap">
+          <table class="cookie-table">
+            <thead>
+              <tr>
+                <th>Key</th>
+                <th>Purpose</th>
+                <th>Duration</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>attestto-consent</code></td>
+                <td>Remembers your cookie consent choice</td>
+                <td>Persistent</td>
+              </tr>
+              <tr>
+                <td><code>attestto-lang</code></td>
+                <td>Stores your language preference (en/es)</td>
+                <td>Persistent</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2>Analytics cookies (consent required)</h2>
+        <p>We use <strong>Google Analytics 4</strong> to understand how visitors use our sites. GA4 scripts are <strong>only loaded after you accept</strong> via the <code>&lt;attestto-consent&gt;</code> banner. If you decline, no analytics cookies are set and no data is sent to Google.</p>
+        <div class="cookie-table-wrap">
+          <table class="cookie-table">
+            <thead>
+              <tr>
+                <th>Cookie</th>
+                <th>Purpose</th>
+                <th>Duration</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>_ga</code></td>
+                <td>Distinguishes unique visitors</td>
+                <td>2 years</td>
+              </tr>
+              <tr>
+                <td><code>_ga_*</code></td>
+                <td>Maintains session state</td>
+                <td>2 years</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2>No third-party tracking</h2>
+        <p>We do not use advertising cookies, social media tracking pixels, or any third-party cookies beyond Google Analytics. We do not participate in cross-site tracking or data broker networks.</p>
+
+        <h2>Managing cookies</h2>
+        <ul>
+          <li><strong>Decline analytics:</strong> Click "Decline" on the consent banner. GA4 will not load.</li>
+          <li><strong>Revoke consent:</strong> Clear your browser's localStorage for this site, then reload. The consent banner will reappear.</li>
+          <li><strong>Browser settings:</strong> You can block all cookies via your browser's privacy settings. Essential localStorage items can be cleared from your browser's developer tools (Application &rarr; Local Storage).</li>
+        </ul>
+
+        <h2>Contact</h2>
+        <p>For questions about this policy: <a href="mailto:open@attestto.com">open@attestto.com</a></p>
+
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .legal-meta {
+    font-size: 0.875rem;
+    color: rgba(255, 255, 255, 0.5);
+    margin-top: 0.5rem;
+  }
+
+  .legal-section {
+    padding: var(--space-lg) 0;
+    background: var(--color-surface);
+  }
+
+  .legal-content {
+    max-width: 65ch;
+    margin: 0 auto;
+    padding: 0 clamp(1rem, 5vw, 4rem);
+  }
+
+  .legal-content p {
+    color: var(--color-ink-muted);
+    line-height: 1.8;
+    margin-bottom: 1em;
+  }
+
+  .legal-content strong {
+    color: var(--color-ink);
+  }
+
+  .legal-content h2 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--color-ink);
+    margin-top: var(--space-md);
+    margin-bottom: 0.75rem;
+  }
+
+  .legal-content ul {
+    padding-left: 1.5rem;
+    margin-bottom: 1em;
+  }
+
+  .legal-content li {
+    color: var(--color-ink-muted);
+    line-height: 1.8;
+    margin-bottom: 0.5em;
+  }
+
+  .legal-content li strong {
+    color: var(--color-ink);
+  }
+
+  .legal-content a {
+    color: var(--color-accent);
+    font-weight: 500;
+  }
+
+  .legal-content code {
+    font-family: var(--font-mono);
+    font-size: 0.875rem;
+    background: #f1f5f9;
+    padding: 0.1rem 0.4rem;
+    border-radius: 3px;
+    color: var(--color-ink);
+  }
+
+  .cookie-table-wrap {
+    overflow-x: auto;
+    margin-bottom: 1.5em;
+  }
+
+  .cookie-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9375rem;
+  }
+
+  .cookie-table th {
+    text-align: left;
+    padding: 0.6rem 0.75rem;
+    font-weight: 600;
+    font-size: 0.8125rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-ink);
+    border-bottom: 2px solid var(--color-border);
+  }
+
+  .cookie-table td {
+    padding: 0.6rem 0.75rem;
+    border-bottom: 1px solid var(--color-border);
+    color: var(--color-ink-muted);
+  }
+
+  .cookie-table code {
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    background: #f1f5f9;
+    padding: 0.1rem 0.3rem;
+    border-radius: 3px;
+    color: var(--color-ink);
+  }
+</style>

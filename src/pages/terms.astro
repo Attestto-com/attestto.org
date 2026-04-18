@@ -1,0 +1,121 @@
+---
+import Base from '../layouts/Base.astro'
+---
+
+<Base
+  title="Terms of Service — Attestto"
+  description="Terms of service for Attestto's open-source identity tools: verify widget, browser extension, and web applications."
+  canonicalPath="/terms"
+  ogTitle="Terms of Service — Attestto"
+  ogDescription="Terms governing use of Attestto's open-source identity verification tools."
+  footerVariant="default"
+>
+  <section class="story-highlight" style="padding: var(--space-xl) 0 var(--space-lg);">
+    <div class="container">
+      <div class="story-content">
+        <div class="story-label">Legal</div>
+        <h1 class="story-title">Terms of Service</h1>
+        <p class="legal-meta">Effective: April 18, 2026 &middot; Attestto Inc. (Delaware C-Corp)</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="legal-section">
+    <div class="container">
+      <div class="legal-content">
+
+        <p>These terms govern your use of the open-source tools provided by Attestto Inc.: <strong>verify.attestto.com</strong>, <strong>app.attestto.com</strong>, <strong>attestto.org</strong>, and the <strong>Attestto ID browser extension</strong>.</p>
+
+        <h2>Open source license</h2>
+        <p>Attestto's tools are released under the <strong>Apache License 2.0</strong>. You may use, modify, and distribute the source code subject to the terms of that license. The full license text is available in each repository.</p>
+
+        <h2>No warranty</h2>
+        <p>These tools are provided <strong>"as is"</strong>, without warranty of any kind, express or implied, including but not limited to the warranties of merchantability, fitness for a particular purpose, and non-infringement. In no event shall Attestto Inc. be liable for any claim, damages, or other liability arising from the use of these tools.</p>
+
+        <h2>What Attestto is NOT</h2>
+        <ul>
+          <li><strong>Not a financial institution.</strong> Attestto does not hold, transmit, or manage funds on your behalf.</li>
+          <li><strong>Not a Certificate Authority.</strong> Attestto does not issue digital certificates. We verify signatures made with certificates issued by recognized CAs.</li>
+          <li><strong>Not a government entity.</strong> Attestto is a private company. Our tools do not replace official government verification processes.</li>
+        </ul>
+
+        <h2>Verification is informational</h2>
+        <p>Document verification results provided by Attestto tools are <strong>informational only</strong> and do not constitute legal certification, notarization, or official validation. Users should not rely solely on these results for legal, financial, or regulatory decisions.</p>
+
+        <h2>User responsibility</h2>
+        <ul>
+          <li>You are responsible for safeguarding your own cryptographic keys and credentials.</li>
+          <li>You are responsible for the accuracy of documents and credentials you create, sign, or present using Attestto tools.</li>
+          <li>You must not use Attestto tools for fraudulent, illegal, or deceptive purposes.</li>
+        </ul>
+
+        <h2>Availability</h2>
+        <p>We make reasonable efforts to keep our services available, but we do not guarantee uptime. Services may be interrupted for maintenance, updates, or circumstances beyond our control.</p>
+
+        <h2>Governing law</h2>
+        <p>These terms are governed by the laws of the <strong>State of Delaware, USA</strong>. Any disputes shall be resolved in the courts of Delaware.</p>
+
+        <h2>Contact</h2>
+        <p>For questions about these terms: <a href="mailto:open@attestto.com">open@attestto.com</a></p>
+
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .legal-meta {
+    font-size: 0.875rem;
+    color: rgba(255, 255, 255, 0.5);
+    margin-top: 0.5rem;
+  }
+
+  .legal-section {
+    padding: var(--space-lg) 0;
+    background: var(--color-surface);
+  }
+
+  .legal-content {
+    max-width: 65ch;
+    margin: 0 auto;
+    padding: 0 clamp(1rem, 5vw, 4rem);
+  }
+
+  .legal-content p {
+    color: var(--color-ink-muted);
+    line-height: 1.8;
+    margin-bottom: 1em;
+  }
+
+  .legal-content strong {
+    color: var(--color-ink);
+  }
+
+  .legal-content h2 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--color-ink);
+    margin-top: var(--space-md);
+    margin-bottom: 0.75rem;
+  }
+
+  .legal-content ul {
+    padding-left: 1.5rem;
+    margin-bottom: 1em;
+  }
+
+  .legal-content li {
+    color: var(--color-ink-muted);
+    line-height: 1.8;
+    margin-bottom: 0.5em;
+  }
+
+  .legal-content li strong {
+    color: var(--color-ink);
+  }
+
+  .legal-content a {
+    color: var(--color-accent);
+    font-weight: 500;
+  }
+</style>
