@@ -1,0 +1,124 @@
+.blog-post {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 3rem 1.5rem 5rem;
+  color: var(--text-primary, #e2e8f0);
+}
+
+.blog-header {
+  margin-bottom: 3rem;
+}
+
+.blog-date {
+  color: var(--text-secondary, #94a3b8);
+  font-size: 0.875rem;
+  margin-bottom: 0.5rem;
+}
+
+.blog-header h1 {
+  font-size: 2rem;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+}
+
+.blog-subtitle {
+  font-size: 1.125rem;
+  color: var(--text-secondary, #94a3b8);
+  line-height: 1.6;
+}
+
+.blog-post section {
+  margin-bottom: 2.5rem;
+}
+
+.blog-post h2 {
+  font-size: 1.375rem;
+  margin-bottom: 1rem;
+  color: var(--text-primary, #e2e8f0);
+}
+
+.blog-post p {
+  line-height: 1.7;
+  margin-bottom: 1rem;
+  color: var(--text-secondary, #cbd5e1);
+}
+
+.blog-post ul, .blog-post ol {
+  margin-bottom: 1rem;
+  padding-left: 1.5rem;
+}
+
+.blog-post li {
+  line-height: 1.7;
+  margin-bottom: 0.5rem;
+  color: var(--text-secondary, #cbd5e1);
+}
+
+.blog-post a {
+  color: var(--primary, #594FD3);
+  text-decoration: underline;
+}
+
+.blog-post strong {
+  color: var(--text-primary, #e2e8f0);
+}
+
+.blog-post em {
+  color: var(--text-secondary, #94a3b8);
+}
+
+.blog-post code {
+  background: var(--bg-card, #1a1f2e);
+  padding: 0.15rem 0.4rem;
+  border-radius: 4px;
+  font-size: 0.875rem;
+}
+
+.blog-video-link {
+  background: var(--bg-card, #1a1f2e);
+  padding: 1rem;
+  border-radius: 8px;
+  border-left: 3px solid var(--primary, #594FD3);
+}
+
+.blog-post table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1.5rem;
+  font-size: 0.9rem;
+}
+
+.blog-post th {
+  text-align: left;
+  padding: 0.75rem;
+  background: var(--bg-card, #1a1f2e);
+  color: var(--text-primary, #e2e8f0);
+  border-bottom: 2px solid var(--border, #334155);
+}
+
+.blog-post td {
+  padding: 0.75rem;
+  border-bottom: 1px solid var(--border, #1e293b);
+  color: var(--text-secondary, #cbd5e1);
+}
+
+.blog-footer {
+  margin-top: 3rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border, #1e293b);
+}
+
+.blog-footer p {
+  font-size: 0.875rem;
+  color: var(--text-secondary, #64748b);
+  margin-bottom: 0.5rem;
+}
+
+@media (max-width: 640px) {
+  .blog-header h1 {
+    font-size: 1.5rem;
+  }
+  .blog-post {
+    padding: 2rem 1rem 3rem;
+  }
+}

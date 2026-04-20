@@ -1,0 +1,310 @@
+---
+import Base from '../../../layouts/Base.astro'
+import '../../../styles/blog.css'
+---
+
+<Base
+  title="Tu foto de pasaporte esta a la venta en Telegram — Por que el KYC centralizado es un honeypot"
+  description="Los proveedores de KYC almacenan millones de escaneos de pasaportes en bases de datos centralizadas. Cuando son vulneradas, tu identidad se vende en Telegram. Las Credenciales Verificables eliminan el honeypot."
+  canonicalPath="/es/blog/kyc-honeypots-e-identidad-soberana"
+  ogType="article"
+  lang="es"
+>
+  <article class="blog-post">
+    <header class="blog-header">
+      <p class="blog-date">20 de abril de 2026</p>
+      <h1>Tu foto de pasaporte esta a la venta en Telegram — Por que el KYC centralizado es un honeypot</h1>
+      <p class="blog-subtitle">
+        Cada vez que escaneas tu documento de identidad para un proceso de KYC, esa imagen se almacena en el
+        servidor de otra persona. Cuando ese servidor es vulnerado — y lo sera — tu identidad se vende en
+        Telegram por centavos. Hay una mejor forma.
+      </p>
+    </header>
+
+    <section>
+      <h2>La brecha de la que nadie habla</h2>
+
+      <p>
+        En octubre de 2024, el proveedor de on-ramp cripto <strong>Transak</strong> revelo un incidente
+        de seguridad. Un atacante obtuvo acceso a la laptop de un empleado mediante un ataque de phishing,
+        y luego uso esas credenciales para ingresar al panel de control de un proveedor externo de KYC.
+        Los datos accedidos incluyeron nombres, fechas de nacimiento y — lo mas critico —
+        <strong>documentos de identidad: escaneos de pasaportes y fotos de licencias de conducir.</strong>
+      </p>
+
+      <p>
+        La respuesta de Transak enfatizo que "ninguna informacion financieramente sensible" fue comprometida.
+        Pero la realidad es esta: <strong>tu foto de pasaporte vale mas que tu numero de tarjeta de credito.</strong>
+        Puedes cancelar una tarjeta en cinco minutos. No puedes cancelar tu rostro, tu fecha de nacimiento,
+        ni tu numero de identificacion nacional. Esos datos son permanentes, y una vez que estan expuestos, se
+        usan para abrir cuentas bancarias, solicitar creditos y crear identidades sinteticas — durante anos.
+      </p>
+
+      <p class="blog-video-link">
+        Ver la investigacion completa sobre el rol de Telegram en este ecosistema:
+        <a href="https://www.youtube.com/watch?v=_-7nXVpJsRo" target="_blank" rel="noopener noreferrer">
+          ARTE — "Telegram: The App Scammers Love" (en ingles/frances)
+        </a>
+      </p>
+    </section>
+
+    <section>
+      <h2>El mercado de Telegram</h2>
+
+      <p>
+        El documental de ARTE expone como Telegram se ha convertido en el mercado preferido para datos
+        personales robados. Canales con miles de suscriptores publican "logs" — volcados estructurados
+        de datos robados que incluyen:
+      </p>
+
+      <ul>
+        <li>Contrasenas y datos de autocompletado recolectados por malware infostealer</li>
+        <li>Cookies del navegador (que evitan la autenticacion de dos factores completamente)</li>
+        <li>Numeros de tarjetas de credito</li>
+        <li>Credenciales de billeteras cripto</li>
+        <li>Y cada vez mas: <strong>documentos de identidad de KYC</strong> — fotos de pasaportes,
+        escaneos de cedulas, selfies con documentos sostenidos junto al rostro</li>
+      </ul>
+
+      <p>
+        El documental muestra tarjetas de identidad nacionales francesas (<em>Carte Nationale d'Identite</em>)
+        siendo comercializadas abiertamente en Telegram, obtenidas de proveedores de KYC vulnerados. No fueron
+        robadas de individuos — fueron robadas de las <em>empresas que pidieron a los individuos que subieran
+        sus documentos.</em>
+      </p>
+
+      <p>
+        El patron es consistente: una fintech, exchange de cripto, o servicio en linea requiere verificacion
+        KYC. El usuario sube su escaneo de pasaporte a un proveedor externo de verificacion. Ese proveedor
+        almacena la imagen — frecuentemente sin cifrar o con controles de acceso inadecuados — en una base
+        de datos centralizada. Un atacante compromete una sola cuenta de empleado, y de repente tiene acceso
+        a miles o millones de documentos de identidad.
+      </p>
+    </section>
+
+    <section>
+      <h2>El problema arquitectonico</h2>
+
+      <p>
+        Esto no es una falla de seguridad que se pueda arreglar con mejores firewalls o mas capacitacion.
+        <strong>La arquitectura misma es la vulnerabilidad.</strong>
+      </p>
+
+      <p>
+        El modelo actual de KYC crea lo que los investigadores de seguridad llaman un <em>honeypot</em>:
+        una ubicacion unica que contiene datos de alto valor de millones de usuarios. La economia es simple —
+        un atacante solo necesita vulnerar un sistema para obtener todo. Y el defensor debe ser perfecto
+        todos los dias, mientras el atacante solo necesita tener exito una vez.
+      </p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Que se almacena</th>
+            <th>Por que es peligroso</th>
+            <th>Puede el usuario revocarlo?</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Foto de pasaporte</td>
+            <td>Robo de identidad, creacion de identidades sinteticas</td>
+            <td>No — tu rostro no cambia</td>
+          </tr>
+          <tr>
+            <td>Numero de identificacion nacional</td>
+            <td>Abre cuentas bancarias, lineas de credito, servicios gubernamentales</td>
+            <td>No — asignado de por vida en la mayoria de paises</td>
+          </tr>
+          <tr>
+            <td>Fecha de nacimiento</td>
+            <td>Combinado con el nombre, desbloquea la mayoria de preguntas de seguridad</td>
+            <td>No</td>
+          </tr>
+          <tr>
+            <td>Selfie con documento</td>
+            <td>Evade verificaciones de vida en otras plataformas</td>
+            <td>No</td>
+          </tr>
+          <tr>
+            <td>Numero de tarjeta de credito</td>
+            <td>Fraude</td>
+            <td><strong>Si</strong> — cancelar y reemitir en minutos</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p>
+        Note la ironia: el unico dato que el usuario puede realmente revocar (la tarjeta de credito) es
+        el que Transak enfatizo que <em>no</em> fue comprometido. Todo lo que <em>si</em> fue comprometido —
+        nombres, fechas de nacimiento, documentos de identidad — es permanente e irrevocable.
+      </p>
+    </section>
+
+    <section>
+      <h2>Como las Credenciales Verificables eliminan el honeypot</h2>
+
+      <p>
+        La pregunta fundamental es: <strong>por que un proveedor de KYC necesita almacenar tu foto de
+        pasaporte?</strong>
+      </p>
+
+      <p>
+        En el modelo actual, la almacenan porque es la unica forma de demostrar, despues del hecho,
+        que verificaron tu identidad. La imagen es la evidencia. Pero esto confunde dos operaciones
+        distintas: <em>verificacion</em> (comprobar que eres quien dices ser) y <em>almacenamiento</em>
+        (guardar la evidencia indefinidamente).
+      </p>
+
+      <p>
+        Con Credenciales Verificables, estas operaciones se separan:
+      </p>
+
+      <ol>
+        <li>
+          <strong>La verificacion ocurre una vez.</strong> El usuario presenta una credencial de
+          identidad emitida por el gobierno (una VC firmada por el DID de la autoridad nacional).
+          El verificador comprueba la firma criptografica — es esta credencial real, vigente, y emitida
+          por una autoridad confiable? Esto toma milisegundos y no requiere almacenamiento de imagenes.
+        </li>
+        <li>
+          <strong>La prueba es la firma, no la imagen.</strong> El verificador almacena un registro
+          que dice: "En esta fecha, verificamos una credencial de tipo CedulaIdentidad, emitida por
+          did:web:registro-civil.go.cr, para el sujeto did:sns:usuario.attestto.sol. Firma valida."
+          Sin foto de pasaporte. Sin numero de cedula. Solo un recibo criptografico.
+        </li>
+        <li>
+          <strong>La credencial original permanece en el dispositivo del usuario.</strong> Nunca sale
+          de su boveda cifrada. No existe una base de datos centralizada de documentos de identidad
+          que vulnerar, porque dicha base de datos no existe.
+        </li>
+      </ol>
+
+      <p>
+        La ecuacion del atacante cambia completamente. En lugar de vulnerar un proveedor de KYC para
+        obtener millones de documentos de identidad, necesitaria vulnerar millones de dispositivos
+        individuales — cada uno protegido por sus propias claves de cifrado y desbloqueo biometrico.
+        El honeypot desaparece.
+      </p>
+    </section>
+
+    <section>
+      <h2>Divulgacion selectiva: demostrar sin revelar</h2>
+
+      <p>
+        Pero, que pasa con los servicios que necesitan verificar atributos especificos? Un bar necesita
+        verificar que eres mayor de 21 — pero no necesita tu numero de pasaporte, direccion o foto. Un
+        empleador necesita verificar que estas autorizado para trabajar — pero no necesita tu fecha de
+        nacimiento.
+      </p>
+
+      <p>
+        Las Credenciales Verificables soportan <strong>divulgacion selectiva</strong>: la capacidad de
+        demostrar una afirmacion especifica sin revelar los datos subyacentes. Estandares como
+        <a href="https://www.ietf.org/archive/id/draft-ietf-oauth-selective-disclosure-jwt-13.html" target="_blank" rel="noopener noreferrer">SD-JWT</a>
+        lo permiten:
+      </p>
+
+      <ul>
+        <li>"Es esta persona mayor de 21?" → Si/No — sin revelar la fecha de nacimiento real</li>
+        <li>"Esta esta persona autorizada para trabajar en Costa Rica?" → Si, credencial emitida por DGME — sin revelar su numero de expediente migratorio</li>
+        <li>"Es esta una licencia de conducir real?" → Si, emitida por COSEVI, clases A y B — sin revelar el numero de licencia o la direccion</li>
+      </ul>
+
+      <p>
+        El verificador obtiene exactamente la informacion que necesita — demostrada criptograficamente —
+        y nada mas. No hay nada extra que almacenar, nada extra que vulnerar.
+      </p>
+    </section>
+
+    <section>
+      <h2>Separar identidad de finanzas</h2>
+
+      <p>
+        La brecha de Transak revela otra falla arquitectonica: el sistema de verificacion de identidad
+        (KYC) estaba conectado al sistema financiero (on-ramp cripto). Cuando el proveedor de KYC fue
+        vulnerado, el atacante obtuvo acceso a datos de identidad porque el servicio financiero los
+        almacenaba.
+      </p>
+
+      <p>
+        Un sistema bien disenado separa fisicamente estas capas:
+      </p>
+
+      <ul>
+        <li>
+          <strong>La capa de identidad</strong> vive en el dispositivo del usuario. El usuario tiene
+          sus credenciales, firma consentimientos con su clave de identidad, y presenta pruebas a
+          los verificadores. Ningun servidor almacena sus documentos de identidad.
+        </li>
+        <li>
+          <strong>La capa financiera</strong> opera a traves de un proveedor de custodia regulado.
+          La cuenta financiera del usuario es administrada por una entidad licenciada, pero esa entidad
+          nunca ve los documentos de identidad del usuario — solo recibe una confirmacion criptografica
+          de que el KYC fue completado.
+        </li>
+      </ul>
+
+      <p>
+        Compromete una capa, y la otra permanece intacta. Un atacante que vulnera al proveedor de
+        custodia financiera obtiene datos de transacciones pero cero documentos de identidad. Un
+        atacante que de alguna manera accede a la capa de identidad en un dispositivo obtiene las
+        credenciales de una persona (cifradas, bloqueadas biometricamente) — no millones.
+      </p>
+    </section>
+
+    <section>
+      <h2>El costo real de los honeypots</h2>
+
+      <p>
+        Cuando una tarjeta de credito es robada, el banco emisor asume el costo. El usuario recibe
+        una nueva tarjeta. La vida continua.
+      </p>
+
+      <p>
+        Cuando una foto de pasaporte es robada, <strong>el usuario asume el costo</strong> — por el
+        resto de su vida. No puede obtener un nuevo rostro. No puede cambiar su fecha de nacimiento.
+        Puede monitorear su credito, congelar sus cuentas, y pasar anos lidiando con las consecuencias
+        de una identidad que no perdio sino que fue robada de una empresa en la que fue obligado a confiar.
+      </p>
+
+      <p>
+        Las regulaciones KYC existen por buenas razones: prevenir lavado de dinero, financiamiento del
+        terrorismo y fraude. Pero la implementacion — "sube tu foto de pasaporte a nuestro servidor" —
+        crea una nueva clase de riesgo que puede ser peor que la que previene. Cada base de datos KYC
+        es una bomba de tiempo. Cuando explota, la metralla golpea a los usuarios, no a la empresa.
+      </p>
+
+      <p>
+        Las Credenciales Verificables no debilitan el KYC. Lo fortalecen — demostrando identidad
+        criptograficamente en lugar de almacenar evidencia centralmente. La verificacion es mas fuerte
+        (no puedes hacer Photoshop de una firma criptografica) y el riesgo se elimina (no hay nada
+        que vulnerar).
+      </p>
+
+      <p>
+        La eleccion es entre un mundo donde tu foto de pasaporte esta en cien servidores esperando
+        ser robada, y un mundo donde nunca sale de tu bolsillo.
+      </p>
+    </section>
+
+    <footer class="blog-footer">
+      <p>
+        <em>
+          Relacionado:
+          <a href="/es/blog/permisos-internacionales-de-conducir-y-credenciales-verificables">
+            Por que un permiso de conducir falso de $20 demuestra que necesitamos Credenciales Verificables
+          </a>
+        </em>
+      </p>
+      <p>
+        <em>
+          Video:
+          <a href="https://www.youtube.com/watch?v=_-7nXVpJsRo" target="_blank" rel="noopener noreferrer">
+            ARTE — "Telegram: The App Scammers Love"
+          </a>
+        </em>
+      </p>
+    </footer>
+  </article>
+</Base>

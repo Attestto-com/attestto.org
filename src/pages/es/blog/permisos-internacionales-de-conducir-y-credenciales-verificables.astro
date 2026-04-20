@@ -1,0 +1,290 @@
+---
+import Base from '../../../layouts/Base.astro'
+import '../../../styles/blog.css'
+---
+
+<Base
+  title="Por que un permiso de conducir falso de $20 demuestra que necesitamos Credenciales Verificables"
+  description="Los Permisos Internacionales de Conducir dependen de tratados y papel. Los estafadores explotan esto a diario. Las Credenciales Verificables reemplazan la confianza politica con prueba matematica."
+  canonicalPath="/es/blog/permisos-internacionales-de-conducir-y-credenciales-verificables"
+  ogType="article"
+  lang="es"
+>
+  <article class="blog-post">
+    <header class="blog-header">
+      <p class="blog-date">20 de abril de 2026</p>
+      <h1>Por que un permiso de conducir falso de $20 demuestra que necesitamos Credenciales Verificables</h1>
+      <p class="blog-subtitle">
+        El sistema de Permisos Internacionales de Conducir depende de tratados de hace 77 anos y libretas de papel.
+        Los estafadores lo explotan todos los dias. Esto es lo que la comunidad de estandares esta construyendo para solucionarlo.
+      </p>
+    </header>
+
+    <section>
+      <h2>La estafa que funciona en 150 paises</h2>
+
+      <p>
+        En un video reciente, el YouTuber <strong>Honest Guide</strong>, basado en Praga, demostro lo facil
+        que es comprar un Permiso Internacional de Conducir falso en linea. El proceso es alarmantemente
+        simple: llenar un formulario web con tu nombre, seleccionar las categorias de licencia que quieras
+        (el agrego autobus, solo para ver si alguien lo verificaria), pagar $20, y recibir un documento
+        con apariencia oficial.
+      </p>
+
+      <p>
+        Nadie escaneo su licencia de conducir real. Nadie verifico su identidad contra los registros de la
+        autoridad de transporte checa. Nadie comprobo si realmente esta habilitado para conducir una
+        motocicleta, mucho menos un autobus. El documento llego con un sello, un emblema y una referencia
+        a la "Convencion sobre Trafico Vial Internacional del 19 de septiembre de 1949 (Naciones Unidas)."
+      </p>
+
+      <p>
+        Se veia real. Y en muchas situaciones practicas — alquilar un auto en el extranjero, presentarlo
+        durante un control de trafico en un pais que acepta PIC — funcionaria, porque el verificador no
+        tiene forma de comprobarlo.
+      </p>
+
+      <p class="blog-video-link">
+        Ver la investigacion completa:
+        <a href="https://www.youtube.com/watch?v=aEeMjsO9hO8" target="_blank" rel="noopener noreferrer">
+          Honest Guide — International Driving Permit Scam (en ingles)
+        </a>
+      </p>
+    </section>
+
+    <section>
+      <h2>Como funciona realmente el sistema de PIC</h2>
+
+      <p>
+        El Permiso Internacional de Conducir esta regido por dos tratados de las Naciones Unidas:
+      </p>
+
+      <ul>
+        <li>La <strong>Convencion de Ginebra sobre Trafico Vial (1949)</strong> — permisos validos por 1 ano</li>
+        <li>La <strong>Convencion de Viena sobre Trafico Vial (1968)</strong> — permisos validos por 3 anos</li>
+      </ul>
+
+      <p>
+        Bajo estos tratados, cada pais signatario designa una o dos organizaciones autorizadas —
+        tipicamente el club automovilistico nacional — para emitir PIC. En Estados Unidos es AAA.
+        En Alemania, ADAC. En Costa Rica, el Automovil Club de Costa Rica.
+      </p>
+
+      <p>
+        El PIC no es un documento independiente. Es una <em>traduccion</em> de tu licencia domestica,
+        disenada para ayudar a las autoridades de otros paises a entender que estas habilitado para conducir.
+        El modelo de confianza es directo: los paises acordaron, mediante tratado, aceptar una libreta
+        de papel estandarizada emitida por la autoridad designada de cada uno.
+      </p>
+
+      <p>
+        Este sistema ha funcionado desde 1949. Pero tiene una debilidad fundamental: <strong>la confianza
+        reside en el papel, no en la verificacion.</strong>
+      </p>
+    </section>
+
+    <section>
+      <h2>Por que falla</h2>
+
+      <p>
+        El modelo de confianza del PIC asume tres cosas:
+      </p>
+
+      <ol>
+        <li>Solo las organizaciones autorizadas emiten PIC</li>
+        <li>Esas organizaciones verifican la licencia domestica del solicitante antes de emitir</li>
+        <li>Los verificadores (policia, agencias de alquiler) pueden distinguir los PIC reales de los falsos</li>
+      </ol>
+
+      <p>
+        Las tres suposiciones son incorrectas en la practica.
+      </p>
+
+      <p>
+        Docenas de sitios web venden "Permisos Internacionales de Conducir" de organizaciones que suenan
+        oficiales pero no tienen autoridad en ningun tratado. La "ITA Office — International Drivers Permit"
+        del video de Honest Guide es un ejemplo. Estas organizaciones no existen en ningun tratado. Imprimen
+        documentos que <em>se ven</em> como los reales — mismo formato, mismas referencias legales, mismos
+        sellos — porque el documento real es solo una libreta de papel sin medidas de seguridad.
+      </p>
+
+      <p>
+        Un oficial de policia en Tailandia o un mostrador de alquiler de autos en Portugal no tiene forma
+        practica de verificar si la libreta que tiene enfrente fue emitida por AAA o por un sitio web en
+        una jurisdiccion sin supervision. No hay base de datos que consultar, no hay codigo QR que escanear,
+        no hay firma criptografica que verificar.
+      </p>
+
+      <p>
+        Y como mostro el video: ni siquiera los sitios fraudulentos verifican la licencia subyacente.
+        Puedes seleccionar "autobus" como clase de licencia y recibir un documento que dice que estas
+        calificado para conducir uno. Toda la cadena — desde la emision hasta la verificacion — se basa
+        en la inspeccion visual de papel.
+      </p>
+    </section>
+
+    <section>
+      <h2>Que cambian las Credenciales Verificables</h2>
+
+      <p>
+        Las <a href="https://www.w3.org/TR/vc-data-model-2.0/" target="_blank" rel="noopener noreferrer">Credenciales Verificables</a>
+        (VC) son un estandar del W3C para documentos digitales firmados criptograficamente por su emisor.
+        A diferencia de una libreta de papel, una VC puede ser verificada por cualquier persona, en cualquier
+        lugar, sin contactar al emisor, porque la prueba esta incrustada en la credencial misma.
+      </p>
+
+      <p>
+        Asi funcionaria un PIC como Credencial Verificable:
+      </p>
+
+      <ol>
+        <li>
+          <strong>La licencia domestica es una VC.</strong> Emitida por la identidad digital verificada
+          (un DID) de la autoridad de transporte checa, firmada con su clave criptografica. Especifica
+          exactamente que categorias de licencia tiene el titular — y esto no puede cambiarse sin la clave
+          del emisor.
+        </li>
+        <li>
+          <strong>El PIC es una VC derivada.</strong> El club automovilistico autorizado emite una credencial
+          PIC solo despues de verificar criptograficamente la VC de la licencia domestica. La credencial PIC
+          referencia la licencia domestica por su hash — vinculandolas.
+        </li>
+        <li>
+          <strong>La verificacion es instantanea y universal.</strong> Una agencia de alquiler de autos
+          escanea un codigo QR. La herramienta de verificacion comprueba la firma criptografica, confirma
+          que el DID del emisor resuelve al club automovilistico conocido, y valida que el hash de la
+          licencia domestica coincida. Sin llamadas telefonicas, sin conocimiento de tratados, sin
+          inspeccion visual de papel.
+        </li>
+      </ol>
+
+      <p>
+        La diferencia critica: <strong>no se puede falsificar una firma criptografica.</strong> Un sitio
+        web fraudulento puede imprimir una libreta convincente, pero no puede producir una firma valida
+        con la clave privada de AAA. La falsificacion es matematicamente imposible, no solo ilegal.
+      </p>
+    </section>
+
+    <section>
+      <h2>Necesitamos un tratado para las Credenciales Verificables?</h2>
+
+      <p>
+        El PIC funciona porque 96+ paises firmaron un tratado acordando aceptar el papel del otro.
+        Necesitan las VC el mismo tipo de acuerdo internacional?
+      </p>
+
+      <p>
+        La respuesta corta: <strong>no, pero se benefician de marcos de confianza.</strong>
+      </p>
+
+      <p>
+        La verificacion criptografica no necesita permiso politico. Cualquier persona con conexion a
+        internet puede comprobar si la firma de una VC es valida y si el DID del emisor resuelve a
+        una organizacion real. Este es un cambio fundamental: la verificacion se convierte en una
+        operacion matematica, no en un acuerdo politico.
+      </p>
+
+      <p>
+        Sin embargo, la pregunta "debo <em>confiar</em> en este emisor?" aun requiere contexto.
+        Saber que una credencial fue firmada por <code>did:web:autoclub.cz</code> es inutil si no
+        sabes si ese DID pertenece al verdadero club automovilistico checo. Aqui es donde entran los
+        marcos de confianza — registros de identidades organizacionales verificadas que los
+        verificadores pueden consultar.
+      </p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Mundo del PIC (papel)</th>
+            <th>Mundo de las Credenciales Verificables</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Convencion de Ginebra / Viena (tratado)</td>
+            <td>W3C VC Data Model (estandar tecnico, ya ratificado)</td>
+          </tr>
+          <tr>
+            <td>Pais firma tratado</td>
+            <td>Institucion se une a un marco de confianza (GLEIF, EBSI, registro nacional)</td>
+          </tr>
+          <tr>
+            <td>Club automovilistico designado como emisor</td>
+            <td>DID del emisor registrado en un registro publico de confianza</td>
+          </tr>
+          <tr>
+            <td>Oficial inspecciona formato de libreta</td>
+            <td>Verificador comprueba firma criptografica (instantaneo, universal)</td>
+          </tr>
+          <tr>
+            <td>Estafa: cualquiera puede imprimir una libreta</td>
+            <td>No falsificable: se necesita la clave privada del emisor</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p>
+        Varios marcos de confianza ya estan operativos o cerca de su despliegue:
+      </p>
+
+      <ul>
+        <li>
+          <strong>EU eIDAS 2.0</strong> — El marco legal de la Union Europea para identidad digital
+          transfronteriza y reconocimiento de credenciales, entrando en vigencia en 2026-2027.
+        </li>
+        <li>
+          <strong>GLEIF vLEI</strong> — El sistema LEI verificable de la Fundacion Global de
+          Identificadores de Entidades Legales, proporcionando un registro global de confianza
+          para identidad organizacional.
+        </li>
+        <li>
+          <strong>ISO 18013-5 mDL</strong> — El estandar de licencia de conducir movil, ya aceptado
+          en multiples estados de EE.UU. y paises de la UE.
+        </li>
+        <li>
+          <strong>ICAO Digital Travel Credentials</strong> — Construyendo sobre la infraestructura de
+          tratados de pasaportes para emitir documentos de viaje digitales verificables.
+        </li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>La leccion real</h2>
+
+      <p>
+        La estafa del PIC no es un fracaso del sistema de tratados — es un fracaso del modelo de
+        <em>verificacion</em>. Las Convenciones de Ginebra y Viena crearon un marco para el
+        reconocimiento mutuo de credenciales de conduccion a traves de fronteras. Eso fue visionario
+        para 1949. Pero la implementacion — una libreta de papel sin medidas de seguridad, verificada
+        por inspeccion visual — no ha evolucionado en 77 anos.
+      </p>
+
+      <p>
+        Las Credenciales Verificables no eliminan la necesidad de confianza institucional. Los paises
+        aun necesitan designar emisores autorizados. Las organizaciones aun necesitan verificar a los
+        solicitantes. Pero las VC hacen que el <em>resultado</em> de esa confianza sea verificable
+        por cualquiera, sin conocimiento especializado, sin relaciones previas, y sin la posibilidad
+        de falsificacion.
+      </p>
+
+      <p>
+        Un PIC falso cuesta $20 y engana a todos. Una VC falsa es matematicamente imposible.
+      </p>
+
+      <p>
+        Esa es la diferencia entre confiar en el papel y confiar en la prueba.
+      </p>
+    </section>
+
+    <footer class="blog-footer">
+      <p>
+        <em>
+          Video:
+          <a href="https://www.youtube.com/watch?v=aEeMjsO9hO8" target="_blank" rel="noopener noreferrer">
+            Honest Guide — "International Driving Permit is a SCAM"
+          </a>
+        </em>
+      </p>
+    </footer>
+  </article>
+</Base>

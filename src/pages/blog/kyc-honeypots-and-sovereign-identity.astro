@@ -1,0 +1,308 @@
+---
+import Base from '../../layouts/Base.astro'
+import '../../styles/blog.css'
+---
+
+<Base
+  title="Your Passport Photo Is for Sale on Telegram — Why Centralized KYC Is a Honeypot"
+  description="KYC vendors store millions of passport scans and ID photos in centralized databases. When they get breached, your identity is sold on Telegram for pennies. Verifiable Credentials eliminate the honeypot."
+  canonicalPath="/blog/kyc-honeypots-and-sovereign-identity"
+  ogType="article"
+  lang="en"
+>
+  <article class="blog-post">
+    <header class="blog-header">
+      <p class="blog-date">April 20, 2026</p>
+      <h1>Your Passport Photo Is for Sale on Telegram — Why Centralized KYC Is a Honeypot</h1>
+      <p class="blog-subtitle">
+        Every time you scan your ID for a KYC check, that image is stored on someone else's server.
+        When that server gets breached — and it will — your identity is sold on Telegram for pennies.
+        There's a better way.
+      </p>
+    </header>
+
+    <section>
+      <h2>The breach that nobody talks about</h2>
+
+      <p>
+        In October 2024, crypto on-ramp provider <strong>Transak</strong> disclosed a security incident.
+        An attacker gained access to an employee's laptop through a phishing attack, then used those
+        credentials to log into the dashboard of a third-party KYC vendor. The data accessed included
+        names, dates of birth, and — most critically — <strong>ID documents: passport scans and
+        driver's license photos.</strong>
+      </p>
+
+      <p>
+        Transak's response emphasized that "no financially sensitive information" was compromised.
+        But here's the thing: <strong>your passport photo is more valuable than your credit card number.</strong>
+        You can cancel a credit card in five minutes. You cannot cancel your face, your date of birth,
+        or your national ID number. That data is permanent, and once it's in the wild, it's used to
+        open bank accounts, apply for loans, and create synthetic identities — for years.
+      </p>
+
+      <p class="blog-video-link">
+        Watch the full investigation into Telegram's role in this ecosystem:
+        <a href="https://www.youtube.com/watch?v=_-7nXVpJsRo" target="_blank" rel="noopener noreferrer">
+          ARTE — "Telegram: The App Scammers Love"
+        </a>
+      </p>
+    </section>
+
+    <section>
+      <h2>The Telegram marketplace</h2>
+
+      <p>
+        The ARTE documentary exposes how Telegram has become the preferred marketplace for stolen
+        personal data. Channels with thousands of subscribers post "logs" — structured dumps of
+        stolen user data including:
+      </p>
+
+      <ul>
+        <li>Passwords and autofill data harvested by infostealer malware</li>
+        <li>Browser cookies (which bypass two-factor authentication entirely)</li>
+        <li>Credit card numbers</li>
+        <li>Crypto wallet credentials</li>
+        <li>And increasingly: <strong>KYC identity documents</strong> — passport photos, national ID
+        scans, selfies with documents held next to faces</li>
+      </ul>
+
+      <p>
+        The documentary shows French national identity cards (<em>Carte Nationale d'Identite</em>)
+        being traded openly on Telegram, sourced from breached KYC providers. These aren't stolen
+        from individuals — they're stolen from the <em>companies that asked individuals to upload
+        their documents.</em>
+      </p>
+
+      <p>
+        The pattern is consistent: a fintech, crypto exchange, or online service requires KYC
+        verification. The user uploads their passport scan to a third-party verification provider.
+        That provider stores the image — often unencrypted or with inadequate access controls — in
+        a centralized database. An attacker compromises one employee account, and suddenly has access
+        to thousands or millions of identity documents.
+      </p>
+    </section>
+
+    <section>
+      <h2>The architectural problem</h2>
+
+      <p>
+        This is not a security failure that can be fixed with better firewalls or more employee
+        training. <strong>The architecture itself is the vulnerability.</strong>
+      </p>
+
+      <p>
+        The current KYC model creates what security researchers call a <em>honeypot</em>: a single
+        location containing high-value data for millions of users. The economics are simple — an
+        attacker only needs to breach one system to get everything. And the defender must be perfect
+        every day, while the attacker only needs to succeed once.
+      </p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>What gets stored</th>
+            <th>Why it's dangerous</th>
+            <th>Can the user revoke it?</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Passport photo</td>
+            <td>Identity theft, synthetic identity creation</td>
+            <td>No — your face doesn't change</td>
+          </tr>
+          <tr>
+            <td>National ID number</td>
+            <td>Opens bank accounts, credit lines, government services</td>
+            <td>No — assigned for life in most countries</td>
+          </tr>
+          <tr>
+            <td>Date of birth</td>
+            <td>Combined with name, unlocks most security questions</td>
+            <td>No</td>
+          </tr>
+          <tr>
+            <td>Selfie with document</td>
+            <td>Bypasses liveness checks on other platforms</td>
+            <td>No</td>
+          </tr>
+          <tr>
+            <td>Credit card number</td>
+            <td>Fraud</td>
+            <td><strong>Yes</strong> — cancel and reissue in minutes</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p>
+        Notice the irony: the only piece of data the user can actually revoke (the credit card) is
+        the one Transak emphasized was <em>not</em> compromised. Everything that <em>was</em>
+        compromised — names, dates of birth, ID documents — is permanent and irrevocable.
+      </p>
+    </section>
+
+    <section>
+      <h2>How Verifiable Credentials eliminate the honeypot</h2>
+
+      <p>
+        The fundamental question is: <strong>why does a KYC provider need to store your passport
+        photo at all?</strong>
+      </p>
+
+      <p>
+        In the current model, they store it because that's the only way to prove, after the fact,
+        that they verified your identity. The image is the evidence. But this conflates two distinct
+        operations: <em>verification</em> (checking that you are who you claim to be) and
+        <em>storage</em> (keeping the evidence indefinitely).
+      </p>
+
+      <p>
+        With Verifiable Credentials, these operations are separated:
+      </p>
+
+      <ol>
+        <li>
+          <strong>Verification happens once.</strong> The user presents a government-issued
+          identity credential (a VC signed by the national authority's DID). The verifier checks
+          the cryptographic signature — is this credential real, current, and issued by a trusted
+          authority? This takes milliseconds and requires no image storage.
+        </li>
+        <li>
+          <strong>The proof is the signature, not the image.</strong> The verifier stores a record
+          that says: "On this date, we verified a credential of type NationalID, issued by
+          did:web:registro-civil.go.cr, for subject did:sns:user.attestto.sol. Signature valid."
+          No passport photo. No ID number. Just a cryptographic receipt.
+        </li>
+        <li>
+          <strong>The original credential stays on the user's device.</strong> It never leaves
+          their encrypted vault. There is no centralized database of identity documents to breach,
+          because no such database exists.
+        </li>
+      </ol>
+
+      <p>
+        The attacker's equation changes completely. Instead of breaching one KYC vendor to get
+        millions of identity documents, they would need to breach millions of individual devices —
+        each protected by its own encryption keys and biometric unlock. The honeypot disappears.
+      </p>
+    </section>
+
+    <section>
+      <h2>Selective disclosure: proving without revealing</h2>
+
+      <p>
+        But what about services that need to verify specific attributes? A bar needs to verify you're
+        over 21 — but doesn't need your passport number, address, or photo. An employer needs to
+        verify you're authorized to work — but doesn't need your date of birth.
+      </p>
+
+      <p>
+        Verifiable Credentials support <strong>selective disclosure</strong>: the ability to prove
+        a specific claim without revealing the underlying data. Standards like
+        <a href="https://www.ietf.org/archive/id/draft-ietf-oauth-selective-disclosure-jwt-13.html" target="_blank" rel="noopener noreferrer">SD-JWT</a>
+        (Selective Disclosure JSON Web Tokens) enable this:
+      </p>
+
+      <ul>
+        <li>"Is this person over 21?" → Yes/No — without revealing the actual date of birth</li>
+        <li>"Is this person authorized to work in Costa Rica?" → Yes, credential issued by DGME — without revealing their immigration file number</li>
+        <li>"Is this a real driver's license?" → Yes, issued by COSEVI, classes A and B — without revealing the license number or address</li>
+      </ul>
+
+      <p>
+        The verifier gets exactly the information they need — cryptographically proven — and nothing
+        more. There's nothing extra to store, nothing extra to breach.
+      </p>
+    </section>
+
+    <section>
+      <h2>Separating identity from finance</h2>
+
+      <p>
+        The Transak breach reveals another architectural flaw: the identity verification system
+        (KYC) was connected to the financial system (crypto on-ramp). When the KYC vendor was
+        breached, the attacker gained access to identity data because the financial service
+        stored it.
+      </p>
+
+      <p>
+        A well-designed system physically separates these layers:
+      </p>
+
+      <ul>
+        <li>
+          <strong>The identity layer</strong> lives on the user's device. The user holds their
+          credentials, signs consent with their identity key, and presents proofs to verifiers.
+          No server stores their identity documents.
+        </li>
+        <li>
+          <strong>The financial layer</strong> operates through a regulated custody provider.
+          The user's financial account is managed by a licensed entity, but that entity never
+          sees the user's identity documents — it only receives a cryptographic confirmation that
+          KYC was completed.
+        </li>
+      </ul>
+
+      <p>
+        Compromise one layer, and the other remains unaffected. An attacker who breaches the
+        financial custody provider gets financial transaction data but zero identity documents.
+        An attacker who somehow accesses the identity layer on one device gets one person's
+        credentials (encrypted, biometric-locked) — not millions.
+      </p>
+    </section>
+
+    <section>
+      <h2>The real cost of honeypots</h2>
+
+      <p>
+        When a credit card is stolen, the issuing bank bears the cost. The user gets a new card.
+        Life goes on.
+      </p>
+
+      <p>
+        When a passport photo is stolen, <strong>the user bears the cost</strong> — for the rest of
+        their life. They can't get a new face. They can't change their date of birth. They can monitor
+        their credit, freeze their accounts, and spend years dealing with the consequences of an
+        identity they didn't lose but that was stolen from a company they were forced to trust.
+      </p>
+
+      <p>
+        KYC regulations exist for good reasons: preventing money laundering, terrorist financing,
+        and fraud. But the implementation — "upload your passport photo to our server" — creates
+        a new class of risk that may be worse than the one it prevents. Every KYC database is a
+        ticking time bomb. When it explodes, the shrapnel hits the users, not the company.
+      </p>
+
+      <p>
+        Verifiable Credentials don't weaken KYC. They strengthen it — by proving identity
+        cryptographically instead of storing evidence centrally. The verification is stronger
+        (you can't Photoshop a cryptographic signature) and the risk is eliminated (there's
+        nothing to breach).
+      </p>
+
+      <p>
+        The choice is between a world where your passport photo sits on a hundred servers
+        waiting to be stolen, and a world where it never leaves your pocket.
+      </p>
+    </section>
+
+    <footer class="blog-footer">
+      <p>
+        <em>
+          Related:
+          <a href="/blog/international-driving-permits-and-verifiable-credentials">
+            Why a $20 Fake Driving Permit Proves We Need Verifiable Credentials
+          </a>
+        </em>
+      </p>
+      <p>
+        <em>
+          Video credit:
+          <a href="https://www.youtube.com/watch?v=_-7nXVpJsRo" target="_blank" rel="noopener noreferrer">
+            ARTE — "Telegram: The App Scammers Love"
+          </a>
+        </em>
+      </p>
+    </footer>
+  </article>
+</Base>
