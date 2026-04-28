@@ -4,11 +4,26 @@ import Base from '../../layouts/Base.astro'
 const structuredData = [
   {
     "@context": "https://schema.org",
-    "@type": "AboutPage",
-    "name": "Por qué existe Attestto",
+    "@type": "Article",
+    "headline": "Por qué existe Attestto — La historia detrás de la identidad soberana",
+    "description": "La identidad no debería ser un favor que otorga una autoridad. Puede ser una prueba matemática que llevas contigo.",
     "url": "https://attestto.org/es/why",
     "inLanguage": "es",
-    "description": "La identidad no debería ser un favor que otorga una autoridad. Puede ser una prueba matemática que llevas contigo."
+    "datePublished": "2026-04-15",
+    "dateModified": "2026-04-28",
+    "author": {
+      "@type": "Person",
+      "name": "Eduardo Chongkan",
+      "jobTitle": "Founder",
+      "url": "https://attestto.org"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Attestto",
+      "url": "https://attestto.org",
+      "logo": "https://attestto.org/logo.svg"
+    },
+    "mainEntityOfPage": "https://attestto.org/es/why"
   },
   {
     "@context": "https://schema.org",
@@ -81,7 +96,7 @@ const structuredData = [
 >
   <Fragment slot="head">
     <meta property="og:locale:alternate" content="en_US" />
-    <meta name="keywords" content="identidad soberana, por qué Attestto, identidad descentralizada, credenciales verificables, W3C DID, infraestructura abierta, identidad como prueba, SSI, Costa Rica" />
+    <meta name="keywords" content="identidad soberana, por qué Attestto, identidad descentralizada, credenciales verificables, W3C DID, infraestructura abierta, identidad como prueba, SSI, Costa Rica, firma digital, infraestructura pública digital, DPI, verificar documento, credencial profesional" />
   </Fragment>
 
   <!-- Hero -->
@@ -129,7 +144,7 @@ const structuredData = [
         </div>
         <div class="why-problem-card">
           <div class="why-problem-icon">&#x1F512;</div>
-          <p>El proveedor que encierra a cinco millones de ciudadanos en un sistema de identidad propietario sin exportación, sin interoperabilidad y con una cláusula de renovación que duplica el precio.</p>
+          <p>El proveedor que encierra a millones de ciudadanos en un sistema de identidad propietario sin exportación, sin interoperabilidad y con una cláusula de renovación que duplica el precio.</p>
         </div>
       </div>
       <div class="story-content" style="margin-top: var(--space-md);">
@@ -146,7 +161,7 @@ const structuredData = [
         <h2 class="story-title">La identidad no tiene que ser un favor</h2>
         <div class="story-text">
           <p><strong>La identidad puede ser una prueba matemática que llevas contigo.</strong> Los W3C Decentralized Identifiers y las Verifiable Credentials lo hacen técnicamente posible. Un par de llaves criptográficas en tu dispositivo. Una credencial firmada por una autoridad en la que eliges confiar. Una prueba que presentas sin revelar más de lo necesario.</p>
-          <p>La tecnología existe. Lo que no existía &mdash; hasta ahora &mdash; era infraestructura abierta para hacerla desplegable. No un producto. No una plataforma. <strong>Infraestructura pública</strong>, como las carreteras o el correo. Cualquiera puede usarla, cualquiera puede verificar, cualquiera puede hacer un fork.</p>
+          <p>La tecnología existe. Lo que no existía &mdash; hasta ahora &mdash; era infraestructura abierta para hacerla desplegable. No un producto. No una plataforma. <strong>Infraestructura pública</strong>, como las carreteras o la red eléctrica. Cualquiera puede usarla, cualquiera puede verificar, cualquiera puede hacer un fork.</p>
         </div>
         <div class="why-cta-inline">
           <a href="/es/standards" class="cta-primary">Ver los estándares que construimos &rarr;</a>
@@ -161,7 +176,7 @@ const structuredData = [
     <div class="container">
       <div class="story-content">
         <div class="story-label">Lo que construimos</div>
-        <h2 class="story-title">Tres capas, cero servidores centrales</h2>
+        <h2 class="story-title">Tres capas, cero dependencia de servidores centrales</h2>
       </div>
       <div class="why-layers">
         <div class="why-layer">
@@ -198,7 +213,7 @@ const structuredData = [
       <div class="why-stat">
         <div class="why-stat-number">100+</div>
         <div class="why-stat-label">países operan jerarquías PKI soberanas</div>
-        <div class="why-stat-desc">Cada una es una isla. Un certificado emitido por Costa Rica no se puede verificar en Panamá. did:pki las conecta a todas a través de un solo endpoint de resolución.</div>
+        <div class="why-stat-desc">Cada una es una isla. Un certificado emitido por Costa Rica no se puede verificar en Panamá. did:pki puede conectarlas a todas a través de un solo endpoint de resolución.</div>
       </div>
     </div>
   </section>
@@ -223,11 +238,6 @@ const structuredData = [
           <li><strong>Bien público</strong> <span>Gratis para ciudadanos, para siempre. El comercio paga por el comercio.</span></li>
         </ul>
 
-        <div class="founder-note">
-          <p>El apellido de mi familia está dividido en el Registro Civil de Costa Rica. Un error administrativo en la inscripción de nacimiento. La mitad de nosotros existe bajo una escritura, la otra mitad bajo otra. Dos identidades legales distintas para la misma familia.</p>
-          <p style="margin-top: 0.75rem;">No construí Attestto porque leí un whitepaper. Lo construí porque yo soy un caso de estudio.</p>
-          <div class="attribution">&mdash; Eduardo Chongkan, fundador</div>
-        </div>
       </div>
     </div>
   </section>
@@ -237,7 +247,7 @@ const structuredData = [
     <div class="container">
       <div class="story-content" style="text-align: center;">
         <h2 class="story-title">Mira lo que construimos</h2>
-        <div class="cta-row" style="justify-content: center;">
+        <div class="cta-row" style="justify-content: center; align-items: center; width: 100%;">
           <a href="/es/standards" class="cta-primary">Explorar los estándares &rarr;</a>
           <a href="/es/ark" class="cta-secondary">Arquitectura &rarr;</a>
           <a href="https://github.com/Attestto-com" class="cta-secondary">GitHub &rarr;</a>
