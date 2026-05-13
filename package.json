@@ -10,7 +10,7 @@
     "test:watch": "vitest"
   },
   "devDependencies": {
-    "astro": "^6.1.6",
+    "astro": "^6.1.10",
     "jsdom": "^26.1.0",
     "vitest": "^3.1.1"
   },
