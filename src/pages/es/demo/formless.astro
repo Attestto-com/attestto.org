@@ -1,0 +1,19 @@
+---
+// The form-less demo is EN-only for now. Redirect the Spanish URL to it so the
+// language toggle never lands on a 404. (Swap for a real ES page when translated.)
+const target = '/demo/formless/'
+---
+
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="refresh" content={`0; url=${target}`} />
+    <link rel="canonical" href={`https://attestto.org${target}`} />
+    <meta name="robots" content="noindex" />
+    <title>Redirigiendo…</title>
+  </head>
+  <body>
+    <p>Redirigiendo a <a href={target}>{target}</a>…</p>
+  </body>
+</html>
