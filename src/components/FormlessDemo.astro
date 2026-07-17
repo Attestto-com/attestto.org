@@ -7,6 +7,11 @@
 ---
   <section class="section-dark">
     <div class="container">
+      <div class="fl-demo-head">
+        <p class="fl-demo-kicker">Interactive demo</p>
+        <h2 class="fl-demo-title">Try it yourself</h2>
+        <p class="fl-demo-sub">This part is live. Start the request on the site (left), then review and sign in the wallet (right). The exchange log runs underneath.</p>
+      </div>
       <div class="fl-stage">
         <div class="fl-site">
           <p class="fl-panel-tag">The site (untrusted)</p>
@@ -50,12 +55,18 @@
   .fl-shot { margin: var(--space-md) 0; }
   .fl-shot img { width: 100%; height: auto; border-radius: 12px; border: 1px solid var(--color-border); box-shadow: 0 12px 40px rgba(0,0,0,0.12); }
   .fl-shot figcaption { margin-top: var(--space-xs); color: var(--color-ink-muted); font-size: 0.85rem; }
-  .fl-note { color: var(--color-ink-muted); }
+  .fl-note { color: var(--color-ink-muted); margin: 0 0 var(--space-sm); }
+  .fl-note:last-child { margin-bottom: 0; }
   .fl-note code, .fl-shot code { font-family: var(--font-mono); font-size: 0.85em; }
 
   /* Wider layout — wallet gets more room */
   .fl-stage { display: grid; gap: var(--space-md); grid-template-columns: 0.9fr 1.1fr; align-items: start; margin-bottom: var(--space-md); }
   @media (max-width: 800px) { .fl-stage { grid-template-columns: 1fr; } }
+  .fl-demo-head { text-align: center; max-width: 44rem; margin: 0 auto var(--space-md); }
+  .fl-demo-kicker { font-family: var(--font-mono); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; color: #7dd3fc; margin: 0 0 0.5rem; }
+  .fl-demo-title { font-size: clamp(1.5rem, 3.5vw, 2rem); font-weight: 800; color: #fff; margin: 0 0 0.5rem; line-height: 1.15; }
+  .fl-demo-sub { color: #b4c0d0; font-size: 0.95rem; line-height: 1.55; margin: 0; }
+
   .fl-panel-tag { font-family: var(--font-mono); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.06em; color: #b4c0d0; margin: 0 0 0.5rem; }
 
   .fl-site__card { border: 1px solid var(--color-dark-border); border-radius: 14px; padding: var(--space-sm); background: rgba(255,255,255,0.03); }
