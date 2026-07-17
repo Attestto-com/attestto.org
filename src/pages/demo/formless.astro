@@ -1,0 +1,382 @@
+---
+import Base from '../../layouts/Base.astro'
+
+const title = 'The form-less trámite — Demo | Attestto Open'
+const description =
+  'A demo of the "form-less form" concept: the site requests credentials, not that you retype your data. You review and sign inside your wallet — even property trámites like a land-use resolution.'
+---
+
+<Base
+  title={title}
+  description={description}
+  canonicalPath="/demo/formless"
+  navVariant="default"
+>
+  <section class="section-light">
+    <div class="container fl-intro">
+      <p class="section-label">Concept demo</p>
+      <h1 class="section-title">The form without a form</h1>
+      <p class="section-desc">
+        Costa Rican municipal systems make people <strong>retype</strong> the
+        same data for every errand — often over insecure <code>http://</code>,
+        often asking them to invent <strong>yet another password</strong>. And a
+        property trámite isn't even about a person: it's about a
+        <strong>finca</strong> (a parcel).
+      </p>
+
+      <figure class="fl-shot">
+        <img src="/demo/nicoya-visado.png" alt="A Costa Rican municipal registration form over insecure http://" width="1472" height="956" loading="lazy" />
+        <figcaption>A real Costa Rican municipal form, over insecure <code>http://</code>.</figcaption>
+      </figure>
+
+      <p class="fl-note">
+        With Attestto it flips: the site <strong>requests credentials</strong>,
+        and everything sensitive — picking the property, reviewing what's shared,
+        and signing — happens <strong>inside your wallet</strong>, never on the
+        (untrusted) site. Simulated and framework-free — the same logic is meant
+        for <code>@attestto/id-wallet-adapter</code>, and a request can be
+        <strong>imported from an existing ACF form</strong>.
+      </p>
+    </div>
+  </section>
+
+  <section class="section-dark">
+    <div class="container">
+      <div class="fl-stage">
+        <div class="fl-site">
+          <p class="fl-panel-tag">The site (untrusted)</p>
+          <div class="fl-site__card">
+            <h3>Municipalidad de Nicoya</h3>
+            <p class="fl-site__auth">Planificación Urbana · online trámites</p>
+            <p class="fl-site__desc">Instead of retyping the form, the site requests the credentials from your wallet.</p>
+            <button class="btn btn-primary fl-start" data-tramite="usoSuelo">Request: Resolución de Uso de Suelo</button>
+            <p class="fl-site__hint">Review &amp; signing happen <strong>in the wallet →</strong></p>
+          </div>
+        </div>
+
+        <div class="fl-wallet">
+          <p class="fl-panel-tag">Your wallet</p>
+          <div class="fl-phone">
+            <div class="fl-phone__bar">
+              <span class="fl-phone__brand"><span class="fl-dot fl-dot--g"></span> Attestto ID</span>
+              <span class="fl-phone__sub" id="fl-sub">wallet</span>
+            </div>
+            <div class="fl-phone__screen" id="fl-screen"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="fl-terminal" role="log" aria-live="polite" aria-label="Exchange log">
+        <div class="fl-terminal__bar">
+          <span class="fl-dot fl-dot--r"></span><span class="fl-dot fl-dot--y"></span><span class="fl-dot fl-dot--g"></span>
+          <span class="fl-terminal__title">wallet-adapter · exchange log</span>
+          <button class="fl-clear" id="fl-clear" type="button">clear</button>
+        </div>
+        <pre class="fl-terminal__out" id="fl-out"><span class="fl-line fl-line--info">› idle — choose the trámite on the site</span></pre>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<!-- is:global — the wallet screen + terminal lines are created in JS, and
+     Astro's scoped styles only reach template elements. Classes are .fl-* namespaced. -->
+<style is:global>
+  .fl-intro { max-width: 62rem; }
+  .fl-shot { margin: var(--space-md) 0; }
+  .fl-shot img { width: 100%; height: auto; border-radius: 12px; border: 1px solid var(--color-border); box-shadow: 0 12px 40px rgba(0,0,0,0.12); }
+  .fl-shot figcaption { margin-top: var(--space-xs); color: var(--color-ink-muted); font-size: 0.85rem; }
+  .fl-note { color: var(--color-ink-muted); }
+  .fl-note code, .fl-shot code { font-family: var(--font-mono); font-size: 0.85em; }
+
+  /* Wider layout — wallet gets more room */
+  .fl-stage { display: grid; gap: var(--space-md); grid-template-columns: 0.9fr 1.1fr; align-items: start; margin-bottom: var(--space-md); }
+  @media (max-width: 800px) { .fl-stage { grid-template-columns: 1fr; } }
+  .fl-panel-tag { font-family: var(--font-mono); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--color-ink-subtle); margin: 0 0 0.5rem; }
+
+  .fl-site__card { border: 1px solid var(--color-dark-border); border-radius: 14px; padding: var(--space-sm); background: rgba(255,255,255,0.03); }
+  .fl-insecure { display: inline-block; font-family: var(--font-mono); font-size: 0.72rem; color: #fca5a5; background: rgba(239,68,68,0.12); border: 1px solid rgba(239,68,68,0.3); border-radius: 6px; padding: 0.15rem 0.5rem; margin-bottom: 0.6rem; }
+  .fl-site__card h3 { margin: 0; color: #fff; }
+  .fl-site__auth { margin: 0.15rem 0 0.6rem; color: var(--color-ink-subtle); font-size: 0.9rem; }
+  .fl-site__desc { color: #cbd5e1; font-size: 0.92rem; margin: 0 0 var(--space-sm); }
+  .fl-site .btn { width: 100%; }
+  .fl-site__hint { color: var(--color-ink-subtle); font-size: 0.8rem; margin: 0.6rem 0 0; }
+  .fl-site__hint strong { color: #7dd3fc; }
+
+  /* Wallet — wider box, taller header */
+  .fl-wallet { display: flex; flex-direction: column; align-items: center; }
+  .fl-wallet .fl-panel-tag { align-self: flex-start; }
+  .fl-phone { width: 100%; max-width: 30rem; margin: 0 auto; border: 1px solid var(--color-dark-border); border-radius: 22px; overflow: hidden; background: linear-gradient(160deg,#0a0f18,#0f1a2b 60%,#151832); box-shadow: 0 18px 50px rgba(0,0,0,0.4); }
+  .fl-phone__bar { display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; padding: 1.1rem 1.1rem; color: #fff; border-bottom: 1px solid var(--color-dark-border); background: rgba(255,255,255,0.03); }
+  .fl-phone__brand { display: flex; align-items: center; gap: 0.5rem; font-weight: 700; font-size: 1rem; }
+  .fl-phone__sub { font-family: var(--font-mono); font-size: 0.72rem; color: var(--color-ink-subtle); text-transform: uppercase; letter-spacing: 0.05em; }
+  .fl-phone__screen { padding: var(--space-sm); min-height: 24rem; max-height: 40rem; overflow-y: auto; color: #e2e8f0; }
+  .fl-empty { color: var(--color-ink-subtle); font-size: 0.9rem; text-align: center; padding: 4rem 1rem; }
+
+  .fl-reqcard { display: block; width: 100%; text-align: left; border: 1px solid rgba(74,142,200,0.4); background: rgba(74,142,200,0.08); border-radius: 12px; padding: 0.9rem; cursor: pointer; color: inherit; }
+  .fl-reqcard:hover { background: rgba(74,142,200,0.14); }
+  .fl-reqcard__new { display: block; font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.05em; color: #7dd3fc; font-weight: 700; }
+  .fl-reqcard__title { margin: 0.3rem 0 0.1rem; font-weight: 700; color: #fff; }
+  .fl-reqcard__auth { margin: 0; color: var(--color-ink-subtle); font-size: 0.85rem; }
+
+  .fl-back { display: block; background: none; border: 0; color: var(--color-ink-subtle); font-size: 0.8rem; cursor: pointer; padding: 0 0 0.6rem; }
+  .fl-back:hover { color: #fff; }
+  .fl-step-h { font-size: 1rem; color: #fff; margin: 0 0 0.6rem; font-weight: 700; }
+  .fl-step-h small { display: block; color: var(--color-ink-subtle); font-weight: 400; font-size: 0.82rem; margin-top: 0.15rem; }
+
+  /* Property picker — same box for all; selected = greenish highlight */
+  .fl-props { display: flex; flex-direction: column; gap: 0.55rem; }
+  .fl-prop { display: flex; align-items: center; gap: 0.7rem; width: 100%; text-align: left; border: 1px solid var(--color-dark-border); background: rgba(255,255,255,0.02); border-radius: 12px; padding: 0.8rem; cursor: pointer; color: inherit; }
+  .fl-prop:hover { border-color: rgba(74,142,200,0.5); }
+  .fl-prop--sel { background: rgba(34,197,94,0.10); border-color: rgba(34,197,94,0.6); }
+  .fl-prop__body { flex: 1; min-width: 0; }
+  .fl-prop__name { display: block; color: #fff; font-weight: 600; font-size: 0.92rem; }
+  .fl-prop__meta { display: block; color: var(--color-ink-subtle); font-size: 0.76rem; font-family: var(--font-mono); margin-top: 0.15rem; }
+  .fl-prop__radio { flex: 0 0 auto; width: 1.3rem; height: 1.3rem; border-radius: 50%; border: 2px solid var(--color-dark-border); display: grid; place-items: center; color: transparent; font-size: 0.8rem; }
+  .fl-prop--sel .fl-prop__radio { border-color: #22c55e; background: #22c55e; color: #06210f; }
+  .fl-continue { width: 100%; margin-top: 0.9rem; }
+  .fl-continue[disabled] { opacity: 0.45; cursor: not-allowed; }
+
+  .fl-group { margin-bottom: 0.9rem; }
+  .fl-group__tag { display: flex; align-items: center; gap: 0.4rem; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--color-ink-subtle); margin: 0 0 0.4rem; }
+  .fl-prov { font-size: 0.6rem; padding: 0.05rem 0.35rem; border-radius: 4px; text-transform: none; letter-spacing: 0; }
+  .fl-prov--propiedad { background: rgba(74,142,200,0.15); color: #7dd3fc; }
+  .fl-prov--persona { background: rgba(148,163,184,0.15); color: #cbd5e1; }
+  .fl-claims { display: flex; flex-direction: column; gap: 0.35rem; }
+  .fl-claim { display: flex; align-items: center; gap: 0.55rem; border: 1px solid var(--color-dark-border); border-radius: 9px; padding: 0.5rem 0.65rem; }
+  .fl-claim--held { background: rgba(34,197,94,0.06); border-color: rgba(34,197,94,0.22); }
+  .fl-claim--add { background: rgba(255,255,255,0.02); }
+  .fl-claim--nope { opacity: 0.5; }
+  .fl-claim__ico { width: 1.2rem; text-align: center; font-weight: 700; flex: 0 0 auto; }
+  .fl-claim--held .fl-claim__ico { color: #4ade80; }
+  .fl-claim--nope .fl-claim__ico { color: #f87171; }
+  .fl-claim__body { flex: 1; min-width: 0; }
+  .fl-claim__label { display: block; font-size: 0.88rem; color: #fff; }
+  .fl-claim--nope .fl-claim__label { text-decoration: line-through; color: var(--color-ink-subtle); }
+  .fl-claim__meta { display: block; font-size: 0.74rem; color: var(--color-ink-subtle); font-family: var(--font-mono); }
+  .fl-badge { flex: 0 0 auto; font-size: 0.58rem; text-transform: uppercase; letter-spacing: 0.03em; padding: 0.08rem 0.35rem; border-radius: 5px; font-weight: 700; }
+  .fl-badge--req { background: rgba(251,191,36,0.15); color: #fbbf24; }
+  .fl-badge--opt { background: rgba(148,163,184,0.15); color: #cbd5e1; }
+
+  .fl-activity { border: 1px solid var(--color-dark-border); border-radius: 10px; padding: 0.7rem; }
+  .fl-activity__hint { display: block; font-size: 0.78rem; color: var(--color-ink-subtle); }
+  .fl-activity select { width: 100%; margin-top: 0.4rem; background: #0a0f18; color: #fff; border: 1px solid var(--color-dark-border); border-radius: 8px; padding: 0.55rem; font-size: 0.88rem; }
+  .fl-decl { border: 1px solid var(--color-warn-border); background: rgba(180,83,9,0.08); border-radius: 10px; padding: 0.8rem; font-size: 0.82rem; color: #fcd9a5; }
+  .fl-decl label { display: flex; gap: 0.5rem; align-items: flex-start; cursor: pointer; }
+  .fl-decl input { margin-top: 0.2rem; flex: 0 0 auto; width: 1.1rem; height: 1.1rem; }
+
+  /* Single big centered Sign & Send */
+  .fl-signsend { display: block; width: 100%; margin-top: 1rem; padding: 0.9rem; font-size: 1.05rem; font-weight: 700; text-align: center; }
+  .fl-signsend[disabled] { opacity: 0.4; cursor: not-allowed; }
+  .fl-present-hint { margin: 0.5rem 0 0; font-size: 0.76rem; color: #fbbf24; text-align: center; }
+
+  .fl-done { text-align: center; padding: 1.5rem 0.5rem; }
+  .fl-done__check { font-size: 2.4rem; color: #4ade80; }
+  .fl-done__title { color: #fff; margin: 0.4rem 0 0.2rem; }
+  .fl-done__receipt { font-family: var(--font-mono); color: #7dd3fc; font-size: 0.85rem; }
+  .fl-done__sub { color: var(--color-ink-subtle); font-size: 0.85rem; margin: 0.5rem 0 var(--space-sm); }
+  .fl-vp { text-align: left; margin-top: var(--space-sm); border: 1px solid var(--color-dark-border); border-radius: 10px; overflow: hidden; }
+  .fl-vp > summary { cursor: pointer; padding: 0.6rem 0.8rem; font-family: var(--font-mono); font-size: 0.78rem; color: #7dd3fc; background: rgba(74,142,200,0.08); }
+  .fl-vp pre { margin: 0; padding: 0.8rem; background: #060c18; color: #cbd5e1; font-family: var(--font-mono); font-size: 0.72rem; line-height: 1.55; overflow-x: auto; max-height: 20rem; }
+  .fl-restart { margin-top: var(--space-sm); }
+
+  .fl-terminal { border: 1px solid var(--color-dark-border); border-radius: 12px; overflow: hidden; background: #060c18; }
+  .fl-terminal__bar { display: flex; align-items: center; gap: 0.5rem; padding: 0.5rem 0.75rem; background: rgba(255,255,255,0.04); border-bottom: 1px solid var(--color-dark-border); }
+  .fl-dot { width: 11px; height: 11px; border-radius: 50%; display: inline-block; flex: 0 0 auto; }
+  .fl-dot--r { background: #ef4444; } .fl-dot--y { background: #eab308; } .fl-dot--g { background: #22c55e; }
+  .fl-terminal__title { color: var(--color-ink-subtle); font-family: var(--font-mono); font-size: 0.8rem; margin-left: 0.4rem; }
+  .fl-clear { margin-left: auto; background: none; border: 1px solid var(--color-dark-border); color: var(--color-ink-subtle); font-family: var(--font-mono); font-size: 0.75rem; padding: 0.15rem 0.5rem; border-radius: 6px; cursor: pointer; }
+  .fl-clear:hover { color: #fff; }
+  .fl-terminal__out { margin: 0; padding: var(--space-sm); min-height: 12rem; max-height: 22rem; overflow-y: auto; font-family: var(--font-mono); font-size: 0.82rem; line-height: 1.7; }
+  .fl-line { display: block; white-space: pre-wrap; word-break: break-word; }
+  .fl-line__detail { display: block; color: var(--color-ink-subtle); padding-left: 1.4rem; }
+  .fl-line--info { color: #93a4bd; } .fl-line--request { color: #7dd3fc; } .fl-line--consent { color: #c4b5fd; }
+  .fl-line--sign { color: #f87171; } .fl-line--submit { color: #67e8f9; } .fl-line--success { color: #4ade80; } .fl-line--error { color: #f87171; }
+</style>
+
+<script>
+  import { presentRequest, missingRequired, type PresentationRequest, type RequestedClaim } from '../../lib/formless-client'
+
+  interface Property { id: string; name: string; meta: string }
+  interface Tramite {
+    verifier: string; purpose: string; notRequested: string[]; claims: RequestedClaim[]
+    properties: Property[]; activityOptions: string[]; declaration: string
+  }
+
+  const USO_SUELO: Tramite = {
+    verifier: 'Municipalidad de Nicoya · Planificación Urbana',
+    purpose: 'Resolución de Uso de Suelo',
+    notRequested: ['Password', 'Printed copy of the plano', 'Registry lookup on paper', 'Retype cédula & finca'],
+    properties: [
+      { id: 'f1', name: 'House in Nosara', meta: 'Finca 5-01234-000 · G-0123456-2024' },
+      { id: 'f2', name: 'Lot in Sámara', meta: 'Finca 5-04567-000 · G-0987654-2023' },
+    ],
+    activityOptions: ['Residential — Single-family home', 'Residential — Apartments', 'Residential — Remodel / Extension', 'Commercial — Retail construction', 'Development — Condominiums'],
+    declaration: 'Declaro bajo fe de juramento que la información es verdadera (Art. 318 Código Penal · Art. 28 Ley de Planificación Urbana).',
+    claims: [
+      { key: 'cedula', label: 'Cédula (verified ID)', vcType: 'IdentityCredential', required: true, held: true, sample: '1-0234-0567', group: 'identidad', provenance: 'persona' },
+      { key: 'contacto', label: 'Email & phone', vcType: 'ContactCredential', required: true, held: true, sample: 'ana@example.cr · 8888-0000', group: 'identidad', provenance: 'persona' },
+      { key: 'finca', label: 'Finca (folio real)', vcType: 'PropertyCredential', required: true, held: true, sample: '5-01234-000', group: 'propiedad', provenance: 'propiedad' },
+      { key: 'plano', label: 'Plano catastrado', vcType: 'PropertyCredential', required: true, held: true, sample: 'G-0123456-2024', group: 'propiedad', provenance: 'propiedad' },
+      { key: 'ubicacion', label: 'Location (district / barrio)', vcType: 'PropertyCredential', required: true, held: true, sample: 'Nicoya · Barrio Centro', group: 'propiedad', provenance: 'propiedad' },
+      { key: 'registral', label: 'Registry lookup (current)', vcType: 'RegistryCredential', required: true, held: true, sample: 'issued 2 days ago', group: 'propiedad', provenance: 'propiedad' },
+      { key: 'bienes', label: 'Property-tax declaration (Ley 7509)', vcType: 'TaxStatusCredential', required: true, held: true, sample: 'valid 2026', group: 'propiedad', provenance: 'propiedad' },
+      { key: 'impuestos', label: 'Municipal taxes up to date', vcType: 'TaxStatusCredential', required: true, held: true, sample: 'up to date', group: 'propiedad', provenance: 'propiedad' },
+      { key: 'rol', label: 'Registered owner', vcType: 'OwnershipCredential', required: true, held: true, sample: 'owner of record', group: 'autoridad', provenance: 'propiedad' },
+    ],
+  }
+  const GROUP_LABEL: Record<string, string> = { identidad: '🪪 Identity', propiedad: '📍 Property', autoridad: '🔗 Your role' }
+  const ISSUER: Record<string, string> = { PropertyCredential: 'did:web:rnpdigital.go.cr', RegistryCredential: 'did:web:rnpdigital.go.cr', TaxStatusCredential: 'did:web:municoya.go.cr', OwnershipCredential: 'did:web:rnpdigital.go.cr', IdentityCredential: 'did:web:tse.go.cr', ContactCredential: 'did:sns:ana.attestto' }
+
+  const screen = document.getElementById('fl-screen')!
+  const out = document.getElementById('fl-out')!
+  const sub = document.getElementById('fl-sub')!
+
+  let current: Tramite | null = null
+  let selected = new Set<string>()
+  let propChoice: Property | null = null
+  let property: Property | null = null
+  let activity = ''
+  let signed = false
+
+  function log(level: string, message: string, detail?: string) {
+    const line = document.createElement('span')
+    line.className = `fl-line fl-line--${level}`
+    line.textContent = `› ${message}`
+    if (detail) { const d = document.createElement('span'); d.className = 'fl-line__detail'; d.textContent = detail; line.appendChild(d) }
+    out.appendChild(line); out.scrollTop = out.scrollHeight
+  }
+  function esc(s: string) { return s.replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]!)) }
+  function setSub(s: string) { sub.textContent = s }
+
+  function renderIdle() { current = null; setSub('wallet'); screen.innerHTML = `<div class="fl-empty">No requests.<br/>Press “Request: Resolución de Uso de Suelo”.</div>` }
+
+  function renderInbox() {
+    setSub('1 request')
+    screen.innerHTML = `<button class="fl-reqcard" id="fl-open">
+      <span class="fl-reqcard__new">● New request</span>
+      <p class="fl-reqcard__title">${esc(current!.purpose)}</p>
+      <p class="fl-reqcard__auth">${esc(current!.verifier)} · ${current!.claims.length} credentials</p></button>`
+    document.getElementById('fl-open')!.addEventListener('click', renderProperty)
+  }
+
+  function renderProperty() {
+    setSub('step 1 · property')
+    const props = current!.properties.map((p) => `<button class="fl-prop ${propChoice?.id === p.id ? 'fl-prop--sel' : ''}" data-prop="${p.id}">
+      <span class="fl-prop__body"><span class="fl-prop__name">${esc(p.name)}</span><span class="fl-prop__meta">${esc(p.meta)}</span></span>
+      <span class="fl-prop__radio">✓</span></button>`).join('')
+    screen.innerHTML = `<button class="fl-back" id="fl-back">‹ back</button>
+      <p class="fl-step-h">Which property?<small>This trámite is about a parcel, not about you. It scopes the whole request.</small></p>
+      <div class="fl-props">${props}</div>
+      <button class="btn btn-primary fl-continue" id="fl-continue" ${propChoice ? '' : 'disabled'}>Continue</button>`
+    document.getElementById('fl-back')!.addEventListener('click', renderInbox)
+    screen.querySelectorAll<HTMLButtonElement>('.fl-prop').forEach((b) => b.addEventListener('click', () => {
+      propChoice = current!.properties.find((p) => p.id === b.dataset.prop)!; renderProperty()
+    }))
+    document.getElementById('fl-continue')!.addEventListener('click', () => {
+      if (!propChoice) return
+      property = propChoice
+      log('request', `Property selected: ${property.name}`, "resolved against the parcel's Asset Passport")
+      renderReview()
+    })
+  }
+
+  function claimRow(c: RequestedClaim): string {
+    return `<div class="fl-claim fl-claim--held"><span class="fl-claim__ico">✓</span>
+      <span class="fl-claim__body"><span class="fl-claim__label">${esc(c.label)}</span><span class="fl-claim__meta">${esc(c.sample)}</span></span>
+      <span class="fl-badge fl-badge--req">verified</span></div>`
+  }
+
+  function renderReview() {
+    setSub('step 2 · review & sign')
+    const t = current!
+    const groups: Array<'propiedad' | 'autoridad' | 'identidad'> = ['propiedad', 'autoridad', 'identidad']
+    let body = groups.map((g) => {
+      const rows = t.claims.filter((c) => c.group === g).map(claimRow).join('')
+      if (!rows) return ''
+      const prov = g === 'identidad' ? 'persona' : 'propiedad'
+      return `<div class="fl-group"><p class="fl-group__tag">${GROUP_LABEL[g]} <span class="fl-prov fl-prov--${prov}">${prov === 'propiedad' ? 'from the property' : 'from you'}</span></p><div class="fl-claims">${rows}</div></div>`
+    }).join('')
+
+    body += `<div class="fl-group"><p class="fl-group__tag">🏗 Intended use</p>
+      <div class="fl-activity"><span class="fl-activity__hint">The only thing you actually enter:</span>
+      <select id="fl-activity"><option value="">Select…</option>${t.activityOptions.map((o) => `<option ${activity === o ? 'selected' : ''}>${esc(o)}</option>`).join('')}</select></div></div>`
+
+    body += `<div class="fl-group"><p class="fl-group__tag">✍️ Sworn statement <span class="fl-prov fl-prov--persona">declaración jurada</span></p>
+      <div class="fl-decl"><label><input type="checkbox" id="fl-decl-chk" ${signed ? 'checked disabled' : ''}><span>${esc(t.declaration)}</span></label></div></div>`
+
+    body += `<div class="fl-claims">${t.notRequested.map((n) => `<div class="fl-claim fl-claim--nope"><span class="fl-claim__ico">✕</span><span class="fl-claim__body"><span class="fl-claim__label">${esc(n)}</span><span class="fl-claim__meta">not requested</span></span></div>`).join('')}</div>`
+
+    const req: PresentationRequest = { verifier: t.verifier, purpose: t.purpose, notRequested: t.notRequested, claims: t.claims }
+    const missing = missingRequired(req, [...selected])
+    const ready = missing.length === 0 && !!activity && signed
+    const hint = !ready ? (!activity ? 'Choose the intended use, then confirm the declaration.' : !signed ? 'Confirm the sworn declaration to enable Sign & Send.' : '') : ''
+
+    screen.innerHTML = `<button class="fl-back" id="fl-back">‹ ${esc(property!.name)}</button>${body}
+      <button class="btn btn-primary fl-signsend" id="fl-signsend" ${ready ? '' : 'disabled'}>Sign &amp; Send</button>${hint ? `<p class="fl-present-hint">${hint}</p>` : ''}`
+
+    document.getElementById('fl-back')!.addEventListener('click', renderProperty)
+    const sel = document.getElementById('fl-activity') as HTMLSelectElement | null
+    if (sel) sel.addEventListener('change', () => { activity = sel.value; renderReview() })
+    const chk = document.getElementById('fl-decl-chk') as HTMLInputElement | null
+    if (chk) chk.addEventListener('change', () => { signed = chk.checked; renderReview() })
+    document.getElementById('fl-signsend')!.addEventListener('click', present)
+  }
+
+  function buildVP() {
+    const t = current!
+    const byType: Record<string, string[]> = {}
+    t.claims.filter((c) => selected.has(c.key)).forEach((c) => { (byType[c.vcType] ??= []).push(c.key) })
+    return {
+      '@context': ['https://www.w3.org/ns/credentials/v2'],
+      type: ['VerifiablePresentation'],
+      holder: 'did:sns:ana.attestto',
+      verifiableCredential: Object.entries(byType).map(([vcType, keys]) => {
+        const issuer = ISSUER[vcType] ?? 'did:web:attestto.org'
+        return {
+          type: ['VerifiableCredential', vcType],
+          issuer,
+          credentialSubject: Object.fromEntries(keys.map((k) => [k, t.claims.find((c) => c.key === k)!.sample])),
+          proof: { type: 'DataIntegrityProof', cryptosuite: 'eddsa-jcs-2022', verificationMethod: `${issuer}#key-1` },
+        }
+      }),
+      // the two things the holder actually adds:
+      intendedUse: activity,
+      swornDeclaration: { text: t.declaration, art: ['CP-318', 'LPU-28'] },
+      proof: { type: 'DataIntegrityProof', cryptosuite: 'eddsa-jcs-2022', created: '2026-07-17', verificationMethod: 'did:sns:ana.attestto#key-1', proofPurpose: 'authentication', challenge: 'muni-nicoya:usosuelo:xyz' },
+    }
+  }
+
+  async function present() {
+    const t = current!
+    signed = true
+    log('sign', 'Sworn declaration signed with the holder’s key (Ed25519).', `${activity} · ${property!.name}`)
+    if (activity) log('request', `Intended use declared: ${activity}`)
+    const req: PresentationRequest = { verifier: t.verifier, purpose: t.purpose, notRequested: t.notRequested, claims: t.claims }
+    const res = await presentRequest(req, [...selected], { onLog: (e) => log(e.level, e.message, e.detail) })
+    if (res.ok) renderDone(res.receipt!); else renderReview()
+  }
+
+  function renderDone(receipt: string) {
+    setSub('receipt')
+    const vp = JSON.stringify(buildVP(), null, 2)
+    screen.innerHTML = `<div class="fl-done"><div class="fl-done__check">✓</div><h3 class="fl-done__title">Request sent</h3>
+      <p class="fl-done__receipt">Receipt ${esc(receipt)}</p>
+      <p class="fl-done__sub">Signed in your wallet. The site never saw your credentials or your key.</p>
+      <details class="fl-vp"><summary>▸ Verifiable Presentation (what was sent)</summary><pre>${esc(vp)}</pre></details>
+      <button class="btn btn-secondary fl-restart" id="fl-restart">Restart demo</button></div>`
+    document.getElementById('fl-restart')!.addEventListener('click', renderIdle)
+  }
+
+  function startTramite() {
+    current = USO_SUELO
+    selected = new Set(current.claims.filter((c) => c.held).map((c) => c.key))
+    propChoice = null; property = null; activity = ''; signed = false
+    log('request', `Request received from ${current.verifier}`, `purpose=${current.purpose} · claims=${current.claims.length}`)
+    log('consent', 'Loaded into wallet. Awaiting holder review…')
+    renderInbox()
+  }
+
+  document.querySelectorAll<HTMLButtonElement>('.fl-start').forEach((b) => b.addEventListener('click', startTramite))
+  document.getElementById('fl-clear')!.addEventListener('click', () => { out.innerHTML = '<span class="fl-line fl-line--info">› cleared</span>' })
+  renderIdle()
+</script>

@@ -18,6 +18,7 @@ const PAGES_DIR = join(import.meta.dirname, 'pages')
 const SKIP_PATTERNS = [
   /^docs\//, // docs are EN-only
   /^for\//, // /for/developers is EN-only
+  /^demo\//, // interactive demos are EN-only for now (ES to follow)
   /^404\.astro$/, // error page
   /^revisor-pliegos\.astro$/, // ES-only tool
 ]
