@@ -164,6 +164,11 @@ const esUrl = `https://attestto.org/es${canonicalPath}`
   <meta name="theme-color" content={themeColor} />
   <link rel="canonical" href={canonicalUrl} />
 
+  <!-- Tell i18n.js whether this page has a Spanish counterpart, so the language
+       switcher only appears (and only pins a language) where ES content exists.
+       Stops EN-only pages from getting stuck showing an inert ES toggle. -->
+  <script is:inline set:html={`window.__attesttoHasSpanish = ${JSON.stringify(hasSpanish)};`}></script>
+
   <!-- Open Graph -->
   <meta property="og:title" content={ogTitle || title} />
   <meta property="og:description" content={ogDescription || description} />

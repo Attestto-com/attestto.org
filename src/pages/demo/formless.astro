@@ -24,13 +24,27 @@ const description =
         <strong>finca</strong> (a parcel).
       </p>
 
+      <figure class="fl-shot">
+        <img src="/demo/nicoya-visado.png" alt="A Costa Rican municipal registration form over insecure http://" width="1472" height="956" loading="lazy" />
+        <figcaption>A real Costa Rican municipal form, over insecure <code>http://</code> — passing your cédula, name, email and phone as <strong>plain text</strong> to the site.</figcaption>
+      </figure>
+
       <p class="fl-note">
         With Attestto it flips: the site <strong>requests credentials</strong>,
-        and everything sensitive — picking the property, reviewing what's shared,
-        and signing — happens <strong>inside your wallet</strong>, never on the
-        (untrusted) site. Simulated and framework-free — the same logic is meant
-        for <code>@attestto/id-wallet-adapter</code>, and a request can be
-        <strong>imported from an existing ACF form</strong>.
+        and everything sensitive (picking the property, reviewing what's shared,
+        and signing) happens <strong>inside your wallet</strong>, never on the
+        untrusted site. The presentation can even be <strong>signed by you and
+        encrypted to the department's public key</strong>, so it can cross the
+        insecure site while only the municipal system can read it: the site
+        relays an opaque blob, not your plaintext data.
+      </p>
+      <p class="fl-note">
+        Simulated and framework-free. The same logic is meant for
+        <code>@attestto/id-wallet-adapter</code>, and a request can be
+        <strong>imported from an existing WordPress form built with
+        <a href="/demo/acf-field-group.example.json">ACF (Advanced Custom Fields)</a></strong>,
+        where each field maps to a credential
+        (<a href="/demo/acf-field-group.example.json">see the JSON</a>).
       </p>
     </div>
   </section>
@@ -44,6 +58,7 @@ const description =
             <h3>Municipalidad de Nicoya</h3>
             <p class="fl-site__auth">Planificación Urbana · online trámites</p>
             <p class="fl-site__desc">Instead of retyping the form, the site requests the credentials from your wallet.</p>
+            <p class="fl-clickhint">➤ Click the button below to start</p>
             <button class="btn btn-primary fl-start" data-tramite="usoSuelo">Request: Resolución de Uso de Suelo</button>
             <p class="fl-site__hint">Review &amp; signing happen <strong>in the wallet →</strong></p>
           </div>
@@ -96,6 +111,15 @@ const description =
   .fl-site .btn { width: 100%; }
   .fl-site__hint { color: #b4c0d0; font-size: 0.8rem; margin: 0.6rem 0 0; }
   .fl-site__hint strong { color: #7dd3fc; }
+
+  /* Demo guidance affordances */
+  @keyframes fl-nudge { 0%,100% { opacity: 1; transform: translateX(0); } 50% { opacity: 0.5; transform: translateX(4px); } }
+  .fl-clickhint { color: #7dd3fc; font-weight: 700; font-size: 0.85rem; margin: 0 0 0.45rem; animation: fl-nudge 1.3s ease-in-out infinite; }
+  .fl-start { animation: fl-glow 1.7s ease-in-out infinite; }
+  @keyframes fl-glow { 0%,100% { box-shadow: 0 0 0 0 rgba(74,142,200,0); } 50% { box-shadow: 0 0 0 4px rgba(74,142,200,0.3); } }
+  @keyframes fl-cardpulse { 0%,100% { box-shadow: 0 0 0 0 rgba(74,142,200,0); } 50% { box-shadow: 0 0 0 3px rgba(74,142,200,0.28); } }
+  .fl-reqcard { animation: fl-cardpulse 1.9s ease-in-out infinite; }
+  .fl-reqcard__cta { display: block; margin-top: 0.55rem; color: #7dd3fc; font-size: 0.78rem; font-weight: 700; }
 
   /* Wallet — wider box, taller header */
   .fl-wallet { display: flex; flex-direction: column; align-items: center; }
@@ -250,7 +274,8 @@ const description =
     screen.innerHTML = `<button class="fl-reqcard" id="fl-open">
       <span class="fl-reqcard__new">● New request</span>
       <p class="fl-reqcard__title">${esc(current!.purpose)}</p>
-      <p class="fl-reqcard__auth">${esc(current!.verifier)} · ${current!.claims.length} credentials</p></button>`
+      <p class="fl-reqcard__auth">${esc(current!.verifier)} · ${current!.claims.length} credentials</p>
+      <span class="fl-reqcard__cta">Tap to review →</span></button>`
     document.getElementById('fl-open')!.addEventListener('click', renderProperty)
   }
 
@@ -338,6 +363,9 @@ const description =
       intendedUse: activity,
       swornDeclaration: { text: t.declaration, art: ['CP-318', 'LPU-28'] },
       proof: { type: 'DataIntegrityProof', cryptosuite: 'eddsa-jcs-2022', created: '2026-07-17', verificationMethod: 'did:sns:ana.attestto#key-1', proofPurpose: 'authentication', challenge: 'muni-nicoya:usosuelo:xyz' },
+      // The signed VP above is delivered wrapped in a JWE to the verifier, so the
+      // untrusted site only relays ciphertext (no plaintext PII on the wire).
+      _delivery: { format: 'JWE', alg: 'ECDH-ES+A256KW', enc: 'A256GCM', encryptedFor: 'did:web:municoya.go.cr' },
     }
   }
 
@@ -356,8 +384,8 @@ const description =
     const vp = JSON.stringify(buildVP(), null, 2)
     screen.innerHTML = `<div class="fl-done"><div class="fl-done__check">✓</div><h3 class="fl-done__title">Request sent</h3>
       <p class="fl-done__receipt">Receipt ${esc(receipt)}</p>
-      <p class="fl-done__sub">Signed in your wallet. The site never saw your credentials or your key.</p>
-      <details class="fl-vp"><summary>▸ Verifiable Presentation (what was sent)</summary><pre>${esc(vp)}</pre></details>
+      <p class="fl-done__sub">🔒 Signed in your wallet and <strong>encrypted to did:web:municoya.go.cr</strong>, so the site relayed ciphertext only, never your credentials or your key.</p>
+      <details class="fl-vp" open><summary>Verifiable Presentation (what was sent)</summary><pre>${esc(vp)}</pre></details>
       <button class="btn btn-secondary fl-restart" id="fl-restart">Restart demo</button></div>`
     document.getElementById('fl-restart')!.addEventListener('click', renderIdle)
   }

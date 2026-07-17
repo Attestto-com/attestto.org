@@ -22,6 +22,10 @@
 
   // ── Detect language ──
   function detectLang() {
+    // EN-only pages (no Spanish counterpart) always display in English, even if
+    // localStorage was pinned to 'es' by a stray /es/ URL or the 404 page.
+    if (window.__attesttoHasSpanish === false) return DEFAULT;
+
     // 1. URL pathname prefix (per-locale subdirectories: /es/...)
     //    This wins over everything else because crawler-friendly per-locale
     //    files are the canonical signal — if a user lands on /es/ark/, they
@@ -148,6 +152,8 @@
 
   // ── Build switcher UI ──
   function injectSwitcher() {
+    // No language toggle on EN-only pages — there is nowhere for ES to go.
+    if (window.__attesttoHasSpanish === false) return;
     var nav = document.querySelector('.nav-links');
     if (!nav) return;
 
