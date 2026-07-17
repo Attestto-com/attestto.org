@@ -1,19 +1,56 @@
 ---
-// The form-less demo is EN-only for now. Redirect the Spanish URL to it so the
-// language toggle never lands on a 404. (Swap for a real ES page when translated.)
-const target = '/demo/formless/'
+import Base from '../../../layouts/Base.astro'
+import FormlessDemo from '../../../components/FormlessDemo.astro'
+
+const title = 'El trámite sin formulario — Demo | Attestto Open'
+const description =
+  'Un demo del concepto de "formulario sin formulario": el sitio solicita credenciales, no que usted vuelva a escribir sus datos. Usted revisa y firma dentro de su billetera, incluso trámites de propiedad como una resolución de uso de suelo.'
 ---
 
-<!DOCTYPE html>
-<html lang="es">
-  <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="refresh" content={`0; url=${target}`} />
-    <link rel="canonical" href={`https://attestto.org${target}`} />
-    <meta name="robots" content="noindex" />
-    <title>Redirigiendo…</title>
-  </head>
-  <body>
-    <p>Redirigiendo a <a href={target}>{target}</a>…</p>
-  </body>
-</html>
+<Base
+  title={title}
+  description={description}
+  canonicalPath="/es/demo/formless"
+  navVariant="default"
+  lang="es"
+>
+  <section class="section-light">
+    <div class="container fl-intro">
+      <p class="section-label">Demo conceptual</p>
+      <h1 class="section-title">El formulario sin formulario</h1>
+      <p class="section-desc">
+        Los sistemas municipales de Costa Rica obligan a la gente a
+        <strong>volver a escribir</strong> los mismos datos en cada trámite,
+        muchas veces sobre <code>http://</code> inseguro y pidiéndole inventar
+        <strong>otra contraseña más</strong>. Y un trámite de propiedad ni
+        siquiera es sobre una persona: es sobre una <strong>finca</strong>
+        (un predio).
+      </p>
+
+      <figure class="fl-shot">
+        <img src="/demo/nicoya-visado.png" alt="Un formulario municipal costarricense sobre http:// inseguro" width="1472" height="956" loading="lazy" />
+        <figcaption>Un formulario municipal costarricense real, sobre <code>http://</code> inseguro, que envía su cédula, nombre, correo y teléfono como <strong>texto plano</strong> al sitio.</figcaption>
+      </figure>
+
+      <p class="fl-note">
+        Con Attestto se invierte: el sitio <strong>solicita credenciales</strong>,
+        y todo lo sensible (elegir la propiedad, revisar qué se comparte y
+        firmar) ocurre <strong>dentro de su billetera</strong>, nunca en el
+        sitio no confiable. La presentación puede incluso ir <strong>firmada por
+        usted y cifrada con la llave pública de la dependencia</strong>, de modo
+        que atraviese el sitio inseguro y solo el sistema municipal pueda
+        leerla: el sitio traslada un bloque opaco, no sus datos en texto plano.
+      </p>
+      <p class="fl-note">
+        Simulado y sin dependencias de framework. La misma lógica está pensada
+        para <code>@attestto/id-wallet-adapter</code>, y una solicitud puede
+        <strong>importarse desde un formulario de WordPress existente hecho con
+        <a href="/demo/acf-field-group.example.json">ACF (Advanced Custom Fields)</a></strong>,
+        donde cada campo mapea a una credencial
+        (<a href="/demo/acf-field-group.example.json">ver el JSON</a>).
+      </p>
+    </div>
+  </section>
+
+  <FormlessDemo />
+</Base>

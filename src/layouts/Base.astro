@@ -1,6 +1,7 @@
 ---
 import Nav from '../components/Nav.astro'
 import Footer from '../components/Footer.astro'
+import { BUILD_VERSION as i18nBuildVersion } from '../lib/build-version'
 import '../styles/tokens.css'
 import '../styles/base.css'
 import '../styles/components.css'
@@ -138,11 +139,17 @@ for (const seg of segments) {
 // Only show breadcrumb if we're deeper than homepage
 const showBreadcrumb = breadcrumbs.length > 1
 
-// Pages that have Spanish equivalents in /es/
-const pagesWithSpanish = ['', '/ark', '/ark/desktop', '/ark/patrons', '/downloads', '/standards', '/why']
-const hasSpanish = pagesWithSpanish.includes(canonicalPath)
-const enUrl = `https://attestto.org${canonicalPath}`
-const esUrl = `https://attestto.org/es${canonicalPath}`
+// Pages that have Spanish equivalents in /es/ (keyed by locale-agnostic path)
+const pagesWithSpanish = ['', '/ark', '/ark/desktop', '/ark/patrons', '/downloads', '/standards', '/why', '/demo/formless']
+// Strip a leading /es so an EN page and its ES twin resolve to the same key.
+// This is why the has-Spanish flag and hreflang must be computed from the
+// locale-agnostic path: an ES page's canonicalPath is "/es/why", and we still
+// need it to (a) report hasSpanish=true so the switcher shows and the chrome
+// stays Spanish, and (b) emit correct hreflang without a doubled "/es/es".
+const basePath = canonicalPath.replace(/^\/es(?=\/|$)/, '')
+const hasSpanish = pagesWithSpanish.includes(basePath)
+const enUrl = `https://attestto.org${basePath}`
+const esUrl = `https://attestto.org/es${basePath}`
 ---
 
 <!DOCTYPE html>
@@ -238,6 +245,9 @@ const esUrl = `https://attestto.org/es${canonicalPath}`
 
   <Footer variant={footerVariant} tagline={footerTagline} notes={footerNotes} />
 
-  <script is:inline src="/assets/js/i18n.js"></script>
+  <!-- Version the src with the build time so a deploy invalidates the cached
+       copy. Without this, browsers keep running a stale i18n.js across deploys
+       (the tag URL never changes), so guard/logic fixes silently never apply. -->
+  <script is:inline src={`/assets/js/i18n.js?v=${i18nBuildVersion}`}></script>
 </body>
 </html>
