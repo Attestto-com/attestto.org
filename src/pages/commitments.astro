@@ -1,0 +1,549 @@
+---
+import Base from '../layouts/Base.astro'
+
+const structuredData = [
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Public Commitments — How Attestto Funds Itself",
+    "description": "Identity is free for citizens, forever. Commerce pays. Here are the exact splits, the patron tiers, and the pledges we hold ourselves to.",
+    "url": "https://attestto.org/commitments",
+    "datePublished": "2026-05-06",
+    "dateModified": "2026-05-06",
+    "author": {
+      "@type": "Organization",
+      "name": "Attestto",
+      "url": "https://attestto.org"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Attestto",
+      "url": "https://attestto.org",
+      "logo": "https://attestto.org/logo.svg"
+    },
+    "mainEntityOfPage": "https://attestto.org/commitments"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Attestto", "item": "https://attestto.org" },
+      { "@type": "ListItem", "position": 2, "name": "Commitments", "item": "https://attestto.org/commitments" }
+    ]
+  }
+]
+---
+
+<Base
+  structuredData={structuredData}
+  title="Public Commitments — How Attestto Funds Itself"
+  description="Identity is free for citizens, forever. Commerce pays. Here are the exact splits, the patron tiers, and the pledges we hold ourselves to."
+  canonicalPath="/commitments"
+  ogTitle="Public Commitments — Attestto"
+  ogDescription="The economics of sovereign identity, on the record. Free for citizens, paid by commerce, no hidden default-issuer, no sponsored content in governance surfaces."
+  ogImage="https://attestto.org/og-image.png"
+  ogType="article"
+>
+  <Fragment slot="head">
+    <meta name="keywords" content="Attestto commitments, identity transparency, fee model, patron tiers, no vendor lock-in, citizen rights, public infrastructure economics, anchoring fees, verification fees" />
+  </Fragment>
+
+  <!-- Hero -->
+  <section class="why-hero">
+    <div class="container">
+      <h1 data-i18n="commitments.title">The economics, on the record.</h1>
+      <p class="lead" data-i18n="commitments.lead">Infrastructure earns trust by what it refuses to do. These are the commitments we hold ourselves to &mdash; the exact splits, the patron tiers, and the pledges we publish so anyone can audit whether we kept our word.</p>
+    </div>
+  </section>
+
+  <!-- Status disclosure — demo phase honesty -->
+  <section class="status-banner">
+    <div class="container">
+      <div class="status-card">
+        <div class="status-label" data-i18n="commitments.status_label">Status &mdash; demo phase</div>
+        <p class="status-text" data-i18n="commitments.status_text">The economics on this page describe how Attestto operates once mainnet anchoring is live. As of May 2026, anchoring runs on Solana devnet for development. The production anchor service ships with the next milestone. Until then, treat every "anchored on-chain" claim below as a commitment about the architecture under construction, not a statement about today's behavior. We will date and sign the flip to mainnet on this page when it happens.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 1: The principle -->
+  <section class="story-section">
+    <div class="container">
+      <div class="story-content">
+        <div class="story-label" data-i18n="commitments.s1_label">The principle</div>
+        <h2 class="story-title" data-i18n="commitments.s1_title">Free for citizens, forever. Commerce pays.</h2>
+        <div class="story-text">
+          <p data-i18n="commitments.s1_p1">Identity, signature, anchoring, recovery, and verification are citizen rights, not services. They are free for every citizen &mdash; including renewals &mdash; and they will remain free.</p>
+          <p data-i18n="commitments.s1_p2">The infrastructure is paid for by the entities that extract commercial value from a verified-citizen network: banks doing KYC, employers hiring, insurers underwriting, businesses signing. Every fee on this page is a fee on commerce, never on the citizen.</p>
+        </div>
+        <div class="pullquote" data-i18n="commitments.s1_quote">A constitutional right cannot be a service. Charging citizens to exercise it would be the wrong shape of the entire system.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 2: B2B anchor split -->
+  <section class="story-section">
+    <div class="container">
+      <div class="story-content">
+        <div class="story-label" data-i18n="commitments.s2_label">Stream 1 &mdash; B2B anchoring</div>
+        <h2 class="story-title" data-i18n="commitments.s2_title">$1 per anchor, split on-chain by a Solana program</h2>
+        <div class="story-text">
+          <p data-i18n="commitments.s2_p1">When a business anchors a document, contract, or credential, the $1 fee is split atomically by an open-source Solana program. The split is enforced in code, not policy &mdash; no party can divert another party's slice.</p>
+        </div>
+      </div>
+      <div class="split-table">
+        <div class="split-row">
+          <div class="split-amount">$0.10</div>
+          <div class="split-recipient" data-i18n="commitments.s2_r1">Relayer treasury</div>
+          <div class="split-purpose" data-i18n="commitments.s2_p_r1">Funds free citizen anchoring. Solvency math published below.</div>
+        </div>
+        <div class="split-row">
+          <div class="split-amount">$0.05</div>
+          <div class="split-recipient" data-i18n="commitments.s2_r2">Anchor node operators</div>
+          <div class="split-purpose" data-i18n="commitments.s2_p_r2">Pro-rata to active operators by uptime and replicas served.</div>
+        </div>
+        <div class="split-row">
+          <div class="split-amount">$0.10</div>
+          <div class="split-recipient" data-i18n="commitments.s2_r3">Originating-issuer kickback</div>
+          <div class="split-purpose" data-i18n="commitments.s2_p_r3">Lifetime kickback to the notary or authority that originally issued the citizen's identity credential.</div>
+        </div>
+        <div class="split-row">
+          <div class="split-amount">$0.75</div>
+          <div class="split-recipient" data-i18n="commitments.s2_r4">Attestto operating</div>
+          <div class="split-purpose" data-i18n="commitments.s2_p_r4">Salaries, R&amp;D, growth, security audits.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 3: Verification fee split -->
+  <section class="story-section">
+    <div class="container">
+      <div class="story-content">
+        <div class="story-label" data-i18n="commitments.s3_label">Stream 2 &mdash; Verification</div>
+        <h2 class="story-title" data-i18n="commitments.s3_title">$5 per verification, with the majority returning to the originating notary</h2>
+        <div class="story-text">
+          <p data-i18n="commitments.s3_p1">When a business verifies a citizen's identity credential &mdash; a bank doing KYC, an employer hiring, an insurer underwriting &mdash; the $5 fee is split as follows. The originating notary keeps earning every time their work is reused.</p>
+        </div>
+      </div>
+      <div class="split-table">
+        <div class="split-row">
+          <div class="split-amount">$4.00</div>
+          <div class="split-recipient" data-i18n="commitments.s3_r1">Originating notary (80%)</div>
+          <div class="split-purpose" data-i18n="commitments.s3_p_r1">The notary or authority that originally KYC'd the citizen earns recurring revenue from every commercial use of their verification.</div>
+        </div>
+        <div class="split-row">
+          <div class="split-amount">$0.75</div>
+          <div class="split-recipient" data-i18n="commitments.s3_r2">Attestto operating (15%)</div>
+          <div class="split-purpose" data-i18n="commitments.s3_p_r2">Network operations and continuing development.</div>
+        </div>
+        <div class="split-row">
+          <div class="split-amount">$0.15</div>
+          <div class="split-recipient" data-i18n="commitments.s3_r3">Relayer treasury (3%)</div>
+          <div class="split-purpose" data-i18n="commitments.s3_p_r3">Additional inflow to the citizen-anchoring treasury.</div>
+        </div>
+        <div class="split-row">
+          <div class="split-amount">$0.10</div>
+          <div class="split-recipient" data-i18n="commitments.s3_r4">Anchor node operators (2%)</div>
+          <div class="split-purpose" data-i18n="commitments.s3_p_r4">Pro-rata to operators serving the verification path.</div>
+        </div>
+      </div>
+      <div class="story-content" style="margin-top: var(--space-md);">
+        <div class="pullquote" data-i18n="commitments.s3_quote">A bank that pays $20&ndash;$50 per customer for traditional KYC pays $5 to use a notary's existing verification &mdash; and the notary earns $4 of it, every time, for the lifetime of that citizen.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 4: Treasury solvency math -->
+  <section class="story-highlight">
+    <div class="container">
+      <div class="story-content">
+        <div class="story-label" data-i18n="commitments.s4_label">How the math holds</div>
+        <h2 class="story-title" data-i18n="commitments.s4_title">Why free for citizens is structurally sustainable</h2>
+        <div class="story-text">
+          <p data-i18n-html="commitments.s4_p1">Anchoring on Solana with Merkle batching costs roughly <strong>$0.0008 per citizen anchor</strong>. At a conservative scale of 1,000 citizens averaging 30 personal anchors per month, the relayer treasury spends about <strong>$24 per month</strong> on free citizen anchoring.</p>
+          <p data-i18n-html="commitments.s4_p2">The same 1,000 businesses generating 30,000 B2B anchors and 10,000 verifications per month put about <strong>$4,500 per month</strong> into the relayer treasury through the splits above. That is a 188&times; safety margin. The treasury is structurally over-funded from the moment commercial use turns on.</p>
+        </div>
+        <div class="pullquote" data-i18n="commitments.s4_quote">The economics work because commerce extracts more value from a verified citizen than the citizen will ever consume in infrastructure. The free tier is not a subsidy; it is a side-effect of doing commerce on the network.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 5: Patron tiers -->
+  <section class="story-section">
+    <div class="container">
+      <div class="story-content">
+        <div class="story-label" data-i18n="commitments.s5_label">Institutional patronage</div>
+        <h2 class="story-title" data-i18n="commitments.s5_title">Four tiers, $100,000 floor, no logo walls</h2>
+        <div class="story-text">
+          <p data-i18n="commitments.s5_p1">Attestto accepts institutional patronage in the museum and scientific-expedition tradition. Patrons fund the work; they do not steer it. The four tiers below are the only paid recognition we offer.</p>
+        </div>
+      </div>
+      <div class="patron-grid">
+        <div class="patron-card patron-founding">
+          <div class="patron-tier" data-i18n="commitments.s5_t1_name">Founding Patron</div>
+          <div class="patron-price">$1,000,000</div>
+          <div class="patron-cap" data-i18n="commitments.s5_t1_cap">2&ndash;3 slots, ever</div>
+          <p data-i18n="commitments.s5_t1_desc">Permanent acknowledgment in the genesis ceremony recording, on the architecture page, in the technical whitepaper preface, and in every annual report. Once filmed, the genesis ceremony's Founding Patron credit is closed forever.</p>
+        </div>
+        <div class="patron-card">
+          <div class="patron-tier" data-i18n="commitments.s5_t2_name">Sustaining Patron</div>
+          <div class="patron-price">$500,000</div>
+          <div class="patron-cap" data-i18n="commitments.s5_t2_cap">5 per year</div>
+          <p data-i18n="commitments.s5_t2_desc">Current-year footer credit on the architecture page and acknowledgment in the technical whitepaper preface.</p>
+        </div>
+        <div class="patron-card">
+          <div class="patron-tier" data-i18n="commitments.s5_t3_name">Supporting Patron</div>
+          <div class="patron-price">$250,000</div>
+          <div class="patron-cap" data-i18n="commitments.s5_t3_cap">By institutional review</div>
+          <p data-i18n="commitments.s5_t3_desc">Whitepaper preface acknowledgment and annual report inclusion.</p>
+        </div>
+        <div class="patron-card">
+          <div class="patron-tier" data-i18n="commitments.s5_t4_name">Institutional Partner</div>
+          <div class="patron-price">$100,000 / year</div>
+          <div class="patron-cap" data-i18n="commitments.s5_t4_cap">Recurring</div>
+          <p data-i18n="commitments.s5_t4_desc">Annual report inclusion. The minimum entry to the patron register.</p>
+        </div>
+      </div>
+      <div class="story-content" style="margin-top: var(--space-md);">
+        <div class="patron-rules">
+          <div class="patron-rule">
+            <strong data-i18n="commitments.s5_rule1_t">Discretion enforced.</strong>
+            <span data-i18n="commitments.s5_rule1_d">No homepage logos, no badge walls, no &ldquo;powered by&rdquo; headers. Recognition appears in the footer, the preface, and the annual report &mdash; nowhere else.</span>
+          </div>
+          <div class="patron-rule">
+            <strong data-i18n="commitments.s5_rule2_t">No editorial control.</strong>
+            <span data-i18n="commitments.s5_rule2_d">Patrons buy the right to say they supported the work, never the right to shape it. No governance seat, no architectural influence, no veto.</span>
+          </div>
+          <div class="patron-rule">
+            <strong data-i18n="commitments.s5_rule3_t">No retroactive credit.</strong>
+            <span data-i18n="commitments.s5_rule3_d">A patron who arrives after the genesis ceremony is filmed cannot be added to it. Genesis credit is one-time and irrevocable.</span>
+          </div>
+          <div class="patron-rule">
+            <strong data-i18n="commitments.s5_rule4_t">No floor below $100,000.</strong>
+            <span data-i18n="commitments.s5_rule4_d">Smaller contributors support the work through open-source code, not sponsorship. The floor protects the class signal of every tier above it.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 6: Three pledges -->
+  <section class="story-highlight">
+    <div class="container">
+      <div class="story-content">
+        <div class="story-label" data-i18n="commitments.s6_label">Pledges</div>
+        <h2 class="story-title" data-i18n="commitments.s6_title">Three things this infrastructure refuses to do</h2>
+      </div>
+      <div class="pledge-list">
+        <div class="pledge">
+          <div class="pledge-num">01</div>
+          <div class="pledge-content">
+            <h3 data-i18n="commitments.s6_p1_t">No hidden default-issuer</h3>
+            <p data-i18n="commitments.s6_p1_d">Attestto will not pre-install itself as the default credential issuer in any institutional deployment. Every issuer in the network is named, contractually identified, and visible to the subject. There is no &ldquo;Attestto issuance&rdquo; layer hiding behind the public deployment of an institution.</p>
+          </div>
+        </div>
+        <div class="pledge">
+          <div class="pledge-num">02</div>
+          <div class="pledge-content">
+            <h3 data-i18n="commitments.s6_p2_t">No sponsored content in governance or professional surfaces</h3>
+            <p data-i18n="commitments.s6_p2_d">Governance proposals, professional discovery, credential ranking, and similar surfaces are never paid placement. Where any surface displays ranked or recommended content, the sort key is named in subject-visible UI &mdash; and patron status is never one of the inputs.</p>
+          </div>
+        </div>
+        <div class="pledge">
+          <div class="pledge-num">03</div>
+          <div class="pledge-content">
+            <h3 data-i18n="commitments.s6_p3_t">No premium tier for individuals</h3>
+            <p data-i18n="commitments.s6_p3_d">There is no &ldquo;priority anchoring&rdquo; for citizens. No &ldquo;extra replication&rdquo;, no &ldquo;longer retention&rdquo;, no upsell that creates a class system in which wealthier citizens get better identity than poorer citizens. The free tier is complete. Premium tiers exist only for organizations.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 7: Verification proof -->
+  <section class="story-section">
+    <div class="container">
+      <div class="story-content">
+        <div class="story-label" data-i18n="commitments.s7_label">How to verify this page</div>
+        <h2 class="story-title" data-i18n="commitments.s7_title">Anchored, hashable, audit-ready</h2>
+        <div class="story-text">
+          <p data-i18n="commitments.s7_p1">Starting with the first governance ceremony (see Status above), each published version of this page will be hashed and anchored on-chain under a did:sns identifier owned by Attestto's governance multisig. The proof will be human-verifiable: anyone can fetch the page, hash the canonical content, and check the signature against the on-chain record.</p>
+          <p data-i18n="commitments.s7_p2">Once mainnet anchoring is live, every change to the splits, the tiers, or the pledges will leave the previous version permanently anchored and the diff on the record. Commitments under this page are versioned, not silently rewritten.</p>
+        </div>
+        <div class="anchor-box">
+          <div class="anchor-label" data-i18n="commitments.s7_anchor_label">On-chain proof</div>
+          <div class="anchor-value">did:sns:vault.attestto &mdash; <span data-i18n="commitments.s7_anchor_pending">anchor record published with the next governance ceremony</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 8: Why we publish this -->
+  <section class="story-section" style="padding-bottom: var(--space-xl);">
+    <div class="container">
+      <div class="story-content">
+        <div class="story-label" data-i18n="commitments.s8_label">Why we publish this</div>
+        <h2 class="story-title" data-i18n="commitments.s8_title">Transparency of incentives is the price of legitimacy</h2>
+        <div class="story-text">
+          <p data-i18n="commitments.s8_p1">A self-sovereign identity infrastructure that hides its own economics has no claim on transparency anywhere else. The W3C Credentials community calls this the Transparency principle: the rules that govern how the system makes money are themselves part of the system, and they belong on the public record.</p>
+          <p data-i18n="commitments.s8_p2">If anything on this page changes &mdash; a percentage, a tier, a pledge &mdash; the change is published, anchored, and dated. If something on this page is wrong, please tell us; we will fix it on the public record.</p>
+        </div>
+        <div class="cta-row" style="justify-content: center; margin-top: var(--space-md);">
+          <a href="/why" class="cta-secondary" data-i18n="commitments.cta_why">Why we built this &rarr;</a>
+          <a href="/standards" class="cta-secondary" data-i18n="commitments.cta_standards">The standards we use &rarr;</a>
+          <a href="https://github.com/Attestto-com" class="cta-secondary">GitHub &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .pullquote {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--color-ink);
+    border-left: 3px solid var(--color-accent);
+    padding-left: var(--space-sm);
+    margin-top: var(--space-md);
+    line-height: 1.5;
+  }
+
+  .story-highlight .pullquote {
+    color: #ffffff;
+    border-left-color: #4ade80;
+  }
+
+  /* ── Split tables ── */
+  .split-table {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+    margin-top: var(--space-md);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 10px;
+    padding: var(--space-sm);
+  }
+
+  .split-row {
+    display: grid;
+    grid-template-columns: 6rem 14rem 1fr;
+    gap: var(--space-md);
+    padding: var(--space-sm);
+    align-items: start;
+    border-bottom: 1px dashed var(--color-border);
+  }
+
+  .split-row:last-child {
+    border-bottom: none;
+  }
+
+  .split-amount {
+    font-family: var(--font-mono);
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--color-accent);
+  }
+
+  .split-recipient {
+    font-weight: 700;
+    color: var(--color-ink);
+  }
+
+  .split-purpose {
+    color: var(--color-ink-muted);
+    font-size: 0.9375rem;
+    line-height: 1.5;
+  }
+
+  /* ── Patron tiers ── */
+  .patron-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-sm);
+    margin-top: var(--space-md);
+  }
+
+  .patron-card {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 10px;
+    padding: var(--space-md);
+  }
+
+  .patron-card.patron-founding {
+    border-color: var(--color-accent);
+    border-width: 2px;
+  }
+
+  .patron-tier {
+    font-size: 0.8125rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-ink-muted);
+    margin-bottom: 0.25rem;
+  }
+
+  .patron-price {
+    font-family: var(--font-mono);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-ink);
+    line-height: 1;
+    margin-bottom: 0.25rem;
+  }
+
+  .patron-cap {
+    font-size: 0.8125rem;
+    color: var(--color-accent);
+    font-weight: 600;
+    margin-bottom: var(--space-sm);
+  }
+
+  .patron-card p {
+    font-size: 0.9375rem;
+    color: var(--color-ink-muted);
+    line-height: 1.55;
+    margin: 0;
+  }
+
+  .patron-rules {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+    margin-top: var(--space-md);
+  }
+
+  .patron-rule {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    padding-left: var(--space-sm);
+    border-left: 2px solid var(--color-border);
+  }
+
+  .patron-rule strong {
+    color: var(--color-ink);
+    font-weight: 700;
+  }
+
+  .patron-rule span {
+    color: var(--color-ink-muted);
+    font-size: 0.9375rem;
+    line-height: 1.55;
+  }
+
+  /* ── Pledges ── */
+  .pledge-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+    margin-top: var(--space-md);
+  }
+
+  .pledge {
+    display: flex;
+    gap: var(--space-md);
+    padding: var(--space-md);
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+  }
+
+  .pledge-num {
+    font-family: var(--font-mono);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #4ade80;
+    flex-shrink: 0;
+    line-height: 1;
+    margin-top: 0.2rem;
+  }
+
+  .pledge-content h3 {
+    font-size: 1.0625rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 0.5rem;
+  }
+
+  .pledge-content p {
+    font-size: 0.9375rem;
+    color: rgba(255, 255, 255, 0.75);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  /* ── Status disclosure (demo phase) ── */
+  .status-banner {
+    padding: 0 0 var(--space-lg) 0;
+  }
+
+  .status-card {
+    border: 1px solid var(--color-warn-border);
+    border-left: 3px solid var(--color-warn);
+    background: var(--color-warn-bg);
+    border-radius: 8px;
+    padding: var(--space-md) var(--space-lg);
+  }
+
+  .status-label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 600;
+    color: var(--color-warn);
+    margin-bottom: 0.5rem;
+  }
+
+  .status-text {
+    color: var(--color-ink);
+    font-size: 0.9375rem;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  /* ── Anchor proof ── */
+  .anchor-box {
+    margin-top: var(--space-md);
+    padding: var(--space-sm) var(--space-md);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    font-family: var(--font-mono);
+    font-size: 0.875rem;
+  }
+
+  .anchor-label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-ink-muted);
+    margin-bottom: 0.25rem;
+  }
+
+  .anchor-value {
+    color: var(--color-ink);
+    word-break: break-all;
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 768px) {
+    .split-row {
+      grid-template-columns: 1fr;
+      gap: 0.25rem;
+    }
+
+    .patron-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .pledge {
+      flex-direction: column;
+      gap: var(--space-xs);
+    }
+  }
+</style>
