@@ -235,6 +235,13 @@
     if (detail) { const d = document.createElement('span'); d.className = 'fl-line__detail'; d.textContent = detail; line.appendChild(d) }
     out.appendChild(line); out.scrollTop = out.scrollHeight
   }
+  // SECURITY (F-4) — DEMO ONLY. Every string rendered via `innerHTML` below is a
+  // hardcoded constant, so there is no injection source here. When this consent UI
+  // is ported into @attestto/id-wallet-adapter, the verifier name / purpose / claim
+  // labels / ACF-imported labels become ATTACKER-CONTROLLED. Do NOT carry this
+  // innerHTML+esc() pattern across: build the real consent UI with
+  // createElement/textContent only (like log() above), and drop esc() entirely so
+  // there is no "mostly-escaped" middle ground. Note esc() here does not cover `'`.
   function esc(s: string) { return s.replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]!)) }
   function setSub(s: string) { sub.textContent = s }
 
@@ -333,7 +340,12 @@
       // the two things the holder actually adds:
       intendedUse: activity,
       swornDeclaration: { text: t.declaration, art: ['CP-318', 'LPU-28'] },
-      proof: { type: 'DataIntegrityProof', cryptosuite: 'eddsa-jcs-2022', created: '2026-07-17', verificationMethod: 'did:sns:ana.attestto#key-1', proofPurpose: 'authentication', challenge: 'muni-nicoya:usosuelo:xyz' },
+      // Anti-replay binding: `challenge` and `domain` come from the verifier's
+      // signed request (not the holder), the wallet binds both into the signature,
+      // and the presentation expires. A verifier MUST reject a VP not bound to the
+      // exact challenge + domain it issued — see @attestto/id-wallet-adapter
+      // verifyPresentation (challenge/domain binding + freshness).
+      proof: { type: 'DataIntegrityProof', cryptosuite: 'eddsa-jcs-2022', created: '2026-07-17T14:32:05Z', expires: '2026-07-17T14:37:05Z', verificationMethod: 'did:sns:ana.attestto#key-1', proofPurpose: 'authentication', domain: 'https://municoya.go.cr', challenge: 'a3f1c2d4-9b8e-4c11-8f2a-6e5d1c9b7a04' },
       // The signed VP above is delivered wrapped in a JWE to the verifier, so the
       // untrusted site only relays ciphertext (no plaintext PII on the wire).
       _delivery: { format: 'JWE', alg: 'ECDH-ES+A256KW', enc: 'A256GCM', encryptedFor: 'did:web:municoya.go.cr' },

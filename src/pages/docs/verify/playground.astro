@@ -64,7 +64,15 @@ const structuredData = [
     </div>
   </div>
 
-  <script is:inline type="module" src="https://unpkg.com/@attestto/verify"></script>
+  <!-- Pinned to an exact version + Subresource Integrity so a new/compromised
+       package version cannot execute arbitrary JS on attestto.org (audit SEV-1). -->
+  <script
+    is:inline
+    type="module"
+    src="https://unpkg.com/@attestto/verify@0.1.1/dist/attestto-verify.js"
+    integrity="sha384-v5irXGJ3QL+rHxekFY6LC4PsECPYYAtLt4L7qA30edAvB+/Ah+ZS8IvSXoxqmctW"
+    crossorigin="anonymous"
+  ></script>
 
   <script is:inline>
     document.addEventListener('DOMContentLoaded', function () {
@@ -166,7 +174,10 @@ const structuredData = [
       <span>HTML</span>
       <button class="docs-code-copy" onclick="this.closest('.docs-code-block').querySelector('pre')?.textContent && navigator.clipboard.writeText(this.closest('.docs-code-block').querySelector('pre').textContent).then(() => { this.textContent = 'Copied!'; setTimeout(() => this.textContent = 'Copy', 1500) })">Copy</button>
     </div>
-    <pre><Fragment set:html={`<span class="c-tag">&lt;script</span> <span class="c-attr">type</span>=<span class="c-str">"module"</span> <span class="c-attr">src</span>=<span class="c-str">"https://unpkg.com/@attestto/verify"</span><span class="c-tag">&gt;&lt;/script&gt;</span>
+    <pre><Fragment set:html={`<span class="c-tag">&lt;script</span> <span class="c-attr">type</span>=<span class="c-str">"module"</span>
+  <span class="c-attr">src</span>=<span class="c-str">"https://unpkg.com/@attestto/verify@0.1.1/dist/attestto-verify.js"</span>
+  <span class="c-attr">integrity</span>=<span class="c-str">"sha384-v5irXGJ3QL+rHxekFY6LC4PsECPYYAtLt4L7qA30edAvB+/Ah+ZS8IvSXoxqmctW"</span>
+  <span class="c-attr">crossorigin</span>=<span class="c-str">"anonymous"</span><span class="c-tag">&gt;&lt;/script&gt;</span>
 <span class="c-tag">&lt;attestto-verify&gt;&lt;/attestto-verify&gt;</span>
 <span class="c-tag">&lt;attestto-sign&gt;&lt;/attestto-sign&gt;</span>`} /></pre>
   </div>
@@ -174,7 +185,7 @@ const structuredData = [
   <Callout type="info">
     <strong>Live on npm.</strong> <code>@attestto/verify</code> is available at
     <a href="https://www.npmjs.com/package/@attestto/verify">npmjs.com/package/@attestto/verify</a>
-    and via CDN at <a href="https://unpkg.com/@attestto/verify">unpkg.com/@attestto/verify</a>.
+    and via CDN at <a href="https://unpkg.com/@attestto/verify@0.1.1/dist/attestto-verify.js">unpkg.com/@attestto/verify@0.1.1</a> (pin the version and add an <code>integrity</code> hash — see the examples above).
   </Callout>
 
   <h2>See also</h2>

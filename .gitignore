@@ -2,3 +2,7 @@ node_modules/
 dist/
 .astro/
 .DS_Store
+
+# DRAFT trámite schema — NOT for publication until ATT-802 patent review (F-1, audit 2026-07-19).
+# Remove this line only after counsel/Eduardo clear it; anything in public/ ships on next deploy.
+public/demo/uso-de-suelo.tramite-schema.json
