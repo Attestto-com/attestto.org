@@ -1,6 +1,6 @@
 ---
 interface Props {
-  variant?: 'default' | 'revisor' | 'standards' | 'docs'
+  variant?: 'default' | 'standards' | 'docs'
 }
 
 const { variant = 'default' } = Astro.props
@@ -23,14 +23,6 @@ const navConfigs: Record<string, { brandSuffix: string; brandI18n?: string; link
       { href: '/ark', label: 'Ark', i18n: 'nav.architecture' },
       { href: '/downloads', label: 'Downloads', i18n: 'nav.downloads' },
       { href: 'https://github.com/Attestto-com', label: 'GitHub' },
-    ],
-  },
-  revisor: {
-    brandSuffix: 'Revisor de Pliegos',
-    links: [
-      { href: '/cr', label: 'Costa Rica' },
-      { href: 'https://github.com/Attestto-com/attestto-pliego-reviewer', label: 'GitHub' },
-      { href: 'https://app.attestto.com', label: 'Verificador', color: '#4ade80', weight: '600' },
     ],
   },
   standards: {

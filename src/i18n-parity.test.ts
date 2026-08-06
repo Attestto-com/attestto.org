@@ -5,7 +5,7 @@
  * 1. Pages missing their /es/ counterpart (or orphaned /es/ pages with no EN root)
  * 2. Wrong lang attribute on built pages
  *
- * Excludes: /docs/ (EN-only for now), /for/ (EN-only), /404, /revisor-pliegos (ES-only tool)
+ * Excludes: /docs/ (EN-only for now), /for/ (EN-only), /404
  */
 
 import { describe, it, expect } from 'vitest'
@@ -20,7 +20,6 @@ const SKIP_PATTERNS = [
   /^for\//, // /for/developers is EN-only
   /^demo\//, // interactive demos are EN-only for now (ES to follow)
   /^404\.astro$/, // error page
-  /^revisor-pliegos\.astro$/, // ES-only tool
 ]
 
 function collectAstroPages(dir: string, base = ''): string[] {

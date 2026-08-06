@@ -1,6 +1,6 @@
 ---
 interface Props {
-  variant?: 'default' | 'revisor'
+  variant?: 'default'
   tagline?: string
   notes?: string[]
 }
@@ -27,15 +27,6 @@ const footerConfigs: Record<string, { brand: string; description: string; links:
       { href: '/privacy', label: 'Privacy' },
       { href: '/terms', label: 'Terms' },
       { href: '/cookies', label: 'Cookies' },
-    ],
-  },
-  revisor: {
-    brand: 'Attestto · Revisor de Pliegos',
-    description: 'Herramienta de verificación de pliegos de licitación.',
-    links: [
-      { href: '/', label: 'Attestto' },
-      { href: 'https://github.com/Attestto-com/attestto-pliego-reviewer', label: 'Código fuente' },
-      { href: 'mailto:open@attestto.com', label: 'open@attestto.com' },
     ],
   },
 }
