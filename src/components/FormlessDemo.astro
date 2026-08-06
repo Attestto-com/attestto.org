@@ -16,8 +16,9 @@
         <div class="fl-site">
           <p class="fl-panel-tag">The site (untrusted)</p>
           <div class="fl-site__card">
-            <h3>Municipalidad de Nicoya</h3>
+            <h3>Municipalidad de San Buenaventura</h3>
             <p class="fl-site__auth">Planificación Urbana · online trámites</p>
+            <p class="fl-site__demo">Fictional municipality — demo only, no real affiliation.</p>
             <p class="fl-site__desc">Instead of retyping the form, the site requests the credentials from your wallet.</p>
             <p class="fl-clickhint">➤ Click the button below to start</p>
             <button class="btn btn-primary fl-start" data-tramite="usoSuelo">Request: Resolución de Uso de Suelo</button>
@@ -72,6 +73,7 @@
   .fl-insecure { display: inline-block; font-family: var(--font-mono); font-size: 0.72rem; color: #fca5a5; background: rgba(239,68,68,0.12); border: 1px solid rgba(239,68,68,0.3); border-radius: 6px; padding: 0.15rem 0.5rem; margin-bottom: 0.6rem; }
   .fl-site__card h3 { margin: 0; color: #fff; }
   .fl-site__auth { margin: 0.15rem 0 0.6rem; color: #b4c0d0; font-size: 0.9rem; }
+  .fl-site__demo { margin: -0.4rem 0 0.6rem; color: #94a3b8; font-size: 0.72rem; font-style: italic; }
   .fl-site__desc { color: #cbd5e1; font-size: 0.92rem; margin: 0 0 var(--space-sm); }
   .fl-site .btn { width: 100%; }
   .fl-site__hint { color: #b4c0d0; font-size: 0.8rem; margin: 0.6rem 0 0; }
@@ -193,7 +195,7 @@
   // change a credential/issuer here, change it there too (or, follow-up: codegen
   // this from the schema so they cannot drift).
   const USO_SUELO: Tramite = {
-    verifier: 'Municipalidad de Nicoya · Planificación Urbana',
+    verifier: 'Municipalidad de San Buenaventura · Planificación Urbana',
     purpose: 'Resolución de Uso de Suelo',
     notRequested: ['Password', 'Printed copy of the plano', 'Registry lookup on paper', 'Retype cédula & finca'],
     properties: [
@@ -207,7 +209,7 @@
       { key: 'contacto', label: 'Email & phone', vcType: 'ContactCredential', required: true, held: true, sample: 'ana@example.cr · 8888-0000', group: 'identidad', provenance: 'persona' },
       { key: 'finca', label: 'Finca (folio real)', vcType: 'PropertyCredential', required: true, held: true, sample: '5-01234-000', group: 'propiedad', provenance: 'propiedad' },
       { key: 'plano', label: 'Plano catastrado', vcType: 'PropertyCredential', required: true, held: true, sample: 'G-0123456-2024', group: 'propiedad', provenance: 'propiedad' },
-      { key: 'ubicacion', label: 'Location (district / barrio)', vcType: 'PropertyCredential', required: true, held: true, sample: 'Nicoya · Barrio Centro', group: 'propiedad', provenance: 'propiedad' },
+      { key: 'ubicacion', label: 'Location (district / barrio)', vcType: 'PropertyCredential', required: true, held: true, sample: 'San Buenaventura · Barrio Centro', group: 'propiedad', provenance: 'propiedad' },
       { key: 'registral', label: 'Registry lookup (current)', vcType: 'RegistryCredential', required: true, held: true, sample: 'issued 2 days ago', group: 'propiedad', provenance: 'propiedad' },
       { key: 'bienes', label: 'Property-tax declaration (Ley 7509)', vcType: 'TaxStatusCredential', required: true, held: true, sample: 'valid 2026', group: 'propiedad', provenance: 'propiedad' },
       { key: 'impuestos', label: 'Municipal taxes up to date', vcType: 'TaxStatusCredential', required: true, held: true, sample: 'up to date', group: 'propiedad', provenance: 'propiedad' },
@@ -215,7 +217,7 @@
     ],
   }
   const GROUP_LABEL: Record<string, string> = { identidad: '🪪 Identity', propiedad: '📍 Property', autoridad: '🔗 Your role' }
-  const ISSUER: Record<string, string> = { PropertyCredential: 'did:web:rnpdigital.go.cr', RegistryCredential: 'did:web:rnpdigital.go.cr', TaxStatusCredential: 'did:web:municoya.go.cr', OwnershipCredential: 'did:web:rnpdigital.go.cr', IdentityCredential: 'did:web:tse.go.cr', ContactCredential: 'did:sns:ana.attestto' }
+  const ISSUER: Record<string, string> = { PropertyCredential: 'did:web:rnpdigital.go.cr', RegistryCredential: 'did:web:rnpdigital.go.cr', TaxStatusCredential: 'did:web:sanbuenaventura.go.cr', OwnershipCredential: 'did:web:rnpdigital.go.cr', IdentityCredential: 'did:web:tse.go.cr', ContactCredential: 'did:sns:ana.attestto' }
 
   const screen = document.getElementById('fl-screen')!
   const out = document.getElementById('fl-out')!
@@ -345,10 +347,10 @@
       // and the presentation expires. A verifier MUST reject a VP not bound to the
       // exact challenge + domain it issued — see @attestto/id-wallet-adapter
       // verifyPresentation (challenge/domain binding + freshness).
-      proof: { type: 'DataIntegrityProof', cryptosuite: 'eddsa-jcs-2022', created: '2026-07-17T14:32:05Z', expires: '2026-07-17T14:37:05Z', verificationMethod: 'did:sns:ana.attestto#key-1', proofPurpose: 'authentication', domain: 'https://municoya.go.cr', challenge: 'a3f1c2d4-9b8e-4c11-8f2a-6e5d1c9b7a04' },
+      proof: { type: 'DataIntegrityProof', cryptosuite: 'eddsa-jcs-2022', created: '2026-07-17T14:32:05Z', expires: '2026-07-17T14:37:05Z', verificationMethod: 'did:sns:ana.attestto#key-1', proofPurpose: 'authentication', domain: 'https://sanbuenaventura.go.cr', challenge: 'a3f1c2d4-9b8e-4c11-8f2a-6e5d1c9b7a04' },
       // The signed VP above is delivered wrapped in a JWE to the verifier, so the
       // untrusted site only relays ciphertext (no plaintext PII on the wire).
-      _delivery: { format: 'JWE', alg: 'ECDH-ES+A256KW', enc: 'A256GCM', encryptedFor: 'did:web:municoya.go.cr' },
+      _delivery: { format: 'JWE', alg: 'ECDH-ES+A256KW', enc: 'A256GCM', encryptedFor: 'did:web:sanbuenaventura.go.cr' },
     }
   }
 
@@ -367,7 +369,7 @@
     const vp = JSON.stringify(buildVP(), null, 2)
     screen.innerHTML = `<div class="fl-done"><div class="fl-done__check">✓</div><h3 class="fl-done__title">Request sent</h3>
       <p class="fl-done__receipt">Receipt ${esc(receipt)}</p>
-      <p class="fl-done__sub">🔒 Signed in your wallet and <strong>encrypted to did:web:municoya.go.cr</strong>, so the site relayed ciphertext only, never your credentials or your key.</p>
+      <p class="fl-done__sub">🔒 Signed in your wallet and <strong>encrypted to did:web:sanbuenaventura.go.cr</strong>, so the site relayed ciphertext only, never your credentials or your key.</p>
       <details class="fl-vp" open><summary>Verifiable Presentation (what was sent)</summary><pre>${esc(vp)}</pre></details>
       <button class="btn btn-secondary fl-restart" id="fl-restart">Restart demo</button></div>`
     document.getElementById('fl-restart')!.addEventListener('click', renderIdle)

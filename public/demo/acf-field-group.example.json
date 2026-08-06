@@ -27,8 +27,8 @@
   ],
   "location": [[{ "param": "page_template", "operator": "==", "value": "uso-de-suelo.php" }]],
   "_attestto_meta": {
-    "verifier": "did:web:municoya.go.cr",
-    "encryptTo": "did:web:municoya.go.cr",
+    "verifier": "did:web:sanbuenaventura.go.cr",
+    "encryptTo": "did:web:sanbuenaventura.go.cr",
     "note": "Attestto reads this field group and produces a credential request. The resulting Verifiable Presentation is signed by the holder AND encrypted to `encryptTo`, so it can traverse an insecure site while only the municipal system can decrypt it (no plaintext PII on the wire)."
   }
 }
